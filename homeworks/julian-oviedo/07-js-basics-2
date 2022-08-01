@@ -57,8 +57,52 @@ function solve(arr) {
 }
 
 //KATA 6 https://www.codewars.com/kata/566044325f8fddc1c000002c
+function evenChars(string) {
+  let result = [];
+  let arr = string.split('');
+  if (2 <= string.length && 100 >= string.length) {
+    for (i = 1; i < arr.length; i = i + 2) {
+      result.push(arr[i]);
+    }
+  } else {
+    return 'invalid string';
+  }
+  return result;
+}
+
 //KATA 7 https://www.codewars.com/kata/545a4c5a61aa4c6916000755
+
+function gimme(t) {
+  const max = Math.max(...t);
+  const min = Math.min(...t);
+  const middle = 3 - t.indexOf(max) - t.indexOf(min);
+  return middle;
+}
+
 //KATA 8 https://www.codewars.com/kata/578553c3a1b8d5c40300037c
+const binaryArrayToNumber = (arr) => {
+  arr.reverse();
+  let result = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === 1) {
+      result += Math.pow(2, i);
+    }
+  }
+  return result;
+};
+
 //KATA 9 https://www.codewars.com/kata/585d7d5adb20cf33cb000235
+
+function findUniq(arr) {
+  const max = Math.max(...arr);
+  const min = Math.min(...arr);
+  if (arr.filter((x) => x !== min).length <= 1) {
+    return max;
+  } else {
+    return min;
+  }
+}
+
 //KATA 10 https://www.codewars.com/kata/581e014b55f2c52bb00000f8
+
 //KATA 11 https://www.codewars.com/kata/578aa45ee9fd15ff4600090d
