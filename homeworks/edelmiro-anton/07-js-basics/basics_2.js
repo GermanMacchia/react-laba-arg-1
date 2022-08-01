@@ -42,7 +42,9 @@ function pairs(ar) {
 }
 
 // Task 3 - https://www.codewars.com/kata/5aba780a6a176b029800041c/train/javascript
-
+function maxMultiple(divisor, bound) {
+  return bound - (bound % divisor);
+}
 // Task 4 - https://www.codewars.com/kata/514a6336889283a3d2000001
 
 function getEvenNumbers(numbersArray) {
