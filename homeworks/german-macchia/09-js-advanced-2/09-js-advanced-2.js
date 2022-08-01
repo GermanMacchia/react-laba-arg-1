@@ -17,7 +17,9 @@ class Serializable {
     if (this.constructor.name === objectNameInMap) {
       return this.createObject(this.constructor.name, objectStringinMap);
     } else {
-      return `The serial No ${serial} does not belong to the instanciated class`;
+      throw new Error(
+        `The serial No ${serial} does not belong to the instanciated class`
+      );
     }
   }
 
@@ -103,7 +105,11 @@ class Post extends Serializable {
   }
 }
 
-console.log(new Post().wakeFrom(serialized));
+try {
+  console.log(new Post().wakeFrom(serialized));
+} catch (e) {
+  console.log(e.message); //Error
+}
 
 //EXAMPLE 1
 let post = new Post({
@@ -115,8 +121,12 @@ let post = new Post({
 const serializedPost = post.serialize();
 console.log(serializedPost); //2
 post = null;
-let resurrectedPost = new UserDTO().wakeFrom(serializedPost);
-
+let resurrectedPost;
+try {
+  let resurrectedPost = new UserDTO().wakeFrom(serializedPost);
+} catch (e) {
+  console.log(e.message); //Error
+}
 resurrectedPost = new Post().wakeFrom(serializedPost);
 console.log(resurrectedPost instanceof UserDTO); //false
 console.log(resurrectedPost instanceof Post); //true
