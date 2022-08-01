@@ -72,19 +72,19 @@ function offset(date) {
 //Using moment() from task #3
 function randomDate(date1, date2) {
   this.date = new Date(Math.random() * (date2 - date1) + date1.getTime());
-  return this.date
+  return this.date;
 }
-
+//although is not a good practice at all changing the defined Objects of JavaScript
 Date.prototype.format = (format) => {
   const DATE_ITEMS = ["YYYY", "YY", "MM", "DD", "hh", "mm", "ss"];
   let entries = {
-    DD: date.getDate(),
-    MM: date.getMonth() + 1,
-    YYYY: date.getFullYear(),
+    DD: date.getDate().toLocaleString("en-US", { minimunIntegerDigits: 2 }),
+    MM: date.getMonth().toLocaleString("en-US", { minimunIntegerDigits: 1 }) + 1,
+    YYYY: date.getFullYear().toLocaleString("en-US", { minimunIntegerDigits: 2 }),
     YY: date.getFullYear().toString().substring(2),
-    hh: date.getHours(),
-    mm: date.getMinutes(),
-    ss: date.getSeconds(),
+    hh: date.getHours().toLocaleString("en-US", { minimunIntegerDigits: 2 }),
+    mm: date.getMinutes().toLocaleString("en-US", { minimunIntegerDigits: 2 }),
+    ss: date.getSeconds().toLocaleString("en-US", { minimunIntegerDigits: 2 }),
   };
 
   for (e of DATE_ITEMS) {
@@ -115,6 +115,25 @@ function NamedOne(first, last) {
       if (_fullName.length === 2) {
         [this.firstName, this.lastName] = _fullName;
       }
+    },
+  });
+}
+
+//8. "this" is an other solution - https://www.codewars.com/kata/54834b3559e638b39d0009a2
+function OnceNamedOne(first, last) {
+  this.firstName = first;
+  this.lastName = last;
+  this.fullName = this.firstName + " " + this.lastName;
+
+  Object.defineProperties(this, {
+    firstName: {
+      writable: false,
+    },
+    lastName: {
+      writable: false,
+    },
+    fullName: {
+      writable: false,
     },
   });
 }
