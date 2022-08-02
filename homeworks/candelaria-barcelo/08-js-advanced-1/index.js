@@ -19,11 +19,8 @@ const clone = (obj) => {
 }
 
 // task 3: a long time ago
-const offset = (dates) => {
-  const now = dates.pop()
-  let previousDate = dates.pop()
-  const previousArray = previousDate.split(/[/: ]/g)
-  previousDate = new Date (previousArray[2], previousArray[1]-1, previousArray[0], previousArray[3], previousArray[4], previousArray[5])
+const offset = (previousDate) => {
+  const now = new Date()
   function msToTime(ms) {
     let seconds = (ms / 1000).toFixed();
     let minutes = (ms / (1000 * 60)).toFixed();
@@ -36,8 +33,29 @@ const offset = (dates) => {
   }
   return (msToTime(now - previousDate))
 }
-const moment = (previousDate, format) => {
-  const now = new Date()
-  return [previousDate, now]
+
+const moment = (dateInput, format) => {
+  let previousDate = dateInput
+  const previousArray = previousDate.split(/[/: ]/g)
+  previousDate = new Date (
+    previousArray[2], 
+    previousArray[1]-1, 
+    previousArray[0], 
+    previousArray[3], 
+    previousArray[4], 
+    previousArray[5]
+    )
+  return previousDate
 }
 
+// task 4: random dates
+const randomDate = () => {
+  
+}
+
+
+const date1 = moment('23/01/2021', 'DD/MM/YYYY');
+const date2 = moment('23/02/2021', 'DD/MM/YYYY');
+
+console.log(randomDate(date1, date2).format('DD/MM/YY'));
+// 20/02/2021
