@@ -14,20 +14,6 @@ const pluck = (object, keyInput) => {
 }
 
 // task 2: Deep clone
-
 const clone = (obj) => {
-  // const entries = Object.entries(obj)
-  // let clonedObject = {}
-  // for (let i=0; i < entries.length; i++) {
-  //   let value = entries[i][1]
-  //   while (typeof value === Object) {
-  //     const valueEntries = Object.entries(value)
-  //     for (let i=0; i < valueEntries.length; i++) {
-
-  //     }
-  //     value = value[]
-  //   }
-  //   clonedObject[entries[i][0]] = value
-  // }
   return JSON.parse(JSON.stringify(obj))
 }
