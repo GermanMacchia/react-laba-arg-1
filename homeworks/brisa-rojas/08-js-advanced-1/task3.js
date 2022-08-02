@@ -55,6 +55,53 @@ clonedUser.preferences.sound.maxValue = 70; // change the value of the sound.max
 
 console.log(user.preferences.sound.maxValue === clonedUser.preferences.sound.maxValue); // false
 
+// 3 -  A LONG TIME AGO
+//Create a function that returns how long ago a certain day was.
+// 3 -  A LONG TIME AGO
+//Create a function that returns how long ago a certain day was.
+function offset(date){
+  const SECS_IN_DAY = 60 * 60 * 24;
+  const SECS_IN_HOUR = 60 * 60;
+  const SECS_IN_MIN = 60;
+
+  let offsetArray = []; // [days, hours, minutes, seconds]
+
+  let differenceInSeconds = Math.floor((new Date(Date.now()) - date) / 1000);
+
+  // calculate days
+  offsetArray[0] = Math.floor(differenceInSeconds / SECS_IN_DAY);
+  // calculate hours
+  differenceInSeconds -= offsetArray[0] * SECS_IN_DAY;
+  offsetArray[1] = Math.floor(differenceInSeconds / SECS_IN_HOUR);
+  // calculate minutes
+  differenceInSeconds -= offsetArray[1] * SECS_IN_HOUR;
+  offsetArray[2] = Math.floor(differenceInSeconds / SECS_IN_MIN);
+  // calculate seconds
+  offsetArray[3] = differenceInSeconds - offsetArray[2] * SECS_IN_MIN;
+
+  return format(offsetArray);
+}
+
+function format(array){
+  let plural;
+  let formatedString = '';
+  let timeUnits = ['day', 'hour', 'minute', 'second'];
+
+  for (let i = 0; i < array.length; i++){
+      if (array[i] > 0){
+          plural = array[i] > 1 ? 's' : '';
+          formatedString += array[i] + ' ' + timeUnits[i] + plural  +  ' ';
+      }
+  }
+  formatedString = formatedString + 'ago';
+  return formatedString;
+}
+
+// Test 
+let date1 = new Date(Date.parse("Mar 17 2000, 10:42")); 
+console.log(offset(date1));  
+
+
 // 5 - MERGED OBJECTS https://www.codewars.com/kata/merged-objects
 function objConcat(arr){
   let obj = {};
@@ -150,3 +197,5 @@ function humanReadable (seconds) {
 }
 
 console.log(humanReadable(360)); 
+
+
