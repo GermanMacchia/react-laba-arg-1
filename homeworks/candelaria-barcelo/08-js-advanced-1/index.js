@@ -95,3 +95,31 @@ function objConcat(arr){
 }
 
 // task 6 https://www.codewars.com/kata/547f1a8d4a437abdf800055c
+
+
+// optional task 10 https://www.codewars.com/kata/human-readable-time
+function humanReadable (seconds) {
+  let answer = '00:00:00'
+  // replacing the hours value
+  let hours = Math.floor(seconds / 60 / 60)
+  if (hours > 0 && hours < 10) {
+    answer = answer.replace("00", "0" + hours)
+  } else if (hours > 0 && hours >= 10) {
+    answer = answer.replace("00", hours)
+  }
+  // replacing the minutes value
+  let minutes = Math.floor(seconds / 60 - (hours * 60))
+  if (minutes > 0 && minutes < 10) {
+    answer = answer.replace(":00:", ":0" + minutes + ":")
+  } else if (minutes > 0 && minutes >= 10) {
+    answer = answer.replace(":00:", ":" + minutes + ":")
+  }
+  // replacing the seconds value
+  let remainingSeconds = seconds - (minutes * 60) - (hours * 60 * 60) 
+  if (remainingSeconds > 0 && remainingSeconds < 10) {
+    answer = answer.replace(/00$/, "0" + remainingSeconds)
+  } else if (remainingSeconds > 0 && remainingSeconds >= 10) {
+    answer = answer.replace(/00$/, remainingSeconds)
+  }
+  return answer;
+}
