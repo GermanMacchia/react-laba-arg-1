@@ -37,25 +37,48 @@ const offset = (previousDate) => {
 const moment = (dateInput, format) => {
   let previousDate = dateInput
   const previousArray = previousDate.split(/[/: ]/g)
-  previousDate = new Date (
-    previousArray[2], 
-    previousArray[1]-1, 
-    previousArray[0], 
-    previousArray[3], 
-    previousArray[4], 
-    previousArray[5]
-    )
+  if (previousArray.length === 6) {
+    previousDate = new Date (
+      previousArray[2], 
+      previousArray[1]-1, 
+      previousArray[0], 
+      previousArray[3], 
+      previousArray[4], 
+      previousArray[5]
+      )
+  } else if (previousArray.length === 3) {
+    previousDate = new Date (
+      previousArray[2], 
+      previousArray[1]-1, 
+      previousArray[0]
+      )
+  }
+  
   return previousDate
 }
 
 // task 4: random dates
-const randomDate = () => {
-  
+const randomDate = (min, max) => {
+  return new Date(Math.floor(Math.random() * (max - min)) + (min * 1))
 }
 
+Date.prototype.format = function (formatInput) {
+  let formattedDate = formatInput.toString();
+  if (this.getDate() < 10) {
+    formattedDate = formattedDate.replace("DD", "0" + this.getDate())
+  } else {
+    formattedDate = formattedDate.replace("DD", this.getDate())
+  }
+  if (this.getMonth()+1 < 10) {
+    formattedDate = formattedDate.replace("MM", "0" + (this.getMonth()+1)*1)
+  } else {
+    formattedDate = formattedDate.replace("MM", (this.getMonth()+1)*1)
+  }
+  if (formattedDate.includes("YYYY")) {
+    formattedDate = formattedDate.replace("YYYY", this.getFullYear())
+  } else {
+    formattedDate = formattedDate.replace("YY", this.getFullYear().toString().substring(2))
+  }
+  return formattedDate
+}
 
-const date1 = moment('23/01/2021', 'DD/MM/YYYY');
-const date2 = moment('23/02/2021', 'DD/MM/YYYY');
-
-console.log(randomDate(date1, date2).format('DD/MM/YY'));
-// 20/02/2021
