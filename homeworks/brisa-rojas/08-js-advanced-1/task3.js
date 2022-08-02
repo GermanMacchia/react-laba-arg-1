@@ -89,8 +89,8 @@ function format(array){
 
   for (let i = 0; i < array.length; i++){
       if (array[i] > 0){
-          plural = array[i] > 1 ? 's' : '';
-          formatedString += array[i] + ' ' + timeUnits[i] + plural  +  ' ';
+        plural = array[i] > 1 ? 's' : '';
+        formatedString += array[i] + ' ' + timeUnits[i] + plural  +  ' ';
       }
   }
   formatedString = formatedString + 'ago';
@@ -100,6 +100,18 @@ function format(array){
 // Test 
 let date1 = new Date(Date.parse("Mar 17 2000, 10:42")); 
 console.log(offset(date1));  
+let date2 = new Date(Date.parse("Sept 29 1998")); 
+console.log(offset(date2));  
+
+// 4 - RANDOM DATES
+// Create a function that generate a random date between to dates.
+function randomDate(start, end) { 
+  let date = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+  return date;
+}
+
+// Test
+console.log(randomDate(date1, date2));
 
 
 // 5 - MERGED OBJECTS https://www.codewars.com/kata/merged-objects
