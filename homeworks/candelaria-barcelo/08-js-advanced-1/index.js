@@ -82,3 +82,16 @@ Date.prototype.format = function (formatInput) {
   return formattedDate
 }
 
+// task 5 https://www.codewars.com/kata/merged-objects
+function objConcat(arr){
+  let answer = {}
+  for (let i=0; i < arr.length; i++) {
+    let entries = Object.entries(arr[i])
+    for (let i=0; i < entries.length; i++) {
+      answer[entries[i][0]] = entries[i][1]
+    }
+  }
+  return answer
+}
+
+// task 6 https://www.codewars.com/kata/547f1a8d4a437abdf800055c
