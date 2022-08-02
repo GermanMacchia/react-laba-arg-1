@@ -32,119 +32,32 @@ function rentalCarCost(days) {
 }
 
 // katas 5 https://www.codewars.com/kata/calculating-with-functions
-function zero(params) {
-  const NUMBER = 0;
-  let numberData;
 
-  typeof params === "string"
-    ? (numberData = Math.floor(eval(NUMBER + params)))
-    : (numberData = NUMBER);
+//Better approach
 
-  return numberData;
-}
-function one(params) {
-  const NUMBER = 1;
-  let numberData;
+//If no params, these f will return the number, else will return the result of the parameter as an invocated function 
+//it should be in these cases the result of operation function with a number as parameter 
+function zero(func)   { return func ? func(0) : 0; };
+function one(func)    { return func ? func(1) : 1; };
+function two(func)    { return func ? func(2) : 2; };
+function three(func)  { return func ? func(3) : 3; };
+function four(func)   { return func ? func(4) : 4; };
+function five(func)   { return func ? func(5) : 5; };
+function six(func)    { return func ? func(6) : 6; };
+function seven(func)  { return func ? func(7) : 7; };
+function eight(func)  { return func ? func(8) : 8; };
+function nine(func)   { return func ? func(9) : 9; };
 
-  typeof params === "string"
-    ? (numberData = Math.floor(eval(NUMBER + params)))
-    : (numberData = NUMBER);
+//Will always be invoked with number function inside (variable "b"). 
+//If this does not have params will return only number)
+//Variable "a" will be the number that is holding inside the same operation function 
+//The operation function returns a whole function itself, that will be invoked recursively by the numbers functions. 
+//After that the operation occurs
+function plus( b )      { return function( a ) { return a + b; }; };
+function minus( b )     { return function( a ) { return a - b; }; };
+function times( b )     { return function( a ) { return a * b; }; };
+function dividedBy( b ) { return function( a ) { return a / b; }; };
 
-  return numberData;
-}
-function two(params) {
-  const NUMBER = 2;
-  let numberData;
-
-  typeof params === "string"
-    ? (numberData = Math.floor(eval(NUMBER + params)))
-    : (numberData = NUMBER);
-
-  return numberData;
-}
-function three(params) {
-  const NUMBER = "3";
-  let numberData;
-
-  typeof params === "string"
-    ? (numberData = Math.floor(eval(NUMBER + params)))
-    : (numberData = NUMBER);
-
-  return numberData;
-}
-function four(params) {
-  const NUMBER = 4;
-  let numberData;
-
-  typeof params === "string"
-    ? (numberData = Math.floor(eval(NUMBER + params)))
-    : (numberData = NUMBER);
-
-  return numberData;
-}
-function five(params) {
-  const NUMBER = 5;
-  let numberData;
-
-  typeof params === "string"
-    ? (numberData = Math.floor(eval(NUMBER + params)))
-    : (numberData = NUMBER);
-
-  return numberData;
-}
-function six(params) {
-  const NUMBER = 6;
-  let numberData;
-
-  typeof params === "string"
-    ? (numberData = Math.floor(eval(NUMBER + params)))
-    : (numberData = NUMBER);
-
-  return numberData;
-}
-function seven(params) {
-  const NUMBER = 7;
-  let numberData;
-
-  typeof params === "string"
-    ? (numberData = Math.floor(eval(NUMBER + params)))
-    : (numberData = NUMBER);
-
-  return numberData;
-}
-function eight(params) {
-  const NUMBER = 8;
-  let numberData;
-
-  typeof params === "string"
-    ? (numberData = Math.floor(eval(NUMBER + params)))
-    : (numberData = NUMBER);
-
-  return numberData;
-}
-function nine(params) {
-  const NUMBER = 9;
-  let numberData;
-
-  typeof params === "string"
-    ? (numberData = Math.floor(eval(NUMBER + params)))
-    : (numberData = NUMBER);
-
-  return numberData;
-}
-
-function plus(number) {
-  return `+ ${number}`;
-}
-function minus(number) {
-  return `- ${number}`;
-}
-function times(number) {
-  return `* ${number}`;
-}
-function dividedBy(number) {
-  return `/ ${number}`;
-}
 
 // katas 6 https://www.codewars.com/kata/get-the-middle-character
 function getMiddle(word) {
@@ -264,7 +177,7 @@ function zipWith(fn, a0, a1) {
 }
 
 // katas 12 https://www.codewars.com/kata/filter-the-number
-let FilterString = function (value) {
+let filterString = function (value) {
   let number = "";
   let regex = /[0-9]/;
 
