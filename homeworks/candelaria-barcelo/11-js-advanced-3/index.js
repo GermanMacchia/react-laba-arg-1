@@ -8,3 +8,14 @@ function validateMessage(msg) {
   }
 
 // task 2 
+
+
+// task 3 setTimeout/setInterval
+let i = 1
+let timePassed = setInterval(() => {
+    console.log(`Elapsed time: ${i} sec`)
+    i++
+}, 1000)
+setTimeout(() => { clearInterval(timePassed) }, 5000)
+timePassed()
+
