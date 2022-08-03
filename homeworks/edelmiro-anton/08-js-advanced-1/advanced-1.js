@@ -72,3 +72,22 @@ function offset(date1, date2) {
     return (timeAgo = days + ' days ago ');
   }
 }
+
+// Task 4 - Create a function that generate a random date between to dates
+
+const date_1 = new Date(2021, 0, 23);
+const date_2 = new Date(2021, 1, 23);
+
+function randomDate(firstDate, secondDate) {
+  let date = new Date(firstDate.getTime() + Math.random() * (secondDate.getTime() - firstDate.getTime()));
+  const day = `${date.getDate() < 10 ? '0' : ''}${date.getDate()}`;
+  day;
+
+  const month = `${date.getMonth() < 10 ? '0' : ''}${date.getMonth() + 1}`;
+  month;
+
+  const year = `${date.getFullYear()}`;
+  year;
+
+  return `${day}/${month}/${year}`;
+}
