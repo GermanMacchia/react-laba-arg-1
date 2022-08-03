@@ -91,3 +91,15 @@ function randomDate(firstDate, secondDate) {
 
   return `${day}/${month}/${year}`;
 }
+
+// Task 5 - https://www.codewars.com/kata/596cf5b0e1665a2d02000007/train/javascript
+
+function objConcat(arr) {
+  let finalObj = {};
+  for (i = 0; i < arr.length; i++) {
+    for (let key in arr[i]) {
+      finalObj[key] = arr[i][key];
+    }
+  }
+  return finalObj;
+}
