@@ -17,5 +17,9 @@ let timePassed = setInterval(() => {
     i++
 }, 1000)
 setTimeout(() => { clearInterval(timePassed) }, 5000)
-timePassed()
 
+// task 6 Digit or not
+const regexChecker = (str) => {
+    if (str.match(/^\d/)) return true
+    return false
+}
