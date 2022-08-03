@@ -29,3 +29,14 @@ console.log(pluck(user, 'preferences.sound.value')); // 30
 console.log(pluck(user, 'unknown.key')); // null
 console.log(pluck(randomValue, 'unknown.key')); // null
 console.log(pluck(nullValue, 'unknown.key'));
+
+// ## TASK 2. Deep Clone - Create custom deep clone function.
+
+function clone(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+const clonedUser = clone(user);
+
+clonedUser.preferences.sound.maxValue = 70;
+
+console.log(user.preferences.sound.maxValue === clonedUser.preferences.sound.maxValue); // false
