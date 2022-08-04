@@ -101,3 +101,31 @@ function randomDate(d1, d2) {
 
   return formattedDate;
 }
+
+// ## Codewars task
+
+// TASK  5. [Merged Objects](https://www.codewars.com/kata/merged-objects)
+
+function objConcat(objs) {
+  return Object.assign({}, ...objs);
+}
+
+// TASK 6. ["this" is an other problem](https://www.codewars.com/kata/547f1a8d4a437abdf800055c)
+
+function NamedOne(first, last) {
+  this.firstName = first;
+  this.lastName = last;
+
+  Object.defineProperty(this, 'fullName', {
+    get: function () {
+      return this.firstName + ' ' + this.lastName;
+    },
+    set: function (value) {
+      var split = value.split(' ');
+      if (split.length == 2) {
+        this.firstName = split[0];
+        this.lastName = split[1];
+      }
+    },
+  });
+}
