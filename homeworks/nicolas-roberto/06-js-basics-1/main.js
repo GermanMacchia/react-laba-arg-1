@@ -46,6 +46,78 @@ function rentalCarCost(d) {
 
 // 5 katas https://www.codewars.com/kata/calculating-with-functions
 
+function expression(number, operation) {
+  //If there's no operation, returns the number
+  if (!operation) return number;
+  return operation(number);
+}
+
+//Each number-function, takes the given operation and returns it
+function zero(operationCallback = (num) => num) {
+  const num = 0;
+  return operationCallback(num);
+}
+function one(operationCallback = (num) => num) {
+  const num = 1;
+  return operationCallback(num);
+}
+function two(operationCallback = (num) => num) {
+  const num = 2;
+  return operationCallback(num);
+}
+function three(operationCallback = (num) => num) {
+  const num = 3;
+  return operationCallback(num);
+}
+function four(operationCallback = (num) => num) {
+  const num = 4;
+  return operationCallback(num);
+}
+function five(operationCallback = (num) => num) {
+  const num = 5;
+  return operationCallback(num);
+}
+function six(operationCallback = (num) => num) {
+  const num = 6;
+  return operationCallback(num);
+}
+function seven(operationCallback = (num) => num) {
+  const num = 7;
+  return operationCallback(num);
+}
+function eight(operationCallback = (num) => num) {
+  const num = 8;
+  return operationCallback(num);
+}
+function nine(operationCallback = (num) => num) {
+  const num = 9;
+  return operationCallback(num);
+}
+
+//Then the operation-function rearranges the returned numbers from the functions
+// and the operation depending on which function are.
+function plus(x) {
+  return function (y) {
+    return y + x;
+  };
+}
+function minus(x) {
+  return function (y) {
+    return y - x;
+  };
+}
+function times(x) {
+  return function (y) {
+    return y * x;
+  };
+}
+//The division function has to round-down (Math.floor) the final number as the katas asked.
+function dividedBy(x) {
+  return function (y) {
+    return Math.floor(y / x);
+  };
+}
+
 // 6 kata https://www.codewars.com/kata/get-the-middle-character
 
 function getMiddle(s) {
@@ -169,6 +241,22 @@ let FilterString = function (value) {
 };
 
 // kata 13 https://www.codewars.com/kata/522551eee9abb932420004a0/train/javascript
+
+function nthFibo(number) {
+  //New array with the first two numbers in the problem
+  let arrayFibonacci = [0, 1];
+  //If  the value of the given array is greater than 2
+  if (number > 2) {
+    //We start at index 2, which is the last number of "number"
+    for (let index = 2; index < number; index++) {
+      //And the actual index-iteration-value will be equals to
+      //the previous the sum of the previous two indexes
+      arrayFibonacci[index] = arrayFibonacci[index - 1] + arrayFibonacci[index - 2];
+    }
+  }
+  //Returns the last value of the new array
+  return arrayFibonacci[number - 1];
+}
 
 // kata 14 https://www.codewars.com/kata/cat-and-mouse-2d-version/
 
