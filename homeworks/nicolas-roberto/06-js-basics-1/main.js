@@ -29,7 +29,7 @@ function printArray(array) {
 
 function rentalCarCost(d) {
   //variable with a dayly price
-  let dayPrice = 40;
+  const dayPrice = 40;
   //if the amount of days is equal or higer than 7
   if (d >= 7) {
     //returns the days amount multiplied by 40 minus 50 (the discount)
@@ -50,7 +50,7 @@ function rentalCarCost(d) {
 
 function getMiddle(s) {
   //get the middle character dividing the string length by 2
-  let middleIndex = s.length / 2;
+  const middleIndex = s.length / 2;
   //if the string length is not a pair/even number
   if (s.length % 2 == 0) {
     //slices or "takes" the two middle characters (middle index -1 and +1)
@@ -146,9 +146,9 @@ function zipWith(fn, a0, a1) {
   //Creates a new empty array to push the elements selected by "fn"
   let shortNewArray = [];
   //We crate two variables which value is the length of their current arrays=>
-  let a0Length = a0.length;
+  const a0Length = a0.length;
   //because the function will run the amount of times of the shorter array llength
-  let a1Length = a1.length;
+  const a1Length = a1.length;
   //As long as index value is shorter than both array's length values
   for (let index = 0; index < a0Length && index < a1Length; index++) {
     //the short array will push the final value decided by the function (fn) =>
@@ -161,7 +161,7 @@ function zipWith(fn, a0, a1) {
 
 // kata 12 https://www.codewars.com/kata/55b051fac50a3292a9000025/train/javascript
 
-var FilterString = function (value) {
+let FilterString = function (value) {
   //We filter the letters (/[^0-9]/g) and replace them with an empty space
   let filterNumber = value.replace(/[^0-9]/g, '');
   //Returns the variable with the string converted to int (parseInt)
@@ -202,7 +202,7 @@ function duplicateEncode(word) {
 
 function wave(str) {
   //We create a new empty array to push future words
-  mexicanWave = [];
+  let mexicanWave = [];
   //For every letter in str we will make an entire push of the word with modifications
   for (let index = 0; index < str.length; index++) {
     //If the string actual index is not an empty space
