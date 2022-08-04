@@ -286,6 +286,22 @@ function duplicateEncode(word) {
 
 // kata 17 https://www.codewars.com/kata/576757b1df89ecf5bd00073b
 
+function towerBuilder(nFloors) {
+  let space = [];
+  let star = [];
+  let tower = [];
+
+  for (let index = 1; index <= nFloors; index++) {
+    //the created arrays get spaces and stars
+    space = ' '.repeat(nFloors - index);
+    star = '*'.repeat(2 * index - 1);
+    //For each floor, we push into tower the spaces and stars
+    //referenced in the arrays, with array literals
+    tower.push(`${space}${star}${space}`);
+  }
+  return tower;
+}
+
 // kata 18 https://www.codewars.com/kata/58f5c63f1e26ecda7e000029
 
 function wave(str) {
