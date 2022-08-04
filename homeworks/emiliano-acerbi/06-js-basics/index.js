@@ -105,28 +105,28 @@ function getMiddle(s) {
 
 function partitionOn(pred, items) {
   // Array of false statements
-  let f = items.filter(function (e) {
+  let falseArray = items.filter(function (e) {
     return !pred(e);
   });
 
   // Array of true statements
-  let t = items.filter(pred);
+  let trueArray = items.filter(pred);
 
   // Cleans the array ( items = [] )
   items.length = 0;
 
   // Pushes the false and true statements as different arrays in items[]
-  for (let i = 0; i < f.length; i++) {
-    items.push(f[i]);
+  for (let i = 0; i < falseArray.length; i++) {
+    items.push(falseArray[i]);
   }
 
   for (let i = 0; i < t.length; i++) {
-    items.push(t[i]);
+    items.push(trueArray[i]);
   }
 
   // The result is items = [[...false statements], [...true statements]]]
 
-  return f.length;
+  return falseArray.length;
 }
 
 // 8. Link doesn't work
@@ -197,11 +197,11 @@ function zipWith(fn, a0, a1) {
 
 // 12. https://www.codewars.com/kata/filter-the-number
 
-const FilterString = function (value) {
+function filterString(value) {
   // Filter to only match numbers
   const regex = /[0-9]/g;
   return parseInt(value.match(regex).join(''));
-};
+}
 
 // 13. https://www.codewars.com/kata/n-th-fibonacci
 
