@@ -104,6 +104,14 @@ function findUniq(arr) {
 }
 
 //KATA 10 https://www.codewars.com/kata/581e014b55f2c52bb00000f8
+function decipherThis(str) {
+  let arr = str.split(' ');
+  let result = [];
+  arr.forEach((e) => {
+    result.push(e.replace(/\d+/, (char) => String.fromCharCode(char)).replace(/^(.)(.)(.*)(.)$/, '$1$4$3$2'));
+  });
+  return result.join(' ');
+}
 
 //KATA 11 https://www.codewars.com/kata/578aa45ee9fd15ff4600090d
 
