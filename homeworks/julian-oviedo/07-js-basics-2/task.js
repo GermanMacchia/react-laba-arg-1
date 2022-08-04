@@ -124,3 +124,16 @@ function sortArray(array) {
 
   return array;
 }
+
+// OPTIONAL ADVANCED KATAS  !! //
+
+// 2. https://www.codewars.com/kata/52597aa56021e91c93000cb0
+
+function moveZeros(arr) {
+  for (a of arr) {
+    if (a === 0) {
+      arr.push(arr.splice(arr.indexOf(0), 1)[0]);
+    }
+  }
+  return arr;
+}
