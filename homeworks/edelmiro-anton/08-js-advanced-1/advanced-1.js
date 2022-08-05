@@ -103,3 +103,44 @@ function objConcat(arr) {
   }
   return finalObj;
 }
+
+// Task 6 - https://www.codewars.com/kata/547f1a8d4a437abdf800055c
+
+function NamedOne(first, last) {
+  this.firstName = first;
+  this.lastName = last;
+
+  Object.defineProperty(this, 'fullName', {
+    get: function () {
+      return this.firstName + ' ' + this.lastName;
+    },
+
+    set(value) {
+      value = value.trim();
+      if (value.includes(' ')) {
+        let fullName = value.split(' ');
+        this.firstName = fullName[0];
+        this.lastName = fullName[1];
+        value = fullName.join(' ');
+      }
+    },
+  });
+}
+
+// let objj = {
+//   _password: '827313',
+
+//   get password() {
+//     return this._password;
+//   },
+
+//   set password(value) {
+//     if (value.length < 4) {
+//       throw new Error('CONTRASEÑA CORTA');
+//     }
+//     this._password = '*'.repeat(value.length);
+//   },
+// };
+
+// objj.password = '22233';
+// console.log(objj.password);
