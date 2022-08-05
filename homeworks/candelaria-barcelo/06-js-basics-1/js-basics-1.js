@@ -228,7 +228,7 @@ function zipWith(fn,array1,array2) {
   }
 
 // task 12 https://www.codewars.com/kata/filter-the-number
-var FilterString = function(value) {
+const filterString = function(value) {
     return parseInt(value.replace(/\D+/g, ""))
 }
 
