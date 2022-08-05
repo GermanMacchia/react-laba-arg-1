@@ -121,17 +121,28 @@ function evenChars(string) {
 
 // kata 07 https://www.codewars.com/kata/545a4c5a61aa4c6916000755
 
-/* function gimme(triplet) {
-  let newArray = triplet;
+//I think this is the less practical way that someone could do this one,
+//But at least for now is the only way i could get the correct answer.
+//I'll try to improve the code later.
+
+function gimme(triplet) {
+  //Creates a new copy of the array
+  let newArray = triplet.slice();
+  //Sorts it to get the middle number
   let sortArray = newArray.sort(function (a, b) {
-    return b - a;
+    return a - b;
   });
-  let middleNumber = sortArray.slice(1, 2).toString();
-  let toInt = Math.floor(middleNumber);
-  let tripletNumber = newArray.indexOf(toInt);
+  //Removes the first and last elements
+  sortArray.pop();
+  sortArray.shift();
+  //I couldn't find a way to make an array to work in indexOf
+  //So i transformed it to string and then to int-float
+  let middleToString = sortArray.join('');
+  let middleToInt = parseFloat(middleToString);
+  //And now i was able to get the index of the middle number
+  let tripletNumber = triplet.indexOf(middleToInt);
   return tripletNumber;
 }
-*/
 
 // kata 08 https://www.codewars.com/kata/578553c3a1b8d5c40300037c
 
