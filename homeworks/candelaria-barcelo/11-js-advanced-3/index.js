@@ -8,7 +8,19 @@ function validateMessage(msg) {
   }
 
 // task 2 https://www.codewars.com/kata/5a353a478f27f244a1000076
-// was not able to access the api. i think the page is down... will try again another day.
+async function sayJoke(apiUrl, jokeId){
+    const response = await fetch(apiUrl)
+    const json = await response.json()
+    const jokes = await json.jokes
+    if (jokes === undefined) throw Error(`No jokes at url: ${apiUrl}`)
+    const joke = await jokes.filter(jk => jk.id === jokeId)
+    if (joke == false) throw Error(`No jokes found id: ${jokeId}`)
+    console.log(joke)
+    return joke[0]
+}
+  
+Object.prototype.saySetup = function() { return this.setup }
+Object.prototype.sayPunchLine = function() { return this.punchLine }
 
 // task 3 setTimeout/setInterval
 let i = 1
