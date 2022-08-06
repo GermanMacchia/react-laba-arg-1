@@ -35,3 +35,8 @@ function maxMultiple(divisor, bound) {
   }
   return result;
 }
+
+// 4 -> https://www.codewars.com/kata/514a6336889283a3d2000001
+function getEvenNumbers(numbersArray) {
+  return numbersArray.filter((n) => n % 2 == 0);
+}
