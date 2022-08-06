@@ -19,3 +19,19 @@ function pairs(ar) {
   }
   return sequence;
 }
+
+// 3 -> https://www.codewars.com/kata/5aba780a6a176b029800041c
+function maxMultiple(divisor, bound) {
+  let result;
+  for (let i = bound; i <= bound; i--) {
+    if (i == 0 || i == divisor) {
+      break;
+    }
+
+    if (i % divisor == 0) {
+      result = i;
+      break;
+    }
+  }
+  return result;
+}
