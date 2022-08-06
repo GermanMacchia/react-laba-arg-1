@@ -7,8 +7,8 @@ function validateMessage(msg) {
     return true
   }
 
-// task 2 
-
+// task 2 https://www.codewars.com/kata/5a353a478f27f244a1000076
+// was not able to access the api. i think the page is down... will try again another day.
 
 // task 3 setTimeout/setInterval
 let i = 1
@@ -17,6 +17,11 @@ let timePassed = setInterval(() => {
     i++
 }, 1000)
 setTimeout(() => { clearInterval(timePassed) }, 5000)
+
+// task 5
+// !!!
+// TASK 5 IS INSIDE THE "TASK-5" DIRECTORY
+// !!!
 
 // task 6 Digit or not
 const regexChecker = (str) => {
