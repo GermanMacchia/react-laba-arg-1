@@ -35,114 +35,21 @@ function rentalCarCost(days) {
   }
 
 // task 5 http://www.codewars.com/kata/calculating-with-functions
-function basicOp(operation, value1, value2)
-{
-  switch (operation) {
-    case "+": 
-      return value1 + value2;
-    case "-": 
-      return value1 - value2;
-    case "*": 
-      return value1 * value2;
-    case "/": 
-      return Math.floor(value1 / value2); // round to the lower number.
-  }
-}
+function zero(input)   { return input ? input(0) : 0 }
+function one(input)    { return input ? input(1) : 1 }
+function two(input)    { return input ? input(2) : 2 }
+function three(input)  { return input ? input(3) : 3 }
+function four(input)   { return input ? input(4) : 4 }
+function five(input)   { return input ? input(5) : 5 }
+function six(input)    { return input ? input(6) : 6 }
+function seven(input)  { return input ? input(7) : 7 }
+function eight(input)  { return input ? input(8) : 8 }
+function nine(input)   { return input ? input(9) : 9 }
 
-function zero(operationArray=undefined) { 
-    const functionValue = 0;
-    if (operationArray === undefined) {
-        return functionValue
-    } else {
-        return basicOp(operationArray[0], functionValue, operationArray[1])
-    }
-}
-
-function one(operationArray=undefined) { 
-    const functionValue = 1;
-    if (operationArray === undefined) {
-        return functionValue
-    } else {
-        return basicOp(operationArray[0], functionValue, operationArray[1])
-    }
-}
-
-function two(operationArray=undefined) { 
-    const functionValue = 2;
-    if (operationArray === undefined) {
-        return functionValue
-    } else {
-        return basicOp(operationArray[0], functionValue, operationArray[1])
-    }
-}
-
-function three(operationArray=undefined) { 
-    const functionValue = 3;
-    if (operationArray === undefined) {
-        return functionValue
-    } else {
-        return basicOp(operationArray[0], functionValue, operationArray[1])
-    }
-}
-
-function four(operationArray=undefined) { 
-    const functionValue = 4;
-    if (operationArray === undefined) {
-        return functionValue
-    } else {
-        return basicOp(operationArray[0], functionValue, operationArray[1])
-    }
-}
-
-function five(operationArray=undefined) { 
-    const functionValue = 5;
-    if (operationArray === undefined) {
-        return functionValue
-    } else {
-        return basicOp(operationArray[0], functionValue, operationArray[1])
-    }
-}
-
-function six(operationArray=undefined) { 
-    const functionValue = 6;
-    if (operationArray === undefined) {
-        return functionValue
-    } else {
-        return basicOp(operationArray[0], functionValue, operationArray[1])
-    }
-}
-
-function seven(operationArray=undefined) { 
-    const functionValue = 7;
-    if (operationArray === undefined) {
-        return functionValue
-    } else {
-        return basicOp(operationArray[0], functionValue, operationArray[1])
-    }
-}
-
-function eight(operationArray=undefined) { 
-    const functionValue = 8;
-    if (operationArray === undefined) {
-        return functionValue
-    } else {
-        return basicOp(operationArray[0], functionValue, operationArray[1])
-    }
-}
-
-function nine(operationArray=undefined) { 
-    const functionValue = 9;
-    if (operationArray === undefined) {
-        return functionValue
-    } else {
-        return basicOp(operationArray[0], functionValue, operationArray[1])
-    }
-}
-
-function plus(rightOperand) { return ["+", rightOperand] }
-function minus(rightOperand) { return ["-", rightOperand] }
-function times(rightOperand) { return ["*", rightOperand] }
-function dividedBy(rightOperand) { return ["/", rightOperand] }
+function plus(x) { return function(y) { return y + x } }
+function minus(x) { return function(y) { return y - x } }
+function times(x) { return function(y) { return y * x } }
+function dividedBy(x) { return function(y) { return Math.floor(y / x) } }
 
 // task 6 http://www.codewars.com/kata/get-the-middle-character
 function getMiddle(string)
