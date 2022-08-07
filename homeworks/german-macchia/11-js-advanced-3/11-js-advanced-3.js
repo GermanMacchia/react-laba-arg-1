@@ -44,11 +44,17 @@ setTimeout(() => clearInterval(display), 6000);
 
 //4. Event Loop
 
+/* MAIN CONCEPTS: CALL STACK, WEBAPIS, TASK QUEUE, EVENT LOOP
 
-
-
-//5.Fetch API/XMLHttpRequest
-
-/********IN FOLDER "TASK-5" *********/
+A.  JS is a single thread language. Meaning it can execute one thing at time.
+    The reason we can make concurrent processes it's because browsers provide us additional threads (besides de JS runtime),
+    that we call WEBAPIS (DOM, AJAX, SETTIMEOUT)
+B.  JS read the code, it stack it into the CALL STACK to be executed.
+    If this code has to read some extra code needed to be executed, JS continue to push tasks into the CALL STACK.
+    After that, it execute the needed code in the order of LIFO.
+    By this way, it can resolve all what it needs to resolve the first task and continue reading the main file.
+C.  If there's an asynchronous callback, JS delegates it to WEBSAPIS to deal with them and continue. 
+    When this callbacks are resolved they are pushed into a TASK QUEUE.
+D.  If the CALL STACK it's empty the EVENT LOOP put the first resolved callback in line into the CALL STACK.
 
 
