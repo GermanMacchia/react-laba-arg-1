@@ -14,7 +14,12 @@ class Serializable {
             if (objEntries[i][1] === Infinity) { specialVariables["infinity"].push(objEntries[i][0]) }
             if (objEntries[i][1] === -Infinity) { specialVariables["minusInfinity"].push(objEntries[i][0]) }
             if (isNaN(objEntries[i][1]) && typeof objEntries[i][1] !== "string" && typeof objEntries[i][1] !== "object") { 
-              specialVariables["nan"].push(objEntries[i][0]) }
+              specialVariables["nan"].push(objEntries[i][0]) 
+            } 
+            if (typeof objEntries[i][1] !== "string" && typeof objEntries[i][1] !== "object" 
+            && typeof objEntries[i][1] !== "number") {
+              throw Error("This data type is not supported")
+            }
         }
         return JSON.stringify(this) + "%" + this.constructor.name
     }
