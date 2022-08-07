@@ -60,7 +60,7 @@ function createNewCell(id, col, row) {
 }
 
 function createGrid(cols, rows, px) {
-  console.log(cols + " " + rows);
+
   const ROOT = document.querySelector(":root");
   const GRID = document.querySelector(".grid");
   const CELLS = cols * rows;

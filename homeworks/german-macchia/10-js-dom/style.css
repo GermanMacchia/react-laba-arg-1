@@ -1,7 +1,7 @@
 :root{
     --cols: 0;
-    --rows: 0
-    --px: 10px
+    --rows: 0;
+    --px: 10px;
 }
 *{
     margin: 0;
