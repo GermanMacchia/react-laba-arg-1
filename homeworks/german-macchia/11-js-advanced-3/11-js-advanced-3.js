@@ -58,3 +58,13 @@ C.  If there's an asynchronous callback, JS delegates it to WEBSAPIS to deal wit
 D.  If the CALL STACK it's empty the EVENT LOOP put the first resolved callback in line into the CALL STACK.
 
 
+//5.Fetch API/XMLHttpRequest
+
+/********IN FOLDER "TASK-5" *********/
+
+//6. Digit or not
+function isFirstCharNum(str){
+	let regex = new RegExp(/^\d/)
+	return regex.test(str)
+}
+
