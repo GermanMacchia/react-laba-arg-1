@@ -79,3 +79,8 @@ function gimme(triplet) {
   let middle = triplet.sort((a, b) => a - b)[1];
   return newTriplet.indexOf(middle);
 }
+
+// 8 -> https://www.codewars.com/kata/578553c3a1b8d5c40300037c
+const binaryArrayToNumber = (arr) => {
+  return parseInt(arr.join(''), 2);
+};
