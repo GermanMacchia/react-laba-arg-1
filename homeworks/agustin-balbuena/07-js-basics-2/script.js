@@ -58,3 +58,17 @@ function solve(arr) {
   }
   return res;
 }
+
+// 6 -> https://www.codewars.com/kata/566044325f8fddc1c000002c
+function evenChars(string) {
+  if (string.length < 2 || string.length > 100) {
+    return 'invalid string';
+  }
+
+  let newString = '';
+  for (let i = 1; i < string.length; i += 2) {
+    newString += string[i];
+  }
+
+  return newString.split('');
+}
