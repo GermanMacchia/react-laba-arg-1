@@ -30,7 +30,7 @@ let timePassed = setInterval(() => {
 }, 1000)
 setTimeout(() => { clearInterval(timePassed) }, 5000)
 
-// task 5
+// task 5 Fetch API/XMLHttpRequest
 // !!!
 // TASK 5 IS INSIDE THE "TASK-5" DIRECTORY
 // !!!
