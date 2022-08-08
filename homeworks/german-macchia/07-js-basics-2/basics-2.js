@@ -161,6 +161,35 @@ function sortArray(array) {
 
 // Optional (advanced)
 // katas 12 - https://www.codewars.com/kata/515bb423de843ea99400000a
+function PaginationHelper(collection, itemsPerPage) {
+  this.collection = collection;
+  this.itemsPerPage = itemsPerPage;
+}
+
+PaginationHelper.prototype.itemCount = function () {
+  return this.collection.length;
+};
+
+PaginationHelper.prototype.pageCount = function () {
+  return Math.ceil(this.collection.length / this.itemsPerPage);
+};
+
+PaginationHelper.prototype.pageItemCount = function (pageIndex) {
+  let cantItems;
+
+  pageIndex = pageIndex * this.itemsPerPage;
+  cantItems = this.collection.slice(pageIndex).length;
+  if (!cantItems) return -1;
+  if (cantItems > this.itemsPerPage) return this.itemsPerPage;
+  if (cantItems < this.itemsPerPage) return cantItems;
+};
+
+PaginationHelper.prototype.pageIndex = function (itemIndex) {
+  if (!this.collection[itemIndex]) return -1;
+  if (!itemIndex) return 0;
+  return Math.floor((itemIndex - 1) / this.itemsPerPage);
+};
+
 // katas 13 - https://www.codewars.com/kata/52597aa56021e91c93000cb0
 // katas 14 - https://www.codewars.com/kata/585d8c8a28bc7403ea0000c3
 // katas 15 - https://www.codewars.com/kata/5296bc77afba8baa690002d7
