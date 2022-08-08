@@ -10,21 +10,38 @@ for (let i=1; i <= 600; i++) {
     document.body.appendChild(newDiv)
 }
 
+// mark when shift key is pressed or not
+shiftKeyStatus = "up"
+const keydownHandler = e => {
+    if (e.key === "Shift") shiftKeyStatus = "down"
+}
+
+const keyupHandler = e => {
+    if (e.key === "Shift") shiftKeyStatus = "up"
+}
+
+document.body.addEventListener("keydown", keydownHandler);
+document.body.addEventListener("keyup", keyupHandler);
+
+
+// click handler
 let lastClickedId = ""
 
 const clickHandler = (event) => {
     let clickedItem = event.target
 
-    // remove active-row-col class to unmark previous active cell, because we've now clicked another cell
+    // unmark previous active cell(s), because we've now clicked another cell
     if (lastClickedId) {
-        if (clickedItem.id) {
-            let lastClickedElement = document.getElementById(lastClickedId)
+        if (clickedItem.id && shiftKeyStatus === "up") {
+            let lastClickedElements = document.getElementsByClassName("selected")
             let previousActiveList = document.getElementsByClassName("active-row-col")
             for (let i=previousActiveList.length-1; i >= 0; i--) {
                 previousActiveList[i].classList.remove("active-row-col")
             }
-            lastClickedElement.classList.remove("selected")
-            lastClickedElement.innerText = ""
+            for (let i=lastClickedElements.length-1; i >= 0; i--) {
+                lastClickedElements[i].innerText = ""
+                lastClickedElements[i].classList.remove("selected")
+            }
         }
     }
 
@@ -53,14 +70,4 @@ const clickHandler = (event) => {
     }
 }
 
-const keydownHandler = e => {
-    console.log(e)
-}
-
-const keyupHandler = e => {
-    console.log(e)
-}
-
 document.body.addEventListener("click", clickHandler);
-document.body.addEventListener("keydown", keydownHandler);
-document.body.addEventListener("keyup", keyupHandler);
