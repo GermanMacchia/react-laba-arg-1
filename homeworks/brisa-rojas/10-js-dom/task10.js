@@ -43,5 +43,5 @@ document.body.addEventListener('click', function (event) {
     cell.style.backgroundColor = 'lightblue';
   });
   target.style.backgroundColor = 'blue';
-  target.innerText = `x:${row}\ny:${col}`;
+  target.innerText = `R:${row}\nC:${col}`;
 });
