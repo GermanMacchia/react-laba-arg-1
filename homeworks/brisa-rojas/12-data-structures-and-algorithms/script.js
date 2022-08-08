@@ -1,7 +1,5 @@
 'use strict';
-
 import {MOCK_DATA} from './MOCK_DATA.js';
-console.log(MOCK_DATA); 
 
 //HANDLER FUNCTION
 function handler(event){
@@ -78,19 +76,32 @@ function straightSearch(searchedSku) {
 
 // BINARY SEARCH IMPLEMENTATION
 function binarySearch(searchedSku) {
+  if (searchedSku === ''){return null;};
   let startIndex = 0;
   let stopIndex = MOCK_DATA.length - 1;
   let middle = Math.floor((stopIndex + startIndex) / 2);
 
   MOCK_DATA.sort(sortBySku); // sort the array by sku for binary search
 
-  // do the search 
+  while((MOCK_DATA[middle]).sku != searchedSku && startIndex < stopIndex){
 
-  return 1;
+    //adjust search area
+    if (searchedSku < (MOCK_DATA[middle]).sku){
+        stopIndex = middle - 1;
+    } else if (searchedSku > (MOCK_DATA[middle]).sku){
+        startIndex = middle + 1;
+    }
+
+    //recalculate middle
+    middle = Math.floor((stopIndex + startIndex)/2);
+  }
+  
+  //make sure it's the right value
+  return ((MOCK_DATA[middle]).sku != searchedSku) ? null : MOCK_DATA[middle];
 }
 
-let variable = (straightSearch('ccdb70f4-91f1-4543-93fa-8a93f980dc99')); 
-console.log(variable);
+ 
+// EVENT LISTENER
 let buttons = document.querySelector('.buttons-container__button');
 document.body.addEventListener('click',handler);
 let input = document.querySelector('.form__sku-input'); 
