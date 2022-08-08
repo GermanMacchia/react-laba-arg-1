@@ -1,7 +1,36 @@
 'use strict';
 const MOCK_DATA = require('./MOCK_DATA.js');
 let searchedSku;
-let searchedSkuIndex;
+
+function handler(event){
+    if (!event.target.classList.contains('buttons-container__button')){ // if event was not triggered by a button, return
+        return;
+    }
+
+    let button = event.target;
+    let result = null;
+    let searchMethod = button.getAttribute('searchtype');
+    let input = document.querySelector('.form__sku-input');
+    let resultInfo = document.createElement('p');
+    resultInfo.classList.add('search-result');
+
+    searchedSku = input.innerHTML;
+    searchedSku = parseSku(searchedSku);
+
+    if (searchMethod === 'straight') {
+      result = straightSearch(searchedSku);
+    } else if (searchMethod === 'binary') {
+      result = binarySearch(searchedSku);
+    }
+
+    if (result === null) {
+      resultInfo.innerHTML = 'No match found. Try checking the sku inserted.';
+    } else {
+      resultInfo.innerHTML = `Found match! \n Name: ${result.name} \n Price: ${result.price} \n Pack: ${result.pack}`;
+    }
+
+    document.body.append(resultInfo);  
+}
 
 function parseSku(sku) {
   let parsedSku = sku.split('-').join(''); // remove dashes from sku if any
@@ -16,7 +45,7 @@ function parseSku(sku) {
     '-' +
     parsedSku.slice(16, 20) +
     '-' +
-    parsedSku.slice(20,32); // decided to disregard any 'extra' digits in the sku
+    parsedSku.slice(20, 32); // decided to disregard any 'extra' digits in the sku
 
   return parsedSku;
 }
@@ -47,12 +76,12 @@ function straightSearch(searchedSku) {
 
 //binary search implementation
 function binarySearch(searchedSku) {
-  let data = MOCK_DATA; 
+  let data = MOCK_DATA;
   let startIndex = 0;
   let stopIndex = data.length - 1;
   let middle = Math.floor((stopIndex + startIndex) / 2);
 
-  data.sort(sortBySku) // we need sorted data to perform binary search
+  data.sort(sortBySku); // we need sorted data to perform binary search
 
   while (data[middle].sku != searchedSku && startIndex < stopIndex) {
     if (searchedSku < data[middle]) {
