@@ -47,10 +47,12 @@ function straightSearch(searchedSku) {
 
 //binary search implementation
 function binarySearch(searchedSku) {
-  let data = MOCK_DATA.sort(sortBySku); // we need sorted data to perform binary search
+  let data = MOCK_DATA; 
   let startIndex = 0;
   let stopIndex = data.length - 1;
   let middle = Math.floor((stopIndex + startIndex) / 2);
+
+  data.sort(sortBySku) // we need sorted data to perform binary search
 
   while (data[middle].sku != searchedSku && startIndex < stopIndex) {
     if (searchedSku < data[middle]) {
