@@ -192,15 +192,15 @@ PaginationHelper.prototype.pageIndex = function (itemIndex) {
 
 // katas 13 - https://www.codewars.com/kata/52597aa56021e91c93000cb0
 function moveZeros(arr) {
-	let length = arr.length
-	let auxArr = [];
-	for (let i = length; i >=  0; i--) {
-		if(arr[i] === 0){
-			[ num ] = arr.splice(i, 1)
-			auxArr.push(num)
-		}
-	}
-  return arr.concat(auxArr)
+  let length = arr.length;
+  let auxArr = [];
+  for (let i = length; i >= 0; i--) {
+    if (arr[i] === 0) {
+      [num] = arr.splice(i, 1);
+      auxArr.push(num);
+    }
+  }
+  return arr.concat(auxArr);
 }
 
 // katas 14 - https://www.codewars.com/kata/585d8c8a28bc7403ea0000c3
