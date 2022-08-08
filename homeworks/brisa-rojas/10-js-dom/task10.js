@@ -29,19 +29,25 @@ document.body.addEventListener('click', function (event) {
     return;
   }
 
-  // reset previous state
-  document.querySelectorAll(`.cell`).forEach((cell) => {
-    cell.style.backgroundColor = 'white';
-    cell.innerText = '';
-  });
+  // reset previous state if shift key is not pressed
+  if (!event.shiftKey) {
+    document.querySelectorAll(`.cell`).forEach((cell) => {
+      cell.style.backgroundColor = 'white';
+      cell.innerText = '';
+    });
+  }
 
   // change background color
+  target.style.backgroundColor = 'blue';
+  target.innerText = `R:${row}\nC:${col}`; // clicked-on cells have a no-null value, that can be used to differentiate them
   sameRowCells.forEach(function (cell) {
-    cell.style.backgroundColor = 'lightblue';
+    if (cell.innerText === '') {
+      cell.style.backgroundColor = 'lightblue';
+    }
   });
   sameColCells.forEach(function (cell) {
-    cell.style.backgroundColor = 'lightblue';
+    if (cell.innerText === '') {
+      cell.style.backgroundColor = 'lightblue';
+    }
   });
-  target.style.backgroundColor = 'blue';
-  target.innerText = `R:${row}\nC:${col}`;
 });
