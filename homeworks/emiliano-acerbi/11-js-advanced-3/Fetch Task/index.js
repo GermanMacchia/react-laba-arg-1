@@ -35,7 +35,6 @@ getUsers()
     users.forEach((user) => {
       const userEl = document.createElement('div');
       userEl.classList.add('user');
-      console.log(user);
 
       userEl.innerHTML = `
           <img src=${user.picture.medium} />
@@ -50,19 +49,18 @@ getUsers()
     loader.style.display = 'none';
   });
 
-// XMLHttpRequest
+// XMLHttpRequest;
 
 // const data = null;
 
 // const xhr = new XMLHttpRequest();
-// xhr.withCredentials = true;
 
-// xhr.addEventListener("readystatechange", function () {
+// xhr.addEventListener('readystatechange', function () {
 //   if (this.readyState === this.DONE) {
 //     console.log(this.responseText);
 //   }
 // });
 
-// xhr.open("GET", BASE_URL);
+// xhr.open('GET', BASE_URL);
 
 // xhr.send(data);
