@@ -15,7 +15,7 @@ body {
 
 main {
   padding: 5px;
-    width: 80%;
+  width: 80%;
   border: 3px black solid;
 }
 
@@ -34,14 +34,13 @@ main {
   grid-template-rows: repeat(2, auto);
 }
 
-.form__sku-input{
-    font-size: 18px;
-    color: #4f4d4d;
-    text-align: center;
-    margin: 10px auto;
-    max-width: 500px;
-    width: 100%;
-
+.form__sku-input {
+  font-size: 18px;
+  color: #4f4d4d;
+  text-align: center;
+  margin: 10px auto;
+  max-width: 500px;
+  width: 100%;
 }
 
 .buttons-container {
@@ -99,12 +98,15 @@ main {
   transform: translateY(2px);
 }
 
-.search-result{
-    font-size: 18px;
-    color: white;
-    background-color: black;
-    text-align: center;
-    margin: 10px auto;
-    width: 100vw;
-    padding: 10px;
+.search-result {
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: black;
+  margin: 30px auto;
+  width: 100vw;
+  min-height: 20vh;
+  padding: 10px;
 }
