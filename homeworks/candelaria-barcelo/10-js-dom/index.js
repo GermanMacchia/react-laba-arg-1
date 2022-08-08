@@ -1,3 +1,4 @@
+// create 600 divs, one for each cell, and add id: "column/row" for each
 for (let i=1; i <= 600; i++) {
     const newDiv = document.createElement("div")
     newDiv.classList.add("cell")
@@ -12,37 +13,39 @@ for (let i=1; i <= 600; i++) {
 let lastClickedId = ""
 
 const clickHandler = (event) => {
+    let clickedItem = event.target
+
+    // remove active-row-col class to unmark previous active cell, because we've now clicked another cell
     if (lastClickedId) {
-        let previousActiveList = document.getElementsByClassName("active-row-col")
-        console.log(previousActiveList)
-        for (let i=previousActiveList.length-1; i >= 0; i--) {
-            console.log(previousActiveList[i].id)
-            previousActiveList[i].classList.remove("active-row-col")
+        if (clickedItem.id) {
+            let lastClickedElement = document.getElementById(lastClickedId)
+            let previousActiveList = document.getElementsByClassName("active-row-col")
+            for (let i=previousActiveList.length-1; i >= 0; i--) {
+                previousActiveList[i].classList.remove("active-row-col")
+            }
+            lastClickedElement.classList.remove("selected")
+            lastClickedElement.innerText = ""
         }
     }
-    let clickedItem = event.target
+
+    // color blue the selected cell and add col/row inner text
     if (clickedItem.id) {
         lastClickedId = clickedItem.id
-        clickedItem.classList.toggle("selected")
-        if (clickedItem.innerText !== clickedItem.id) {
-            clickedItem.innerText = clickedItem.id
-        } else if (clickedItem.innerText === clickedItem.id) {
-            clickedItem.innerText = ""
-        }
+        clickedItem.classList.add("selected")
+        clickedItem.innerText = clickedItem.id
     } 
+
+    // color light blue the selected cell's column and row
     let lastClickedCol = lastClickedId.match(/(\d+)\/\d+/)[1]
     let lastClickedRow = lastClickedId.match(/\d+\/(\d+)/)[1]
-    //console.log("row", lastClickedRow)
-    //console.log("col", lastClickedCol)
-
-    for (let i=1; i<=30; i++) {
+    for (let i=1; i<=30; i++) { // color the column
         let currentId = lastClickedCol + "/" + i
         if (lastClickedId !== currentId) { 
             // make all other elements in col (whose id regex matches lastclickedcol) toggle active class
             document.getElementById(currentId).classList.add("active-row-col")
         }
     }
-    for (let i=1; i<=20; i++) {
+    for (let i=1; i<=20; i++) { // color the row
         let currentId = i + "/" + lastClickedRow
         if (lastClickedId !== currentId) { 
             document.getElementById(currentId).classList.add("active-row-col")
@@ -50,4 +53,14 @@ const clickHandler = (event) => {
     }
 }
 
+const keydownHandler = e => {
+    console.log(e)
+}
+
+const keyupHandler = e => {
+    console.log(e)
+}
+
 document.body.addEventListener("click", clickHandler);
+document.body.addEventListener("keydown", keydownHandler);
+document.body.addEventListener("keyup", keyupHandler);
