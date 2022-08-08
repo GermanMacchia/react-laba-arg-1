@@ -1,7 +1,6 @@
 // katas 1 - https://www.codewars.com/kata/5715eaedb436cf5606000381
 function positiveSum(arr) {
-  arr.push(0);
-  return arr.filter((a) => a >= 0).reduce((a, b) => a + b);
+  return arr.filter((a) => a >= 0).reduce((a, b) => a + b, 0);
 }
 
 // katas 2 - https://www.codewars.com/kata/5a3e1319b6486ac96f000049
