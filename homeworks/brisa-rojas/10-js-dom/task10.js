@@ -9,8 +9,8 @@ for (let i = 1; i <= NUMBER_OF_ROWS; i++) {
   for (let j = 1; j <= NUMBER_OF_COLS; j++) {
     cell = document.createElement('p');
     cell.className = 'cell';
-    cell.setAttribute('row', i);
-    cell.setAttribute('col', j);
+    cell.setAttribute('data-row', i);
+    cell.setAttribute('data-col', j);
     document.body.append(cell);
   }
 }
@@ -19,11 +19,11 @@ for (let i = 1; i <= NUMBER_OF_ROWS; i++) {
 document.body.addEventListener('click', function (event) {
   let target = event.target;
   // get the row and column number of the clicked cell
-  let row = target.getAttribute('row');
-  let col = target.getAttribute('col');
+  let row = target.dataset.row;
+  let col = target.dataset.col;
   // get the cell that has the same row and column number of the clicked cell
-  let sameColCells = document.querySelectorAll(`[col="${col}"]`);
-  let sameRowCells = document.querySelectorAll(`[row="${row}"]`);
+  let sameColCells = document.querySelectorAll(`[data-col="${col}"]`);
+  let sameRowCells = document.querySelectorAll(`[data-row="${row}"]`);
 
   if (target.className != 'cell') {
     return;
@@ -39,7 +39,7 @@ document.body.addEventListener('click', function (event) {
 
   // change background color
   target.style.backgroundColor = 'blue';
-  target.innerText = `R:${row}\nC:${col}`; // clicked-on cells have a no-null value, that can be used to differentiate them
+  target.innerText = `R:${row}\nC:${col}`; 
   sameRowCells.forEach(function (cell) {
     if (cell.innerText === '') {
       cell.style.backgroundColor = 'lightblue';
