@@ -105,9 +105,14 @@ function gotCorrectResult(sku, obj, searchMethod, counter){
   // sku: sku code we're looking to match
   // obj: object it should ideally return
   // searchMethod: search method we're using
+  let startTime;
+  let endTime;
+  startTime = performance.now();
   let result = searchMethod(sku);
-  let isCorrect = result === obj;
+  endTime = performance.now();
   console.groupCollapsed(`Test ${counter} -  SKU: ${sku}`);
+  console.log(`Took ${endTime - startTime} ms to run.`);
+  let isCorrect = result === obj;
   console.log(`Correct result: ${isCorrect}`);
   if (!isCorrect){
     console.table(`${result},${obj}`);
@@ -116,29 +121,38 @@ function gotCorrectResult(sku, obj, searchMethod, counter){
   return;
 }
 
-//function testPerformance(searchMethod){}
 
 const numberOfTests = 50;
 let randomIndex;
+let ACorrectSkuButNotFormated =  (MOCK_DATA[0].sku).split('-').join('');
+const someTestingStr = ["HelloI'm", 'NotACorrectSku',"I'mACorrectSkuButNotFormated:", ACorrectSkuButNotFormated];
 
-console.groupCollapsed(`Straight Search Test - ${numberOfTests} tests`);
+console.groupCollapsed(`Straight Search Test - ${numberOfTests + 4} tests`);
 for(let i = 0; i < numberOfTests ; i++){
-  let randomIndex = Math.floor(Math.random() * (MOCK_DATA.length - 1 ));
+  randomIndex = Math.floor(Math.random() * (MOCK_DATA.length - 1 ));
   gotCorrectResult(MOCK_DATA[randomIndex].sku, MOCK_DATA[randomIndex], straightSearch, i);
 }
 
-console.groupEnd(`Straight Search Test - ${numberOfTests} tests`);
+gotCorrectResult(someTestingStr[0], null , straightSearch, numberOfTests );
+gotCorrectResult(someTestingStr[1], null , straightSearch, numberOfTests + 1 );
+gotCorrectResult(someTestingStr[2], null , straightSearch, numberOfTests + 2);
+gotCorrectResult(someTestingStr[3], MOCK_DATA[0], straightSearch, numberOfTests + 3);
 
-console.groupCollapsed(`Binary Search Test - ${numberOfTests} tests`);
-for(i = 0; i < numberOfTests ; i++){
-  let randomIndex = Math.floor(Math.random() * (MOCK_DATA.length - 1));
-  gotCorrectResult(MOCK_DATA[i].sku, MOCK_DATA[i], binarySearch, i);
+console.groupEnd(`Straight Search Test - ${numberOfTests + 4} tests`);
+
+console.groupCollapsed(`Binary Search Test - ${numberOfTests + 4} tests`);
+for(let i = 0; i < numberOfTests ; i++){
+  randomIndex = Math.floor(Math.random() * (MOCK_DATA.length - 1 ));
+  gotCorrectResult(MOCK_DATA[randomIndex].sku, MOCK_DATA[randomIndex], binarySearch, i);
 }
-console.groupEnd(`Binary Search Test - ${numberOfTests} tests`);
+
+gotCorrectResult(someTestingStr[0], null , binarySearch, numberOfTests);
+gotCorrectResult(someTestingStr[1], null , binarySearch, numberOfTests + 1);
+gotCorrectResult(someTestingStr[2], null , binarySearch, numberOfTests + 2);
+gotCorrectResult(someTestingStr[3], MOCK_DATA[0], binarySearch, numberOfTests + 3);
+
+console.groupEnd(`Binary Search Test - ${numberOfTests + 4} tests`);
 //////////////////////////////////////////////////////////////////////////////////////////////
-
-
- 
 
 
 // EVENT LISTENER
