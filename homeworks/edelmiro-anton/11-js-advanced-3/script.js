@@ -19,12 +19,35 @@ const validateMessage = (msg) => {
 
 //Task 3 - setTimeout/setInterval
 
-var  i = 1
-let timer = setInterval(()=>{
-  console.log(`Elapsed time ${i} sec`)
-  if (i===5){
-    clearInterval(timer)
-    console.log("Timer finished!")
+// var i = 1;
+// let timer = setInterval(() => {
+//   console.log(`Elapsed time ${i} sec`);
+//   if (i === 5) {
+//     clearInterval(timer);
+//     console.log('Timer finished!');
+//   }
+//   i++;
+// }, 1000);
+
+// Task 6 - Digit or not
+
+let firstCharIsNumber = /([0-9])\w+/g;
+let firstCharWithSpace = /([0-9])\s/g;
+
+let finalRegex = new RegExp(firstCharIsNumber.source + '|' + firstCharWithSpace.source);
+
+function digitOrNot(str) {
+  if (typeof str === 'string') {
+    console.log('I am a String');
+
+    if (str.match(finalRegex)) {
+      return `The string "${str}" starts with a NUMBER`;
+    }
+
+    if (!str.match(finalRegex)) {
+      return `The string "${str}" NO starts with a NUMBER`;
+    }
   }
-  i++
-},1000)
+}
+
+
