@@ -25,29 +25,33 @@ document.body.addEventListener('click', function (event) {
   let sameColCells = document.querySelectorAll(`[data-col="${col}"]`);
   let sameRowCells = document.querySelectorAll(`[data-row="${row}"]`);
 
-  if (target.className != 'cell') {
+  if (!(target.classList.contains('cell'))) { // if the clicked element is not a cell
     return;
   }
 
   // reset previous state if shift key is not pressed
   if (!event.shiftKey) {
-    document.querySelectorAll(`.cell`).forEach((cell) => {
-      cell.style.backgroundColor = 'white';
-      cell.innerText = '';
+    document.querySelectorAll(`.colored`).forEach((cell) => {
+      cell.style.backgroundColor = 'white'; // reset previous background color
+      cell.innerText = ''; // reset text
+      cell.className = 'cell'; // overwrite all added clases with only 'cell' class
     });
   }
 
   // change background color
   target.style.backgroundColor = 'blue';
   target.innerText = `R:${row}\nC:${col}`; 
+  target.classList.add('colored','clicked');
   sameRowCells.forEach(function (cell) {
     if (cell.innerText === '') {
       cell.style.backgroundColor = 'lightblue';
+      cell.classList.add('colored');
     }
   });
   sameColCells.forEach(function (cell) {
     if (cell.innerText === '') {
       cell.style.backgroundColor = 'lightblue';
+      cell.classList.add('colored');
     }
   });
 });
