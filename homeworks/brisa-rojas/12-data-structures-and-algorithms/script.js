@@ -95,12 +95,52 @@ function binarySearch(searchedSku) {
     //recalculate middle
     middle = Math.floor((stopIndex + startIndex)/2);
   }
-  
+
   //make sure it's the right value
-  return ((MOCK_DATA[middle]).sku != searchedSku) ? null : MOCK_DATA[middle];
+  return ((MOCK_DATA[middle]).sku === searchedSku) ? MOCK_DATA[middle] : null;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////
+// TEST AND PERFORMANCE TEST 
+function gotCorrectResult(sku, obj, searchMethod, counter){ 
+  // sku: sku code we're looking to match
+  // obj: object it should ideally return
+  // searchMethod: search method we're using
+  let result = searchMethod(sku);
+  let isCorrect = result === obj;
+  console.groupCollapsed(`Test ${counter} -  SKU: ${sku}`);
+  console.log(`Correct result: ${isCorrect}`);
+  if (!isCorrect){
+    console.table(`${result},${obj}`);
+  }
+  console.groupEnd(`Test ${counter} -  SKU: ${sku}`);
+  return;
 }
 
+//function testPerformance(searchMethod){}
+
+const numberOfTests = 50;
+let randomIndex;
+
+console.groupCollapsed(`Straight Search Test - ${numberOfTests} tests`);
+for(let i = 0; i < numberOfTests ; i++){
+  let randomIndex = Math.floor(Math.random() * (MOCK_DATA.length - 1 ));
+  gotCorrectResult(MOCK_DATA[randomIndex].sku, MOCK_DATA[randomIndex], straightSearch, i);
+}
+
+console.groupEnd(`Straight Search Test - ${numberOfTests} tests`);
+
+console.groupCollapsed(`Binary Search Test - ${numberOfTests} tests`);
+for(i = 0; i < numberOfTests ; i++){
+  let randomIndex = Math.floor(Math.random() * (MOCK_DATA.length - 1));
+  gotCorrectResult(MOCK_DATA[i].sku, MOCK_DATA[i], binarySearch, i);
+}
+console.groupEnd(`Binary Search Test - ${numberOfTests} tests`);
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
  
+
+
 // EVENT LISTENER
 let buttons = document.querySelector('.buttons-container__button');
 document.body.addEventListener('click',handler);
