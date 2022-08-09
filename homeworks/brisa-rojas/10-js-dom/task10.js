@@ -42,14 +42,15 @@ document.body.addEventListener('click', function (event) {
   target.style.backgroundColor = 'blue';
   target.innerText = `R:${row}\nC:${col}`; 
   target.classList.add('colored','clicked');
+
   sameRowCells.forEach(function (cell) {
-    if (cell.innerText === '') {
+    if (!(cell.classList.contains('clicked'))){  // it's in the selected row but not the clicked one
       cell.style.backgroundColor = 'lightblue';
       cell.classList.add('colored');
     }
   });
   sameColCells.forEach(function (cell) {
-    if (cell.innerText === '') {
+    if (!(cell.classList.contains('clicked'))){  // it's in the selected column but not the clicked one
       cell.style.backgroundColor = 'lightblue';
       cell.classList.add('colored');
     }
