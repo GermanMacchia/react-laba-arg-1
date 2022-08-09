@@ -4,7 +4,7 @@ import {MOCK_DATA} from './MOCK_DATA.js';
 //HANDLER FUNCTION
 function handler(event){
     if (!event.target.classList.contains('buttons-container__button')){ // if event was not triggered by a button, return
-        return;
+      return;
     }
     let button = event.target;
     let result;
@@ -91,11 +91,9 @@ function binarySearch(searchedSku) {
     } else if (searchedSku > (MOCK_DATA[middle]).sku){
         startIndex = middle + 1;
     }
-
     //recalculate middle
     middle = Math.floor((stopIndex + startIndex)/2);
   }
-
   //make sure it's the right value
   return ((MOCK_DATA[middle]).sku === searchedSku) ? MOCK_DATA[middle] : null;
 }
@@ -107,11 +105,14 @@ function gotCorrectResult(sku, obj, searchMethod, counter){
   // searchMethod: search method we're using
   let startTime;
   let endTime;
+
   startTime = performance.now();
   let result = searchMethod(sku);
   endTime = performance.now();
+
   console.groupCollapsed(`Test ${counter} -  SKU: ${sku}`);
   console.log(`Took ${endTime - startTime} ms to run.`);
+
   let isCorrect = result === obj;
   console.log(`Correct result: ${isCorrect}`);
   if (!isCorrect){
@@ -120,7 +121,6 @@ function gotCorrectResult(sku, obj, searchMethod, counter){
   console.groupEnd(`Test ${counter} -  SKU: ${sku}`);
   return;
 }
-
 
 const numberOfTests = 50;
 let randomIndex;
@@ -154,9 +154,7 @@ gotCorrectResult(someTestingStr[3], MOCK_DATA[0], binarySearch, numberOfTests + 
 console.groupEnd(`Binary Search Test - ${numberOfTests + 4} tests`);
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-
 // EVENT LISTENER
-let buttons = document.querySelector('.buttons-container__button');
 document.body.addEventListener('click',handler);
 let input = document.querySelector('.form__sku-input'); 
 input.addEventListener('keydown', function(event){
