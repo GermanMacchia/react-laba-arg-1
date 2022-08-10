@@ -1,49 +1,126 @@
 /* CSS RESET */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
 }
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
+
 .page {
   background-color: #e5e5e5;
-  font-family: "Poppins";
+  font-family: 'Poppins';
 }
 .button:hover {
   cursor: pointer;
@@ -101,7 +178,7 @@ table {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
 }
-.main__facts__container{
+.main__facts__container {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -126,7 +203,7 @@ table {
   text-align: center;
   color: #3a3a3a;
 }
-.main__buttons__container{
+.main__buttons__container {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -144,7 +221,7 @@ table {
   cursor: pointer;
   border: none;
   border-radius: 20px;
-  font-family: "Poppins";
+  font-family: 'Poppins';
   font-weight: 500;
   font-size: 1.25rem;
   display: flex;
@@ -176,7 +253,7 @@ table {
   margin-bottom: 3.75rem;
 }
 .tab__button {
-  font-family: "Poppins";
+  font-family: 'Poppins';
   font-size: 1.25rem;
   font-weight: 500;
   background-color: #ffffff;
@@ -189,7 +266,7 @@ table {
   width: 45%;
   background-color: #d7d7d7;
 }
-.projects__container{
+.projects__container {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -217,7 +294,7 @@ table {
 }
 
 @media (max-width: 752px) {
-  .body{
+  .body {
     margin: 0;
   }
   .btn-container {
@@ -231,14 +308,14 @@ table {
     width: 1.25rem;
   }
   .header {
-    flex-direction: column; 
+    flex-direction: column;
   }
-  .header__heading{
+  .header__heading {
     display: flex;
     justify-content: center;
     padding-top: 3rem;
-    } 
-   .header__subheading {
+  }
+  .header__subheading {
     display: flex;
     justify-content: center;
   }
@@ -258,7 +335,7 @@ table {
     margin-top: 4rem;
     margin-bottom: 4rem;
   }
-  .main__button{
+  .main__button {
     width: 45%;
   }
   .tabs__buttons-container {
@@ -287,7 +364,7 @@ table {
     display: flex;
     justify-content: center;
   }
-  .footer__text{
+  .footer__text {
     width: 60%;
   }
 }
