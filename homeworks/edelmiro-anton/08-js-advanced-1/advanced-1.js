@@ -1,3 +1,22 @@
+// Task 1 - Pluck
+
+// let props = "preferences.sound.value";
+
+function pluck(obj, props) {
+  const splitted = props.split('.');
+  let finalValue = obj;
+  for (i = 0; i < splitted.length; i++) {
+    if (!finalValue[splitted[i]]) {
+      return null;
+    }
+    finalValue = finalValue[splitted[i]];
+  }
+
+  return finalValue;
+}
+
+// console.log(pluck(user, props));
+
 // Task 2 - Create a deep clone function
 
 const user = {
