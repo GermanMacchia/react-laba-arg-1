@@ -20,7 +20,6 @@ const needleList = [
   "1e63459f-0b18-4acf-9afc-e7287347bbeb",
 ];
 
-
 function quickSort(arr) {
   if (arr.length < 1) {
     return [];
@@ -31,64 +30,78 @@ function quickSort(arr) {
   let pivot = arr[0];
 
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i].sku < pivot.sku) {
-      lessThan.push(arr[i]);
-    } else if (arr[i].sku > pivot.sku) {
-      moreThan.push(arr[i]);
-    }
+    if (arr[i].sku < pivot.sku) lessThan.push(arr[i]);
+    else if (arr[i].sku > pivot.sku) moreThan.push(arr[i]);
   }
   return [].concat(quickSort(lessThan), pivot, quickSort(moreThan));
 }
 
-
-function straightSearch(sku, arr) {
+function straightSearch(arr, sku) {
   let i;
   for (i = 0; i < arr.length; i++) {
-    if (arr[i].sku === sku) {
-      break;
-    }
+    if (arr[i].sku === sku) break;
   }
   return i;
 }
 
-
-function binarySearch(sku, arr) {
+function binarySearch(arr, sku) {
   let lowest = 0;
   let highest = arr.length - 1;
   let middle;
 
   while (lowest <= highest) {
     middle = Math.floor((lowest + highest) / 2);
-    if (arr[middle].sku === sku) {
-      return middle;
-    } else if (arr[middle].sku < sku) {
-      lowest = middle + 1;
-    } else {
-      highest = middle - 1;
-    }
+    if (arr[middle].sku === sku) return middle;
+    else if (arr[middle].sku < sku) lowest = middle + 1;
+    else highest = middle - 1;
   }
   return -1;
 }
 
+function jumpSearch(arr, sku) {
+  let len = arr.length;
+  let step = Math.floor(Math.sqrt(len));
+  let blockStart = 0;
+  let currentStep = step;
+  //we jump till we find that element in currentStep index is greater that target
+  while (arr[Math.min(currentStep, len) - 1].sku < sku) {
+    //in the meantime we are assigning the value of the currentStep to blockStart
+    //so when the loop is over we can work with this variable
+    blockStart = currentStep;
+    currentStep += step;
+    //if we jump till the end of the array it means that the value is greather
+    //than any of the ones we have in arr so it returns -1
+    if (blockStart >= len) return -1;
+  }
+  //implement a linear search in the block defined by the last loop
+  while (arr[blockStart].sku < sku) {
+    blockStart++;
+    //if blockStart equals the currentStep or last index of array something went wrong and returns -1
+    if (blockStart === Math.min(currentStep, len)) return -1;
+  }
+  //if the last loop stopped we verify that the element its indeed the target
+  if (arr[blockStart].sku === sku) return blockStart;
+  else return -1;
+}
 
 function test() {
   const append = () => {
     console.log(str);
     fs.appendFile("./result.log", str, (err) => {
-      if (err) {
-        console.error(err);
-      }
+      if (err) console.error(err);
     });
   };
 
   let date = new Date().toISOString();
-  let str = `\n......................................\n${date}\n......................................\nTests Results:\n......................................\n`;
-  let t0, t1;
+  let str = `\n......................................
+${date}\n......................................
+Tests Results:\n......................................\n`;
+  let t0, t1, data;
   append();
 
   //SORTING DATA
   t0 = performance.now();
-  let data = quickSort(mockData);
+  data = quickSort(mockData);
   t1 = performance.now();
   str = `Quick Sort: ${t1 - t0} ms\n`;
   append();
@@ -96,7 +109,7 @@ function test() {
   //BINARY SEARCH
   t0 = performance.now();
   for (let sku of needleList) {
-    binarySearch(sku, data);
+    binarySearch(data, sku);
   }
   t1 = performance.now();
   str = `Binary Search: ${t1 - t0} ms\n`;
@@ -105,12 +118,20 @@ function test() {
   //STRAIGHT SEARCH
   t0 = performance.now();
   for (let sku of needleList) {
-    straightSearch(sku, data);
+    straightSearch(data, sku);
   }
   t1 = performance.now();
   str = `Straight Search: ${t1 - t0} ms\n`;
   append();
-}
 
+  //JUMP SEARCH
+  t0 = performance.now();
+  for (let sku of needleList) {
+    jumpSearch(data, sku);
+  }
+  t1 = performance.now();
+  str = `Jump Search: ${t1 - t0} ms\n`;
+  append();
+}
 
 test();
