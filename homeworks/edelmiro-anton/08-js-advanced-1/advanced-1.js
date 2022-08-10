@@ -55,21 +55,21 @@ function offset(date1, date2) {
   let timeAgo = '';
 
   if (minutes > 0 && minutes < 60) {
-    return (timeAgo = minutes + wordMinute + ' ago');
+    return (timeAgo = `${minutes} ${wordMinute} ago`);
   }
   if (hours == 1) {
-    return (timeAgo = hours + ' hour ago');
+    return (timeAgo = `${hours} hour ago`);
   }
 
   if (hours == 2) {
-    return (timeAgo = hours + ' hours ' + minutes / 5 + ' minutes ago');
+    return (timeAgo = `${hours} hours ${minutes / 5} minutes ago`);
   }
   if (hours >= 24) {
-    return (timeAgo = days + wordDay + ' ago');
+    return (timeAgo = `${days} ${wordDay} ago`);
   }
 
   if (days >= 365) {
-    return (timeAgo = days + ' days ago ');
+    return (timeAgo = `${days} days ago`);
   }
 }
 
@@ -81,13 +81,10 @@ const date_2 = new Date(2021, 1, 23);
 function randomDate(firstDate, secondDate) {
   let date = new Date(firstDate.getTime() + Math.random() * (secondDate.getTime() - firstDate.getTime()));
   const day = `${date.getDate() < 10 ? '0' : ''}${date.getDate()}`;
-  day;
 
   const month = `${date.getMonth() < 10 ? '0' : ''}${date.getMonth() + 1}`;
-  month;
 
   const year = `${date.getFullYear()}`;
-  year;
 
   return `${day}/${month}/${year}`;
 }
