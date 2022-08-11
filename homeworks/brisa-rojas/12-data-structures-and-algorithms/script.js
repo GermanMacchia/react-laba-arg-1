@@ -13,7 +13,7 @@ function handler(event) {
   }
   let button = event.target;
   let result;
-  let searchMethod = button.getAttribute('searchtype');
+  let searchMethod = button.dataset.searchtype; // get the search method we're using
   let input = document.querySelector('.form__sku-input');
 
   let resultInfo = document.querySelector('.search-result');
