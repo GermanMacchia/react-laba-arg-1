@@ -122,13 +122,13 @@ function oppositeNumber(number) {
   //Task 8) => https://www.codewars.com/kata/570cc83df616a85944001315/train/javascript
   
   function countWords(string) {
-    let stringToArray = string.split(" ");
-    let index = stringToArray.map((elem, index) => {
-      return index + 1;
-    });
-    return Number(index.length);
+    let str = string.trim();
+    if (str === "") return 0;
+ // let str = string
+    let myString = str.split(/\s+/)
+    return myString.length
   }
-  console.log(countWords("Hello everyone"));
+  console.log(countWords("david azuaje"));
   
   
   //Task 9) => https://www.codewars.com/kata/find-the-odd-int/
