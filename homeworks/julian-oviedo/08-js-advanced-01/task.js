@@ -44,6 +44,10 @@ console.log(user.preferences.sound.maxValue === clonedUser.preferences.sound.max
 // ## TASK 3. "A long time ago" - Create a function that returns how long ago a certain day was.
 
 function timeAgo(date) {
+  const yearMinutes = 525600
+  const monthMinutes = 43800
+  const dayMinutes = 1440
+  const hourMinutes = 60
   let now = new Date();
   let arr = date.split(/(\d+)/).filter((x) => x.match(/(\d+)/));
   let after = new Date(arr[2], arr[1] - 1, arr[0], arr[3], arr[4], arr[5]);
@@ -51,14 +55,14 @@ function timeAgo(date) {
   if (diff < 0 || !diff) {
     return 'invalid date, please set a date like "DD/MM/YYYY hh:mm:ss"';
   }
-  if (diff > 525600) {
-    return `${Math.floor(diff / 525600)} year and ${Math.floor((diff % 525600) / 43800)} months ago`;
-  } else if (diff > 43800) {
-    return `${Math.floor(diff / 43800)} months and ${Math.floor((diff % 43800) / 1440)} days ago`;
-  } else if (diff > 1440) {
-    return `${Math.floor(diff / 1440)} days and ${Math.floor((diff % 1440) / 60)} hours ago`;
-  } else if (diff > 60) {
-    return `${Math.floor(diff / 60)} hours and ${Math.floor(diff % 60)} minutes ago`;
+  if (diff > yearMinutes) {
+    return `${Math.floor(diff / yearMinutes)} year and ${Math.floor((diff % yearMinutes) / monthMinutes)} months ago`;
+  } else if (diff > monthMinutes) {
+    return `${Math.floor(diff / monthMinutes)} months and ${Math.floor((diff % monthMinutes) / dayMinutes)} days ago`;
+  } else if (diff > dayMinutes) {
+    return `${Math.floor(diff / dayMinutes)} days and ${Math.floor((diff % dayMinutes) / hourMinutes)} hours ago`;
+  } else if (diff > hourMinutes) {
+    return `${Math.floor(diff / hourMinutes)} hours and ${Math.floor(diff % hourMinutes)} minutes ago`;
   } else {
     return `${Math.floor(diff)} minutes ago`;
   }
