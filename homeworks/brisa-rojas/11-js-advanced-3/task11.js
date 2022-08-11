@@ -50,11 +50,6 @@ function showElapsedTime() {
   if (counter > MAX_TIME) { clearInterval(interval); }
 }
 
-
-
-
-// 5 - Fetch API/XMLHttpRequest
-
 // 6 - Digit or not
 // Write a function that receives a variable containing a string, as a parameter and checks whether the contents of this variable begin with a digit or not, using a regular expression.
 function beginsWithDigit(str) {
@@ -74,7 +69,7 @@ function isPhoneNumber(str) {
   const regex = new RegExp(/^[+]*54[\s-]*(\d{3}[\s-]*\d{4}[\s-]*\d{3})$/);
   return regex.test(str);
 }
-
+console.log(isPhoneNumber('+54 911 23f4 ls3'));
 console.log(isPhoneNumber('+54 987-6543-210'));
 console.log(isPhoneNumber('549876543210'));
 console.log(isPhoneNumber('54 9876543210'));
