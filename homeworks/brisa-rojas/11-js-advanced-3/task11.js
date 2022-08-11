@@ -50,7 +50,7 @@ function beginsWithDigit(str) {
   const regex = new RegExp(/^\d/);
   return regex.test(str);
 }
-console.log(beginsWithDigit('Hello World!'));
+console.log(beginsWithDigit('H311o W0r1d!'));
 console.log(beginsWithDigit('1Hello World!'));
 console.log(beginsWithDigit('37'));
 console.log(beginsWithDigit(''));
@@ -60,13 +60,15 @@ console.log(beginsWithDigit('Th1s sh0uld b3 f4ls3'));
 //Check if this entry is a phone number, e.g. set the format of your country:
 //Argentina: +54 xxx-xxxx-xxx
 function isPhoneNumber(str) {
-  const regex = new RegExp(/^[+]{0,1}54[\s-]{0,1}\d{3}[\s-]{0,1}\d{4}[\s-]{0,1}\d{3}$/);
+  const regex = new RegExp(/^[+]*54[\s-]*\d{3}[\s-]*\d{4}[\s-]*\d{3}$/);
   return regex.test(str);
 }
 
 console.log(isPhoneNumber('+54 987-6543-210'));
 console.log(isPhoneNumber('549876543210'));
 console.log(isPhoneNumber('54 9876543210'));
+console.log(isPhoneNumber('+54 987-------6543     210'));
+console.log(isPhoneNumber('++++++54 987- - - -6543 - - - 210'));
 
 
 
