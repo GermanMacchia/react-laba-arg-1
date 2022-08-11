@@ -1,11 +1,11 @@
 // 1. Pluck
 function pluck(obj, key) {
-  let keys = key.split(".");
+  const KEYS = key.split(".");
   let searchedValue = null;
 
   let value = (auxObj) => {
     for (atribute in auxObj) {
-      let isInKeys = keys.some((e) => atribute === e);
+      let isInKeys = KEYS.some((e) => atribute === e);
       if (typeof auxObj[atribute] === "object" && isInKeys) {
         value(auxObj[atribute]);
       } else if (isInKeys) {
@@ -69,26 +69,46 @@ function offset(date) {
 }
 
 //4. Random dates
-//Using moment() from task #3
+
+function moment(date, format) {
+  let arr = format.split(/[/ :]/g);
+  let objFormat = {};
+  arr.forEach((e) => {
+    let index = format.indexOf(e);
+    objFormat[e] = date.substr(index, e.length);
+  });
+  return new Date(
+    objFormat["YYYY"],
+    objFormat["MM"] - 1,
+    objFormat["DD"],
+    objFormat["hh"] ?? 0,
+    objFormat["mm"] ?? 0,
+    objFormat["ss"] ?? 0
+  );
+}
+
 function randomDate(date1, date2) {
   this.date = new Date(Math.random() * (date2 - date1) + date1.getTime());
   return this.date;
 }
+
 //although is not a good practice at all changing the defined Objects of JavaScript
 Date.prototype.format = (format) => {
   const DATE_ITEMS = ["YYYY", "YY", "MM", "DD", "hh", "mm", "ss"];
   let entries = {
-    DD: date.getDate().toLocaleString("en-US", { minimunIntegerDigits: 2 }),
-    MM: date.getMonth().toLocaleString("en-US", { minimunIntegerDigits: 1 }) + 1,
-    YYYY: date.getFullYear().toLocaleString("en-US", { minimunIntegerDigits: 2 }),
-    YY: date.getFullYear().toString().substring(2),
-    hh: date.getHours().toLocaleString("en-US", { minimunIntegerDigits: 2 }),
-    mm: date.getMinutes().toLocaleString("en-US", { minimunIntegerDigits: 2 }),
-    ss: date.getSeconds().toLocaleString("en-US", { minimunIntegerDigits: 2 }),
+    DD: date.toLocaleString("en-US", { day: 'numeric' }),
+    MM: date.toLocaleString("en-US", { month: 'numeric' }),
+    YYYY: date.toLocaleString("en-US", { year: 'numeric'}),
+    YY: date.toLocaleString("en-US", { year: 'numeric'}).substring(2),
+    hh: date.toLocaleString("en-US", { hour: '2-digit', hour12: false}),
+    mm: date.toLocaleString("en-US", { minute: '2-digit' }),
+    ss: date.toLocaleString("en-US", { second: '2-digit' })
   };
 
   for (e of DATE_ITEMS) {
-    format = format.replace(e, entries[e]);
+    if (entries[e].length === 1)
+      format = format.replace(e, "0" + entries[e]);
+    else format = format.replace(e, entries[e]);
   }
 
   return format;
