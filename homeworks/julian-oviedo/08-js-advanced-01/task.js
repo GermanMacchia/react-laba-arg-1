@@ -125,7 +125,7 @@ function NamedOne(first, last) {
       return this.firstName + ' ' + this.lastName;
     },
     set: function (value) {
-      var split = value.split(' ');
+      const split = value.split(' ');
       if (split.length == 2) {
         this.firstName = split[0];
         this.lastName = split[1];
