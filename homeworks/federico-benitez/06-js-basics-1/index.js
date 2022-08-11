@@ -297,3 +297,22 @@ function findCoordinates(map, animal) {
   });
   return cords;
 }
+
+/**
+ * Exercise 15 - Duplicate Encoder
+ * https://www.codewars.com/kata/duplicate-encoder
+ */
+function duplicateEncode(word) {
+  const chars = word.split('');
+  let result = word;
+
+  chars.forEach((char) => {
+    if (chars.filter((c) => c.toLowerCase() === char.toLowerCase()).length > 1) {
+      result = result.replace(char, ')');
+    } else {
+      result = result.replace(char, '(');
+    }
+  });
+
+  return result;
+}
