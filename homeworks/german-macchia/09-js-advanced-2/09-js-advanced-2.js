@@ -1,5 +1,5 @@
 class Serializable {
-  static serialNumber = "0";
+  static serialNumber = 0;
   static map = new Map();
 
   serialize() {
@@ -26,7 +26,7 @@ class Serializable {
     let objectNameInMap = Serializable.map.get(serial)[0];
     let objectStringinMap = Serializable.map.get(serial)[1];
     if (this.constructor.name === objectNameInMap) {
-      return this.createObject(this.constructor.name, objectStringinMap);
+      return this.createObject(objectStringinMap);
     } else {
       throw new Error(
         `The serial No ${serial} does not belong to the instanciated class`
@@ -34,7 +34,7 @@ class Serializable {
     }
   }
 
-  createObject(objectName, stringObject) {
+  createObject(stringObject) {
     stringObject = stringObject.replace(/["{}]/g, "").split(/,/);
     let parameters = {};
     let newObject;
@@ -74,19 +74,7 @@ class Serializable {
         }
       }
     }
-
-    switch (objectName) {
-      case "UserDTO":
-        newObject = new UserDTO(parameters);
-        break;
-      case "Post":
-        newObject = new Post(parameters);
-        break;
-      default:
-        return null;
-    }
-
-    return newObject;
+    return new this.constructor(parameters);
   }
 }
 
