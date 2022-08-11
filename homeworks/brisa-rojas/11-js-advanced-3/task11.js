@@ -18,8 +18,24 @@ function validateMessage(msg) {
   return true;
 }
 
-console.log(validateMessage('Hello World!'));  
+console.log(validateMessage('Hello World!'));
 console.log(validateMessage('<b>Hello World!</b>'));
 //console.log(validateMessage(null)); // ReferenceError: Message is null!
 //console.log(validateMessage(123)); // TypeError: Message should be of type string but was of type number!
 // console.log(validateMessage('')); // RangeError: Message contains 0 characters!
+
+// KATA Jokes you've been 'awaiting' for ... promise
+// https://www.codewars.com/kata/5a353a478f27f244a1000076/solutions/javascript?filter=me&sort=best_practice
+
+async function sayJoke(apiUrl, jokeId) {
+  return await fetch(apiUrl)
+    .then(response.json())
+    .then(({ jokeList }) =>
+      jokeList ? jokeList.find((joke) => joke.id === jokeId) : Promise.reject(new Error(`No jokes at url: ${apiUrl}`)),
+    ) 
+    .then((joke) =>
+      joke
+        ? { saySetup: () => joke.setup, sayPunchLine: () => joke.punchLine }
+        : Promise.reject(new Error(`No jokes found id: ${jokeId}`)),
+    );
+}
