@@ -128,7 +128,7 @@ function gotCorrectResult(sku, obj, searchMethod, counter) {
   if (!isCorrect) {
     console.table(`${result},${obj}`);
   }
-
+  console.log('\n');
   console.groupEnd(`Test ${counter} -  SKU: ${sku}`); //close collapsible group
   //////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -136,9 +136,9 @@ function gotCorrectResult(sku, obj, searchMethod, counter) {
 }
 
 //Variables for testing
-const numberOfTests = 15;
+const numberOfTests = 46;
 let randomIndex;
-let ACorrectSkuButNotFormated = MOCK_DATA[0].sku.split('-').join('');
+let ACorrectSkuButNotFormated = 'ccdb70f4---91f14543----93fa--8a93f980dc99';
 const someTestingStr = ["HelloI'm", 'NotACorrectSku', "I'mACorrectSkuButNotFormated:", ACorrectSkuButNotFormated];
 
 //STRAIGHT SEARCH TESTING
