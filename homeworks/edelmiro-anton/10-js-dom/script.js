@@ -20,23 +20,33 @@ for (let i = 0; i < totalCells; i++) {
   cell.classList.add('item');
 
   const text = document.createElement('p');
-  text.classList.add('textOff');
   cell.appendChild(text);
   container.appendChild(cell);
-
-  text.innerHTML = `X:${pairs[i][1]} <br> Y:${pairs[i][0]}`;
 
   //Set atributes for ALL COLUMNS & ROWS
   cell.setAttribute('X', `${pairs[i][1]}`);
   cell.setAttribute('Y', `${pairs[i][0]}`);
 
-  cell.addEventListener('mousedown', (e) => {
-    console.log(e)
-    // console.log("estoy apretando la celda");
-    text.classList.toggle('textOn');
+  cell.addEventListener('click', (e) => {
+    // console.log(e.shiftKey);
+
     const boxes = document.querySelectorAll('div');
+    const boxText = document.querySelectorAll('p');
+    // console.log(e.currentTarget);
     const columnX = e.currentTarget.getAttribute('x');
     const rowY = e.currentTarget.getAttribute('y');
+    text.classList.toggle('textOn');
+
+    if (!e.shiftKey) {
+      boxes.forEach((div) => {
+        div.style.backgroundColor = 'antiquewhite';
+      });
+
+      boxText.forEach((text) => {
+        text.innerText = '';
+      });
+    }
+
     boxes.forEach((box) => {
       if (box.getAttribute('x') === columnX) {
         box.style.backgroundColor = 'lightblue';
@@ -45,26 +55,12 @@ for (let i = 0; i < totalCells; i++) {
         box.style.backgroundColor = 'lightblue';
       }
     });
+    text.innerHTML = `X:${pairs[i][1]} <br> Y:${pairs[i][0]}`;
   });
 
-  cell.addEventListener('mouseup', (e) => {
-    // console.log("solté la celda");
-    text.classList.toggle('textOn');
-    const boxes = document.querySelectorAll('div');
-    const columnX = e.currentTarget.getAttribute('x');
-    const rowY = e.currentTarget.getAttribute('y');
-    boxes.forEach((box) => {
-      if (box.getAttribute('x') === columnX) {
-        box.style.backgroundColor = 'antiquewhite';
-      }
-      if (box.getAttribute('y') === rowY) {
-        box.style.backgroundColor = 'antiquewhite';
-      }
-    });
-  });
-
-  cell.addEventListener('mousedown', () => {
+  cell.addEventListener('click', () => {
     cell.style.backgroundColor = 'blue';
     text.style.color = 'white';
+    text.style.textAlign = 'center';
   });
 }

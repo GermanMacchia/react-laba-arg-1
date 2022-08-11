@@ -28,3 +28,7 @@ body {
 .textOn {
   display: block;
 }
+
+p{
+  margin: 0 auto;
+}
