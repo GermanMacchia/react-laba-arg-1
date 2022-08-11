@@ -12,10 +12,10 @@ xhr.addEventListener("load", () => {
         const fullName = `${user.name.first} ${user.name.last}`;
         const urlPicture = user.picture.medium;
 
-        const img = document.createElement("img");
-        const div = document.createElement("div");
+        let img = document.createElement("img");
+        let div = document.createElement("div");
         div.classList.add("cards");
-        const text = document.createElement("p");
+        let text = document.createElement("p");
         text.innerText = fullName;
         img.setAttribute("src", urlPicture);
         div.append(img);
