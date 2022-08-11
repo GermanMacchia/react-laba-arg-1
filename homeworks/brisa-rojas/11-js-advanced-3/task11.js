@@ -41,6 +41,17 @@ async function sayJoke(apiUrl, jokeId) {
 }
 
 // 3 - setTimeout/setInterval
+const interval = setInterval(showElapsedTime, 1000);
+let counter = 0;
+const MAX_TIME = 6;
+
+function showElapsedTime() {
+  console.log(`Elapsed Time: ${counter++} secs.`);
+  if (counter > MAX_TIME) { clearInterval(interval); }
+}
+
+
+
 
 // 5 - Fetch API/XMLHttpRequest
 
