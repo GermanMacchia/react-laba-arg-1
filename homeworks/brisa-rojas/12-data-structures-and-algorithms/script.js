@@ -183,6 +183,8 @@ let input = document.querySelector('.form__sku-input');
 input.addEventListener('keydown', function (event) {
   if (event.key === 'Enter') {
     event.preventDefault(); //prevent the form from submitting and page reloading
+    //could later be added that on enter, script will search for the sku and display the result
+    //with any of the methods implemented (maybe random selection or maybe one method set by default)
   }
   return;
 });
