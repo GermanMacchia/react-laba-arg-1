@@ -1,0 +1,13 @@
+$main-bg-color: #e5e5e5;
+$btn-bg-color: #ffffff;
+$nav-txt-color: #19191b;
+$sub-txt-color: #575757;
+$nav-btn-color: #d7d7d7;
+$h1-color: #3d3d3d;
+$prof-btn-color: #3d3d3d;
+$brightness: 1;
+
+@mixin flexDisplay($flexType: flex, $flexDir: row) {
+  display: $flexType;
+  flex-direction: $flexDir;
+}

@@ -1,0 +1,32 @@
+{
+  "name": "13-environment-and-preprocessors",
+  "version": "1.0.0",
+  "description": "Task from lecture 13 enviroment and preprocessors",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "webpack --watch",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "qaprosoft/react-laba-arg-1/homeworks/german-macchia/13-enviroment-and-preprocessors"
+  },
+  "keywords": [
+    "scss",
+    "module_bundler",
+    "webpack"
+  ],
+  "author": "German Macchia",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^6.7.1",
+    "sass-loader": "^13.0.2",
+    "style-loader": "^3.3.1",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.10.0"
+  },
+  "dependencies": {
+    "sass": "^1.54.4"
+  }
+}
