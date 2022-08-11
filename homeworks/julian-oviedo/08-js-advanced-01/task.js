@@ -13,14 +13,18 @@ const randomValue = Math.random();
 const nullValue = null;
 
 function pluck(obj, key) {
-  try {
-    const split = key.split('.');
-    let result = obj;
-    for (let i = 0; i < split.length; i++) {
-      result = result[split[i]];
+  const splitKey = key.split('.');
+  let result = obj;
+  if (typeof result === 'object' && result !== null) {
+    for (let i = 0; i < splitKey.length; i++) {
+      if (result.hasOwnProperty([splitKey[i]])) {
+        result = result[splitKey[i]];
+      } else {
+        return null;
+      }
     }
     return result;
-  } catch {
+  } else {
     return null;
   }
 }
@@ -28,7 +32,7 @@ function pluck(obj, key) {
 console.log(pluck(user, 'preferences.sound.value')); // 30
 console.log(pluck(user, 'unknown.key')); // null
 console.log(pluck(randomValue, 'unknown.key')); // null
-console.log(pluck(nullValue, 'unknown.key'));
+console.log(pluck(nullValue, 'unknown.key')); //null
 
 // ## TASK 2. Deep Clone - Create custom deep clone function.
 
@@ -44,10 +48,10 @@ console.log(user.preferences.sound.maxValue === clonedUser.preferences.sound.max
 // ## TASK 3. "A long time ago" - Create a function that returns how long ago a certain day was.
 
 function timeAgo(date) {
-  const yearMinutes = 525600
-  const monthMinutes = 43800
-  const dayMinutes = 1440
-  const hourMinutes = 60
+  const yearMinutes = 525600;
+  const monthMinutes = 43800;
+  const dayMinutes = 1440;
+  const hourMinutes = 60;
   let now = new Date();
   let arr = date.split(/(\d+)/).filter((x) => x.match(/(\d+)/));
   let after = new Date(arr[2], arr[1] - 1, arr[0], arr[3], arr[4], arr[5]);
