@@ -335,3 +335,25 @@ function towerBuilder(nFloors) {
   }
   return result;
 }
+
+/**
+ * Exercise 18 - Mexican Wave
+ * https://www.codewars.com/kata/58f5c63f1e26ecda7e000029
+ */
+
+function wave(str) {
+  // Code here
+  let result = [];
+  if (str === '') return result;
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === ' ') continue;
+    result.push(setCharAt(str, i, str[i].toUpperCase()));
+  }
+
+  return result;
+}
+
+function setCharAt(str, index, char) {
+  if (index > str.length - 1) return str;
+  return str.substring(0, index) + char + str.substring(index + 1);
+}
