@@ -151,8 +151,12 @@ function oppositeNumber(number) {
   
   
   // Task 12) https://www.codewars.com/kata/filter-the-number
-  const filterNumber = (string) => string.match(/[0-9]/g);
-  console.log(filterNumber("093d"));
+  const FilterString = (string) => {
+    const filterNumber = string.replace(/[^0-9]/g, "");
+    return parseInt(filterNumber)
+  };
+  console.log(FilterString("793d"));
+  
   
   
   //Task 13) => https://www.codewars.com/kata/n-th-fibonacci
