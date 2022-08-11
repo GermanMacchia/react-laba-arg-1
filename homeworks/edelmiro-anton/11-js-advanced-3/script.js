@@ -50,4 +50,34 @@ function digitOrNot(str) {
   }
 }
 
+/*TASK 5 - Write a script that requests with the help of https://randomuser.me/ and displays a list of users
+with the information about them below. 
+The layout may be very simple, whatever you like, to see the result.
+The request might look like this:
+https://randomuser.me/api/?gender=female&results=10
+Please, make two different scripts, one using Fetch, the other XMLHttpRequest */
 
+const url = 'https://randomuser.me/api/?gender=female&results=10';
+
+fetch(url)
+  .then((resp) => resp.json())
+  .then((data) => {
+    const info = data.results;
+    console.log(info);
+
+    for (let i = 0; i < info.length; i++) {
+      let container = document.querySelector('#container');
+      let userDiv = document.createElement('div');
+      let userImg = document.createElement('img');
+      let userName = document.createElement('p');
+      userDiv.style.textAlign = 'center';
+      userImg.src = `${info[i].picture.thumbnail}`;
+      userImg.style.width = '50px';
+      userImg.style.height = '50px';
+      userName.innerHTML = `${info[i].name.first} ${info[i].name.last}`;
+      container.appendChild(userDiv);
+      userDiv.appendChild(userImg);
+      userDiv.appendChild(userName);
+    }
+  })
+  .catch((err) => console.log(err));
