@@ -66,10 +66,10 @@ function sortBySku(obj1, obj2) {
 // check sku elem by elem
 function straightSearch(searchedSku) {
   let index = null;
-  straightSearch: for (let i = 0; i < MOCK_DATA.length; i++) {
+  for (let i = 0; i < MOCK_DATA.length; i++) {
     if (MOCK_DATA[i].sku === searchedSku) {
       index = i;
-      break straightSearch;
+      break;
     }
   }
   if (index === null) {
