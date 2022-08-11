@@ -1,33 +1,37 @@
 'use strict';
-import {MOCK_DATA} from './MOCK_DATA.js';
+import { MOCK_DATA } from './MOCK_DATA.js';
+// sort MOCK_DATA by sku for binary search
+let SORTED_MOCK_DATA = JSON.parse(JSON.stringify(MOCK_DATA)); //Deep clone MOCK_DATA
+SORTED_MOCK_DATA.sort(sortBySku); // sort by sku for binary search
 
 //HANDLER FUNCTION
-function handler(event){
-    if (!event.target.classList.contains('buttons-container__button')){ // if event was not triggered by a button, return
-      return;
-    }
-    let button = event.target;
-    let result;
-    let searchMethod = button.getAttribute('searchtype');
-    let input = document.querySelector('.form__sku-input');
+function handler(event) {
+  if (!event.target.classList.contains('buttons-container__button')) {
+    // if event was not triggered by a button, return
+    return;
+  }
+  let button = event.target;
+  let result;
+  let searchMethod = button.getAttribute('searchtype');
+  let input = document.querySelector('.form__sku-input');
 
-    let resultInfo = document.querySelector('.search-result');
+  let resultInfo = document.querySelector('.search-result');
 
-    let searchedSku = input.value;
-    
-    searchedSku = parseSku(searchedSku); 
+  let searchedSku = input.value;
 
-    if (searchMethod === 'straight') {
-      result = straightSearch(searchedSku);
-    } else if (searchMethod === 'binary') {
-      result = binarySearch(searchedSku);
-    }
+  searchedSku = parseSku(searchedSku);
 
-    if (result === null) {
-      resultInfo.innerHTML = 'No match found. Try checking the sku given.';
-    } else {
-      resultInfo.innerHTML = `Name: ${result.name} \n Price: ${result.price} \n Pack: ${result.pack}`;
-    }
+  if (searchMethod === 'straight') {
+    result = straightSearch(searchedSku);
+  } else if (searchMethod === 'binary') {
+    result = binarySearch(searchedSku);
+  }
+
+  if (result === null) {
+    resultInfo.innerHTML = 'No match found. Try checking the sku given.';
+  } else {
+    resultInfo.innerHTML = `Name: ${result.name} \n Price: ${result.price} \n Pack: ${result.pack}`;
+  }
 }
 
 // SKU PARSER
@@ -44,7 +48,7 @@ function parseSku(sku) {
     '-' +
     parsedSku.slice(16, 20) +
     '-' +
-    parsedSku.slice(20); 
+    parsedSku.slice(20);
 
   return parsedSku;
 }
@@ -59,7 +63,7 @@ function sortBySku(obj1, obj2) {
 }
 
 // STRAIGHT SEARCH IMPLEMENTATION
-// check sku elem by elem 
+// check sku elem by elem
 function straightSearch(searchedSku) {
   let index = null;
   straightSearch: for (let i = 0; i < MOCK_DATA.length; i++) {
@@ -76,30 +80,29 @@ function straightSearch(searchedSku) {
 
 // BINARY SEARCH IMPLEMENTATION
 function binarySearch(searchedSku) {
-  if (searchedSku === ''){return null;};
+  if (searchedSku === '') {
+    return null;
+  }
   let startIndex = 0;
-  let stopIndex = MOCK_DATA.length - 1;
+  let stopIndex = SORTED_MOCK_DATA.length - 1;
   let middle = Math.floor((stopIndex + startIndex) / 2);
 
-  MOCK_DATA.sort(sortBySku); // sort the array by sku for binary search
-
-  while((MOCK_DATA[middle]).sku != searchedSku && startIndex < stopIndex){
-
+  while (SORTED_MOCK_DATA[middle].sku != searchedSku && startIndex < stopIndex) {
     //adjust search area
-    if (searchedSku < (MOCK_DATA[middle]).sku){
-        stopIndex = middle - 1;
-    } else if (searchedSku > (MOCK_DATA[middle]).sku){
-        startIndex = middle + 1;
+    if (searchedSku < SORTED_MOCK_DATA[middle].sku) {
+      stopIndex = middle - 1;
+    } else if (searchedSku > SORTED_MOCK_DATA[middle].sku) {
+      startIndex = middle + 1;
     }
     //recalculate middle
-    middle = Math.floor((stopIndex + startIndex)/2);
+    middle = Math.floor((stopIndex + startIndex) / 2);
   }
   //make sure it's the right value
-  return ((MOCK_DATA[middle]).sku === searchedSku) ? MOCK_DATA[middle] : null;
+  return SORTED_MOCK_DATA[middle].sku === searchedSku ? SORTED_MOCK_DATA[middle] : null;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////
-// TEST AND PERFORMANCE TEST 
-function gotCorrectResult(sku, obj, searchMethod, counter){ 
+// TEST AND PERFORMANCE TEST
+function gotCorrectResult(sku, obj, searchMethod, counter) {
   // sku: sku code we're looking to match
   // obj: object it should ideally return
   // searchMethod: search method we're using
@@ -115,7 +118,7 @@ function gotCorrectResult(sku, obj, searchMethod, counter){
 
   let isCorrect = result === obj;
   console.log(`Correct result: ${isCorrect}`);
-  if (!isCorrect){
+  if (!isCorrect) {
     console.table(`${result},${obj}`);
   }
   console.groupEnd(`Test ${counter} -  SKU: ${sku}`);
@@ -124,41 +127,41 @@ function gotCorrectResult(sku, obj, searchMethod, counter){
 
 const numberOfTests = 50;
 let randomIndex;
-let ACorrectSkuButNotFormated =  (MOCK_DATA[0].sku).split('-').join('');
-const someTestingStr = ["HelloI'm", 'NotACorrectSku',"I'mACorrectSkuButNotFormated:", ACorrectSkuButNotFormated];
+let ACorrectSkuButNotFormated = MOCK_DATA[0].sku.split('-').join('');
+const someTestingStr = ["HelloI'm", 'NotACorrectSku', "I'mACorrectSkuButNotFormated:", ACorrectSkuButNotFormated];
 
 console.groupCollapsed(`Straight Search Test - ${numberOfTests + 4} tests`);
-for(let i = 0; i < numberOfTests ; i++){
-  randomIndex = Math.floor(Math.random() * (MOCK_DATA.length - 1 ));
+for (let i = 0; i < numberOfTests; i++) {
+  randomIndex = Math.floor(Math.random() * (MOCK_DATA.length - 1));
   gotCorrectResult(MOCK_DATA[randomIndex].sku, MOCK_DATA[randomIndex], straightSearch, i);
 }
 
-gotCorrectResult(someTestingStr[0], null , straightSearch, numberOfTests );
-gotCorrectResult(someTestingStr[1], null , straightSearch, numberOfTests + 1 );
-gotCorrectResult(someTestingStr[2], null , straightSearch, numberOfTests + 2);
+gotCorrectResult(someTestingStr[0], null, straightSearch, numberOfTests);
+gotCorrectResult(someTestingStr[1], null, straightSearch, numberOfTests + 1);
+gotCorrectResult(someTestingStr[2], null, straightSearch, numberOfTests + 2);
 gotCorrectResult(someTestingStr[3], MOCK_DATA[0], straightSearch, numberOfTests + 3);
 
 console.groupEnd(`Straight Search Test - ${numberOfTests + 4} tests`);
 
 console.groupCollapsed(`Binary Search Test - ${numberOfTests + 4} tests`);
-for(let i = 0; i < numberOfTests ; i++){
-  randomIndex = Math.floor(Math.random() * (MOCK_DATA.length - 1 ));
+for (let i = 0; i < numberOfTests; i++) {
+  randomIndex = Math.floor(Math.random() * (MOCK_DATA.length - 1));
   gotCorrectResult(MOCK_DATA[randomIndex].sku, MOCK_DATA[randomIndex], binarySearch, i);
 }
 
-gotCorrectResult(someTestingStr[0], null , binarySearch, numberOfTests);
-gotCorrectResult(someTestingStr[1], null , binarySearch, numberOfTests + 1);
-gotCorrectResult(someTestingStr[2], null , binarySearch, numberOfTests + 2);
+gotCorrectResult(someTestingStr[0], null, binarySearch, numberOfTests);
+gotCorrectResult(someTestingStr[1], null, binarySearch, numberOfTests + 1);
+gotCorrectResult(someTestingStr[2], null, binarySearch, numberOfTests + 2);
 gotCorrectResult(someTestingStr[3], MOCK_DATA[0], binarySearch, numberOfTests + 3);
 
 console.groupEnd(`Binary Search Test - ${numberOfTests + 4} tests`);
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 // EVENT LISTENER
-document.body.addEventListener('click',handler);
-let input = document.querySelector('.form__sku-input'); 
-input.addEventListener('keydown', function(event){
-  if (event.key === 'Enter'){
+document.body.addEventListener('click', handler);
+let input = document.querySelector('.form__sku-input');
+input.addEventListener('keydown', function (event) {
+  if (event.key === 'Enter') {
     event.preventDefault(); //prevent the form from submitting and page reloading
   }
   return;
