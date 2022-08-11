@@ -100,7 +100,7 @@ function oppositeNumber(number) {
   // Task 6) => https://www.codewars.com/kata/get-the-middle-character
   
   function getMiddle(string) {
-    let lengthOfWord = string.length;
+    const lengthOfWord = string.length;
     let length;
     let position;
   
@@ -147,7 +147,20 @@ function oppositeNumber(number) {
   }
   console.log(findOutlier([1,1,0,1,1]))
   
-  //Task 11) => Do it
+  //Task 11) => https://www.codewars.com/kata/zipwith
+  function zipWith(fn, a0, a1) {
+    const resArr = [];
+    const len1 = a0.length;
+    const len2 = a1.length;
+    
+    for (let i = 0; i < len1 && i < len2; i++) {
+      resArr.push(fn(a0[i], a1[i]));
+    }
+    
+    return resArr;
+  }
+  console.log(zipWith((a,b) => a+b, [0,1,2,3], [0,1,2,3] ));
+  
   
   
   // Task 12) https://www.codewars.com/kata/filter-the-number
