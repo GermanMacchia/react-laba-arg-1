@@ -2,7 +2,20 @@
 
 // let props = "preferences.sound.value";
 
+const user2 = {
+  username: 'testuser1',
+  preferences: {
+    sound: {
+      maxValue: 50,
+      value: 30,
+    },
+  },
+};
+
 function pluck(obj, props) {
+  if (!obj) {
+    return null;
+  }
   const splitted = props.split('.');
   let finalValue = obj;
   for (i = 0; i < splitted.length; i++) {
@@ -15,19 +28,17 @@ function pluck(obj, props) {
   return finalValue;
 }
 
+const randomValue = Math.random();
+const nullValue = null;
+
+console.log(pluck(user2, 'preferences.sound.value')); // 30
+console.log(pluck(user2, 'unknown.key')); // null
+console.log(pluck(randomValue, 'unknown.key')); // null
+console.log(pluck(nullValue, 'unknown.key')); // null`
+
 // console.log(pluck(user, props));
 
 // Task 2 - Create a deep clone function
-
-const user = {
-  username: 'testuser1',
-  preferences: {
-    sound: {
-      maxValue: 50,
-      value: 30,
-    },
-  },
-};
 
 function clone(obj) {
   const deepClone = JSON.parse(JSON.stringify(obj));
