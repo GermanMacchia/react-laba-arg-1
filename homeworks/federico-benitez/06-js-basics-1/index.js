@@ -357,3 +357,25 @@ function setCharAt(str, index, char) {
   if (index > str.length - 1) return str;
   return str.substring(0, index) + char + str.substring(index + 1);
 }
+
+/**
+ * Exercise 19 - String Breakers
+ * https://www.codewars.com/kata/59d398bb86a6fdf100000031
+ */
+
+/**
+ * Exercise 20 - Extract the domain name from a URL
+ *  https://www.codewars.com/kata/514a024011ea4fb54200004b
+ */
+function domainName(url) {
+  if (url.includes('www')) {
+    return url.split('.')[1];
+  }
+
+  if (url.includes('//')) {
+    const parts = url.split('//');
+    return parts[1].split('.')[0];
+  }
+
+  return url.split('.')[0];
+}
