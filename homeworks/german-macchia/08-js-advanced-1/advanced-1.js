@@ -96,18 +96,17 @@ function randomDate(date1, date2) {
 Date.prototype.format = (format) => {
   const DATE_ITEMS = ["YYYY", "YY", "MM", "DD", "hh", "mm", "ss"];
   let entries = {
-    DD: date.toLocaleString("en-US", { day: 'numeric' }),
-    MM: date.toLocaleString("en-US", { month: 'numeric' }),
-    YYYY: date.toLocaleString("en-US", { year: 'numeric'}),
-    YY: date.toLocaleString("en-US", { year: 'numeric'}).substring(2),
-    hh: date.toLocaleString("en-US", { hour: '2-digit', hour12: false}),
-    mm: date.toLocaleString("en-US", { minute: '2-digit' }),
-    ss: date.toLocaleString("en-US", { second: '2-digit' })
+    DD: date.toLocaleString("en-US", { day: "numeric" }),
+    MM: date.toLocaleString("en-US", { month: "numeric" }),
+    YYYY: date.toLocaleString("en-US", { year: "numeric" }),
+    YY: date.toLocaleString("en-US", { year: "numeric" }).substring(2),
+    hh: date.toLocaleString("en-US", { hour: "2-digit", hour12: false }),
+    mm: date.toLocaleString("en-US", { minute: "2-digit" }),
+    ss: date.toLocaleString("en-US", { second: "2-digit" }),
   };
 
   for (e of DATE_ITEMS) {
-    if (entries[e].length === 1)
-      format = format.replace(e, "0" + entries[e]);
+    if (entries[e].length === 1) format = format.replace(e, "0" + entries[e]);
     else format = format.replace(e, entries[e]);
   }
 
