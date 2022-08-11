@@ -18,7 +18,32 @@ const validateMessage = (msg) => {
 console.log(validateMessage("<img>"));
 
 
-// Task 2) => The API It doesn't working
+// Task 2) => https://www.codewars.com/kata/5a353a478f27f244a1000076/train/javascript
+async function sayJoke(apiUrl, jokeId) {
+  const response = await fetch(apiUrl);
+  const data = await response.json();
+
+  if (!data) {
+    throw new Error(`No jokes at url: ${apiUrl}`);
+  }
+
+  const joke = data.jokes.find((obj) => obj.id === jokeId);
+
+  if (!joke) {
+    throw new Error(`No jokes found id: ${jokeId}`);
+  }
+
+  return {
+    saySetup: function () {
+      return joke.setup;
+    },
+    sayPunchLine: function () {
+      return joke.punchLine;
+    },
+  };
+}
+
+
 
 
 
@@ -26,19 +51,18 @@ console.log(validateMessage("<img>"));
 
 let count = 0;
 
-
 const interval = () => {
   if (count >= 5) {
     clearInterval(displayInterval);
   }
-  else{
- count++;
- console.log(`Elapsed time: ${count} sec`);   
+  else {
+    count++;
+    console.log(`Elapsed time: ${count} sec`);
+  }
 }
-}
-console.log(interval())
+//console.log(interval())
 const displayInterval = setInterval(interval, 1000);
- 
+
 
 
 //Task 5) Fetch API/XMLHttpRequest in the task-5 folder
@@ -51,6 +75,5 @@ const isDigit = (string) => (string.match(/^\d/) ? "Digit" : "Not");
 console.log(isDigit("0david"));
 
 // Task 7) Optional (advanced) => Check if this entry is a phone number
-const checkPhoneNum = (num) =>
-  /\+54-\d{4}-\d{4}/.test(num) ? "Is a Argentina phone" : "Invalid";
+const checkPhoneNum = (num) => /\+54-\d{4}-\d{4}/.test(num) ? "Is a Argentina phone" : "Invalid";
 console.log(checkPhoneNum("+54-7153-5651"));
