@@ -1,43 +1,15 @@
-class Serializable {
-  static serialNumber = 0;
-  static map = new Map();
-
-  serialize() {
-    Serializable.serialNumber++;
-    Serializable.map.set(Serializable.serialNumber, [
-      this.constructor.name,
-      this.stringFromObject(this),
-    ]);
-    return Serializable.serialNumber;
-  }
-
-  stringFromObject(obj) {
-    for (let el in obj) {
-      if (Object.is(obj[el], NaN)) {
-        obj[el] = "NaN";
-      } else if (Object.is(obj[el], Infinity)) {
-        obj[el] = "Infinity";
-      }
-    }
-    return JSON.stringify(obj);
-  }
+class Wakeable {
 
   wakeFrom(serial) {
     let objectNameInMap = Serializable.map.get(serial)[0];
     let objectStringinMap = Serializable.map.get(serial)[1];
-    if (this.constructor.name === objectNameInMap) {
-      return this.createObject(objectStringinMap);
-    } else {
-      throw new Error(
-        `The serial No ${serial} does not belong to the instanciated class`
-      );
-    }
+    if (this.constructor.name === objectNameInMap) return this.wakeObject(objectStringinMap);
+    else throw new Error( `The serial No ${serial} does not belong to the instanciated class`);
   }
 
-  createObject(stringObject) {
+  wakeObject(stringObject) {
     stringObject = stringObject.replace(/["{}]/g, "").split(/,/);
     let parameters = {};
-    let newObject;
 
     for (let el of stringObject) {
       let propsArray = el.split(":");
@@ -78,6 +50,28 @@ class Serializable {
   }
 }
 
+class Serializable extends Wakeable {
+  static serialNumber = 0;
+  static map = new Map();
+
+  serialize() {
+    Serializable.serialNumber++;
+    Serializable.map.set(Serializable.serialNumber, [
+      this.constructor.name,
+      this.stringFromObject(this),
+    ]);
+    return Serializable.serialNumber;
+  }
+
+  stringFromObject(obj) {
+    for (let el in obj) {
+      if (Object.is(obj[el], NaN)) obj[el] = "NaN";
+      else if (Object.is(obj[el], Infinity)) obj[el] = "Infinity";
+    }
+    return JSON.stringify(obj);
+  }
+}
+
 class UserDTO extends Serializable {
   constructor({ firstName, lastName, phone, birth } = {}) {
     super();
@@ -96,6 +90,23 @@ class UserDTO extends Serializable {
   }
 }
 
+class Post extends Serializable {
+  constructor({ content, date, author } = {}) {
+    super();
+
+    this.content = content;
+    this.date = date;
+    this.author = author;
+  }
+
+  printInfo() {
+    return `${this.author} : ${this.content} - ${this.date.toISOString()}`;
+  }
+}
+
+
+// TESTS *********************
+
 let tolik = new UserDTO({
   firstName: "Anatoliy",
   lastName: "Nashovich",
@@ -113,19 +124,6 @@ const resurrectedTolik = new UserDTO().wakeFrom(serialized);
 console.log(resurrectedTolik instanceof UserDTO); // true
 console.log(resurrectedTolik.printInfo()); // A. Nashovich - 2020327, 1999-01-02T00:00:00.000Z
 
-class Post extends Serializable {
-  constructor({ content, date, author } = {}) {
-    super();
-
-    this.content = content;
-    this.date = date;
-    this.author = author;
-  }
-
-  printInfo() {
-    return `${this.author} : ${this.content} - ${this.date.toISOString()}`;
-  }
-}
 
 try {
   console.log(new Post().wakeFrom(serialized));
@@ -175,7 +173,7 @@ let newUser3 = new UserDTO({
   phone: "5949357",
   birth: new Date("2001-04-09"),
 });
-console.log(newUser3.printInfo()); // J. Doe - 5949357, 2001-04-09T00:00:00.000Z
+console.log(newUser3.printInfo()); // J. 0 - 5949357, 2001-04-09T00:00:00.000Z
 console.log(newUser3.lastName); //-0
 
 const serialized3 = newUser3.serialize();
@@ -216,7 +214,7 @@ let newUser5 = new UserDTO({
 console.log(newUser5.printInfo()); //U. null - null, 2001-04-09T00:00:00.000Z
 
 const serialized5 = newUser5.serialize();
-console.log(serialized5); //5
+console.log(serialized5); //6
 newUser4 = null;
 const resurrectedNewUser5 = new UserDTO().wakeFrom(serialized5);
 
