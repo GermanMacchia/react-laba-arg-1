@@ -17,8 +17,8 @@ const validateMessage = (msg) => {
 };
 console.log(validateMessage("<img>"));
 
-
 // Task 2) => https://www.codewars.com/kata/5a353a478f27f244a1000076/train/javascript
+
 async function sayJoke(apiUrl, jokeId) {
   const response = await fetch(apiUrl);
   const data = await response.json();
@@ -43,10 +43,6 @@ async function sayJoke(apiUrl, jokeId) {
   };
 }
 
-
-
-
-
 //Task 3) setTimeout/ setInterval
 
 let count = 0;
@@ -54,19 +50,14 @@ let count = 0;
 const interval = () => {
   if (count >= 5) {
     clearInterval(displayInterval);
-  }
-  else {
+  } else {
     count++;
     console.log(`Elapsed time: ${count} sec`);
   }
 }
-//console.log(interval())
 const displayInterval = setInterval(interval, 1000);
 
-
-
 //Task 5) Fetch API/XMLHttpRequest in the task-5 folder
-
 
 //Regular expressions
 
@@ -75,5 +66,7 @@ const isDigit = (string) => (string.match(/^\d/) ? "Digit" : "Not");
 console.log(isDigit("0david"));
 
 // Task 7) Optional (advanced) => Check if this entry is a phone number
-const checkPhoneNum = (num) => /\+54-\d{4}-\d{4}/.test(num) ? "Is a Argentina phone" : "Invalid";
+
+const checkPhoneNum = (num) =>
+  /\+54-\d{4}-\d{4}/.test(num) ? "Is a Argentina phone" : "Invalid";
 console.log(checkPhoneNum("+54-7153-5651"));
