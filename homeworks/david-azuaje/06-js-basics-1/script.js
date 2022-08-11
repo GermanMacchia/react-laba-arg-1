@@ -173,7 +173,7 @@ function oppositeNumber(number) {
   
   // Task 15) => https://www.codewars.com/kata/duplicate-encoder
   function duplicateEncode(word){
-    // ...
+    
     let lowWord = word.toLocaleLowerCase()
     return lowWord.split("")
       .map(s => lowWord.indexOf(s) === lowWord.lastIndexOf(s) ? '(' : ')')
@@ -206,13 +206,13 @@ function oppositeNumber(number) {
   
   function stringBreakers(n, string){
     let str = ''
-    let splitteded = string.split("");
+    let splitteded = string.split(" ").join('').split('');
     for(const x of string){
       str += splitteded.splice(0, n).join('')+'\n'
     }
     return str.trim()
   }
-  console.log(stringBreakers(3,"David"));
+  console.log(stringBreakers(3,"Davide"));
   
   
   
