@@ -316,3 +316,22 @@ function duplicateEncode(word) {
 
   return result;
 }
+
+/**
+ * Exercise 16 - Additive Numbers
+ * https://www.codewars.com/kata/5693239fb761dc8670000001
+ */
+
+/**
+ * Exercise 17 - Build Tower
+ * https://www.codewars.com/kata/576757b1df89ecf5bd00073b
+ */
+function towerBuilder(nFloors) {
+  let result = [];
+  for (i = 1; i <= nFloors; i++) {
+    const space = ' '.repeat(nFloors - i);
+    const star = '*'.repeat(2 * i - 1);
+    result.push(`${space}${star}${space}`);
+  }
+  return result;
+}
