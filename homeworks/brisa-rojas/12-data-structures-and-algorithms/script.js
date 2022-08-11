@@ -3,6 +3,7 @@ import { MOCK_DATA } from './MOCK_DATA.js';
 // sort MOCK_DATA by sku for binary search
 let SORTED_MOCK_DATA = JSON.parse(JSON.stringify(MOCK_DATA)); //Deep clone MOCK_DATA
 SORTED_MOCK_DATA.sort(sortBySku); // sort by sku for binary search
+// console.log(MOCK_DATA===SORTED_MOCK_DATA); //false: we can check it's a sorted deep clone
 
 //HANDLER FUNCTION
 function handler(event) {
@@ -106,49 +107,68 @@ function gotCorrectResult(sku, obj, searchMethod, counter) {
   // sku: sku code we're looking to match
   // obj: object it should ideally return
   // searchMethod: search method we're using
+
   let startTime;
   let endTime;
 
+  //run the search method and get the running time
   startTime = performance.now();
   let result = searchMethod(sku);
   endTime = performance.now();
+  let isCorrect = result === obj; // check if result is the same as the expected result
 
-  console.groupCollapsed(`Test ${counter} -  SKU: ${sku}`);
+
+  // PRINT RELEVANT INFO TO THE CONSOLE /////////////////////////////////////////////////////
+  console.groupCollapsed(`Test ${counter} -  SKU: ${sku}`); //create a collapsible group in the console for this test
+
+  //Time taken
   console.log(`Took ${endTime - startTime} ms to run.`);
-
-  let isCorrect = result === obj;
+  //Result 
   console.log(`Correct result: ${isCorrect}`);
   if (!isCorrect) {
     console.table(`${result},${obj}`);
   }
-  console.groupEnd(`Test ${counter} -  SKU: ${sku}`);
+
+  console.groupEnd(`Test ${counter} -  SKU: ${sku}`); //close collapsible group
+  //////////////////////////////////////////////////////////////////////////////////////////////
+
   return;
 }
 
-const numberOfTests = 50;
+//Variables for testing
+const numberOfTests = 15;
 let randomIndex;
 let ACorrectSkuButNotFormated = MOCK_DATA[0].sku.split('-').join('');
 const someTestingStr = ["HelloI'm", 'NotACorrectSku', "I'mACorrectSkuButNotFormated:", ACorrectSkuButNotFormated];
 
+//STRAIGHT SEARCH TESTING
+
+//Test straight search with random skus taken from MOCK_DATA
 console.groupCollapsed(`Straight Search Test - ${numberOfTests + 4} tests`);
 for (let i = 0; i < numberOfTests; i++) {
   randomIndex = Math.floor(Math.random() * (MOCK_DATA.length - 1));
   gotCorrectResult(MOCK_DATA[randomIndex].sku, MOCK_DATA[randomIndex], straightSearch, i);
 }
-
+// incorrect + not formatted sku
 gotCorrectResult(someTestingStr[0], null, straightSearch, numberOfTests);
 gotCorrectResult(someTestingStr[1], null, straightSearch, numberOfTests + 1);
 gotCorrectResult(someTestingStr[2], null, straightSearch, numberOfTests + 2);
-gotCorrectResult(someTestingStr[3], MOCK_DATA[0], straightSearch, numberOfTests + 3);
+gotCorrectResult(someTestingStr[3], MOCK_DATA[0], straightSearch, numberOfTests + 3); 
 
 console.groupEnd(`Straight Search Test - ${numberOfTests + 4} tests`);
 
+
+
+//BINARY SEARCH TESTING
+
+//Test binary search with random skus taken from SORTED_MOCK_DATA
 console.groupCollapsed(`Binary Search Test - ${numberOfTests + 4} tests`);
 for (let i = 0; i < numberOfTests; i++) {
-  randomIndex = Math.floor(Math.random() * (MOCK_DATA.length - 1));
-  gotCorrectResult(MOCK_DATA[randomIndex].sku, MOCK_DATA[randomIndex], binarySearch, i);
+  randomIndex = Math.floor(Math.random() * (SORTED_MOCK_DATA.length - 1));
+  gotCorrectResult(SORTED_MOCK_DATA[randomIndex].sku, SORTED_MOCK_DATA[randomIndex], binarySearch, i);
 }
 
+// incorrect + not formatted sku
 gotCorrectResult(someTestingStr[0], null, binarySearch, numberOfTests);
 gotCorrectResult(someTestingStr[1], null, binarySearch, numberOfTests + 1);
 gotCorrectResult(someTestingStr[2], null, binarySearch, numberOfTests + 2);
