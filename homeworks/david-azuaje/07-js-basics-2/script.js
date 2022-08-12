@@ -59,8 +59,8 @@ console.log(solve([15, 11, 10, 7, 12]))
 let evenChars = (string) => {
   if (string.length < 2 || string.length > 100) return "invalid string";
   let result = [];
-  let stringToArray = string.split("");
-  let mapArray = stringToArray.map((char, i) => (i + 1) % 2 === 0 && result.push(char));
+  const stringToArray = string.split("");
+  const mapArray = stringToArray.map((char, i) => (i + 1) % 2 === 0 && result.push(char));
   return result;
 };
 console.log(evenChars("a"));
@@ -87,12 +87,17 @@ console.log(binaryEquivalent([0, 1, 0, 0]));
 
 //Task 9) => https://www.codewars.com/kata/585d7d5adb20cf33cb000235
 
-function findUnip(array) {
-  return array.find((item) => {
-    return array.indexOf(item);
-  });
+function findUniq(arr) {
+  let result = 0
+  arr.forEach((element) => {
+    if(arr.indexOf(element) === arr.lastIndexOf(element)){
+      result = element
+    }
+  })
+  return result;
 }
-console.log(findUnip([1, 1, 1, 1, 3, 1, 1, 1]));
+
+findUniq([ 1, 0, 0 ])
 
 
 //Task 10 => https://www.codewars.com/kata/581e014b55f2c52bb00000f8
@@ -102,7 +107,6 @@ console.log(findUnip([1, 1, 1, 1, 3, 1, 1, 1]));
 
 function sort(array) {
   const filteredOdd = array.filter(num => num % 2 !== 0).sort((a, b) => a - b);
-  console.log(filteredOdd);
 
   const mapArray = array.map((num) => {
 
@@ -126,10 +130,10 @@ console.log(sort([5, 3, 2, 8, 1, 4]));
 //Task 2) => https://www.codewars.com/kata/52597aa56021e91c93000cb0
 
 function moveZeros(array) {
-  let result = array.filter(function (num) { return num !== 0; });
-  let zeros = array.filter(function (num) { return num === 0 });
+  const arrWithoutZeros = array.filter(function (num) { return num !== 0; });
+  const zeros = array.filter(function (num) { return num === 0 });
 
-  return result.concat(zeros);
+  return arrWithoutZeros.concat(zeros);
 }
 console.log(moveZeros([false, 1, 0, 1, 2, 0, 1, 3, "a"]));
 
