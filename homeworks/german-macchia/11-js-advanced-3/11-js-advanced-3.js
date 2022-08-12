@@ -2,14 +2,14 @@
 function validateMessage(msg) {
   const MSG_NULL_ERROR = "Message is null!";
   const MSG_TYPE = `Message should be of type string but was of type ${typeof msg}!`;
-  let regEx = new RegExp(/<[^>]*>/g);
+  const REGEX = new RegExp(/<[^>]*>/g);
   let flag = true;
 
   if (msg === null) throw new ReferenceError(MSG_NULL_ERROR);
   if (typeof msg !== "string") throw new TypeError(MSG_TYPE);
   if (msg.length > 255 || msg.length === 0)
     throw new RangeError(`Message contains ${msg.length} characters!`);
-  if (regEx.test(msg)) flag = false;
+  if (REGEX.test(msg)) flag = false;
 
   return flag;
 }
@@ -40,7 +40,7 @@ function displayElapsedTime() {
 }
 
 let display = displayElapsedTime();
-setTimeout(() => clearInterval(display), 6000);
+setTimeout(() => clearInterval(display), 5500);
 
 //4. Event Loop
 
@@ -64,7 +64,7 @@ D.  If the CALL STACK it's empty the EVENT LOOP put the first resolved callback 
 
 //6. Digit or not
 function isFirstCharNum(str){
-	let regex = new RegExp(/^\d/)
-	return regex.test(str)
+	const REGEX = new RegExp(/^\d/)
+	return REGEX.test(str)
 }
 

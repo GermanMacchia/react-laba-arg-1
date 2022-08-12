@@ -1,12 +1,12 @@
-const xhr = new XMLHttpRequest();
+const XHR = new XMLHttpRequest();
 
-xhr.open("get", api);
+XHR.open("get", api);
 
-xhr.addEventListener("load", () => {
-  if (xhr.status == 200) {
-    let { results } = JSON.parse(xhr.response);
+XHR.addEventListener("load", () => {
+  if (XHR.status == 200) {
+    const { results: RESULTS } = JSON.parse(XHR.response);
     const GRID = document.querySelector(".imposter__grid--test");
-    for (let user of results) {
+    for (let user of RESULTS) {
       let imgUrl = user.picture.thumbnail;
       let name = user.name.first + " " + user.name.last;
       let img = document.createElement("img");
@@ -21,12 +21,12 @@ xhr.addEventListener("load", () => {
       console.log(`XHR TESTERS => ${name}`);
     }
   } else {
-    console.error("ERROR XHR cb (status)", xhr.status);
+    console.error("ERROR XHR cb (status)", XHR.status);
   }
 });
 
-xhr.addEventListener("error", (e) => {
+XHR.addEventListener("error", (e) => {
   console.error("ERROR XHR cb (ajax)", e);
 });
 
-xhr.send();
+XHR.send();
