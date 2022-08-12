@@ -35,8 +35,7 @@ function positiveSum(array) {
   
   // Task 4) => https://www.codewars.com/kata/514a6336889283a3d2000001
   
-
-  const getEvenNumbers = (array) => array.filter(word => word % 2 === 0);
+  const getEvenNumbers = array => array.filter(word => word % 2 === 0);
   console.log(getEvenNumbers([2,4,5,6]));
 
   
@@ -59,8 +58,9 @@ function positiveSum(array) {
   
   let evenChars = (string) => {
     if (string.length < 2 || string.length > 100) return "invalid string";
-    const result = [];
-    string.split("").forEach((char, i) => (i + 1) % 2 === 0 && result.push(char));
+    let result = [];
+    let stringToArray = string.split("");
+    let mapArray = stringToArray.map((char, i) => (i + 1) % 2 === 0 && result.push(char));
     return result;
   };
   console.log(evenChars("a"));
