@@ -18,6 +18,19 @@ const uuser = {
 );
 // false
 
+
+//Task 5) => https://www.codewars.com/kata/merged-objects
+
+const a = { 1: "1", 2: "2", 3: "3" };
+const b = { 3: "4", 5: "6", 6: "7", 7: "8" };
+const c = { 5: "9", 8: "9", 6: "12", 23: "35" };
+const o = [a, b, c];
+
+const objConcat = (o) => {
+  const objCombined = Object.assign({}, ...o);
+  return objCombined;
+};
+
 //Optional
 //Task 8) => https://www.codewars.com/kata/54834b3559e638b39d0009a2
 
