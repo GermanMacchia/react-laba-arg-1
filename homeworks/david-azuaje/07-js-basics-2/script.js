@@ -101,14 +101,23 @@ console.log(findUnip([1, 1, 1, 1, 3, 1, 1, 1]));
 //Task 11) => https://www.codewars.com/kata/578aa45ee9fd15ff4600090d
 
 function sort(array) {
-  let mapped = array.map((item) => {
-    let pair = item % 2 === 0 ? item : "";
-    let odd = item % 2 === 1 ? item : "";
-    return pair, odd;
-  });
-  return mapped;
+  const filteredOdd = array.filter(num => num % 2 !== 0).sort((a, b) => a - b);
+  console.log(filteredOdd);
+
+  const mapArray = array.map((num) => {
+
+    if (num % 2 === 1) {
+      return filteredOdd.shift();
+
+    } else {
+      return num
+    }
+
+  })
+  return mapArray
 }
-console.log(sort([5, 7, 6, 3, 4]));
+console.log(sort([5, 3, 2, 8, 1, 4]));
+
 
 
 //Optional Advanced
