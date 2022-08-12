@@ -1,56 +1,47 @@
 class Wakeable {
 
-  wakeFrom(serial) {
-    let objectNameInMap = Serializable.map.get(serial)[0];
-    let objectStringinMap = Serializable.map.get(serial)[1];
-    if (this.constructor.name === objectNameInMap) return this.wakeObject(objectStringinMap);
-    else throw new Error( `The serial No ${serial} does not belong to the instanciated class`);
+  formatForDate(arr) {
+    const VALUE = arr[1].split("T");
+    const DATESTRING = VALUE[0];
+    return new Date(DATESTRING);
+  }
+
+  formatValues(value){
+    switch (value) {
+      case "NaN":
+        return NaN;
+      case "null":
+        return null;
+      case "Infinity":
+        return Infinity;
+      default:
+        return value;
+    }
   }
 
   wakeObject(stringObject) {
+    const ISNUM = (value) => /^-?\d+$/.test(value);
+    const ISDATE = (value) => /(\d{4}-|-\d{4})/.test(value)// 
     stringObject = stringObject.replace(/["{}]/g, "").split(/,/);
     let parameters = {};
 
-    for (let el of stringObject) {
-      let propsArray = el.split(":");
-      let propertyName = propsArray[0];
-      let value = propsArray[1];
-      let isNum = /^-?\d+$/.test(value);
-      if (propertyName === "birth" || propertyName === "date") {
-        value = propsArray[1].split("T");
-        let dateString = value[0];
-        parameters[propertyName] = new Date(dateString);
-      } else if (isNum) {
-        value = parseInt(value);
-        parameters[propertyName] = value;
-      } else {
-        switch (value) {
-          case "NaN":
-            value = NaN;
-            parameters[propertyName] = value;
-            break;
-          case "null":
-            value = null;
-            parameters[propertyName] = value;
-            break;
-          case "Infinity":
-            value = Infinity;
-            parameters[propertyName] = value;
-            break;
-          case "-0":
-            value = 0;
-            parameters[propertyName] = value;
-            break;
-          default:
-            parameters[propertyName] = value;
-        }
-      }
+    for (let prop of stringObject) {
+      let keyAndValueArray = prop.split(":");
+      let key = keyAndValueArray[0];
+      let value = keyAndValueArray[1];
+
+      if (ISDATE(value)) parameters[key] = this.formatForDate(keyAndValueArray);
+      else if (ISNUM(value)) parameters[key] = parseInt(value);
+      else parameters[key] = this.formatValues(value);
     }
+
     return new this.constructor(parameters);
   }
+
 }
 
 class Serializable extends Wakeable {
+
   static serialNumber = 0;
   static map = new Map();
 
@@ -60,28 +51,37 @@ class Serializable extends Wakeable {
       this.constructor.name,
       this.stringFromObject(this),
     ]);
+
     return Serializable.serialNumber;
   }
 
   stringFromObject(obj) {
-    for (let el in obj) {
-      if (Object.is(obj[el], NaN)) obj[el] = "NaN";
-      else if (Object.is(obj[el], Infinity)) obj[el] = "Infinity";
+    for (let prop in obj) {
+      if (Object.is(obj[prop], NaN)) obj[prop] = "NaN";
+      else if (Object.is(obj[prop], Infinity)) obj[prop] = "Infinity";
     }
+
     return JSON.stringify(obj);
+  }
+
+  wakeFrom(serial) {
+    let objectNameInMap = Serializable.map.get(serial)[0];
+    let objectStringinMap = Serializable.map.get(serial)[1];
+
+    if (this.constructor.name === objectNameInMap) return super.wakeObject(objectStringinMap);
+    else throw new Error(`The serial No ${serial} does not belong to the instanciated class`);
   }
 }
 
 class UserDTO extends Serializable {
+
   constructor({ firstName, lastName, phone, birth } = {}) {
     super();
-
     this.firstName = firstName;
     this.lastName = lastName;
     this.phone = phone;
     this.birth = birth;
   }
-
   //modify to return to be printed in line as well (line 69 & 77 in task file)
   printInfo() {
     return `${this.firstName[0]}. ${this.lastName} - ${
@@ -91,9 +91,9 @@ class UserDTO extends Serializable {
 }
 
 class Post extends Serializable {
+
   constructor({ content, date, author } = {}) {
     super();
-
     this.content = content;
     this.date = date;
     this.author = author;
@@ -123,7 +123,6 @@ tolik = null;
 const resurrectedTolik = new UserDTO().wakeFrom(serialized);
 console.log(resurrectedTolik instanceof UserDTO); // true
 console.log(resurrectedTolik.printInfo()); // A. Nashovich - 2020327, 1999-01-02T00:00:00.000Z
-
 
 try {
   console.log(new Post().wakeFrom(serialized));
