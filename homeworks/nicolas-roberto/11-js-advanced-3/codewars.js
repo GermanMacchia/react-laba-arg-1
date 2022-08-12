@@ -17,3 +17,5 @@ const validateMessage = (msg) => {
   // Returns true at the end, if it's a valid string.
   return true;
 };
+
+// Kata 2 - Jokes you've been 'awaiting' for ... promise https://www.codewars.com/kata/5a353a478f27f244a1000076
