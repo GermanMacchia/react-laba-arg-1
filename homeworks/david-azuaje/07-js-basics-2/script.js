@@ -69,8 +69,9 @@ function positiveSum(array) {
   // Task 7) => https://www.codewars.com/kata/545a4c5a61aa4c6916000755
   
   function gimme(array) {
-    let dorted = array.sort((a, b) => a - b);
-    return array.indexOf(dorted[1]);
+    let copyArray = [...array]
+    let sorted = array.sort((a, b) => a-b);
+    return copyArray.indexOf(sorted[1]);
   }
   console.log(gimme([2, 3, 1]));
   
