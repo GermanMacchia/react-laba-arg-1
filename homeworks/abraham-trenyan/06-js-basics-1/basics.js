@@ -98,7 +98,7 @@ function zipWith(fn, a0, a1) {
   return newArray;
 }
 // Katas 12: https://www.codewars.com/kata/filter-the-number                  
-var FilterString = function (value) {
+let filterString = function (value) {
   let numbers = "";
   for (let i = 0; i < value.length; i++) {
     if (isNaN(value[i]) == false) {
