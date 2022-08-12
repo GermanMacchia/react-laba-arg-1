@@ -35,8 +35,10 @@ function positiveSum(array) {
   
   // Task 4) => https://www.codewars.com/kata/514a6336889283a3d2000001
   
-  const getEvenNumbers = (array) => array.filter((word) => (word % 2 === 0) ? word : "");
+
+  const getEvenNumbers = (array) => array.filter(word => word % 2 === 0);
   console.log(getEvenNumbers([2,4,5,6]));
+
   
   
   // Task 5) => https://www.codewars.com/kata/5a090c4e697598d0b9000004
