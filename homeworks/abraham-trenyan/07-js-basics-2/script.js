@@ -37,7 +37,8 @@ function getEvenNumbers(numbersArray){
 // Kata 5: https://www.codewars.com/kata/5a090c4e697598d0b9000004                                       
 function solve(arr){
     let newArray = [];
-    for(i=0; i<=arr.length; i++){
+    let l = arr.length
+    for(i=0; i<=l; i++){
         let maximum = Math.max(...arr);
         let minimum = Math.min(...arr);
         newArray.push(maximum, minimum);
