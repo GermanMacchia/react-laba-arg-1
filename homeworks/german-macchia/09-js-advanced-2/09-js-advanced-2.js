@@ -20,8 +20,8 @@ class Wakeable {
   }
 
   wakeObject(stringObject) {
-    const ISNUM = (value) => /^-?\d+$/.test(value);
-    const ISDATE = (value) => /(\d{4}-|-\d{4})/.test(value)// 
+    const IS_NUM = (value) => /^-?\d+$/.test(value);
+    const IS_DATE = (value) => /(\d{4}-|-\d{4})/.test(value)// 
     stringObject = stringObject.replace(/["{}]/g, "").split(/,/);
     let parameters = {};
 
@@ -30,8 +30,8 @@ class Wakeable {
       let key = keyAndValueArray[0];
       let value = keyAndValueArray[1];
 
-      if (ISDATE(value)) parameters[key] = this.formatForDate(keyAndValueArray);
-      else if (ISNUM(value)) parameters[key] = parseInt(value);
+      if (IS_DATE(value)) parameters[key] = this.formatForDate(keyAndValueArray);
+      else if (IS_NUM(value)) parameters[key] = parseInt(value);
       else parameters[key] = this.formatValues(value);
     }
 
