@@ -21,7 +21,7 @@
   justify-content: center;
   width: 60%;
 
-  .card__image {
+  &__image {
     background: #ffffff;
     border: 4px solid #f7d039;
     border-radius: 50%;
@@ -46,7 +46,7 @@
   list-style: none;
   width: 634px;
 
-  .list__item--mobile {
+  &__item--mobile {
     display: none;
   }
 }
@@ -70,7 +70,7 @@
       background: #fbd144;
     }
 
-    .button__image {
+    &__image {
       vertical-align: bottom;
       height: 25%;
       margin: 2% 0 1.2% 5%;
@@ -83,33 +83,33 @@
   position: relative;
   display: none;
 
-  .container__text {
+  &__text {
     z-index: 1;
     position: absolute;
     color: variables.$h1-color;
     text-align: center;
+
+    &--big {
+      margin: 38px 0px 3px 70px;
+      width: 197px;
+      height: 33px;
+    }
+
+    &--small {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 21px;
+      margin: 0px 0px 0 20px;
+      width: 287px;
+      height: 42px;
+    }
   }
 
-  .container__text--big {
-    margin: 38px 0px 3px 70px;
-    width: 197px;
-    height: 33px;
-  }
-
-  .container__text--small {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 21px;
-    margin: 0px 0px 0 20px;
-    width: 287px;
-    height: 42px;
-  }
-
-  .container__image {
+  &__image {
     z-index: 0;
   }
 
-  .container__icon {
+  &__icon {
     z-index: 1;
     position: absolute;
     margin: 155px 20px;
@@ -119,10 +119,10 @@
       background: #ffffff;
       border-radius: 50%;
       margin: 0px 0px 0px 140px;
-    }
 
-    .link-icon:hover {
-      cursor: pointer;
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     .arrow-icon {

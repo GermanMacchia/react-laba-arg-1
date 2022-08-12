@@ -44,14 +44,14 @@
   .card {
     @include variables.flexDisplay($flexDir: column);
 
-    .card__title {
+    &__title {
       display: flex;
       flex-direction: column;
       align-items: center;
       margin-top: 2rem;
     }
 
-    .card__image {
+    &__image {
       margin: 0;
       background: variables.$btn-bg-color;
       padding: 5px;
@@ -59,7 +59,7 @@
       height: 154px;
     }
 
-    .card__actions {
+    &__actions {
       justify-content: space-evenly;
       width: 100%;
       margin: 20px 0 0;
@@ -71,11 +71,11 @@
     font-size: 14px;
     line-height: 21px;
 
-    .list__item--mobile {
+    &__item--mobile {
       display: block;
     }
 
-    .list__item--desktop {
+    &__item--desktop {
       display: none;
     }
   }
