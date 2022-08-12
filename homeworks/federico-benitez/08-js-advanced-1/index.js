@@ -47,3 +47,25 @@ function solution1() {
   console.log(pluck(randomValue, 'unknown.key')); // null
   console.log(pluck(nullValue, 'unknown.key')); // null
 }
+
+//Deep clone
+function solution2() {
+  const user = {
+    username: 'testuser1',
+    preferences: {
+      sound: {
+        maxValue: 50,
+        value: 30,
+      },
+    },
+  };
+  const clonedUser = clone(user);
+
+  function clone(obj) {
+    return JSON.parse(JSON.stringify(obj));
+  }
+
+  clonedUser.preferences.sound.maxValue = 70;
+
+  console.log(user.preferences.sound.maxValue === clonedUser.preferences.sound.maxValue); // false
+}
