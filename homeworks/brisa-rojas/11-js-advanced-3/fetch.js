@@ -25,7 +25,6 @@ fetch(url, options)
   .then((data) => data.json())
   .then((data) => {
     users = data.results;
-    console.log('DATA COLLECTED');
 
     for (let i = 0; i < USERS_NUMBER; i++) {
       userInfo = getUserInfo(users[i]);
