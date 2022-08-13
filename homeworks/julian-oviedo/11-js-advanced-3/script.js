@@ -17,3 +17,24 @@ function validateMessage(msg) {
   }
   return true;
 }
+
+//TASK 2. https://www.codewars.com/kata/5a353a478f27f244a1000076
+
+async function sayJoke(apiUrl, jokeId) {
+  const response = await fetch(apiUrl);
+  const jsonResponse = await response.json();
+
+  if (!jsonResponse.jokes) throw new Error(`No jokes at url: ${apiUrl}`);
+
+  const result = jsonResponse.jokes.find((joke) => joke.id === jokeId);
+  if (!result) throw new Error(`No jokes found id: ${jokeId}`);
+
+  return {
+    saySetup: function () {
+      return result.setup;
+    },
+    sayPunchLine: function () {
+      return result.punchLine;
+    },
+  };
+}
