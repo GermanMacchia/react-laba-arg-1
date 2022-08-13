@@ -32,7 +32,7 @@ async function sayJoke(apiUrl, jokeId) {
     .then(response.json())
     .then(({ jokeList }) =>
       jokeList ? jokeList.find((joke) => joke.id === jokeId) : Promise.reject(new Error(`No jokes at url: ${apiUrl}`)),
-    ) 
+    )
     .then((joke) =>
       joke
         ? { saySetup: () => joke.setup, sayPunchLine: () => joke.punchLine }
@@ -47,7 +47,9 @@ const MAX_TIME = 6;
 
 function showElapsedTime() {
   console.log(`Elapsed Time: ${counter++} secs.`);
-  if (counter > MAX_TIME) { clearInterval(interval); }
+  if (counter > MAX_TIME) {
+    clearInterval(interval);
+  }
 }
 
 // 6 - Digit or not
@@ -76,5 +78,3 @@ console.log(isPhoneNumber('54 9876543210'));
 console.log(isPhoneNumber('+54 987-------6543     210'));
 console.log(isPhoneNumber('++++++54 987- - - -6543 - - - 210'));
 console.log(isPhoneNumber('+54 987-6543210'));
-
-

@@ -28,7 +28,7 @@ xhr.send();
 xhr.responseType = 'json';
 xhr.onload = function () {
   users = xhr.response.results;
-  
+
   for (let i = 0; i < USERS_NUMBER; i++) {
     userInfo = getUserInfo(users[i]);
 
