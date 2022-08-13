@@ -31,6 +31,29 @@ const objConcat = (o) => {
   return objCombined;
 };
 
+//Task 6) => https://www.codewars.com/kata/547f1a8d4a437abdf800055c
+
+class NamedOne {
+    constructor(first, last) {
+      this.firstName = first;
+      this.lastName = last;
+    }
+  
+    get fullName() {
+      return `${this.firstName} ${this.lastName}`;
+    }
+  
+    set fullName(fullName) {
+        let splitFullName = fullName.split(' ');
+        if(splitFullName.length == 2){
+            this.firstName = splitFullName[0];
+            this.lastName = splitFullName[1]
+        }
+    }
+  }
+  let person = new NamedOne('david', 'azuaje');
+  person.fullName = 'Maria Azuaje';
+  
 //Optional
 //Task 8) => https://www.codewars.com/kata/54834b3559e638b39d0009a2
 
