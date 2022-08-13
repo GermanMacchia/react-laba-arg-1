@@ -11,7 +11,7 @@ for (let i = 1; i <= 600; i++) {
 }
 
 // mark when shift key is pressed or not
-shiftKeyStatus = 'up';
+let shiftKeyStatus = 'up';
 const keydownHandler = (e) => {
   if (e.key === 'Shift') shiftKeyStatus = 'down';
 };
