@@ -38,3 +38,17 @@ async function sayJoke(apiUrl, jokeId) {
     },
   };
 }
+
+// TASK 3. ## 3. setTimeout/setInterval
+
+const display = function display() {
+  let secs = 1;
+  return setInterval(() => {
+    console.log(`Elapsed time: ${secs} seconds`);
+    secs++;
+  }, 1000);
+};
+
+setTimeout(() => {
+  clearInterval(display);
+}, 5000);
