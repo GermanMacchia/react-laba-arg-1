@@ -12,7 +12,7 @@ requirejs(['./MOCK_DATA'], function (importedData) {
         linearResult = orderedData[i];
       }
     }
-    if (linearResult === '') return;
+    if (!linearResult) return;
     output.innerText = `Name: ${linearResult.name} \n
     Pack: ${linearResult.pack} \n
     Price: ${linearResult.price} \n
@@ -46,7 +46,7 @@ requirejs(['./MOCK_DATA'], function (importedData) {
     } else if (input === middlePoint.sku) {
       binaryResult = middlePoint;
     }
-    if (binaryResult === '') return;
+    if (!binaryResult) return;
     output.innerText = `Name: ${binaryResult.name} \n
     Pack: ${binaryResult.pack} \n
     Price: ${binaryResult.price} \n
