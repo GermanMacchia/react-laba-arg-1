@@ -3,6 +3,7 @@ requirejs(['./MOCK_DATA'], function (importedData) {
   const output = document.getElementById('output');
 
   const straightClickHandler = () => {
+    let startTime = performance.now();
     let input = document.getElementById('searchbox').value.toLowerCase();
     if (!input) return;
     let linearResult = '';
@@ -11,13 +12,21 @@ requirejs(['./MOCK_DATA'], function (importedData) {
         linearResult = orderedData[i];
       }
     }
+    if (linearResult === '') return;
     output.innerText = `Name: ${linearResult.name} \n
     Pack: ${linearResult.pack} \n
     Price: ${linearResult.price} \n
     Sku: ${linearResult.sku}`;
+    let endTime = performance.now();
+    console.log(
+      `Straight search for item with index ${orderedData.findIndex((x) => x.sku === input)} took ${
+        endTime - startTime
+      } milliseconds.`,
+    );
   };
 
   const binaryClickHandler = () => {
+    let startTime = performance.now();
     let input = document.getElementById('searchbox').value.toLowerCase();
     if (!input) return;
     let middlePoint = orderedData[Math.floor(orderedData.length / 2)];
@@ -37,10 +46,17 @@ requirejs(['./MOCK_DATA'], function (importedData) {
     } else if (input === middlePoint.sku) {
       binaryResult = middlePoint;
     }
+    if (binaryResult === '') return;
     output.innerText = `Name: ${binaryResult.name} \n
     Pack: ${binaryResult.pack} \n
     Price: ${binaryResult.price} \n
     Sku: ${binaryResult.sku}`;
+    let endTime = performance.now();
+    console.log(
+      `Binary search for item with index ${orderedData.findIndex((x) => x.sku === input)} took ${
+        endTime - startTime
+      } milliseconds.`,
+    );
   };
 
   document.getElementById('straight-search-btn').addEventListener('click', straightClickHandler);
