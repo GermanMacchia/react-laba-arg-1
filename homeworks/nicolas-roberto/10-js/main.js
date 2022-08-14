@@ -58,6 +58,30 @@ document.addEventListener('click', function (e) {
   clicked.innerHTML = `X:${selectedCol}\nY:${selectedRow}`;
   //And adds classes to future actions
   clicked.classList.add('painted', 'visitedCell');
+
+  //Now we make two functions out of the variables with the same
+  // column and row value as the selected/clicked Cell.
+  axisY.forEach(function (cellInRow) {
+    //If the axis Y wasn't clicked before:
+    if (!cellInRow.classList.contains('visitedCell')) {
+      //all the axis Y background will change to lightblue
+      cellInRow.style.backgroundColor = '#03A9F4';
+      //and add a class "painted" that works in the first click,
+      //To repaint it to white
+      cellInRow.classList.add('painted');
+    }
+  });
+  // This is the column function
+  axisX.forEach(function (cellInColumn) {
+    //If the axis X wasn't clicked before:
+    //Applies the same logic as the row
+    if (!cellInColumn.classList.contains('visitedCell')) {
+      cellInColumn.style.backgroundColor = '#03A9F4';
+      cellInColumn.classList.add('painted');
+    }
+  });
 });
 
 addTable();
+
+//Thanks to my classmates that guided me to solve this task
