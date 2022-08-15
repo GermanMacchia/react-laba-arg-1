@@ -124,7 +124,7 @@ console.log(getMiddle("test"));
 function countWords(string) {
   let str = string.trim();
   if (str === "") return 0;
-  let myString = str.split(/\s+/)
+  const myString = str.split(/\s+/)
   return myString.length
 }
 console.log(countWords("david azuaje"));
@@ -203,7 +203,7 @@ console.log(duplicateEncode("Success"));
 
 function wave(str) {
   let result = [];
-  let lengthString = str.length;
+  const lengthString = str.length;
 
   for (let i = 0; i < lengthString; i++) {
     if (str[i].match(/[a-z]/i)) {
@@ -219,7 +219,7 @@ console.log(wave('Hello'));
 //Task 19) => https://www.codewars.com/kata/59d398bb86a6fdf100000031
 
 function stringBreakers(n, string) {
-  let str = ''
+  const str = ''
   let splitteded = string.split(" ").join('').split('');
   for (const x of string) {
     str += splitteded.splice(0, n).join('') + '\n'
