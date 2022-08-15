@@ -42,3 +42,47 @@ function getEvenNumbers(numbersArray) {
   // filter out the odd numbers
   return numbersArray.filter((num) => num % 2 === 0);
 }
+
+/**
+ * Exercise 5
+ * https://www.codewars.com/kata/5a090c4e697598d0b9000004
+ */
+function solve(arr) {
+  arr.sort((n1, n2) => n1 - n2);
+  return [...Array(arr.length)].map((_, index) => {
+    if (index % 2) {
+      return arr.shift();
+    } else {
+      return arr.pop();
+    }
+  });
+}
+/**
+ * Exercise 6
+ * https://www.codewars.com/kata/566044325f8fddc1c000002c
+ */
+
+/**
+ * Exercise 7
+ * https://www.codewars.com/kata/545a4c5a61aa4c6916000755
+ */
+
+/**
+ * Exercise 8
+ * https://www.codewars.com/kata/578553c3a1b8d5c40300037c
+ */
+
+/**
+ * Exercise 9
+ * https://www.codewars.com/kata/585d7d5adb20cf33cb000235
+ */
+
+/**
+ * Exercise 10
+ * https://www.codewars.com/kata/581e014b55f2c52bb00000f8
+ */
+
+/**
+ * Exercise 11
+ * https://www.codewars.com/kata/578aa45ee9fd15ff4600090d
+ */
