@@ -105,22 +105,22 @@ findUniq([ 1, 0, 0 ])
 
 //Task 11) => https://www.codewars.com/kata/578aa45ee9fd15ff4600090d
 
-function sort(array) {
+function sortArray(array) {
   const filteredOdd = array.filter(num => num % 2 !== 0).sort((a, b) => a - b);
 
   const mapArray = array.map((num) => {
 
-    if (num % 2 === 1) {
-      return filteredOdd.shift();
-
-    } else {
+    if (num % 2 === 0) {
       return num
+      
+    } else {
+      return filteredOdd.shift();
     }
 
   })
   return mapArray
 }
-console.log(sort([5, 3, 2, 8, 1, 4]));
+console.log(sortArray([5, 3, 2, 8, 1, 4]));
 
 
 
