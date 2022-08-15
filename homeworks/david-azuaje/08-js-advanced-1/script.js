@@ -18,6 +18,15 @@ const uuser = {
 );
 // false
 
+//Task 4) => Random dates
+function getRandomDate(startDate, endDate) {
+  const minDate = startDate.getTime();
+  const maxDate = endDate.getTime();
+  return new Date(Math.floor(Math.random() * (minDate - maxDate) + minDate));
+}
+console.log(getRandomDate(new Date(2021, 1, 23), new Date(2021,2,23))); 
+ 
+
 
 //Task 5) => https://www.codewars.com/kata/merged-objects
 
