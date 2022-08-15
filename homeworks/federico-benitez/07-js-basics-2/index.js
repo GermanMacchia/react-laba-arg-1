@@ -73,6 +73,11 @@ function evenChars(string) {
  * https://www.codewars.com/kata/545a4c5a61aa4c6916000755
  */
 
+function gimme(triplet) {
+  const middle = [...triplet].sort((n1, n2) => n1 - n2)[1];
+  return triplet.findIndex((n) => n === middle);
+}
+
 /**
  * Exercise 8
  * https://www.codewars.com/kata/578553c3a1b8d5c40300037c
