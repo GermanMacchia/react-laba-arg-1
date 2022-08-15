@@ -103,6 +103,29 @@ findUniq([ 1, 0, 0 ])
 //Task 10 => https://www.codewars.com/kata/581e014b55f2c52bb00000f8
 
 
+function decipherThis(str) {
+  return str.split(' ').map(
+    function (word) {
+      let charCode = word.match(/\d+/)[0];
+      let firstLetter = String.fromCharCode(charCode);
+      word = word.replace(charCode, firstLetter);
+      let restOfWord = word.slice(1);
+
+      if (word.length < 3) {
+        return firstLetter + restOfWord;
+      } else {
+        let secondLetter = word[word.length - 1];
+        let lastLetter = word[1];
+        
+        let middle = word.slice(2, -1);
+        
+        return firstLetter + secondLetter + middle + lastLetter;
+      }
+    }
+  ).join(' ');
+}
+console.log(decipherThis('72eva 97 103o 97t 116sih 97dn 115ee 104wo 121uo 100o'));
+
 //Task 11) => https://www.codewars.com/kata/578aa45ee9fd15ff4600090d
 
 function sortArray(array) {
