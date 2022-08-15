@@ -1,3 +1,36 @@
+// task 1) => Pluck function
+function pluck (object, keyInput) {
+  try {
+    let path = keyInput.split('.');
+    
+    let current = object;
+    while (path.length) {
+      if (typeof current !== 'object') return null;
+      current = current[path.shift()];
+    }
+    return current;
+  } catch {
+    return null;
+  }
+};
+
+const user = {
+  username: 'testuser1',
+  preferences: {
+    sound: {
+      maxValue: 50,
+      value: 30,
+    },
+  },
+};
+const randomValue = Math.random();
+const nullValue = null;
+
+console.log(pluck(user, 'preferences.sound.value')); // 30
+console.log(pluck(user, 'unknown.key')); // null
+console.log(pluck(randomValue, 'unknown.key')); // null
+console.log(pluck(nullValue, 'unknown.key')); // null
+
 //Task 2) Deep clone
 const uuser = {
     username: "testuser1",
