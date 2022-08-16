@@ -109,3 +109,39 @@ function moment(date, format) {
 console.log(offset(moment('16/08/2021 06:35:30', 'DD/MM/YYYY hh:mm:ss')));
 
 //4.Random dates
+function randomDate(start, end) {
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+
+  const startDate = new Date(start.getTime());
+  const dates = [];
+
+  while (startDate < end) {
+    startDate.setDate(startDate.getDate() + 1);
+    dates.push(new Date(startDate));
+  }
+
+  class randomDate {
+    constructor(date) {
+      this.date = date;
+    }
+
+    get() {
+      return this.date();
+    }
+
+    format() {
+      return `${this.date.getDate()}/${this.date.getUTCMonth()}/${this.date.getUTCFullYear()}`;
+    }
+  }
+
+  return new randomDate(dates[getRandomInt(0, dates.length - 1)]);
+}
+
+const date1 = moment('23/01/2021', 'DD/MM/YYYY');
+const date2 = moment('23/03/2021', 'DD/MM/YYYY');
+
+console.log(randomDate(date1, date2).format('DD/MM/YY'));
