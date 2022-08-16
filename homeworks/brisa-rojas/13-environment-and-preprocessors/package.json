@@ -4,7 +4,9 @@
   "description": "13th task for solvd react laba arg1 - environment and preprocessors ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass:build": "sass styles.scss:styles.css",
+    "sass:watch": "sass styles.scss:styles.css --watch"
   },
   "repository": {
     "type": "git",
