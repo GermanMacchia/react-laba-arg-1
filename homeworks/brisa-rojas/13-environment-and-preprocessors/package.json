@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/qaprosoft/react-laba-arg-1/issues"
   },
-  "homepage": "https://github.com/qaprosoft/react-laba-arg-1#readme"
+  "homepage": "https://github.com/qaprosoft/react-laba-arg-1#readme",
+  "dependencies": {
+    "sass": "^1.54.4"
+  }
 }
