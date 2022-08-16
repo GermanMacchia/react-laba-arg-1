@@ -27,18 +27,29 @@ console.log(validateMessage('<b>Hello World!</b>'));
 // 2 - KATA Jokes you've been 'awaiting' for ... promise
 // https://www.codewars.com/kata/5a353a478f27f244a1000076/solutions/javascript?filter=me&sort=best_practice
 
-async function sayJoke(apiUrl, jokeId) {
-  return await fetch(apiUrl)
-    .then(response.json())
-    .then(({ jokeList }) =>
-      jokeList ? jokeList.find((joke) => joke.id === jokeId) : Promise.reject(new Error(`No jokes at url: ${apiUrl}`)),
-    )
-    .then((joke) =>
-      joke
-        ? { saySetup: () => joke.setup, sayPunchLine: () => joke.punchLine }
-        : Promise.reject(new Error(`No jokes found id: ${jokeId}`)),
-    );
+async function sayJoke(apiUrl, jokeId) {    
+  const response = await fetch(apiUrl);
+  const JSONResponse = await response.json();
+  const jokes = JSONResponse.jokes;
+  
+  if (!jokes) {
+    throw new Error(`No jokes at url: ${apiUrl}`)
+  }
+  
+  let joke = jokes.find(function(joke) {
+    return joke.id === jokeId
+  })
+  
+  if (!joke) {
+    throw new Error(`No jokes found id: ${jokeId}`)
+  }
+  
+  return {
+    saySetup: () => joke.setup,
+    sayPunchLine: () => joke.punchLine,
+  }
 }
+
 
 // 3 - setTimeout/setInterval
 const interval = setInterval(showElapsedTime, 1000);
