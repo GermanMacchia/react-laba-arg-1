@@ -1,5 +1,9 @@
-$dark-blue: #0C151D;
-$white-like: #F1F2F4;
-$light-gray: #A3ABB2;
-$dark-gray: #171F26;
-$yellow: #FFD166;
+$light-gray: #a3abb2;
+$text-size: 22px;
+
+.footer {
+  text-align: center;
+  color: $light-gray;
+  font-size: $text-size;
+  margin: 75px auto;
+}
