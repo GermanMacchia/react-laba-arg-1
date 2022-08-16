@@ -1,0 +1,20 @@
+$dark-blue: #0C151D;
+$white-like: #F1F2F4;
+$light-gray: #A3ABB2;
+$dark-gray: #171F26;
+$yellow: #FFD166;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    background-color: $dark-blue;
+}
