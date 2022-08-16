@@ -145,3 +145,8 @@ const date1 = moment('23/01/2021', 'DD/MM/YYYY');
 const date2 = moment('23/03/2021', 'DD/MM/YYYY');
 
 console.log(randomDate(date1, date2).format('DD/MM/YY'));
+
+//5 https://www.codewars.com/kata/merged-objects
+function objConcat(obj) {
+  return Object.assign({}, ...obj);
+}
