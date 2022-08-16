@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "sass ./Styles/scss/styles.scss:./Styles/css/styles.css",
+    "build": "sass ./Styles/scss/styles.scss:./Styles/css/styles.css && css-minify -f styles.css",
     "start": "sass ./Styles/scss/styles.scss:./Styles/css/styles.css --watch"
   },
   "repository": {
@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/qaprosoft/react-laba-arg-1#readme",
   "dependencies": {
+    "css-minify": "^2.0.0",
     "sass": "^1.54.4"
   }
 }
