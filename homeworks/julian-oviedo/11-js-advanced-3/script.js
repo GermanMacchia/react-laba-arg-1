@@ -49,3 +49,29 @@ const secsDisplay = setInterval(() => {
 setTimeout(() => {
   clearInterval(secsDisplay);
 }, 5000);
+
+// TASK 4. - Event Loop VIDEO AND DEMO
+
+// TASK 5.  IN FOLDER "TASK 5"
+
+// TASK 6. Digit or not
+
+function firstDiggit(str) {
+  if (/^G/i.test(str)) {
+    return `WOHO ! The strings stats with letter g`;
+  } else {
+    return 'UPS... The string doesnt start with letter g';
+  }
+}
+
+// TASK 7. Optional (advanced)
+
+const regexPhone = /^[+]*54[\s-]*(\d{3}[\s-]*\d{4}[\s-]*\d{3})$/;
+
+function argPhone(phoneNumber) {
+  if (regexPhone.test(phoneNumber)) {
+    return phoneNumber;
+  } else {
+    return 'invalid Argentinian phone number';
+  }
+}
