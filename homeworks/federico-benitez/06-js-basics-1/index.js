@@ -362,6 +362,15 @@ function setCharAt(str, index, char) {
  * Exercise 19 - String Breakers
  * https://www.codewars.com/kata/59d398bb86a6fdf100000031
  */
+function stringBreakers(n, string) {
+  let result = [];
+  let stringWithoutSpaces = string.replace(/\s/g, '');
+
+  for (let i = 0; i < stringWithoutSpaces.length; i += n) {
+    result.push(stringWithoutSpaces.substr(i, n));
+  }
+  return result.join('\n');
+}
 
 /**
  * Exercise 20 - Extract the domain name from a URL
