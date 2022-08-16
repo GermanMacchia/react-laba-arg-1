@@ -5,12 +5,12 @@ let lastName = [];
 let picture = [];
 
 let container = document.querySelector('.container');
-
+// Create a new request object
 let requestObj = new XMLHttpRequest();
-
+// Configuration of the object to GET the API request
 requestObj.open('GET', 'https://randomuser.me/api/?gender=female&results=10');
 
-requestObj.send();
+//requestObj.send();
 
 requestObj.onload = function () {
   if (this.status != 200) {
