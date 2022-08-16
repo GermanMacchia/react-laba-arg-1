@@ -2,30 +2,22 @@
   "name": "environments-and-preprocessors",
   "version": "1.0.0",
   "description": "homework #13 about environments and preprocessors.",
-  "main": "index.js",
+  "main": "darkmode.js",
   "scripts": {
-    "format": "prettier --write . --config ./.prettierrc"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/qaprosoft/react-laba-arg-1.git"
-  },
-  "author": "Edelmiro Anton",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/qaprosoft/react-laba-arg-1/issues"
-  },
-  "homepage": "https://github.com/qaprosoft/react-laba-arg-1#readme",
-  "devDependencies": {
-    "prettier": "2.7.1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "sass ./scss/main.scss ./css/styles.css",
+    "start": "sass ./scss/main.scss ./css/styles.css --watch"
   },
   "keywords": [
     "npm",
-    "environments",
+    "environments", 
     "preprocessors",
     "sass",
+    "scss",
     "css"
   ],
+  "author": "Edelmiro Anton",
+  "license": "ISC",
   "dependencies": {
     "sass": "^1.54.4"
   }
