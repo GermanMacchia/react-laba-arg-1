@@ -104,7 +104,33 @@ function findUniq(arr) {
  * Exercise 10
  * https://www.codewars.com/kata/581e014b55f2c52bb00000f8
  */
+function decipherThis(str) {
+  const words = str.split(' ');
 
+  return words
+    .map((word) => {
+      const firstChar = String.fromCharCode(
+        word
+          .split('')
+          .filter((char) => !isNaN(char))
+          .join(''),
+      );
+      const chars = word
+        .split('')
+        .filter((char) => isNaN(char))
+        .join('');
+
+      if (!chars) {
+        return firstChar;
+      }
+
+      if (chars.length === 1) return `${firstChar}${chars}`;
+
+      const newChars = `${chars[chars.length - 1]}${chars.slice(1, chars.length - 1)}${chars[0]}`;
+      return `${firstChar}${newChars}`;
+    })
+    .join(' ');
+}
 /**
  * Exercise 11
  * https://www.codewars.com/kata/578aa45ee9fd15ff4600090d
