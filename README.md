@@ -46,4 +46,4 @@ Once PR is created you have to do the following things:
 | August 9th   | Environment |
 | August 12th  | Principles |
 | August 16th  | Patterns |
-| August 17th-22th | Second block exam |
+| August 22th-26th | Second block exam |
