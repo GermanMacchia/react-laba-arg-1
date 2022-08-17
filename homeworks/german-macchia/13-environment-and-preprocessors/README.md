@@ -26,5 +26,13 @@ ABOUT SCRIPTS
 "build:dev": "webpack --watch", => 'npm run build:dev' bundle the proyect into the [OUTPUT] file and keep watching for any changes 
 "build": "webpack"		=> 'npm run build' bundle the proyect into the [OUTPUT] file 
 
+INSTRUCTIONS
+
+1. To run aplication first install node modules with 'npm install' or npm i
+2. when all modules are ready you can start developing by using one of the [SCRIPTS]
+3. The public folder is the template to work with HTML and SRC folder contains the necessary files for the proyect
+4. With Webpack server we can make changes in the files and will refresh it by itself
+5. With the --watch option we must reload ourselves to see the changes
+6. Building a bundle will generate a 'dist' folder with the bundled files
 
 
