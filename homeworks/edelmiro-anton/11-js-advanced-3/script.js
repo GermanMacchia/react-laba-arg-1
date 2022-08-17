@@ -57,7 +57,6 @@ fetch(url)
   .then((resp) => resp.json())
   .then((data) => {
     const info = data.results;
-    console.log(info);
 
     for (let i = 0; i < info.length; i++) {
       let container = document.querySelector('#container');
