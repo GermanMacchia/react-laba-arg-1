@@ -27,29 +27,28 @@ console.log(validateMessage('<b>Hello World!</b>'));
 // 2 - KATA Jokes you've been 'awaiting' for ... promise
 // https://www.codewars.com/kata/5a353a478f27f244a1000076/solutions/javascript?filter=me&sort=best_practice
 
-async function sayJoke(apiUrl, jokeId) {    
+async function sayJoke(apiUrl, jokeId) {
   const response = await fetch(apiUrl);
   const JSONResponse = await response.json();
   const jokes = JSONResponse.jokes;
-  
+
   if (!jokes) {
-    throw new Error(`No jokes at url: ${apiUrl}`)
+    throw new Error(`No jokes at url: ${apiUrl}`);
   }
-  
-  let joke = jokes.find(function(joke) {
-    return joke.id === jokeId
-  })
-  
+
+  let joke = jokes.find(function (joke) {
+    return joke.id === jokeId;
+  });
+
   if (!joke) {
-    throw new Error(`No jokes found id: ${jokeId}`)
+    throw new Error(`No jokes found id: ${jokeId}`);
   }
-  
+
   return {
     saySetup: () => joke.setup,
     sayPunchLine: () => joke.punchLine,
-  }
+  };
 }
-
 
 // 3 - setTimeout/setInterval
 const interval = setInterval(showElapsedTime, 1000);
@@ -57,10 +56,9 @@ let counter = 0;
 const MAX_TIME = 5;
 
 function showElapsedTime() {
-  if( counter > MAX_TIME ) {
+  if (counter > MAX_TIME) {
     clearInterval(interval);
-  }
-  else {
+  } else {
     console.log(`Elapsed Time: ${counter++} secs.`);
   }
 }
