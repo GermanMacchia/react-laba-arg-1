@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "sass ./Styles/scss/styles.scss:./Styles/css/styles.css && css-minify -f styles.css",
+    "build": "sass ./Styles/scss/styles.scss:./Styles/css/styles.css && css-minify -f ./Styles/css/styles.css",
     "start": "sass ./Styles/scss/styles.scss:./Styles/css/styles.css --watch"
   },
   "repository": {
