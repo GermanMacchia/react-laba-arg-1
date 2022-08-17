@@ -6,9 +6,9 @@ xhr.addEventListener('load', () => {
   if (xhr.status === 200) {
     respJson = JSON.parse(xhr.responseText);
     const info = respJson.results;
-    console.log(info);
+    const container = document.querySelector('#container');
+
     for (let i = 0; i < info.length; i++) {
-      let container = document.querySelector('#container');
       let userDiv = document.createElement('div');
       let userImg = document.createElement('img');
       let userName = document.createElement('p');

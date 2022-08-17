@@ -38,8 +38,6 @@ let finalRegex = new RegExp(firstCharIsNumber.source + '|' + firstCharWithSpace.
 
 function digitOrNot(str) {
   if (typeof str === 'string') {
-    console.log('I am a String');
-
     if (str.match(finalRegex)) {
       return `The string "${str}" starts with a NUMBER`;
     }
@@ -57,9 +55,9 @@ fetch(url)
   .then((resp) => resp.json())
   .then((data) => {
     const info = data.results;
+    const container = document.querySelector('#container');
 
     for (let i = 0; i < info.length; i++) {
-      let container = document.querySelector('#container');
       let userDiv = document.createElement('div');
       let userImg = document.createElement('img');
       let userName = document.createElement('p');
@@ -74,5 +72,3 @@ fetch(url)
     }
   })
   .catch((err) => console.log(err));
-
-
