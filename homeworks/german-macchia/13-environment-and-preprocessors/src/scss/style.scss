@@ -1,111 +1,101 @@
 @use 'variables';
 
+/* CSS RESET */
 * {
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/*------------------*
+*       BASIC       *
+* ------------------*/
+
 body {
-  background: variables.$main-bg-color;
+  background: var(--main-bg-color);
   font-family: "Poppins", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 22px;
-  line-height: 33px;
+  font-size: 130%;
+  line-height: 130%;
 }
 
 header {
-  @include variables.flexDisplay($flexDir: column);
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
-div {
-  margin: 1rem;
-}
-
-button {
-  border-radius: 10px;
-  font-size: 22px;
-  width: 290px;
-  height: 80px;
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-a {
-  text-decoration: none;
-  margin: 0;
-}
-
-h1 {
-  color: variables.$h1-color;
-  margin: 0;
-  font-size: 46px;
-  line-height: 69px;
-  text-align: center;
-}
-
-h2 {
-  color: variables.$sub-txt-color;
-  margin: 0;
-  font-size: 22px;
-  line-height: 33px;
-  filter: brightness(variables.$brightness);
-}
-
-strong {
-  font-size: 24px;
-  line-height: 36px;
-}
-
 nav {
-  background: variables.$btn-bg-color;
-  border-radius: 20px;
-  margin: 5rem;
+  background: var(--btn-bg-color);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-radius: 10px;
+  margin: 5%;
+  height: 10vh;
+  width: 50%;
+  display: flex;
 
   button {
     border-radius: 10px;
-    margin: 15px 23.75px;
-    background: variables.$btn-bg-color;
+    min-width: 150px;
+    background: var(--btn-bg-color);
     border: none;
-    color: variables.$nav-txt-color;
-    height: 80px;
-    width: 351.45px;
+    color: var(--nav-txt-color);
+    margin: 1%;
+    width: 50%;
 
     &:hover {
-      background: variables.$main-bg-color;
-    }
-  }
-}
-
-main {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 35px;
-  margin: 0 auto;
-  grid-template-areas:
-    "content content"
-    "content content"
-    "content content";
-  width: 757px;
-  height: 826px;
-
-  img {
-    margin: 0;
-    width: 362px;
-    height: 226px;
-
-    &:hover {
-      cursor: pointer;
+      background: var(--main-bg-color);
+      border: solid 2px var(--btn-bg-color);
     }
   }
 }
 
 footer {
   text-align: center;
-  color: variables.$sub-txt-color;
-  filter: brightness(variables.$brightness);
+  color: var(--sub-txt-color);
+  filter: brightness(var(--brightness));
+  margin: 2% 0 1%;
+}
+
+button {
+  border-radius: 10px;
+  font-size: 1em;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+h1 {
+  color: var(--h1-color);
+  margin: 0;
+  font-size: 2.5em;
+  line-height: 169%;
+  letter-spacing: 0.03em;
+}
+
+h2 {
+  color: var(--sub-txt-color);
+  margin: 0;
+  font-size: 1.3em;
+  line-height: 133%;
+  letter-spacing: 0.03em;
+  filter: brightness(var(--brightness));
+}
+
+strong {
+  font-size: 1.2em;
+  line-height: 136%;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  margin: 5% 0;
+  min-width: 150px;
 }
