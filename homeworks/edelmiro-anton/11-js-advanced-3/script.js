@@ -17,22 +17,22 @@ const validateMessage = (msg) => {
   return true;
 };
 
-//Task 3 - setTimeout/setInterval
+// Task 3 - setTimeout/setInterval
 
-// var i = 1;
-// let timer = setInterval(() => {
-//   console.log(`Elapsed time ${i} sec`);
-//   if (i === 5) {
-//     clearInterval(timer);
-//     console.log('Timer finished!');
-//   }
-//   i++;
-// }, 1000);
+var i = 1;
+let timer = setInterval(() => {
+  console.log(`Elapsed time ${i} sec`);
+  if (i === 5) {
+    clearInterval(timer);
+    console.log('Timer finished!');
+  }
+  i++;
+}, 1000);
 
 // Task 6 - Digit or not
 
-let firstCharIsNumber = /([0-9])\w+/g;
-let firstCharWithSpace = /([0-9])\s/g;
+let firstCharIsNumber = /^\d/g;
+let firstCharWithSpace = /^\d/g;
 
 let finalRegex = new RegExp(firstCharIsNumber.source + '|' + firstCharWithSpace.source);
 
@@ -45,7 +45,7 @@ function digitOrNot(str) {
     }
 
     if (!str.match(finalRegex)) {
-      return `The string "${str}" NO starts with a NUMBER`;
+      return `The string "${str}" DO NOT starts with a NUMBER`;
     }
   }
 }
