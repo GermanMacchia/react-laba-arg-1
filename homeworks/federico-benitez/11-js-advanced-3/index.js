@@ -62,3 +62,9 @@ function displayTime() {
     clearInterval(timer);
   }, 6000);
 }
+
+//6. Digit or not
+function isFirstCharNum(str) {
+  const pattern = new RegExp(/^\d/);
+  return !!str.match(pattern);
+}
