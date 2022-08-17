@@ -16,3 +16,19 @@ function validateMessage(msg) {
   const htmlRegEx = /(< ?[a-z]+ ?>)/i;
   return !msg.match(htmlRegEx);
 }
+
+/**
+ * Exercise 3
+ */
+
+function displayTime() {
+  let time = 0;
+
+  const timer = setInterval(() => {
+    time++;
+    console.log(`Elapsed time ${time}sec`);
+  }, 1000);
+  setTimeout(() => {
+    clearInterval(timer);
+  }, 6000);
+}
