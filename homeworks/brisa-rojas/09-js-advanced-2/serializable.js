@@ -1,10 +1,16 @@
-/**
- * REMOVEME To mock the class you to provide us with
- * @typedef {{
- *   serialize(): string,
- *   wakeFrom(serialized: string): Serializable
- * }} Serializable
- */
+
+class Serializable{
+
+  serialize(){
+    return JSON.stringify(this);
+  }
+
+  wakeFrom(serial){
+    return JSON.parse(this);
+  }
+
+}
+
 class UserDTO extends Serializable {
   constructor({ firstName, lastName, phone, birth }) {
     super();
