@@ -45,7 +45,7 @@ class UserDTO extends Serializable {
   }
 
   printInfo() {
-    return `${this.firstName[0]}. ${this.lastName} - ${this.phone}, ${this.birth.toISOString()}`;
+    return `${this.firstName[0]}. ${this.lastName} - ${this.phone}, ${this.birth}`;
   }
 }
 
@@ -70,7 +70,7 @@ console.log(resurrectedTolik instanceof UserDTO); // true
 
 console.log(resurrectedTolik);
 
-// console.log(resurrectedTolik.printInfo()); // A. Nashovich - 2020327, 1999-01-02T00:00:00.000Z
+console.log(resurrectedTolik.printInfo()); // A. Nashovich - 2020327, 1999-01-02T00:00:00.000Z
 
 class Post extends Serializable {
   constructor({ content, date, author } = {}) {
