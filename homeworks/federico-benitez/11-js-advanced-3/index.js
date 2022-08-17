@@ -18,6 +18,36 @@ function validateMessage(msg) {
 }
 
 /**
+ * Exercise 2
+ * https://www.codewars.com/kata/5a353a478f27f244a1000076
+ */
+class Joke {
+  constructor(joke) {
+    this.joke = joke;
+  }
+
+  saySetup() {
+    return this.joke.setup;
+  }
+  sayPunchLine() {
+    return this.joke.punchLine;
+  }
+}
+async function sayJoke(apiUrl, jokeId) {
+  const response = await fetch(apiUrl);
+  const data = await response.json();
+  if (!data.hasOwnProperty('jokes')) {
+    throw new Error(`No jokes at url: ${apiUrl}`);
+  }
+
+  const joke = data.jokes.find((joke) => joke.id === jokeId);
+
+  if (!joke) throw new Error(`No jokes found id: ${jokeId}`);
+
+  return new Joke(joke);
+}
+
+/**
  * Exercise 3
  */
 
