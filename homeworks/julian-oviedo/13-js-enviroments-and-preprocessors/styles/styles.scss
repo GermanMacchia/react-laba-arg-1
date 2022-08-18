@@ -75,8 +75,8 @@ body {
   margin: 15px;
 }
 .container-social-media__img:hover {
-    cursor: pointer
-  }
+  cursor: pointer;
+}
 .container__title--dark {
   color: $white-color;
 }
@@ -140,93 +140,91 @@ li {
 
 // -- SECONDS BUTTONS STYLES -- //
 
-%secondbttnsContainer-share{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 760px;
-    height: 110px;
-    margin: auto;
-    border-radius: 20px;
-    margin-bottom: 80px;
+%secondbttnsContainer-share {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 760px;
+  height: 110px;
+  margin: auto;
+  border-radius: 20px;
+  margin-bottom: 80px;
 }
 .secondbttn-container {
-    @extend %secondbttnsContainer-share;
-    background-color: $white-color;
-  }
+  @extend %secondbttnsContainer-share;
+  background-color: $white-color;
+}
 .secondbttn-container--dark {
-    @extend %secondbttnsContainer-share;
-    background-color: #171f26;
+  @extend %secondbttnsContainer-share;
+  background-color: #171f26;
 }
 
-%secondsButtons-share{
-    width: 352px;
+%secondsButtons-share {
+  width: 352px;
   height: 80px;
   border-radius: 10px;
   border: none;
   font-weight: 500;
   font-size: 22px;
   line-height: 33px;
-
 }
 .secondbttn-container__btn {
-    @extend %secondsButtons-share;
-    margin-left: 20px;
+  @extend %secondsButtons-share;
+  margin-left: 20px;
 }
 
 .secondbttn-container__btn--bg {
-    @extend %secondsButtons-share;
-    background-color: $white-color;
+  @extend %secondsButtons-share;
+  background-color: $white-color;
 }
 
 .secondbttn-container__btn--dark {
-    @extend %secondsButtons-share;
-    margin-left: 20px;
-    background-color: #0c151d;
-    color: $white-color
+  @extend %secondsButtons-share;
+  margin-left: 20px;
+  background-color: #0c151d;
+  color: $white-color;
 }
 
 .secondbttn-container__btn--bg--dark {
-    @extend %secondsButtons-share;
-    background-color: $white-color;
-    background-color: #171f26;
-    color: $white-color
+  @extend %secondsButtons-share;
+  background-color: $white-color;
+  background-color: #171f26;
+  color: $white-color;
 }
-
 
 // -- CARD STYLES -- //
 
 .tab {
-    width: 800px;
-    height: 950px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    padding: 20px;
+  width: 800px;
+  height: 950px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 20px;
 }
 
 .tab__card {
-    margin-bottom: 48px;
-    margin-right: 32px;
+  margin-bottom: 48px;
+  margin-right: 32px;
 }
 .tab__card:hover {
-    cursor: pointer;
-    border: 5px solid #f7d039;
-  }
+  cursor: pointer;
+  border: 5px solid #f7d039;
+}
 
 // -- FOOTER STYLES -- //
-%footer-shared{
-    margin-bottom: 50px;
-    font-weight: 500;
-    font-size: 22px;
-    line-height: 33px;
-    text-align: center;
+%footer-shared {
+  margin-bottom: 50px;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 33px;
+  text-align: center;
 }
 footer {
-    @extend %footer-shared;
+  @extend %footer-shared;
 }
 .footer--dark {
-    @extend %footer-shared;
-    color: #fff;
+  @extend %footer-shared;
+  color: #fff;
 }

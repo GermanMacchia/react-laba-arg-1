@@ -5,8 +5,8 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "sass styles.scss styles.css",
-    "start": "sass styles.scss styles.css --watch"
+    "build": "sass styles/styles.scss styles/styles.css && css-minify -f styles/styles.css -o ./styles",
+    "start": "sass styles/styles.scss styles/styles.css --watch"
   },
   "keywords": [
     "homework",
@@ -17,6 +17,7 @@
   "author": "Julian Oviedo",
   "license": "ISC",
   "dependencies": {
+    "css-minify": "^2.0.0",
     "sass": "^1.54.4"
   }
 }
