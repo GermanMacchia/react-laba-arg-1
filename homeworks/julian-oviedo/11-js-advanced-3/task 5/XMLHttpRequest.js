@@ -1,7 +1,7 @@
 const req = new XMLHttpRequest();
 req.onload = function reqListener() {
   const usersAPI = JSON.parse(this.responseText).results;
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < usersAPI.length; i++) {
     const div = document.createElement('div');
     const img = document.createElement('img');
     const p = document.createElement('p');

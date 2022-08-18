@@ -1,7 +1,7 @@
 fetch('https://randomuser.me/api/?gender=female&results=10').then((res) => {
   res.json().then((data) => {
     const usersAPI = data.results;
-    for (let i = 1; i < 10; i++) {
+    for (let i = 1; i < usersAPI.length; i++) {
       const div = document.createElement('div');
       const img = document.createElement('img');
       const p = document.createElement('p');

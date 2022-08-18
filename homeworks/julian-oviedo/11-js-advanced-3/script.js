@@ -48,7 +48,7 @@ const secsDisplay = setInterval(() => {
 }, 1000);
 setTimeout(() => {
   clearInterval(secsDisplay);
-}, 5000);
+}, 6000);
 
 // TASK 4. - Event Loop VIDEO AND DEMO
 
@@ -56,11 +56,11 @@ setTimeout(() => {
 
 // TASK 6. Digit or not
 
-function firstDiggit(str) {
-  if (/^G/i.test(str)) {
-    return `WOHO ! The strings stats with letter g`;
+function firstDigit(str) {
+  if (/^\d/.test(str)) {
+    return `WOHO ! The strings stats with a digit`;
   } else {
-    return 'UPS... The string doesnt start with letter g';
+    return 'UPS... The string doesnt start with a digit';
   }
 }
 
