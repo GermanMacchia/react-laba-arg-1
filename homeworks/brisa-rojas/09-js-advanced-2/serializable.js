@@ -1,14 +1,37 @@
+'use strict';
 
-class Serializable{
+class Serializable {
+  serialize() {
+    this.format2Serialize();
+    const constructor = this.constructor.name;
+    let serial = JSON.stringify(this);
 
-  serialize(){
-    return JSON.stringify(this);
+    serial += '---' + constructor;
+
+    return serial;
+
   }
 
-  wakeFrom(serial){
-    return JSON.parse(this);
+  wakeFrom(serial) {
+
   }
 
+  format2Serialize(){ 
+    for (let key in this) {
+      let value = this[key];
+
+      if (value instanceof Date) {
+        this[key] = { dateTime: value.toString(), isDate: true };
+      }
+    
+      if (value === Infinity || value === -Infinity) {
+        //if it's an infinity => convert it to string
+        this[key] = value.toString();
+      }
+      
+    }
+    
+  }
 }
 
 class UserDTO extends Serializable {
@@ -36,16 +59,16 @@ let tolik = new UserDTO({
 tolik.printInfo(); //A. Nashovich - 2020327, 1999-01-02T00:00:00.000Z
 
 const serialized = tolik.serialize();
-tolik = null
+console.log("This is tolik serialized: " + serialized);
 
-const resurrectedTolik = (new UserDTO()).wakeFrom(serialized);
+const resurrectedTolik = new UserDTO({}).wakeFrom(serialized);
 
 console.log(resurrectedTolik instanceof UserDTO); // true
 console.log(resurrectedTolik.printInfo()); // A. Nashovich - 2020327, 1999-01-02T00:00:00.000Z
 
 class Post extends Serializable {
   constructor({ content, date, author }) {
-    super()
+    super();
 
     this.content = content;
     this.date = date;
@@ -53,5 +76,5 @@ class Post extends Serializable {
   }
 }
 
-console.log((new Post()).wakeFrom(serialized));
-// throw an error because the srialized line does contain data for User class
+console.log(new Post().wakeFrom(serialized));
+// throw an error because the serialized line does contain data for User class
