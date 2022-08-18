@@ -1,14 +1,3 @@
-let btn = document.querySelector('#scrollUp');
-
-btn.addEventListener('click', () => {
-   document.documentElement.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-   })
-})
-
-
-
 const btnSwitch = document.querySelector('.header__button')
 
 
@@ -37,8 +26,4 @@ btnSwitch.addEventListener('click', () => {
     conteinerPortfolio.classList.toggle('secondbttn-container__btn--dark')
     conteinerSkills.classList.toggle('secondbttn-container__btn--bg--dark')
     footer.classList.toggle('footer--dark')
-
-
-    
-
 })
