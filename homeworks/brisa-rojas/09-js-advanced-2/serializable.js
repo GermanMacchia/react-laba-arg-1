@@ -37,6 +37,10 @@ class Serializable {
         //if it's an infinity => convert it to string
         this[key] = value.toString();
       }
+
+      if (value === -0) {
+        this[key] = 0;
+      }
     }
   }
 
@@ -81,9 +85,9 @@ let tolik = new UserDTO({
 
 tolik.printInfo(); //A. Nashovich - 2020327, 1999-01-02T00:00:00.000Z
 
+// TEST 0
 const serialized = tolik.serialize();
 console.log('This is tolik serial: ' + serialized);
-console.log("Let's wake up tolik\n");
 const resurrectedTolik = new UserDTO({}).wakeFrom(serialized);
 
 console.log(resurrectedTolik instanceof UserDTO); // true
@@ -99,20 +103,65 @@ class Post extends Serializable {
   }
 }
 
+// TEST 1
 let post = new Post({ content: 'How to serialize things?', date: new Date('2000-03-17'), author: 'Brisa' });
 let postSerial = post.serialize();
-console.log(postSerial);
+
+// resurrect post
 post = null;
 let resurrectedPost = new Post({}).wakeFrom(postSerial);
-console.log(resurrectedPost);
-console.log(resurrectedPost instanceof Post); // true
 
+console.log(resurrectedPost);
+console.log(resurrectedPost instanceof Post); 
+
+// TEST 2
 console.log("\nTrying to resurrect something that is not a post\n");
 console.log(serialized.split(DIVIDER)[1]);
 let resurrectedNotPost = new Post({});
 
-try {
+try { 
   resurrectedNotPost = resurrectedNotPost.wakeFrom(serialized); //this will throw an error
 } catch (error) {
-  console.log(error);
+  console.log("Error ocurred");
+  console.log(error.message);
 }
+
+
+class OtherCases extends Serializable {
+  constructor(a,b,c,d) {
+    super();
+
+    this.value1 = a;
+    this.value2 = b;
+    this.value3 = c;
+    this.value4 = d;
+  }
+}
+
+// TEST 3 
+
+let others = new OtherCases(Infinity , -Infinity, -0, 16.5); 
+let othersSerial = others.serialize();
+console.log(othersSerial.split(DIVIDER));
+
+others= null;
+
+let resurrectedOthers = new OtherCases()
+resurrectedOthers = resurrectedOthers.wakeFrom(othersSerial);
+console.log(resurrectedOthers);
+console.log(resurrectedOthers instanceof OtherCases);
+
+
+// TEST 4
+
+
+let others2 = new OtherCases(0, 1, 2, ["this", "is", "an", "array"]); 
+let others2Serial = others2.serialize();
+console.log(others2Serial.split(DIVIDER));
+
+others2= null;
+
+let resurrectedOthers2 = new OtherCases()
+resurrectedOthers2 = resurrectedOthers2.wakeFrom(others2Serial);
+console.log(resurrectedOthers2);
+console.log(resurrectedOthers2 instanceof OtherCases);
