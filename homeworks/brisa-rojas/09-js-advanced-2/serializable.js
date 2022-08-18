@@ -1,19 +1,30 @@
 'use strict';
+const DIVIDER = '---';
 
 class Serializable {
+
   serialize() {
     this.format2Serialize();
     const constructor = this.constructor.name;
     let serial = JSON.stringify(this);
 
-    serial += '---' + constructor;
+    serial += DIVIDER + constructor;
 
     return serial;
-
   }
 
   wakeFrom(serial) {
+    let [resurrected, serializedConstructor] = serial.split(DIVIDER);
+    
 
+    if (!this instanceof eval(serializedConstructor)) {
+      throw new Error( `Serialized object is not an instance of ${this.constructor.name}}. Cannot be woken up.`);
+    }
+    
+    resurrected = Serializable.format2DSerialize(resurrected);
+    resurrected = new this.constructor(resurrected);
+
+    return resurrected;
   }
 
   format2Serialize(){ 
@@ -21,7 +32,7 @@ class Serializable {
       let value = this[key];
 
       if (value instanceof Date) {
-        this[key] = { dateTime: value.toString(), isDate: true };
+        this[key] = { dateTime: value.toISOString(), isDate: true };
       }
     
       if (value === Infinity || value === -Infinity) {
@@ -30,7 +41,22 @@ class Serializable {
       }
       
     }
+  }
+
+   static format2DSerialize(serial){
+    let auxiliarObject = JSON.parse(serial);
+
+    for (let key in auxiliarObject) {
+      if (auxiliarObject[key].isDate) {
+        auxiliarObject[key] = new Date(auxiliarObject[key].dateTime);
+      }
+
+      if (auxiliarObject[key] === 'Infinity' || auxiliarObject[key] === '-Infinity') {
+        auxiliarObject[key] = parseFloat(auxiliarObject[key]);
+      }
+    }
     
+    return auxiliarObject;
   }
 }
 
@@ -59,12 +85,13 @@ let tolik = new UserDTO({
 tolik.printInfo(); //A. Nashovich - 2020327, 1999-01-02T00:00:00.000Z
 
 const serialized = tolik.serialize();
-console.log("This is tolik serialized: " + serialized);
-
+console.log("This is tolik serial: " + serialized);
+console.log("Let's wake up tolik\n");
 const resurrectedTolik = new UserDTO({}).wakeFrom(serialized);
 
-console.log(resurrectedTolik instanceof UserDTO); // true
-console.log(resurrectedTolik.printInfo()); // A. Nashovich - 2020327, 1999-01-02T00:00:00.000Z
+console.log(resurrectedTolik instanceof UserDTO); // true 
+resurrectedTolik.printInfo(); //A. Nashovich - 2020327, 1999-01-02T00:00:00.000Z
+
 
 class Post extends Serializable {
   constructor({ content, date, author }) {
@@ -76,5 +103,11 @@ class Post extends Serializable {
   }
 }
 
-console.log(new Post().wakeFrom(serialized));
-// throw an error because the serialized line does contain data for User class
+let post = new Post({ content: "How to serialize things?", date: new Date('2000-03-17'), author: "Brisa" });
+let postSerial = post.serialize();
+console.log(postSerial);
+post = null; 
+let resurrectedPost = new Post({}).wakeFrom(postSerial); 
+console.log(resurrectedPost);
+console.log(resurrectedPost instanceof Post); // true
+
