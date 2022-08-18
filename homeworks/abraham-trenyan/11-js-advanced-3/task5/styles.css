@@ -8,5 +8,13 @@
     justify-content: center;
 }
 .user{
-    margin: 20px;
+    width: 17%;
+    margin-bottom: 20px;
+}
+.img{
+    justify-content: center;
+    width: 80%;
+}
+.name{
+    font-size: 20px;
 }
