@@ -9,7 +9,6 @@ body {
   background-color: #e9ebec;
   font-family: 'Poppins';
   margin: 0 auto;
-  color: red;
 }
 
 .transition__dark {
@@ -305,8 +304,8 @@ $buttons_background: #171f26;
 //Variable for font colors
 $font_color: #a3abb2;
 
-body {
-  .dark {
+body.dark{
+  
     background: $main_background;
     .backgroundBtn {
       background-color: $buttons_background;
@@ -346,4 +345,4 @@ body {
       color: $font_color;
     }
   }
-}
+
