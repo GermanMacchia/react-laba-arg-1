@@ -39,6 +39,7 @@ function binarySearch(arr, target) {
     return 'Target was not found';
 }
 bubbleSort(mockData);
+
 // Tests
 /* console.log(binarySearch(mockData, 'ccdb70f4-91f1-4543-93fa-8a93f980dc99'));
 console.log(straightSearch(mockData, 'ccdb70f4-91f1-4543-93fa-8a93f980dc99'));
