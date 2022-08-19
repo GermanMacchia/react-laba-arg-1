@@ -1,0 +1,90 @@
+Linear test:
+{
+  sku: '14827a29-ad93-4fbd-8d64-555c7b6adede',
+  name: 'Beef - Ground Medium',
+  price: '£19.88',
+  pack: 5
+}
+Time elapsed:
+2.9392999932169914
+Binary test:
+{
+  sku: '14827a29-ad93-4fbd-8d64-555c7b6adede',
+  name: 'Beef - Ground Medium',
+  price: '£19.88',
+  pack: 5
+}
+Time elapsed:
+2.7648999989032745
+Linear test:
+{
+  sku: '3b70ca8a-ed18-4b4b-8498-59784a18c2d8',
+  name: 'Pate - Cognac',
+  price: '£3.34',
+  pack: 10
+}
+Time elapsed:
+3.024599999189377
+Binary test:
+{
+  sku: '3b70ca8a-ed18-4b4b-8498-59784a18c2d8',
+  name: 'Pate - Cognac',
+  price: '£3.34',
+  pack: 10
+}
+Time elapsed:
+1.177999995648861
+Linear test:
+{
+  sku: '83a91cb1-c764-414a-863e-98ed02fb20de',
+  name: 'Lamb - Leg, Boneless',
+  price: '£2.82',
+  pack: 10
+}
+Time elapsed:
+3.190499998629093
+Binary test:
+{
+  sku: '83a91cb1-c764-414a-863e-98ed02fb20de',
+  name: 'Lamb - Leg, Boneless',
+  price: '£2.82',
+  pack: 10
+}
+Time elapsed:
+0.9884000048041344
+Linear test:
+{
+  sku: '478b739d-5788-4136-b00c-61e45ac60181',
+  name: 'Pasta - Linguini, Dry',
+  price: '£23.32',
+  pack: 10
+}
+Time elapsed:
+2.6077999994158745
+Binary test:
+{
+  sku: '478b739d-5788-4136-b00c-61e45ac60181',
+  name: 'Pasta - Linguini, Dry',
+  price: '£23.32',
+  pack: 10
+}
+Time elapsed:
+0.7918999940156937
+Linear test:
+{
+  sku: '9f8ce6ce-bdc3-4b59-afa0-d9e9c9f65898',
+  name: 'Yogurt - Assorted Pack',
+  price: '£2.49',
+  pack: 15
+}
+Time elapsed:
+3.2872999981045723
+Binary test:
+{
+  sku: '9f8ce6ce-bdc3-4b59-afa0-d9e9c9f65898',
+  name: 'Yogurt - Assorted Pack',
+  price: '£2.49',
+  pack: 15
+}
+Time elapsed:
+4.857199996709824
