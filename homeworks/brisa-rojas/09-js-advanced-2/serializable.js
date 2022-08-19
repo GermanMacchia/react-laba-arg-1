@@ -3,9 +3,9 @@ const DIVIDER = '---';
 
 class Serializable {
   serialize() {
-    this.format2Serialize();
+    const formattedDeepClone = this.format2Serialize();
     const constructor = this.constructor.name;
-    let serial = JSON.stringify(this);
+    let serial = JSON.stringify(formattedDeepClone);
 
     serial += DIVIDER + constructor;
 
@@ -26,22 +26,26 @@ class Serializable {
   }
 
   format2Serialize() {
+    let auxiliarObject = JSON.parse(JSON.stringify(this)); //deep clone of this to work with
+
     for (let key in this) {
       let value = this[key];
 
       if (value instanceof Date) {
-        this[key] = { dateTime: value.toISOString(), isDate: true };
+        auxiliarObject[key] = { dateTime: value.toISOString(), isDate: true };
       }
 
       if (value === Infinity || value === -Infinity) {
         //if it's an infinity => convert it to string
-        this[key] = value.toString();
+        auxiliarObject[key] = value.toString();
       }
 
       if (value === -0) {
-        this[key] = 0;
+        auxiliarObject[key] = 0;
       }
     }
+
+    return auxiliarObject;
   }
 
   static format2DSerialize(serial) {
@@ -89,6 +93,7 @@ tolik.printInfo(); //A. Nashovich - 2020327, 1999-01-02T00:00:00.000Z
 const serialized = tolik.serialize();
 console.log('This is tolik serial: ' + serialized);
 const resurrectedTolik = new UserDTO({}).wakeFrom(serialized);
+resurrectedTolik.printInfo(); //A. Nashovich - 2020327, 1999-01-02T00:00:00.000Z
 
 console.log(resurrectedTolik instanceof UserDTO); // true
 resurrectedTolik.printInfo(); //A. Nashovich - 2020327, 1999-01-02T00:00:00.000Z
@@ -152,10 +157,9 @@ console.log(resurrectedOthers instanceof OtherCases); // true
 
 let others2 = new OtherCases(0, 1, 2, ['this', 'is', 'an', 'array']);
 let others2Serial = others2.serialize();
+console.log(others2Serial); // { value1: '0', value2: '1', value3: '2', value4: '[this,is,an,array]' }
 
 others2 = null;
 
-let resurrectedOthers2 = new OtherCases();
-resurrectedOthers2 = resurrectedOthers2.wakeFrom(others2Serial);
-console.log(resurrectedOthers2); // { value1: '0', value2: '1', value3: '2', value4: '["this","is","an","array"]' }
+let resurrectedOthers2 = new OtherCases().wakeFrom(others2Serial);
 console.log(resurrectedOthers2 instanceof OtherCases); // true
