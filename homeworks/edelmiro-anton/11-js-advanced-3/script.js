@@ -19,7 +19,7 @@ const validateMessage = (msg) => {
 
 // Task 3 - setTimeout/setInterval
 
-var i = 1;
+let i = 1;
 let timer = setInterval(() => {
   console.log(`Elapsed time ${i} sec`);
   if (i === 5) {
