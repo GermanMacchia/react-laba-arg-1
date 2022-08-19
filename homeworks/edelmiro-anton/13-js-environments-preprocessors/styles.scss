@@ -9,6 +9,7 @@ body {
   background-color: #e9ebec;
   font-family: 'Poppins';
   margin: 0 auto;
+  color: red;
 }
 
 .transition__dark {
@@ -291,4 +292,58 @@ body {
   font-weight: bold;
   font-size: 22px;
   line-height: 0px;
+}
+
+/************* DARKMODE *************/
+
+//Variable for main background color
+$main_background: #0c151d;
+
+//Variable for buttons background color
+$buttons_background: #171f26;
+
+//Variable for font colors
+$font_color: #a3abb2;
+
+body {
+  .dark {
+    background: $main_background;
+    .backgroundBtn {
+      background-color: $buttons_background;
+    }
+
+    .profile__name {
+      color: #f1f2f4;
+    }
+    .profile__profession {
+      color: $font_color;
+    }
+
+    .facts__title {
+      p {
+        color: $font_color;
+      }
+    }
+
+    .profileButtons__button__contactMe {
+      color: $font_color;
+      background-color: $buttons_background;
+    }
+    .container {
+      background-color: $buttons_background;
+    }
+
+    .container__span--colorPortfolio {
+      background-color: $main_background;
+      color: $font_color;
+    }
+    .container__span--colorSkills {
+      color: $font_color;
+      background-color: $buttons_background;
+    }
+
+    footer {
+      color: $font_color;
+    }
+  }
 }

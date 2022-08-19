@@ -5,12 +5,12 @@
   "main": "darkmode.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "sass ./scss/main.scss ./css/styles.css",
-    "start": "sass ./scss/main.scss ./css/styles.css --watch"
+    "build": "sass styles.scss:styles.css --style compressed",
+    "start": "sass styles.scss styles.css --watch"
   },
   "keywords": [
     "npm",
-    "environments", 
+    "environments",
     "preprocessors",
     "sass",
     "scss",
