@@ -12,12 +12,14 @@ function straightSearchForward(array, id) {
         }
     }
     if (array.sku !== id) {
-        return 'Not found Yet';
+        return 'Invalid Sku';
 
     }
 
 }
-console.log(straightSearchForward(mockData, '722e91f2-ec4b-4802-9419-491b07ef2de9'));
+console.time('straightSearchForward');
+console.log(straightSearchForward(sortedArray, '13fe9e78-5dc1-4efe-bece-f20cedfb092b'));
+console.timeEnd('straightSearchForward');
 
 
 
@@ -41,10 +43,40 @@ function binarySearch (array, id)  {
             endIndex = middleIndex - 1;
         }
     }
-    return 'Invalid Sku'
+    return 'Invalid Sku';
 };
 console.log('--------------------------------------');
-console.log(binarySearch(mockData, '722e91f2-ec4b-4802-9419-491b07ef2de9'));
 console.log('--------------------------------------');
+
+console.time('binarySearch');
+console.log(binarySearch(sortedArray, '13fe9e78-5dc1-4efe-bece-f20cedfb092b'));
+console.timeEnd('binarySearch');
+
+
+
+
+
+//Selection Sort
+function selectionSort(inputArr) { 
+    let n = inputArr.length;
+        
+    for(let i = 0; i < n; i++) {
+        
+        let min = i;
+        for(let j = i+1; j < n; j++){
+            if(inputArr[j] < inputArr[min]) {
+                min=j; 
+            }
+         }
+         if (min != i) {
+            
+             let tmp = inputArr[i]; 
+             inputArr[i] = inputArr[min];
+             inputArr[min] = tmp;      
+        }
+    }
+    return inputArr;
+}
+//console.log(selectionSort(mockData));
 
 
