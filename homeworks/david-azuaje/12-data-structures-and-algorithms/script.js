@@ -6,26 +6,23 @@ const sortedArray = mockData.sort((a, b) => (a.sku > b.sku ? 1 : -1));
 // StraightSearchForward Engine
 function straightSearchForward(array, id) {
     for (let i = 0; i < array.length; i++) {
-
         if (array[i].sku === id) {
             return array[i];
         }
     }
     if (array.sku !== id) {
-        return 'Invalid Sku';
-
+        return "Invalid Sku";
     }
-
 }
-console.time('straightSearchForward');
-console.log(straightSearchForward(sortedArray, '13fe9e78-5dc1-4efe-bece-f20cedfb092b'));
-console.timeEnd('straightSearchForward');
-
-
+console.time("straightSearchForward");
+console.log(
+    straightSearchForward(sortedArray, "13fe9e78-5dc1-4efe-bece-f20cedfb092b")
+);
+console.timeEnd("straightSearchForward");
 
 // Binary Search
 
-function binarySearch (array, id)  {
+function binarySearch(array, id) {
     let startIndex = 0;
     let endIndex = array.length - 1;
 
@@ -43,40 +40,32 @@ function binarySearch (array, id)  {
             endIndex = middleIndex - 1;
         }
     }
-    return 'Invalid Sku';
-};
-console.log('--------------------------------------');
-console.log('--------------------------------------');
+    return "Invalid Sku";
+}
+console.log("--------------------------------------");
+console.log("--------------------------------------");
 
-console.time('binarySearch');
-console.log(binarySearch(sortedArray, '13fe9e78-5dc1-4efe-bece-f20cedfb092b'));
-console.timeEnd('binarySearch');
-
-
-
-
+console.time("binarySearch");
+console.log(binarySearch(sortedArray, "13fe9e78-5dc1-4efe-bece-f20cedfb092b"));
+console.timeEnd("binarySearch");
 
 //Selection Sort
-function selectionSort(inputArr) { 
-    let n = inputArr.length;
-        
-    for(let i = 0; i < n; i++) {
-        
+function selectionSort(inputArr) {
+    let lengthOfArray = inputArr.length;
+
+    for (let i = 0; i < lengthOfArray; i++) {
         let min = i;
-        for(let j = i+1; j < n; j++){
-            if(inputArr[j] < inputArr[min]) {
-                min=j; 
+        for (let j = i + 1; j < lengthOfArray; j++) {
+            if (inputArr[j] < inputArr[min]) {
+                min = j;
             }
-         }
-         if (min != i) {
-            
-             let tmp = inputArr[i]; 
-             inputArr[i] = inputArr[min];
-             inputArr[min] = tmp;      
+        }
+        if (min != i) {
+            let tmp = inputArr[i];
+            inputArr[i] = inputArr[min];
+            inputArr[min] = tmp;
         }
     }
     return inputArr;
 }
 //console.log(selectionSort(mockData));
-
-
