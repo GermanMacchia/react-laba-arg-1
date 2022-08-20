@@ -16,7 +16,7 @@ function straightSearchForward(array, id) {
 }
 console.time("straightSearchForward");
 console.log(
-    straightSearchForward(sortedArray, "13fe9e78-5dc1-4efe-bece-f20cedfb092b")
+    straightSearchForward(sortedArray, '63763573-d5f0-4ddc-b4be-593f814f7594')
 );
 console.timeEnd("straightSearchForward");
 
@@ -42,11 +42,14 @@ function binarySearch(array, id) {
     }
     return "Invalid Sku";
 }
-console.log("--------------------------------------");
-console.log("--------------------------------------");
+console.log(`\n\n--------------------------------------\n\n`);
+
+
+
+//console.log("--------------------------------------");
 
 console.time("binarySearch");
-console.log(binarySearch(sortedArray, "13fe9e78-5dc1-4efe-bece-f20cedfb092b"));
+console.log(binarySearch(sortedArray, '63763573-d5f0-4ddc-b4be-593f814f7594'));
 console.timeEnd("binarySearch");
 
 //Selection Sort
@@ -68,4 +71,6 @@ function selectionSort(inputArr) {
     }
     return inputArr;
 }
-//console.log(selectionSort(mockData));
+
+
+
