@@ -3,7 +3,6 @@ class Serializable {
     for (let prop in this) {
       if (this[prop] instanceof Date) {
         this[prop] = this[prop].toString();
-        this[prop] += 'isDate'; // I add this value so later i can check if strinf is a date and turn it into a date again.
       }
       if (this[prop] === -0) {
         this[prop] = 0;
@@ -40,8 +39,7 @@ class Serializable {
       if (resurrected[prop] === 'null') {
         resurrected[prop] = null;
       }
-      if (typeof resurrected[prop] === 'string' && resurrected[prop].includes('isDate')) {
-        resurrected[prop] = resurrected[prop].replace('isDate', ''); // If we find the isDate flag, we remove it and convert the string to date.
+      if (typeof resurrected[prop] === 'string' && new Date(resurrected[prop]) != 'Invalid Date') {
         resurrected[prop] = new Date(resurrected[prop]);
       }
     }
@@ -88,12 +86,27 @@ let tolik = new UserDTO({
 
 //  Tests
 
-tolik.printInfo();
+tolik.printInfo(); // A. Nashovich - 2020327, Fri Jan 01 1999 21:00:00 GMT-0300 (hora estándar de Argentina)
 const serialized = tolik.serialize();
 tolik = null;
-console.log(`serialized ${serialized}`);
+console.log(serialized); // UserDTO  {"firstName":"Anatoliy","lastName":"Nashovich","phone":"2020327","birth":"Fri Jan 01 1999 21:00:00 GMT-0300 (hora estándar de Argentina)","nullValue":"null","nan":"NaN","infinity":"-Infinity","minusZero":0,"obj":{"a":"a","b":"b"},"arr":[9,12,18],"number":4}
 const resurrectedTolik = new UserDTO().wakeFrom(serialized);
 console.log(resurrectedTolik);
+/* 
+UserDTO {
+  firstName: 'Anatoliy',
+  lastName: 'Nashovich',
+  phone: '2020327',
+  birth: 1999-01-02T00:00:00.000Z,
+  nullValue: null,
+  nan: NaN,
+  infinity: -Infinity,
+  minusZero: 0,
+  obj: { a: 'a', b: 'b' },
+  arr: [ 9, 12, 18 ],
+  number: 4
+} 
+*/
 console.log(resurrectedTolik instanceof UserDTO); // true
 resurrectedTolik.printInfo(); // A. Nashovich - 2020327, 1999-01-02T00:00:00.000Z
 
@@ -106,5 +119,4 @@ class Post extends Serializable {
     this.author = author;
   }
 }
-console.log(new Post().wakeFrom(serialized));
-// throws Error(`Serialized line is from a different class.`)
+console.log(new Post().wakeFrom(serialized)); // throws Error(`Serialized line is from a different class.`)
