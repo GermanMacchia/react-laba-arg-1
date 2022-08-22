@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "sass styles.scss styles.css",
+    "build": "sass styles.scss styles.css --style compressed",
     "start": "sass styles.scss styles.css --watch"
   },
   "repository": {
@@ -25,10 +25,8 @@
     "url": "https://github.com/qaprosoft/react-laba-arg-1/issues"
   },
   "homepage": "https://github.com/qaprosoft/react-laba-arg-1#readme",
-  "dependencies": {
-    "sass": "^1.54.4"
-  },
   "devDependencies": {
+    "sass": "^1.54.5",
     "webpack": "^5.74.0"
   }
 }
