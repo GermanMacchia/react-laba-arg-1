@@ -15,7 +15,7 @@ class Serializable {
     return JSON.stringify(obj);
   }
   wakeFrom(serialized) {
-    let awake = JSON.parse(serialized);
+    let awake = JSON.stringify(serialized);
     if (this.constructor.name !== awake.constrName) {
       throw new Error('Serialized line does not contain data for class');
     } else if (this.constructor.name === awake.constrName) {
