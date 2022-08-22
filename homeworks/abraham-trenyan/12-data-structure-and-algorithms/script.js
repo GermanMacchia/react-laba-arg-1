@@ -1,6 +1,6 @@
 let mockData = require('./MOCK_DATA.JS');
 function bubbleSort(arr) {
-  // Bubble sorts mockData alphabetically by sku values, so now we can implement binary search
+  //Bubble sorts mockData alphabetically by sku values, so now we can implement binary search
   for (let i = 0; i < arr.length; i++) {
     for (let j = i + 1; j < arr.length; j++) {
       if (arr[i].sku > arr[j].sku) {
@@ -12,31 +12,30 @@ function bubbleSort(arr) {
   }
 }
 function straightSearch(arr, target) {
-    for(let j = 0; j<arr.length; j++){
-        if(arr[j].sku === target){
-            return arr[j];
-        }
+  for (let j = 0; j < arr.length; j++) {
+    if (arr[j].sku === target) {
+      return arr[j];
     }
-    return 'Target was not found';
+  }
+  return 'Target was not found';
 }
 
 function binarySearch(arr, target) {
-    let start = 0;
-    let end = arr.length - 1;
-    let middle;
-    while (start <= end) {
-      middle = Math.floor((start + end) / 2);
-      if (arr[middle].sku === target){
-        return arr[middle];
-      }
-      if (arr[middle].sku > target){
-        end = middle - 1;
-      }
-      else {
-        start = middle + 1;
-      }
+  let start = 0;
+  let end = arr.length - 1;
+  let middle;
+  while (start <= end) {
+    middle = Math.floor((start + end) / 2);
+    if (arr[middle].sku === target) {
+      return arr[middle];
     }
-    return 'Target was not found';
+    if (arr[middle].sku > target) {
+      end = middle - 1;
+    } else {
+      start = middle + 1;
+    }
+  }
+  return 'Target was not found';
 }
 bubbleSort(mockData);
 
