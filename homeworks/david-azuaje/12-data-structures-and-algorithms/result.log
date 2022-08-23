@@ -1,0 +1,103 @@
+{
+  sku: '13fe9e78-5dc1-4efe-bece-f20cedfb092b',
+  name: 'Table Cloth 91x91 Colour',
+  price: '£8.32',
+  pack: 10
+}
+straightSearchForward: 6.275ms
+
+
+--------------------------------------
+
+
+{
+  sku: '13fe9e78-5dc1-4efe-bece-f20cedfb092b',
+  name: 'Table Cloth 91x91 Colour',
+  price: '£8.32',
+  pack: 10
+}
+binarySearch: 0.264ms
+
+
+{
+  sku: 'ae0564eb-53a4-41a8-a7c5-392fdea87b5a',
+  name: 'Pepper - Julienne, Frozen',
+  price: '£23.81',
+  pack: 5
+}
+straightSearchForward: 13.165ms
+
+
+--------------------------------------
+
+
+{
+  sku: 'ae0564eb-53a4-41a8-a7c5-392fdea87b5a',
+  name: 'Pepper - Julienne, Frozen',
+  price: '£23.81',
+  pack: 5
+}
+binarySearch: 0.373ms
+
+
+{
+  sku: 'c9c70bb7-2f64-4a61-b7bb-445547226a1d',
+  name: 'Soup - Campbells',
+  price: '£24.93',
+  pack: 10
+}
+straightSearchForward: 9.275ms
+
+
+--------------------------------------
+
+
+{
+  sku: 'c9c70bb7-2f64-4a61-b7bb-445547226a1d',
+  name: 'Soup - Campbells',
+  price: '£24.93',
+  pack: 10
+}
+binarySearch: 0.47ms
+
+
+{
+  sku: 'd3f6e352-fbfc-4a31-8631-39da556b9d26',
+  name: 'Jolt Cola - Red Eye',
+  price: '£17.63',
+  pack: 15
+}
+straightSearchForward: 7.749ms
+
+
+--------------------------------------
+
+
+{
+  sku: 'd3f6e352-fbfc-4a31-8631-39da556b9d26',
+  name: 'Jolt Cola - Red Eye',
+  price: '£17.63',
+  pack: 15
+}
+binarySearch: 0.391ms
+
+
+{
+  sku: '63763573-d5f0-4ddc-b4be-593f814f7594',
+  name: 'Paste - Black Olive',
+  price: '£14.58',
+  pack: 20
+}
+straightSearchForward: 6.503ms
+
+
+--------------------------------------
+
+
+{
+  sku: '63763573-d5f0-4ddc-b4be-593f814f7594',
+  name: 'Paste - Black Olive',
+  price: '£14.58',
+  pack: 20
+}
+binarySearch: 0.404ms
