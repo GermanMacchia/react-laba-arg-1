@@ -3,29 +3,25 @@ class Serializable {
     let obj = this;
     Object.keys(obj).forEach((key) => {
       if (obj[key] === -Infinity || obj[key] === Infinity) {
-        return JSON.stringify(obj[key]);
+        return obj[key].toString();
       }
-
-      Object.keys(obj).forEach((key) => {
-        if (obj[key] instanceof Date) {
-          return (obj[key] = { isDate: true, dateobj: obj[key].getTime() });
-        }
-      });
+      if (isNaN(obj[key])) {
+        return 'NaN';
+      }
+      if (obj[key] instanceof Date) {
+        return (obj[key] = { isDate: true, dateobj: obj[key].getTime() });
+      }
     });
     return JSON.stringify(obj);
   }
   wakeFrom(serialized) {
-    let awake = JSON.stringify(serialized);
-    if (this.constructor.name !== awake.constrName) {
-      throw new Error('Serialized line does not contain data for class');
-    } else if (this.constructor.name === awake.constrName) {
+    let awake = JSON.parse(serialized);
+    /* if (this.constructor.name !== awake.constructorName) {
+      throw new Error('Error');
+    } */ if (this.constructor.name === awake.constructorName) {
       awake = new this.constructor(awake);
     }
     for (let key in awake) {
-      const dateValue = /\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z)/;
-      if (dateValue.exec(awake[key])) {
-        awake[key] = new Date(dateValue.exec(awake[key][0]));
-      }
       if (awake[key] === 'NaN') {
         return NaN;
       }
@@ -34,6 +30,9 @@ class Serializable {
       }
       if (awake[key] === 'Infinity') {
         return Infinity;
+      }
+      if (awake[key].isDate) {
+        return (awake[key] = new Date(awake[key].dateobj));
       }
     }
     return awake;
