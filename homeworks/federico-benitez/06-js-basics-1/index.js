@@ -153,9 +153,9 @@ function getMiddle(s) {
  * Exercise 7
  * http://www.codewars.com/kata/partition-on
  */
- function partitionOn(pred, items) {
-  const truthies = items.filter(el => pred(el));
-  const falsies = items.filter(el => !pred(el));
+function partitionOn(pred, items) {
+  const truthies = items.filter((el) => pred(el));
+  const falsies = items.filter((el) => !pred(el));
   items.splice(0, items.length, ...falsies, ...truthies);
   return falsies.length;
 }
@@ -174,29 +174,10 @@ function getMiddle(s) {
  */
 function findOdd(A) {
   //happy coding!
-  let odd = {};
-
-  A.forEach((v) => {
-    let coincidences = A.map((x) => {
-      if (x === v) {
-        return x;
-      }
-    }).filter(Boolean);
-
-    if (!odd.count) {
-      odd = {
-        count: coincidences.length,
-        value: coincidences[0],
-      };
-    } else if (coincidences.length < odd.count) {
-      odd = {
-        count: coincidences.length,
-        value: coincidences[0],
-      };
-    }
-  });
-
-  return odd.value;
+  for (let n of A) {
+    const count = A.filter((num) => num === n).length;
+    if (count % 2 !== 0) return n;
+  }
 }
 
 /**
