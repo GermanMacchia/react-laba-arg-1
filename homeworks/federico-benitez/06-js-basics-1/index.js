@@ -261,16 +261,20 @@ function catMouse(map, moves) {
  * https://www.codewars.com/kata/duplicate-encoder
  */
 function duplicateEncode(word) {
-  const chars = word.split('');
-  let result = word;
+  const wordLower = word.toLowerCase();
 
-  chars.forEach((char) => {
-    if (chars.filter((c) => c.toLowerCase() === char.toLowerCase()).length > 1) {
-      result = result.replace(char, ')');
+  let result = '';
+
+  for (const char of wordLower) {
+    const startIndex = wordLower.indexOf(char);
+    const endIndex = wordLower.lastIndexOf(char);
+
+    if (startIndex === endIndex) {
+      result += '(';
     } else {
-      result = result.replace(char, '(');
+      result += ')';
     }
-  });
+  }
 
   return result;
 }
