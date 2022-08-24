@@ -21,12 +21,12 @@ function select(e) {
     let c = selected.getAttribute('col');
     let activeCol = document.querySelectorAll(`[col="${c}"]`);
     let activeRow = document.querySelectorAll(`[row="${r}"]`);
-    if(!e.shiftKey){
+    if (!e.shiftKey) {
       cells.forEach((cell) => {
-      // Resets all cells to white
-      cell.classList.remove('colored', 'active');
-      cell.children[0].classList.add('text--hidden');
-    });
+        // Resets all cells to white
+        cell.classList.remove('colored', 'active');
+        cell.children[0].classList.add('text--hidden');
+      });
     }
     selected.className.includes('text') // Paints selected cell
       ? selected.parentElement.classList.toggle('colored')
