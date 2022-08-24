@@ -21,11 +21,13 @@ function select(e) {
     let c = selected.getAttribute('col');
     let activeCol = document.querySelectorAll(`[col="${c}"]`);
     let activeRow = document.querySelectorAll(`[row="${r}"]`);
-    cells.forEach((cell) => {
+    if(!e.shiftKey){
+      cells.forEach((cell) => {
       // Resets all cells to white
       cell.classList.remove('colored', 'active');
       cell.children[0].classList.add('text--hidden');
     });
+    }
     selected.className.includes('text') // Paints selected cell
       ? selected.parentElement.classList.toggle('colored')
       : selected.classList.toggle('colored');
@@ -35,12 +37,12 @@ function select(e) {
     for (let i = 0; i < activeCol.length; i++) {
       // Highlights active cols and rows
       if (activeCol[i].tagName == 'DIV') {
-        activeCol[i].classList.toggle('active');
+        activeCol[i].classList.add('active');
       }
     }
     for (let i = 0; i < activeRow.length; i++) {
       if (activeRow[i].tagName == 'DIV') {
-        activeRow[i].classList.toggle('active');
+        activeRow[i].classList.add('active');
       }
     }
   }
