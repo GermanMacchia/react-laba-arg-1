@@ -8,38 +8,40 @@ function createGrid(cols, rows) {
     }
   }
 }
-createGrid(20, 30);
+createGrid(10, 15);
 let column = document.querySelectorAll('.column');
 column.forEach((col) => {
   col.addEventListener('click', select);
 });
 function select(e) {
+  const cells = document.querySelectorAll('div');
   let selected = e.target;
-  let text = e.target.children;
-  let r = selected.getAttribute('row');
-  let c = selected.getAttribute('col');
-  let activeCol = document.querySelectorAll(`[col="${c}"]`);
-  let activeRow = document.querySelectorAll(`[row="${r}"]`);
-  if (e.shiftKey) {
-    selected.className.includes('text') ? selected.parentElement.classList.toggle('colored') : selected.classList.toggle('colored');
-    selected.className.includes('text') ? selected.classList.toggle('text--hidden') : text[0].classList.toggle('text--hidden');
-  }
-  if ((selected.className.includes('cell') || selected.className.includes('text'))) {
-    activeCol.forEach((cell) => {
-      cell.classList.toggle('active');
+  if (selected.className.includes('cell') || selected.className.includes('text')) {
+    let r = selected.getAttribute('row');
+    let c = selected.getAttribute('col');
+    let activeCol = document.querySelectorAll(`[col="${c}"]`);
+    let activeRow = document.querySelectorAll(`[row="${r}"]`);
+    cells.forEach((cell) => {
+      // Resets all cells to white
+      cell.classList.remove('colored', 'active');
+      cell.children[0].classList.add('text--hidden');
     });
-    activeRow.forEach((cell) => {
-      cell.classList.toggle('active');
-    });
-    selected.className.includes('text') ? selected.parentElement.classList.toggle('colored') : selected.classList.toggle('colored');
-    selected.className.includes('text') ? selected.classList.toggle('text--hidden') : text[0].classList.toggle('text--hidden');
-  }
-  else if(selected.className.includes('cell') || selected.className.includes('text')){
-    document.querySelectorAll('div').forEach(element => {
-      element.className='active';
-      element.classList.toggle('text--hidden');
-    });
-    selected.classList.toggle('selected')
-    selected.classList.toggle()
+    selected.className.includes('text') // Paints selected cell
+      ? selected.parentElement.classList.toggle('colored')
+      : selected.classList.toggle('colored');
+    selected.className.includes('text')
+      ? selected.classList.toggle('text--hidden')
+      : selected.children[0].classList.toggle('text--hidden');
+    for (let i = 0; i < activeCol.length; i++) {
+      // Highlights active cols and rows
+      if (activeCol[i].tagName == 'DIV') {
+        activeCol[i].classList.toggle('active');
+      }
+    }
+    for (let i = 0; i < activeRow.length; i++) {
+      if (activeRow[i].tagName == 'DIV') {
+        activeRow[i].classList.toggle('active');
+      }
+    }
   }
 }
