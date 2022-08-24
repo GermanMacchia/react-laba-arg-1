@@ -239,39 +239,23 @@ function nthFibo(n) {
  * Exercise 14 - Cat and Mouse - 2D Version
  * https://www.codewars.com/kata/cat-and-mouse-2d-version/
  */
-
 function catMouse(map, moves) {
-  const mouseCoords = findCoordinates(map, 'm');
-  const catCoords = findCoordinates(map, 'C');
+  const split = map.split('\n');
+  const nmap = split.map((el) => [...el]);
+  let cat = -1,
+    mouse = -1;
 
-  if (!mouseCoords || !catCoords) return 'boring without two animals';
-
-  if (areCloser(catCoords, mouseCoords, moves)) return 'Caught!';
+  for (let i = 0; i < nmap.length; ++i) {
+    for (let j = 0; j < nmap[0].length; ++j) {
+      if (nmap[i][j] === 'C') cat = [j, i];
+      if (nmap[i][j] === 'm') mouse = [j, i];
+    }
+  }
+  if (mouse === -1 || cat === -1) return 'boring without two animals';
+  if (Math.abs(cat[0] - mouse[0]) + Math.abs(cat[1] - mouse[1]) <= moves) return 'Caught!';
 
   return 'Escaped!';
 }
-
-function areCloser(cat, mouse, moves) {
-  const { x: x1, y: y1 } = cat;
-  const { x: x2, y: y2 } = mouse;
-  return Math.hypot(Math.abs(x2 - x1), Math.abs(y2 - y1)) <= moves;
-}
-
-function findCoordinates(map, animal) {
-  const array2d = map.split(/\r?\n/);
-  let cords;
-  array2d.forEach((line, index) => {
-    const x = line.split('').findIndex((char) => char === animal);
-    if (x !== -1) {
-      cords = {
-        x,
-        y: index,
-      };
-    }
-  });
-  return cords;
-}
-
 /**
  * Exercise 15 - Duplicate Encoder
  * https://www.codewars.com/kata/duplicate-encoder
