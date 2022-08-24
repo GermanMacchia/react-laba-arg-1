@@ -8,7 +8,7 @@ function createGrid(cols, rows) {
     }
   }
 }
-createGrid(10, 15);
+createGrid(20, 30);
 let column = document.querySelectorAll('.column');
 column.forEach((col) => {
   col.addEventListener('click', select);
