@@ -153,18 +153,11 @@ function getMiddle(s) {
  * Exercise 7
  * http://www.codewars.com/kata/partition-on
  */
-function partitionOn(pred, items) {
-  items.sort((a, b) => {
-    if (pred(a) > pred(b)) {
-      return 1;
-    } else if (pred(b) > pred(a)) {
-      return -1;
-    }
-
-    return 0;
-  });
-
-  return items.findIndex(pred);
+ function partitionOn(pred, items) {
+  const truthies = items.filter(el => pred(el));
+  const falsies = items.filter(el => !pred(el));
+  items.splice(0, items.length, ...falsies, ...truthies);
+  return falsies.length;
 }
 
 /**
