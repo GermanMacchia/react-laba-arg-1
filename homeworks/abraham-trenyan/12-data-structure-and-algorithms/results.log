@@ -1,0 +1,12 @@
+1st Performance Tests: 
+Binary Search test - Finding first object: 0.232ms
+Binary Search test - Finding 37th object: 0.046ms   
+Straight Search test - Finding first object: 0.253ms
+Straight Search test - Finding 37th object: 0.048ms 
+Bubble sort test: 8.364ms
+2nd Performance Tests:
+Binary Search test - Finding first object: 0.216ms
+Binary Search test - Finding 37th object: 0.042ms
+Straight Search test - Finding first object: 0.184ms
+Straight Search test - Finding 37th object: 0.095ms
+Bubble sort test: 10.138ms
