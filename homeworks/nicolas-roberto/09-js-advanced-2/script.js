@@ -12,13 +12,14 @@ class Serializable {
         return (obj[key] = { isDate: true, dateobj: obj[key].getTime() });
       }
     });
-    return JSON.stringify(obj);
+    return `${obj.constructorName} ${JSON.stringify(obj)}`;
   }
   wakeFrom(serialized) {
     let awake = JSON.parse(serialized);
-    /* if (this.constructor.name !== awake.constructorName) {
+    if (this.constructor.name !== awake.constructorName) {
       throw new Error('Error');
-    } */ if (this.constructor.name === awake.constructorName) {
+    }
+    if (this.constructor.name === awake.constructorName) {
       awake = new this.constructor(awake);
     }
     for (let key in awake) {
