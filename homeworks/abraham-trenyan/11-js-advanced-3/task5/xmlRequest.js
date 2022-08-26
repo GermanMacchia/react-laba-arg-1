@@ -6,7 +6,6 @@ response.onload = function(){
     let users = jsonResponse.results;
     let container = document.querySelector('.container')
     for(let i=0; i<users.length; i++){
-      console.log(users[i].name)
       container.innerHTML+=`
       <div class="user">
           <img src=${users[i].picture.medium} alt="image of ${users[i].name.first} ${users[i].name.last} class="img">

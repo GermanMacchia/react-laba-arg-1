@@ -19,11 +19,11 @@ function validateMessage(msg) {
 async function sayJoke(apiUrl, jokeId) {
   let response = await fetch(apiUrl);
   let jsonResponse = await response.json();
-  if (apiUrl != 'http://great.jokes/christmas') {
+  if (!jsonResponse.jokes) {
     throw new Error(`No jokes at url: ${apiUrl}`);
   }
   const joke = jsonResponse.jokes.find((joke) => joke.id === jokeId);
-  if (typeof joke == 'undefined') {
+  if (!joke) {
     throw new Error(`No jokes found id: ${jokeId}`);
   }
   return {
