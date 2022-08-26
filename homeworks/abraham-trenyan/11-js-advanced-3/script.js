@@ -33,20 +33,19 @@ async function sayJoke(apiUrl, jokeId) {
 }
 // 3. setTimeout/setInterval
 let seconds = 0;
-function countElapsedTime(){
-    console.log(`Elapsed time: ${seconds} sec`);
-    seconds++;
-    if(seconds > 5){
-        clearInterval(chronometer);
-    }
+function countElapsedTime() {
+  console.log(`Elapsed time: ${seconds} sec`);
+  seconds++;
+  if (seconds > 5) {
+    clearInterval(chronometer);
+  }
 }
 let chronometer = setInterval(countElapsedTime, 1000);
 // 6. Digit or not
-function checkDigit(str){
-    if(str[0].match(/^\d+$/)){
-        console.log('the first character is a digit');
-    }
-    else{
-        console.log('first character is not a digit');
-    }
+function checkDigit(str) {
+  if (str[0].match(/^\d+$/)) {
+    console.log('the first character is a digit');
+  } else {
+    console.log('first character is not a digit');
+  }
 }
