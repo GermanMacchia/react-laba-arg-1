@@ -52,12 +52,12 @@ Once PR is created you have to do the following things:
 
 | Day          | Theme              |
 | :----------- | :----------------- |
-| August 2nd   | React basics |
-| August 6th   | Class and functional components |
-| August 9th   | Hooks |
-| August 13th  | React API, Code-splitting and Styling |
-| August 16th  | Routing, Error Boundaries and Patterns |
-| August 20th  | Proptypes and Redux |
-| August 23th  | SSR, Next.js |
-| August 27th  | Testing |
+| September 2nd   | React basics |
+| September 6th   | Class and functional components |
+| September 9th   | Hooks |
+| September 13th  | React API, Code-splitting and Styling |
+| September 16th  | Routing, Error Boundaries and Patterns |
+| September 20th  | Proptypes and Redux |
+| September 23th  | SSR, Next.js |
+| September 27th  | Testing |
 | October 2nd-7th | Third block exam |
