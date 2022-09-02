@@ -1,0 +1,26 @@
+.light{
+	position: relative;
+	width: 120px;
+	height: 120px;
+	box-shadow: inset 10px 0px 0px rgba(0, 0, 0, 0.1);
+	background: #312f2f;
+	border-radius: 60px;
+}
+
+.container{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	height: 90%;
+	align-items: center;
+	padding-top: 2rem;
+}
+
+.traffic-light{
+	width: 240px;
+	height: 560px;
+	margin: 10vh auto;
+	background: #585F68;
+	border-radius: 60px;	
+}
+
