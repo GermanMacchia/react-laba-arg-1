@@ -28,6 +28,12 @@ body {
   border-radius: 60px;
   position: relative;
   box-shadow: 24px 0px 0px 0px #0000001a inset;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 .traffic-light::before {
@@ -42,4 +48,28 @@ body {
   border-radius: 40px;
   z-index: -1;
   right: 20px;
+}
+
+.light {
+  width: 120px;
+  height: 120px;
+  box-shadow: 10px 0px 0px 0px #0000001a inset;
+  border-radius: 60px;
+  opacity: 0.5;
+}
+
+.red-light {
+  background-color: var(--red);
+}
+
+.yellow-light {
+  background-color: var(--yellow);
+}
+
+.green-light {
+  background-color: var(--green);
+}
+
+.active {
+  opacity: 1;
 }
