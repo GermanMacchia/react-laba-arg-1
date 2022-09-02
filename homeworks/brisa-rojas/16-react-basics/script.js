@@ -15,9 +15,9 @@ class TrafficLight extends React.Component {
       <div className="traffic-light">
         <div className="traffic-light__upper-thingy"></div>
         <div className="traffic-light__lights-container">
-          <div className="traffic-light__light traffic-light__light--red"></div>
-          <div className="traffic-light__light traffic-light__light--yellow"></div>
-          <div className="traffic-light__light traffic-light__light--green"></div>
+          <div className="traffic-light__light traffic-light__light_red"></div>
+          <div className="traffic-light__light traffic-light__light_yellow"></div>
+          <div className="traffic-light__light traffic-light__light_green"></div>
         </div>
       </div>
     );
