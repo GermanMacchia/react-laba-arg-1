@@ -1,0 +1,35 @@
+.traffic-light{
+    height: 500px;
+    width: 500px;
+
+    border: 2px red solid;
+}
+
+.traffic-light__head{
+    height: 50px;
+    width: 50px;
+    background-color: orange;
+}
+
+.traffic-light__body{
+    height: auto;
+    width: auto;
+    background-color: black;
+}
+
+.traffic-light__light{
+    height: 25%;
+    width: 80%;
+    background-color: rgb(27, 27, 27);
+    border-radius: 50%;
+
+}
+.traffic-light__light_red{
+    background-color: red;
+}
+.traffic-light__light_yellow{
+    background-color: yellow;
+}
+.traffic-light__light_green{
+    background-color: green;
+}
