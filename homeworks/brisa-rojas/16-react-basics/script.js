@@ -17,7 +17,7 @@ class TrafficLight extends React.Component {
         <div className="traffic-light__body">
             {Light('red', currentColor)}
             {Light('yellow', currentColor)}
-            {Light('green', currentColor)}
+            {Light('green', currentColor)} 
         </div>
       </div>
     );
