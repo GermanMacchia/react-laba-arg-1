@@ -1,14 +1,14 @@
 
 const TrafficLight = () => {
-  let time = 1000;
+  const TIME = 1000;
   return (
     <div className="container">
       <div className="post" />
       <div className="traffic-light">
         <div className="traffic-light__light-rail">
-          <Light color="red" time={time * 4} />
-          <Light color="yellow" time={time * 2} />
-          <Light color="green" time={time} />
+          <Light color="red" time={TIME * 4} />
+          <Light color="yellow" time={TIME * 2} />
+          <Light color="green" time={TIME} />
         </div>
       </div>
     </div>
@@ -29,19 +29,18 @@ class Light extends React.Component {
   twinkle = () => {
 
     setTimeout(() => {
-      this.setState({
-        ...this.state,
-        actual: this.state.light,
-      });
+      this.setState( (state) => ({
+        actual: state.light
+      }));
 
       if (!(this.state.light === "red")) {
         setTimeout(() => {
-          this.setState({
-            ...this.state,
-            actual: this.state.stop,
-          });
+          this.setState((state) => ({
+            actual: state.stop,
+          }));
         }, this.state.time);
       }
+      
     }, this.state.time);
   };
 
