@@ -5,12 +5,18 @@ class TrafficLight extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      color: 'red',
+      lightColors: ['red', 'yellow', 'green'],
+      counter:0
     };
   }
 
+    // componentDidMount() {
+    //     setInterval()
+    // }
   render() {
-    let currentColor = this.state.color;
+    let lightIndex = this.state.counter % 3;
+    let currentColor = this.state.lightColors[lightIndex];
+    this.setState(()=> {counter: this.state.counter + 1});
     return (
       <div className="traffic-light">
         <div className="traffic-light__head"></div>
