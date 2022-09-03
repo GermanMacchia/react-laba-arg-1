@@ -9,12 +9,19 @@ class TrafficLight extends React.Component {
       lightColors: ['red', 'yellow', 'green'],
       counter: 0,
     };
+
+    this.changeLight = this.changeLight.bind(this);
+  }
+
+  changeLight() {
+    this.setState({ lightColors: ['red', 'yellow', 'green'], counter: this.state.counter + 1 });
   }
 
   render() {
     let lightIndex = this.state.counter % 3;
     let currentColor = this.state.lightColors[lightIndex];
-    setInterval(() => {this.setState({lightColors: ['red', 'yellow', 'green'] , counter: lightIndex + 1})} , TIME_LAPSE);
+    setTimeout(() => this.changeLight(), TIME_LAPSE);
+
     return (
       <div className="traffic-light">
         <div className="traffic-light__head"></div>
