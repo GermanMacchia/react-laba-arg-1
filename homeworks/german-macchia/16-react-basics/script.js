@@ -22,7 +22,7 @@ const TrafficLight = () => {
 class Light extends React.Component {
   static counter = 0;
   static timeLapse = 0;
-  static NumOfLights = 0
+  static numOfLights = 0;
 
   constructor(props) {
     super(props);
@@ -65,7 +65,7 @@ class Light extends React.Component {
 
 //To change tick speed & quantity of Lights as config
 Light.timeLapse = 1000;
-Light.NumOfLights = 3
+Light.numOfLights = 3;
 const domContainer = document.querySelector("#root");
 const root = ReactDOM.createRoot(domContainer);
 root.render(<TrafficLight />);
