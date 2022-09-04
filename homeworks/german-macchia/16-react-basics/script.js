@@ -1,7 +1,7 @@
 const TrafficLight = () => {
   React.useEffect(() => {
     //start the loop click
-    Light.tick();
+    Light.click();
   });
 
   return (
@@ -9,7 +9,7 @@ const TrafficLight = () => {
       <div className="post" />
       <div className="traffic-light">
         <div className="traffic-light__light-rail">
-          {/*Change color and order as you will*/}
+          {/*Change color, add new lights and order as you will*/}
           <Light color="red" order={1} />
           <Light color="yellow" order={2} />
           <Light color="green" order={0} />
@@ -21,7 +21,8 @@ const TrafficLight = () => {
 
 class Light extends React.Component {
   static counter = 0;
-  static time = 0;
+  static timeLapse = 0;
+  static NumOfLights = 0
 
   constructor(props) {
     super(props);
@@ -33,21 +34,20 @@ class Light extends React.Component {
     };
   }
 
-  static tick() {
+  static click() {
     setInterval(() => {
       Light.counter++;
-    }, Light.time);
+    }, Light.timeLapse);
   }
 
   componentDidMount() {
     setInterval(() => {
-      if (Light.counter % 3 === this.state.order) {
+      if (Light.counter % Light.NumOfLights === this.state.order) {
         this.setState({ on: true });
       } else {
         this.setState({ on: false });
       }
-      this.forceUpdate();
-    }, Light.time);
+    }, Light.timeLapse);
   }
 
   render() {
@@ -63,8 +63,9 @@ class Light extends React.Component {
   }
 }
 
-//To change tick speed
-Light.time = 1000;
+//To change tick speed & quantity of Lights as config
+Light.timeLapse = 1000;
+Light.NumOfLights = 3
 const domContainer = document.querySelector("#root");
 const root = ReactDOM.createRoot(domContainer);
 root.render(<TrafficLight />);

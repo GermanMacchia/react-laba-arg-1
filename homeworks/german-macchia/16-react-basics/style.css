@@ -18,7 +18,7 @@
   margin: -40px 3.8rem;
   background: #414447;
   border-radius: 40px;
-  box-shadow: 5px 2px black;
+  box-shadow: 5px spx black;
 }
 
 .traffic-light {
@@ -30,7 +30,7 @@
   background: linear-gradient(to right, #29323c, #485563); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   border-radius: 60px;
   padding-top: 2rem;
-  box-shadow: 5px 5px rgb(10, 64, 66);
+  box-shadow: 5px 5px cadetblue;
 }
 
 .traffic-light__light-rail {
