@@ -42,7 +42,7 @@ class Light extends React.Component {
 
   componentDidMount() {
     setInterval(() => {
-      if (Light.counter % Light.NumOfLights === this.state.order) {
+      if (Light.counter % Light.numOfLights === this.state.order) {
         this.setState({ on: true });
       } else {
         this.setState({ on: false });
