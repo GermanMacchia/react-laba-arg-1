@@ -1,13 +1,20 @@
+
 const TrafficLight = () => {
-  const TIME = 1000;
+  
+  React.useEffect(()=>{
+    //start the loop click
+    Light.tick()
+  })
+
   return (
     <div className="container">
       <div className="post" />
       <div className="traffic-light">
         <div className="traffic-light__light-rail">
-          <Light color="red" time={TIME * 4} />
-          <Light color="yellow" time={TIME * 2} />
-          <Light color="green" time={TIME} />
+          {/*Change color and order as you will*/}
+          <Light color="red" order={1} />
+          <Light color="yellow" order={2} />
+          <Light color="green" order={0} />
         </div>
       </div>
     </div>
@@ -15,46 +22,49 @@ const TrafficLight = () => {
 };
 
 class Light extends React.Component {
+  static counter = 0;
+  static time = 0
+
   constructor(props) {
     super(props);
     this.state = {
       light: props.color,
       stop: "grey",
-      actual: !(props.color === "green") ? "grey" : "green",
-      time: props.time,
+      on: false,
+      order: props.order
     };
   }
 
-  twinkle = () => {
-    setTimeout(() => {
-      this.setState((state) => ({
-        actual: state.light,
-      }));
+  static tick(){
+    setInterval(()=>{
+      Light.counter++  
+    }, Light.time)
+  }
 
-      if (!(this.state.light === "red")) {
-        setTimeout(() => {
-          this.setState((state) => ({
-            actual: state.stop,
-          }));
-        }, this.state.time);
+  componentDidMount(){      
+    setInterval(()=>{
+      if( Light.counter % 3 === this.state.order){       
+        this.setState({ on: true})
+      }else{
+        this.setState({ on: false})
       }
-    }, this.state.time);
-  };
-
-  componentDidMount() {
-    this.twinkle();
+      this.forceUpdate()
+    }, Light.time)
   }
 
   render() {
     return (
       <div
         className="light"
-        style={{ backgroundColor: this.state.actual }}
+        key={this.state.light}
+        style={{ backgroundColor: this.state.on ? this.state.light : this.state.stop }}
       ></div>
     );
   }
 }
 
+//To change tick speed
+Light.time = 1000;
 const domContainer = document.querySelector("#root");
 const root = ReactDOM.createRoot(domContainer);
 root.render(<TrafficLight />);
