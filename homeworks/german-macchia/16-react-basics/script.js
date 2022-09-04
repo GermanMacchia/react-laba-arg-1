@@ -1,10 +1,8 @@
-
 const TrafficLight = () => {
-  
-  React.useEffect(()=>{
+  React.useEffect(() => {
     //start the loop click
-    Light.tick()
-  })
+    Light.tick();
+  });
 
   return (
     <div className="container">
@@ -23,7 +21,7 @@ const TrafficLight = () => {
 
 class Light extends React.Component {
   static counter = 0;
-  static time = 0
+  static time = 0;
 
   constructor(props) {
     super(props);
@@ -31,25 +29,25 @@ class Light extends React.Component {
       light: props.color,
       stop: "grey",
       on: false,
-      order: props.order
+      order: props.order,
     };
   }
 
-  static tick(){
-    setInterval(()=>{
-      Light.counter++  
-    }, Light.time)
+  static tick() {
+    setInterval(() => {
+      Light.counter++;
+    }, Light.time);
   }
 
-  componentDidMount(){      
-    setInterval(()=>{
-      if( Light.counter % 3 === this.state.order){       
-        this.setState({ on: true})
-      }else{
-        this.setState({ on: false})
+  componentDidMount() {
+    setInterval(() => {
+      if (Light.counter % 3 === this.state.order) {
+        this.setState({ on: true });
+      } else {
+        this.setState({ on: false });
       }
-      this.forceUpdate()
-    }, Light.time)
+      this.forceUpdate();
+    }, Light.time);
   }
 
   render() {
@@ -57,7 +55,9 @@ class Light extends React.Component {
       <div
         className="light"
         key={this.state.light}
-        style={{ backgroundColor: this.state.on ? this.state.light : this.state.stop }}
+        style={{
+          backgroundColor: this.state.on ? this.state.light : this.state.stop,
+        }}
       ></div>
     );
   }
