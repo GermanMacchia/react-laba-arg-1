@@ -30,7 +30,7 @@ class TrafficLight extends React.Component {
     }
   }
 
-  componentDidUnmont() {
+  componentWillUnmount() {
     clearInterval(this.interval);
   }
 
