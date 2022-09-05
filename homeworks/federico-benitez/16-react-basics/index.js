@@ -1,3 +1,5 @@
+const TIME_INTERVAL = 1000;
+
 class Light extends React.Component {
   constructor(props) {
     super(props);
@@ -15,18 +17,18 @@ class TrafficLight extends React.Component {
     this.state = { active: 'red' };
 
     this.interval = setInterval(() => {
-      this.changeColor();
-    }, 1000);
+      this.setState({ active: this.getNewColor() });
+    }, TIME_INTERVAL);
   }
 
-  changeColor() {
+  getNewColor() {
     switch (this.state.active) {
       case 'red':
-        return this.setState({ active: 'orange' });
+        return 'orange';
       case 'orange':
-        return this.setState({ active: 'green' });
+        return 'green';
       case 'green':
-        return this.setState({ active: 'red' });
+        return 'red';
     }
   }
 
