@@ -44,7 +44,8 @@ class Light extends React.Component {
     setInterval(() => {
       if (Light.counter % Light.numOfLights === this.state.order) {
         this.setState({ on: true });
-      } else {
+      }
+      if (this.state.on) {
         this.setState({ on: false });
       }
     }, Light.timeLapse);
