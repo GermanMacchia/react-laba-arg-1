@@ -44,34 +44,25 @@ body {
   gap: 24px;
 }
 
-.light {
+li {
   width: 120px;
   height: 120px;
-  background: #5b5b5b;
   box-shadow: inset 10px 0px 0px rgba(0, 0, 0, 0.1);
   border-radius: 60px;
+}
+
+.light {
+  background: #5b5b5b;
 }
 
 .red {
-  width: 120px;
-  height: 120px;
   background: #df4040;
-  box-shadow: inset 10px 0px 0px rgba(0, 0, 0, 0.1);
-  border-radius: 60px;
 }
 
 .yellow {
-  width: 120px;
-  height: 120px;
   background: #e9ec6a;
-  box-shadow: inset 10px 0px 0px rgba(0, 0, 0, 0.1);
-  border-radius: 60px;
 }
 
 .green {
-  width: 120px;
-  height: 120px;
   background: #04ca00;
-  box-shadow: inset 10px 0px 0px rgba(0, 0, 0, 0.1);
-  border-radius: 60px;
 }

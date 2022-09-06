@@ -1,5 +1,4 @@
 const rootContainer = document.querySelector('#root_container');
-const li = document.querySelector('li');
 
 const TrafficLight = () => {
   //Set a second coundtown, it starts in 2 to have 3 cowndown in total (2, 1, 0)
