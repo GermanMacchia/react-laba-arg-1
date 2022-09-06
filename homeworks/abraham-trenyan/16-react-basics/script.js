@@ -1,7 +1,25 @@
-/* const Element = () => {
-    return <h1>Hello World</h1>;
+const { useState, useEffect } = React;
+const TrafficLight = () => {
+  const [colorIdx, setColorIdx] = useState(0);
+  useEffect(() => {
+    setInterval(() => {
+      setColorIdx((idx) => idx + 1);
+    }, 2500);
+  }, []);
+  if (colorIdx === 3) {
+    setColorIdx(0);
+  }
+  return (
+    <>
+      <div className="traffic-light__head"></div>
+      <div className="traffic-light__body">
+        <div className={colorIdx === 0 ? 'light--red' : 'light--off'}></div>
+        <div className={colorIdx === 1 ? 'light--yellow' : 'light--off'}></div>
+        <div className={colorIdx === 2 ? 'light--green' : 'light--off'}></div>
+      </div>
+    </>
+  );
 };
-const body = document.querySelector('.root');
-const root = ReactDOM.createRoot(body);
-root.render(<Element />);
- */
+const page = document.querySelector('.container');
+const root = ReactDOM.createRoot(page);
+root.render(<TrafficLight />);
