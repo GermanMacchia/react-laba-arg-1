@@ -1,22 +1,25 @@
-const TrafficLight = () => {
-  React.useEffect(() => {
+class TrafficLight extends React.Component {
+  
+  componentDidMount(){
     //start the loop click
     Light.click();
-  });
+  };
 
-  return (
-    <div className="container">
-      <div className="post" />
-      <div className="traffic-light">
-        <div className="traffic-light__light-rail">
-          {/*Change color, add new lights and order as you will*/}
-          <Light color="red" order={1} />
-          <Light color="yellow" order={2} />
-          <Light color="green" order={0} />
+  render(){
+    return (
+      <div className="container">
+        <div className="post" />
+        <div className="traffic-light">
+          <div className="traffic-light__light-rail">
+            {/*Change color, add new lights and order as you will*/}
+            <Light color="red" order={1} />
+            <Light color="yellow" order={2} />
+            <Light color="green" order={0} />
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 class Light extends React.Component {
