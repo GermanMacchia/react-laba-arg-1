@@ -1,41 +1,56 @@
 import { Component } from 'react';
 
-const URL = 'https://tinyfac.es/api/data?limit=50&quality=0';
+const URL = 'https://tinyfac.es/api/data?limit=1&quality=0';
 
 class App extends Component {
-  state = {
-    users: [],
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: [],
+    };
 
-  componentDidMount() {
-    fetch(URL)
-      .then((response) => response.json())
-      .then(
-        (usersList) => {
-          this.setState({ users: usersList });
-        },
-        (err) => {
-          console.error(err);
-        },
-      );
+    this.fetchSingleUser = this.fetchSingleUser.bind(this);
+  }
+
+  async fetchSingleUser() {
+    try {
+      let response = await fetch(URL);
+      if (response.status === 200) {
+        let data = await response.json();
+        this.setState({
+          users: [...this.state.users, data[0]],
+        });
+      } else {
+        throw 'Error fetching users list';
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   render() {
-    console.log(this.state.users);
-    if (this.state.users.length === 0) {
-      return <div>Loading users, please wait...</div>;
-    }
+    console.log(this.state);
 
     return (
-      <div>
-        {this.state.users.slice(0, 10).map((user) => {
-          return (
-            <div key={user.id}>
-              <img src={user.url} width={50} height={50} />
-            </div>
-          );
-        })}
-      </div>
+      <>
+        <main className="container">
+          {/* Add users */}
+          <div className="empty-user" onClick={this.fetchSingleUser}>
+            <div className="plus-sign-hor"></div>
+            <div className="plus-sign-ver"></div>
+          </div>
+          {this.state.users.map((user) => {
+            return (
+              <div className="image" key={user.id}>
+                <img src={user.url} width={240} height={240} />
+              </div>
+            );
+          })}
+        </main>
+        <footer>
+          <button onClick={this.fetchData}>Refresh All</button>
+        </footer>
+      </>
     );
   }
 }
