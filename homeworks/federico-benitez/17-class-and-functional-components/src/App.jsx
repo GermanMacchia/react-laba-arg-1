@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { getNewImage, updatePhotos } from './services';
 import { AddNewPhoto, PictureGrid, RefreshButton } from './components';
 
 class App extends React.Component {
@@ -12,25 +12,29 @@ class App extends React.Component {
     this.refreshAll = this.refreshAll.bind(this);
   }
 
-  addNewPicture() {
-    this.setState({ images: [...this.state.images, 'new picture'] });
+  async addNewPicture() {
+    const newImageUrl = await getNewImage();
+
+    this.setState({
+      images: [...this.state.images, ...newImageUrl],
+    });
   }
 
-  refreshOne(selected) {
-    const newImages = this.state.images.map((url, i) => (selected === i ? 'replaced' : url));
+  async refreshOne(selected) {
+    const newImageUrl = await getNewImage();
+    const newImages = this.state.images.map((url, i) => (selected === i ? newImageUrl : url));
     this.setState({ images: newImages });
   }
 
-  refreshAll() {
-    const newImages = this.state.images.map(() => 'other images');
+  async refreshAll() {
+    const newImages = await updatePhotos(this.state.images.length);
     this.setState({ images: newImages });
   }
 
   render() {
     return (
       <>
-        <p>{JSON.stringify(this.state.images)}</p>
-        <PictureGrid />
+        <PictureGrid data={this.state.images} handleRefresh={this.refreshOne} />
         <AddNewPhoto onClick={this.addNewPicture} />
         <RefreshButton onClick={this.refreshAll} />
       </>

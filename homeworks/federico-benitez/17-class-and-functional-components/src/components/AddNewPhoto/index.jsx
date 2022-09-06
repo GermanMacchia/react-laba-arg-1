@@ -8,7 +8,7 @@ export default class AddNewPhoto extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.props.onClick}>Add new picture Component</button>
+        <button onClick={this.props.onClick}>Add new picture</button>
       </div>
     );
   }
