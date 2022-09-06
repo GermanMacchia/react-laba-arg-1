@@ -8,15 +8,16 @@ class App extends Component {
   };
 
   componentDidMount() {
-    try {
-      fetch(URL)
-        .then((response) => response.json())
-        .then((usersList) => {
+    fetch(URL)
+      .then((response) => response.json())
+      .then(
+        (usersList) => {
           this.setState({ users: usersList });
-        });
-    } catch (error) {
-      console.error(error);
-    }
+        },
+        (err) => {
+          console.error(err);
+        },
+      );
   }
 
   render() {
