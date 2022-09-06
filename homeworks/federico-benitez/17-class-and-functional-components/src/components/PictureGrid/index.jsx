@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import Picture from '../Picture';
+import { AddNewPhoto, Picture } from '../../components';
+
+import styles from './style.module.css';
 
 export default class PictureGrid extends Component {
   constructor(props) {
@@ -13,12 +15,13 @@ export default class PictureGrid extends Component {
 
   render() {
     return (
-      <ul>
+      <ul className={styles.gridPhotos}>
         {this.state.images.map((img, i) => (
-          <li onClick={() => this.props.handleRefresh(i)}>
-            <Picture key={img} url={img} onRefresh />
+          <li key={i} onClick={() => this.props.handleRefresh(i)}>
+            <Picture url={img} />
           </li>
         ))}
+        <AddNewPhoto onClick={this.props.handleAdd} />
       </ul>
     );
   }
