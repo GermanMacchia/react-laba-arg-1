@@ -1,3 +1,23 @@
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Roboto;
+  --primary: #5e217a;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+.container {
+  padding: 40px;
+  min-height: 100vh;
+  display: grid;
+  justify-content: center;
+  grid-template-rows: 90vh 10vh;
 }

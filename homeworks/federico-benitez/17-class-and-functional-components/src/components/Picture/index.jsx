@@ -1,5 +1,5 @@
 import React from 'react';
-
+import styles from './style.module.css';
 class Picture extends React.Component {
   constructor(props) {
     super(props);
@@ -7,11 +7,11 @@ class Picture extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    return state;
+    return { ...state, url: props.url };
   }
 
   render() {
-    return <img src={this.state.url} style={{ width: '100px', height: '100px' }} />;
+    return <img src={this.state.url} className={styles.photo} />;
   }
 }
 

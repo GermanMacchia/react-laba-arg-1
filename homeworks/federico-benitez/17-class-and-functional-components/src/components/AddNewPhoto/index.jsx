@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import styles from './style.module.css';
 export default class AddNewPhoto extends Component {
   constructor(props) {
     super(props);
@@ -8,7 +8,7 @@ export default class AddNewPhoto extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.props.onClick}>Add new picture</button>
+        <button className={styles.addButton} onClick={this.props.onClick} />
       </div>
     );
   }

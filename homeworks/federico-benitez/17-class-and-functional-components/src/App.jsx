@@ -33,11 +33,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <>
-        <PictureGrid data={this.state.images} handleRefresh={this.refreshOne} />
-        <AddNewPhoto onClick={this.addNewPicture} />
-        <RefreshButton onClick={this.refreshAll} />
-      </>
+      <main className="container">
+        <PictureGrid data={this.state.images} handleRefresh={this.refreshOne} handleAdd={this.addNewPicture} />
+        {this.state.images.length > 0 && <RefreshButton onClick={this.refreshAll} />}
+      </main>
     );
   }
 }
