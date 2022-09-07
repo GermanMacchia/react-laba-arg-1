@@ -57,10 +57,13 @@ class TrafficLight extends React.Component {
   render() {
     return (
       <>
-        <div className="trafficLight">
-          <Light color={this.state.red} />
-          <Light color={this.state.yellow} />
-          <Light color={this.state.green} />
+        <div>
+          <div className="trafficLight_head"></div>
+          <div className="trafficLight_body">
+            <Light color={this.state.red} />
+            <Light color={this.state.yellow} />
+            <Light color={this.state.green} />
+          </div>
         </div>
       </>
     );
