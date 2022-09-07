@@ -22,7 +22,7 @@ class App extends Component {
           users: [...this.state.users, fetchedUsers[0]],
         });
       } else {
-        throw 'Error fetching users list';
+        throw 'Error fetching user. Try to slow down on the requests and try again.';
       }
     } catch (error) {
       console.error(error);
@@ -63,6 +63,11 @@ class App extends Component {
           {this.state.users.map((user, index) => {
             return (
               <div className="image" key={user.id} onClick={() => this.refreshUser(index)}>
+                {/* Overylay */}
+                <div className="image__overlay">
+                  <img src="/refresh-vector1.svg" alt="" />
+                  <img src="/refresh-vector2.svg" alt="" />
+                </div>
                 <img src={user.url} width={240} height={240} />
               </div>
             );
