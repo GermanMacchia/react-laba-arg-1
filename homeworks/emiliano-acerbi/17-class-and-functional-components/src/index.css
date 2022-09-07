@@ -24,7 +24,6 @@ img {
 }
 
 .main {
-  flex: 1;
   padding: 2.5rem;
   display: flex;
   flex-wrap: wrap;
@@ -93,6 +92,7 @@ img {
 .footer {
   padding-block: 3rem;
   margin: 0 auto;
+  margin-top: auto;
 }
 
 .refresh-btn {

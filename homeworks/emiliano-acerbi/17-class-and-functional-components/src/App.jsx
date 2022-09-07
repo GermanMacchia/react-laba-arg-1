@@ -53,12 +53,6 @@ class App extends Component {
     return (
       <div className="container">
         <main className="main">
-          {/* Add users */}
-          <div className="empty-user" onClick={this.fetchSingleUser}>
-            <div className="plus-sign-hor"></div>
-            <div className="plus-sign-ver"></div>
-          </div>
-
           {/* Iterates over all the users available */}
           {this.state.users.map((user, index) => {
             return (
@@ -72,6 +66,12 @@ class App extends Component {
               </div>
             );
           })}
+
+          {/* Add users */}
+          <div className="empty-user" onClick={this.fetchSingleUser}>
+            <div className="plus-sign-hor"></div>
+            <div className="plus-sign-ver"></div>
+          </div>
         </main>
 
         {/* Footer */}
