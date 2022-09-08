@@ -1,6 +1,6 @@
 const rootEl = document.querySelector('#root');
 const root = ReactDOM.createRoot(rootEl);
-const TIME_LAPSE = 1500;
+const TIME_LAPSE = 1000;
 
 class TrafficLight extends React.Component {
   constructor(props) {
@@ -26,16 +26,16 @@ class TrafficLight extends React.Component {
       <div className="traffic-light">
         <div className="traffic-light__head"></div>
         <div className="traffic-light__body">
-          {Light('red', currentColor)}
-          {Light('yellow', currentColor)}
-          {Light('green', currentColor)}
+          <Light color='red' activeLight={currentColor}/>
+          <Light color='yellow' activeLight={currentColor}/>
+          <Light color='green' activeLight={currentColor}/>
         </div>
       </div>
     );
   }
 }
 
-function Light(color, activeLight) {
+function Light({color, activeLight}) {
   let className = 'traffic-light__light';
   if (color === activeLight) {
     className += ' traffic-light__light_' + color;
