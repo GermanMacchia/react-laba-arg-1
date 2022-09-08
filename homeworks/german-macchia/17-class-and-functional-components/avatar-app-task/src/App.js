@@ -38,7 +38,7 @@ class App extends React.Component {
       const json = await response.json();
       return json.map((photo) => {
         return {
-          id: photo.id,
+          id: photo.first_name + photo.id,
           url: photo.url,
           name: `${photo.first_name} ${photo.last_name}`,
         };
