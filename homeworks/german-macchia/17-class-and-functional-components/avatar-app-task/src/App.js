@@ -2,7 +2,7 @@ import "./App.css";
 import React from "react";
 import plusIcon from "./assets/plus_icon.svg";
 import PhotoContainer from "./components/PhotoContainer";
-import loadingCircles from "./assets/loading_circle.svg";
+import loadingCircle from "./assets/loading_circle.svg";
 
 class App extends React.Component {
   constructor(props) {
@@ -79,12 +79,14 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="grid-container">
+          <> 
           {this.displayPhotos()}
+          </>
           <button className="square_button" onClick={this.pushPhoto}>
             {this.state.loading ? (
               <img
                 className="square_button__loading"
-                src={loadingCircles}
+                src={loadingCircle}
                 alt="loading Circle"
               />
             ) : (
