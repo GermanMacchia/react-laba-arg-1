@@ -13,7 +13,7 @@ class App extends React.Component {
     };
   }
 
-  displayPhotos() {
+  displayPhotos = () => {
     return this.state.photos.map((photo) => {
       return (
         <PhotoContainer
@@ -25,19 +25,25 @@ class App extends React.Component {
         />
       );
     });
-  }
+  };
 
   getPhotos = async (cant) => {
-    let api = `https://tinyfac.es/api/data?limit=${cant}`;
+    const api = `https://tinyfac.es/api/data?limit=${cant}`;
     const response = await fetch(api);
-    const json = await response.json();
-    return json.map((photo) => {
-      return {
-        id: photo.id,
-        url: photo.url,
-        name: `${photo.first_name} ${photo.last_name}`,
-      };
-    });
+
+    if (response.status !== 200) {
+      this.setState(() => ({ loading: false }));
+      throw new Error("Too many Request, try later");
+    } else {
+      const json = await response.json();
+      return json.map((photo) => {
+        return {
+          id: photo.id,
+          url: photo.url,
+          name: `${photo.first_name} ${photo.last_name}`,
+        };
+      });
+    }
   };
 
   pushPhoto = async () => {
