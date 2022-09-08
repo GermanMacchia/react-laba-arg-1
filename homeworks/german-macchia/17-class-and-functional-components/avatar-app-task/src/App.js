@@ -79,9 +79,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="grid-container">
-          <> 
-          {this.displayPhotos()}
-          </>
+          <>{this.displayPhotos()}</>
           <button className="square_button" onClick={this.pushPhoto}>
             {this.state.loading ? (
               <img
