@@ -12,7 +12,16 @@ class Picture extends React.Component {
   }
 
   render() {
-    return <img src={this.state.url} className={`${styles.photo} ${this.state.isLoading ? styles.loading : ''}`} />;
+    return (
+      <div className={styles.card}>
+        {this.state.isLoading && (
+          <div className={styles.overlay}>
+            <img src="/001-refresh.svg" alt="reloading" className={styles.loading} />
+          </div>
+        )}
+        <img src={this.state.url} className={styles.photo} alt="photo" />
+      </div>
+    );
   }
 }
 
