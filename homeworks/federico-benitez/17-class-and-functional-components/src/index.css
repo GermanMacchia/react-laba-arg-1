@@ -16,8 +16,7 @@
 
 .container {
   padding: 40px;
-  min-height: 100vh;
   display: grid;
-  justify-content: center;
+  justify-items: center;
   grid-template-rows: 90vh 10vh;
 }

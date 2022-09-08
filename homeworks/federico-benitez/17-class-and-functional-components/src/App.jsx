@@ -1,12 +1,11 @@
 import React from 'react';
 import { getNewImage, updatePhotos } from './services';
-import { AddNewPhoto, PictureGrid, RefreshButton } from './components';
+import { PictureGrid } from './components';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { images: [] };
-
     this.addNewPicture = this.addNewPicture.bind(this);
     this.refreshOne = this.refreshOne.bind(this);
     this.refreshAll = this.refreshAll.bind(this);
@@ -34,8 +33,12 @@ class App extends React.Component {
   render() {
     return (
       <main className="container">
-        <PictureGrid data={this.state.images} handleRefresh={this.refreshOne} handleAdd={this.addNewPicture} />
-        {this.state.images.length > 0 && <RefreshButton onClick={this.refreshAll} />}
+        <PictureGrid
+          data={this.state.images}
+          handleRefresh={this.refreshOne}
+          handleRefreshAll={this.refreshAll}
+          handleAdd={this.addNewPicture}
+        />
       </main>
     );
   }
