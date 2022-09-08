@@ -10,7 +10,7 @@
 
 .grid-container{
   display: grid;
-  grid-template-columns: repeat( auto-fit, minmax(100px, 1fr) );
+  grid-template-columns: repeat( auto-fit, 250px );
   row-gap: 10px;
   margin: 20px;
 }
@@ -51,36 +51,39 @@
 }
 
 .container{
-  display: relative;
+  position: relative;
   width: 240px;
   height: 240px;  
+  
 }
 
 .container__reload_image{
-  top: 40px;
-  left: 80px;
-  z-index: 0;
+  position: absolute;
+  top: 70px;
+  left: 70px;
+  z-index: 1;
   width: 100px;
   height: 100px;
-  display: absolute;
 }
 
 
 .container__profile_image{
-  display: absolute;
+  position: absolute;
   border-radius: 16px;
   z-index: 0;
-  top: 10px;
-  left: 10px;
   width: 240px;
   height: 240px;
 }
 
+.container__reload_image:hover{
+  display: block;
+}
 
 .square_button__loading{
   height: 150px;
   animation: rotation 2s infinite linear;
 }
+
 
 @keyframes rotation {
   from {
