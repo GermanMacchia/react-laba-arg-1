@@ -5,7 +5,7 @@ class Faces extends Component {
     super();
     this.state = { images: [] };
   }
-  requestImg(e, imgAmount) {
+  getImg(e, imgAmount) {
     fetch(`https://tinyfac.es/api/data?limit=${imgAmount}&quality=0`)
       .then((res) => res.json())
       .then((result) => {
@@ -40,7 +40,7 @@ class Faces extends Component {
       <main>
         <section className="faces__container">
           {this.state.images.map((url, index) => (
-            <div className="face" id={index} key={index} onClick={(e) => this.requestImg(e, 1)}>
+            <div className="face" id={index} key={index} onClick={(e) => this.getImg(e, 1)}>
               <div className="face__img face__img-layer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -61,20 +61,20 @@ class Faces extends Component {
               <img className="face__img" src={url} loading="lazy" alt="random person"></img>
             </div>
           ))}
-          <div className="add" onClick={(e) => this.requestImg(e, 1)}>
+          <div className="add" onClick={(e) => this.getImg(e, 1)}>
             <div className="add__horizontal-line"></div>
             <div className="add__vertical-line"></div>
           </div>
         </section>
-        <section className="refresh-all">
+        <footer className="refresh-all">
           {this.state.images.length > 1 ? (
-            <button className="refresh-all__button" onClick={(e) => this.requestImg(e, this.state.images.length)}>
+            <button className="refresh-all__button" onClick={(e) => this.getImg(e, this.state.images.length)}>
               Refresh All
             </button>
           ) : (
             <></>
           )}
-        </section>
+        </footer>
       </main>
     );
   }
