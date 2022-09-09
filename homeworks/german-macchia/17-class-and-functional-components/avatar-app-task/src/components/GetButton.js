@@ -1,8 +1,8 @@
 import loadingCircle from "../assets/loading_circle.svg";
 import plusIcon from "../assets/plus_icon.svg";
-import React from "react";
+import React, { Component } from "react";
 
-class GetButton extends React.Component {
+class GetButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,7 +10,7 @@ class GetButton extends React.Component {
       pushPhoto: props.pushPhoto,
     };
   }
-
+  //when pushed, will trigger to father's component App pushPhoto Function
   triggerPushPhoto = async () => {
     this.setLoading(true);
     this.state.pushPhoto();

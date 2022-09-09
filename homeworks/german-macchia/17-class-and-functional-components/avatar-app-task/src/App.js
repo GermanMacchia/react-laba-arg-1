@@ -1,43 +1,23 @@
 import "./App.css";
-import React from "react";
+import React, { Component, createRef } from "react";
 import GetButton from "./components/GetButton";
 import PhotoList from "./components/PhotoList";
 
-class App extends React.Component {
+class App extends Component {
   constructor() {
     super();
-    this.list = React.createRef();
-    this.button = React.createRef();
+    this.list = createRef();
+    this.button = createRef();
   }
-  getPhotos = async (cant) => {
-    const api = `https://tinyfac.es/api/data?limit=${cant}&quality=${cant}`;
-    const response = await fetch(api);
-
-    if (response.status !== 200) {
-      throw new Error("Too many Request, try later");
-    } else {
-      const json = await response.json();
-      return json.map((photo) => {
-        return {
-          id: photo.first_name + photo.id,
-          url: photo.url,
-          name: `${photo.first_name} ${photo.last_name}`,
-        };
-      });
-    }
-  };
-
+  //when GetButton pushed, will trigger to List Children component addPhoto Function
+  //Then will trigger setLoading from GetButton
   pushPhoto = async () => {
-    const cantPhoto = 1;
-    const [photo] = await this.getPhotos(cantPhoto);
-    this.list.current.addPhoto(photo);
+    await this.list.current.addPhoto();
     this.button.current.setLoading(false);
   };
-
-  refreshAll = async () => {
-    const statePhotosLength = await this.list.current.getLength();
-    const newPhotos = await this.getPhotos(statePhotosLength);
-    this.list.current.refreshList(newPhotos);
+  //Will trigger RefreshList from List Children Component
+  refreshAll = () => {
+    this.list.current.refreshList();
   };
 
   render() {

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { PureComponent } from "react";
+import fetchPhotos from "../api";
 
-class PhotoContainer extends React.PureComponent {
+class PhotoContainer extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,15 +12,18 @@ class PhotoContainer extends React.PureComponent {
   }
 
   reload = async () => {
-    const api = "https://tinyfac.es/api/data?limit=1&quality=0";
-    const response = await fetch(api);
-    const [photo] = await response.json();
-
-    this.setState(() => ({
-      id: photo.id,
-      url: photo.url,
-      name: `${photo.first_name} ${photo.last_name}`,
-    }));
+    const cant = 1;
+    const response = await fetchPhotos(cant);
+    if (response.status !== 200) {
+      throw new Error("Too many Request, try later");
+    } else {
+      const [photo] = await response.json();
+      this.setState(() => ({
+        id: photo.id,
+        url: photo.url,
+        name: `${photo.first_name} ${photo.last_name}`,
+      }));
+    }
   };
 
   render() {
