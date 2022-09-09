@@ -34,7 +34,7 @@ function App() {
     setUsers(fetchedUsers);
   }
 
-  const isButtonDisabled = users.length === 0 ? true : false;
+  const isButtonDisabled = users.length === 0;
 
   return (
     <div className="container">
