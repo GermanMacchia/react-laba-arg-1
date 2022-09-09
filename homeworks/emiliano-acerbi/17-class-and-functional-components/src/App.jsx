@@ -48,7 +48,7 @@ class App extends Component {
 
   render() {
     // If there are no users, the refresh all button will be disabled
-    const isButtonDisabled = this.state.users.length === 0 ? true : false;
+    const isButtonDisabled = this.state.users.length === 0;
 
     return (
       <div className="container">
