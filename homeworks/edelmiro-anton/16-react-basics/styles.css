@@ -33,3 +33,18 @@
   background-color: #414447;
   border-radius: 40px 40px 0 0;
 }
+
+.light-red {
+  background-color: #df4040;
+}
+.light-yellow {
+  background-color: #e9ec6a;
+}
+
+.light-green {
+  background-color: #04ca00;
+}
+
+.light-grey {
+  background-color: #585f68;
+}

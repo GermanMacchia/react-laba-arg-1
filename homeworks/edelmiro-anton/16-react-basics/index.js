@@ -1,81 +1,46 @@
 const root = ReactDOM.createRoot(document.querySelector('#root'));
 
-const colors = {
-  red: { background: '#df4040' },
-  yellow: { background: '#e9ec6a' },
-  green: { background: '#04ca00' },
-  grey: { background: '#585f68' },
-};
-
 class TrafficLight extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      red: colors.red,
-      yellow: colors.grey,
-      green: colors.grey,
-      next: 'yellow',
+      color: 0,
     };
   }
 
-  lightChange = () => {
-    switch (this.state.next) {
-      case 'red':
-        this.setState({
-          red: colors.grey,
-          yellow: colors.grey,
-          green: colors.green,
-          next: 'yellow',
-        });
-        break;
-      case 'yellow':
-        this.setState({
-          red: colors.red,
-          yellow: colors.grey,
-          green: colors.grey,
-          next: 'green',
-        });
-        break;
-      case 'green':
-        this.setState({
-          red: colors.grey,
-          yellow: colors.yellow,
-          green: colors.grey,
-          next: 'red',
-        });
-        break;
-    }
-  };
+  componenDidMount() {
+    this.setState((prevState) => {
+      return {
+        color: prevState.color + 1,
+      };
+    });
 
-  componentDidMount() {
-    setInterval(() => {
-      this.lightChange();
-    }, 1000);
+    if (this.state.color === 3) {
+      this.setState({
+        color: 0,
+      });
+    }
   }
 
   render() {
+    setTimeout(() => {
+      this.componenDidMount();
+    }, 1000);
+
     return (
       <>
         <div>
           <div className="trafficLight_head"></div>
           <div className="trafficLight_body">
-            <Light color={this.state.red} />
-            <Light color={this.state.yellow} />
-            <Light color={this.state.green} />
+            <div className={`trafficLight_light ${this.state.color === 0 ? 'light-red' : 'light-grey'}`}></div>
+            <div className={`trafficLight_light ${this.state.color === 1 ? 'light-yellow' : 'light-grey'}`}></div>
+            <div className={`trafficLight_light ${this.state.color === 2 ? 'light-green' : 'light-grey'}`}></div>
           </div>
         </div>
       </>
     );
   }
-}
-
-function Light(props) {
-  return (
-    <>
-      <div className="trafficLight_light" style={props.color}></div>
-    </>
-  );
 }
 
 root.render(<TrafficLight />);
