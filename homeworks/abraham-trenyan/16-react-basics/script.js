@@ -13,9 +13,9 @@ const TrafficLight = () => {
     <>
       <div className="traffic-light__head"></div>
       <div className="traffic-light__body">
-        <div className={colorIdx === 0 ? 'light--red' : 'light--off'}></div>
-        <div className={colorIdx === 1 ? 'light--yellow' : 'light--off'}></div>
-        <div className={colorIdx === 2 ? 'light--green' : 'light--off'}></div>
+        <div className={`light ${colorIdx === 0 ? 'light--red' : 'light--off'}`}></div>
+        <div className={`light ${colorIdx === 1 ? 'light--yellow' : 'light--off'}`}></div>
+        <div className={`light ${colorIdx === 2 ? 'light--green' : 'light--off'}`}></div>
       </div>
     </>
   );
