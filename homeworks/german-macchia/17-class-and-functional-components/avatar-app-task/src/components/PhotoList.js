@@ -1,6 +1,6 @@
 import PhotoContainer from "./PhotoContainer";
 import React, { Component } from "react";
-import fetchPhotos from "../api";
+import fetchPhotos from "../fetchPhotos";
 
 class PhotoList extends Component {
   constructor(props) {
@@ -11,8 +11,9 @@ class PhotoList extends Component {
     };
   }
 
-  getPhotos = async (cant) => {
-    const response = await fetchPhotos(cant);
+  //fetch from api, receives quantity, returns array
+  getPhotos = async (quantity) => {
+    const response = await fetchPhotos(quantity);
     if (response.status !== 200) {
       throw new Error("Too many Request, try later");
     } else {
@@ -27,18 +28,21 @@ class PhotoList extends Component {
     }
   };
 
+  //Set length from array, call getPhoto with same quantity
   refreshList = async () => {
     const statePhotosLength = this.state.photos.length;
     const newPhotos = await this.getPhotos(statePhotosLength);
     this.setState({ photos: newPhotos });
-  }
+  };
 
+  //Push single photo to array
   addPhoto = async () => {
-    const cant = 1
-    const photo = await this.getPhotos(cant)
+    const quantity = 1;
+    const photo = await this.getPhotos(quantity);
     this.setState((state) => ({ photos: [...state.photos, ...photo] }));
-  }
+  };
 
+  //Returns array of one Photocontainer from object in array
   displayPhotos = () =>
     this.state.photos.map((photo) => {
       return (
@@ -47,7 +51,6 @@ class PhotoList extends Component {
           name={photo.name}
           key={photo.name + photo.id}
           id={photo.id}
-          reload={this.reloadPhoto}
         />
       );
     });

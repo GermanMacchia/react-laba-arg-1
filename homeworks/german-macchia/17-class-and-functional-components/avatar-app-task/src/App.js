@@ -9,13 +9,15 @@ class App extends Component {
     this.list = createRef();
     this.button = createRef();
   }
-  //when GetButton pushed, will trigger to List Children component addPhoto Function
-  //Then will trigger setLoading from GetButton
+
+  //when GetButton pushed, will trigger to PhotoList Children component addPhoto Function
+  //After this, will trigger setLoading from GetButton to false
   pushPhoto = async () => {
     await this.list.current.addPhoto();
     this.button.current.setLoading(false);
   };
-  //Will trigger RefreshList from List Children Component
+
+  //Will trigger RefreshList from PhotoList Children component
   refreshAll = () => {
     this.list.current.refreshList();
   };

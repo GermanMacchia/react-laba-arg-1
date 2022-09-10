@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import fetchPhotos from "../api";
+import fetchPhotos from "../fetchPhotos";
 
 class PhotoContainer extends PureComponent {
   constructor(props) {
@@ -11,6 +11,7 @@ class PhotoContainer extends PureComponent {
     };
   }
 
+  // reload new data for this single container
   reload = async () => {
     const cant = 1;
     const response = await fetchPhotos(cant);
