@@ -1,16 +1,27 @@
+#root {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .addButton {
   width: 100px;
   height: 100px;
   cursor: pointer;
 }
 
-.avatar{
-    width: 100px;
-    height: 100px;
-    cursor: pointer;
+.avatar {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  margin: 20px;
 }
 
-.app{
-  color: red;
-  text-align: center;
+#container {
+  max-width: 40%;
+  border: solid 1px grey;
+  border-radius: 50px;
+}
+
+#container .avatar {
+  margin-left: 50px;
 }
