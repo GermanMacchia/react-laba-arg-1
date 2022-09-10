@@ -20,18 +20,34 @@ function App() {
   }
 
   async function refreshUser(index) {
-    let response = await fetch(URL);
-    let fetchedUsers = await response.json();
-    let newUsers = [...users];
-    newUsers[index] = fetchedUsers[0];
-    setUsers(newUsers);
+    try {
+      let response = await fetch(URL);
+      if (response.status === 200) {
+        let fetchedUsers = await response.json();
+        let newUsers = [...users];
+        newUsers[index] = fetchedUsers[0];
+        setUsers(newUsers);
+      } else {
+        throw 'Error refreshing the user. Please try again';
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   async function refreshAllUsers() {
-    let usersLength = users.length;
-    let response = await fetch(`https://tinyfac.es/api/data?limit=${usersLength}&quality=0`);
-    let fetchedUsers = await response.json();
-    setUsers(fetchedUsers);
+    try {
+      let usersLength = users.length;
+      let response = await fetch(`https://tinyfac.es/api/data?limit=${usersLength}&quality=0`);
+      if (response.status === 200) {
+        let fetchedUsers = await response.json();
+        setUsers(fetchedUsers);
+      } else {
+        throw 'Error refreshing all users. Please try again';
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   const isButtonDisabled = users.length === 0;
