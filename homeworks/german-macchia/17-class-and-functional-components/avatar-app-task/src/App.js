@@ -2,6 +2,7 @@ import "./App.css";
 import React, { Component, createRef } from "react";
 import GetButton from "./components/GetButton";
 import PhotoList from "./components/PhotoList";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 class App extends Component {
   constructor() {
@@ -26,8 +27,10 @@ class App extends Component {
     return (
       <div className="App">
         <div className="grid-container">
-          <PhotoList ref={this.list} />
-          <GetButton ref={this.button} pushPhoto={this.pushPhoto} />
+          <ErrorBoundary>
+            <PhotoList ref={this.list} />
+            <GetButton ref={this.button} pushPhoto={this.pushPhoto} />
+          </ErrorBoundary>
         </div>
         <footer>
           <button className="footer__button" onClick={this.refreshAll}>

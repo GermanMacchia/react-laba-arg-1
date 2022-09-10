@@ -8,6 +8,7 @@ class PhotoContainer extends PureComponent {
       url: props.url,
       name: props.name,
       id: props.id,
+      error: false,
     };
   }
 
@@ -16,7 +17,10 @@ class PhotoContainer extends PureComponent {
     const cant = 1;
     const response = await fetchPhotos(cant);
     if (response.status !== 200) {
-      throw new Error("Too many Request, try later");
+      this.setState(() => ({
+        error: true,
+        errorMessage: `STATUS ${response.status}, ${response.statusText}`,
+      }));
     } else {
       const [photo] = await response.json();
       this.setState(() => ({
@@ -28,6 +32,9 @@ class PhotoContainer extends PureComponent {
   };
 
   render() {
+    if (this.state.error) {
+      throw new Error(this.state.errorMessage);
+    }
     return (
       <div className="container" onClick={() => this.reload()}>
         <img

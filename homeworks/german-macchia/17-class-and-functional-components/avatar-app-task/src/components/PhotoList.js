@@ -1,6 +1,7 @@
 import PhotoContainer from "./PhotoContainer";
 import React, { Component } from "react";
 import fetchPhotos from "../fetchPhotos";
+import ErrorBoundary from "./ErrorBoundary";
 
 class PhotoList extends Component {
   constructor(props) {
@@ -8,6 +9,8 @@ class PhotoList extends Component {
     this.state = {
       photos: [],
       refreshList: this.refreshList,
+      error: false,
+      errorMessage: "",
     };
   }
 
@@ -15,7 +18,10 @@ class PhotoList extends Component {
   getPhotos = async (quantity) => {
     const response = await fetchPhotos(quantity);
     if (response.status !== 200) {
-      throw new Error("Too many Request, try later");
+      this.setState(() => ({
+        error: true,
+        errorMessage: `STATUS ${response.status}, ${response.statusText}`,
+      }));
     } else {
       const json = await response.json();
       return json.map((photo) => {
@@ -39,23 +45,25 @@ class PhotoList extends Component {
   addPhoto = async () => {
     const quantity = 1;
     const photo = await this.getPhotos(quantity);
-    this.setState((state) => ({ photos: [...state.photos, ...photo] }));
+    if (photo) {
+      this.setState((state) => ({ photos: [...state.photos, ...photo] }));
+    }
   };
 
   //Returns array of one Photocontainer from object in array
   displayPhotos = () =>
     this.state.photos.map((photo) => {
       return (
-        <PhotoContainer
-          url={photo.url}
-          name={photo.name}
-          key={photo.name + photo.id}
-          id={photo.id}
-        />
+        <ErrorBoundary key={photo.name + photo.id}>
+          <PhotoContainer url={photo.url} name={photo.name} id={photo.id} />
+        </ErrorBoundary>
       );
     });
 
   render() {
+    if (this.state.error) {
+      throw new Error(this.state.errorMessage);
+    }
     return <>{this.displayPhotos()}</>;
   }
 }
