@@ -28,8 +28,8 @@ class App extends React.Component {
       .then(data => data[0].url);
   }
 
-  refreshAvatarImage(avatarId) {
-    let newAvatarURL = this.getNewAvatarImage();
+  async refreshAvatarImage(avatarId) {
+    let newAvatarURL = await this.getNewAvatarImage();
     let newAvatarImages = this.state.avatarImages.map(
       (avatarImage, index) => {
         if (index === avatarId) {
