@@ -17,21 +17,9 @@
 }
 
 .container {
-  display: grid;
-}
-.avatarContainer {
-  max-width: 50%;
-  width: 100%;
-  border-radius: 50px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 50%;
 }
 
 .avatarContainer .avatar {
   margin-left: 50px;
-}
-
-.refreshButton {
-  margin-right: auto;
-  margin-left: auto;
 }
