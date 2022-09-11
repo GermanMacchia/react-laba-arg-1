@@ -21,6 +21,10 @@
   margin: 20px;
 }
 
+.avatar-tile{
+  box-shadow:  4px 4px 4px rgba(0, 0, 0, 25%);
+}
+
 .avatar-tile__img {
   height: 100%;
   width: 100%;
