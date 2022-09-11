@@ -1,7 +1,6 @@
 import './App.css';
 import React from 'react';
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -13,17 +12,18 @@ class App extends React.Component {
     this.getNewAvatarImage = this.getNewAvatarImage.bind(this); 
   }
 
-   async addAvatar() {
+  async addAvatar() {
     const newAvatarImage =  await this.getNewAvatarImage();
-    this.setState({
-      avatarCounter: this.state.avatarCounter + 1,
-      avatarImages: [...this.state.avatarImages, newAvatarImage]
+    this.setState(() => { 
+      return ({
+        avatarCounter: this.state.avatarCounter + 1,
+        avatarImages: [...this.state.avatarImages, newAvatarImage]
+      })
     });
   }
 
-   async getNewAvatarImage(N) {
-    let avatarImageURL;
-    return  fetch('https://tinyfac.es/api/data?limit=1')
+  async getNewAvatarImage() {
+    return fetch('https://tinyfac.es/api/data?limit=1')
       .then(response => response.json())
       .then(data => data[0].url);
   }
@@ -39,10 +39,7 @@ class App extends React.Component {
         }
       }
     );
-    this.setState({
-        avatarImages: newAvatarImages
-      }
-    )
+    this.setState({avatarImages: newAvatarImages});
   }
 
   render() {
@@ -59,23 +56,16 @@ class App extends React.Component {
 
 
 class AvatarTile extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="avatar-tile tile" onClick={this.props.onClick} >
-        <img className="avatar-tile__img" src={this.props.avatarURL} />
+        <img className="avatar-tile__img" src={this.props.avatarURL} alt="avatar img" />
       </div>
     );
   }
 }
 
 class AddButton extends React.Component {
-  constructor(props) {
-    super(props);
-  } 
   render() {
     return (
       <div className="add-avatar-tile tile" onClick={this.props.onClick}>
