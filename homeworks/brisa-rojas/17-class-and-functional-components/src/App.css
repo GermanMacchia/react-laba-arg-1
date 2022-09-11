@@ -4,6 +4,13 @@
 
 .App {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.avatar-container {
+  display: flex;
   flex-flow: row wrap;
 }
 
@@ -11,7 +18,7 @@
   height: 240px;
   width: 240px;
   border-radius: 16px;
-  margin: 40px;
+  margin: 20px;
 }
 
 .avatar-tile__img {
@@ -30,7 +37,19 @@
   font-size: 80px;
 }
 
+.refresh-all-button{
+  background-color: var(--purple);
+  border-radius: 6px;
+  width: 320px;
+  height: 40px;
 
+  color: white;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
 
 @keyframes App-logo-spin {
   from {

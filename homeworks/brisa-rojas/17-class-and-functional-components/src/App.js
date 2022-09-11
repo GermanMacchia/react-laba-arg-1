@@ -45,10 +45,17 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-         {this.state.avatarImages.map((avatarImage, index) => {
-          return <AvatarTile  key= {"Avatar #" + index} avatarURL = {avatarImage} onClick={() => this.refreshAvatarImage(index)}/>
-        })} 
-        <AddButton onClick= {this.addAvatar}/> 
+        <div className="avatar-container">
+          {this.state.avatarImages.map((avatarImage, index) => {
+            return <AvatarTile  key= {"Avatar #" + index} avatarURL = {avatarImage} onClick={() => this.refreshAvatarImage(index)}/>
+          })} 
+          <AddButton onClick= {this.addAvatar}/>
+        </div>
+        <RefreshAllButton onClick={() => {
+          this.state.avatarImages.forEach((avatarImage, index) => {
+            this.refreshAvatarImage(index);
+          });
+        }}/>
       </div>
     );
   }
@@ -70,6 +77,16 @@ class AddButton extends React.Component {
     return (
       <div className="add-avatar-tile tile" onClick={this.props.onClick}>
         +
+      </div>
+    )
+  }
+}
+
+class RefreshAllButton extends React.Component {
+  render() {
+    return (
+      <div className="refresh-all-button" onClick={this.props.onClick}>
+        REFRESH ALL
       </div>
     )
   }
