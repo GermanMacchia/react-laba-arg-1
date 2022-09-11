@@ -5,7 +5,7 @@ export default class Img extends React.Component {
   render() {
     return (
       <>
-        <img src={this.props.src} alt="" className="avatar" />
+        <img src={this.props.src} alt="" className="avatar" onClick={this.props.onClick} />
       </>
     );
   }

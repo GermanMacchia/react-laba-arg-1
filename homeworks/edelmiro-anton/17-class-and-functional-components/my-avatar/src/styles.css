@@ -14,12 +14,28 @@
   height: 100px;
   cursor: pointer;
   margin: 20px;
+  border-radius: 16px;
 }
 
 .container {
-  width: 50%;
+  max-width: 75%;
+  width: 100%;
+  border: 1px green;
 }
 
 .avatarContainer .avatar {
   margin-left: 50px;
+}
+
+.btnRefreshAll {
+  background-color: #5e217a;
+  color: white;
+  margin-top: 50px;
+}
+
+.refreshContainer {
+  display: grid;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 50%;
 }

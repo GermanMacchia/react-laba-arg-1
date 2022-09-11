@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles.css';
 import AddButton from './AddButton';
 import Img from './Img';
+import RefreshAllBtn from './RefreshAllBtn';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -28,14 +29,37 @@ export default class App extends React.Component {
     console.log(...this.state.avatar);
   };
 
+  refreshAvatar = async (index) => {
+    this.fetchAvatar().then((avatar) => {
+      const refresh = [...this.state.avatar];
+      refresh.splice(index, 1, avatar);
+      this.setState({
+        avatar: refresh,
+      });
+    });
+  };
+
+  refreshAll = async () => {
+    const refreshAll = [...this.state.avatar];
+    const refreshAvatar = await Promise.all(refreshAll.map(() => this.fetchAvatar()));
+    this.setState({
+      avatar: refreshAvatar,
+    });
+  };
+
   render() {
     return (
       <>
-        <AddButton onClick={this.addAvatar} />
         <div className="container">
-          {this.state.avatar.map((people) => (
-            <Img src={people.url} />
-          ))}
+          <div>
+            {this.state.avatar.map((people) => (
+              <Img src={people.url} onClick={this.refreshAvatar} />
+            ))}
+            <AddButton onClick={this.addAvatar} />
+          </div>
+          <div className="refreshContainer">
+            <RefreshAllBtn onClick={this.refreshAll} />
+          </div>
         </div>
       </>
     );
