@@ -16,7 +16,7 @@ export default class App extends React.Component {
   fetchAvatar = async () => {
     const resp = await fetch('https://tinyfac.es/api/data?limit=1&quality=0');
     const data = await resp.json();
-    console.log(data);
+    // console.log(data);
     return data[0];
   };
 
@@ -26,17 +26,19 @@ export default class App extends React.Component {
         avatar: [...this.state.avatar, { ...avatar }],
       });
     });
-    console.log(...this.state.avatar);
+    // console.log(...this.state.avatar);
   };
 
   refreshAvatar = async (index) => {
     this.fetchAvatar().then((avatar) => {
       const refresh = [...this.state.avatar];
+
       refresh.splice(index, 1, avatar);
       this.setState({
         avatar: refresh,
       });
     });
+    // console.log(...this.state.avatar);
   };
 
   refreshAll = async () => {
@@ -52,8 +54,8 @@ export default class App extends React.Component {
       <>
         <div className="container">
           <div>
-            {this.state.avatar.map((people) => (
-              <Img src={people.url} onClick={this.refreshAvatar} />
+            {this.state.avatar.map((people, index) => (
+              <Img key={index} src={people.url} onClick={this.refreshAvatar()} />
             ))}
             <AddButton onClick={this.addAvatar} />
           </div>
