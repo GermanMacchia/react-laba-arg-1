@@ -4,6 +4,7 @@ const URL = 'https://tinyfac.es/api/data?limit=1&quality=0';
 
 function App() {
   const [users, setUsers] = useState([]);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   async function fetchSingleUser() {
     try {
@@ -21,6 +22,7 @@ function App() {
 
   async function refreshUser(index) {
     try {
+      setIsRefreshing(true);
       let response = await fetch(URL);
       if (response.status === 200) {
         let fetchedUsers = await response.json();
@@ -32,6 +34,8 @@ function App() {
       }
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsRefreshing(false);
     }
   }
 
@@ -61,8 +65,7 @@ function App() {
             <div className="image" key={user.id} onClick={() => refreshUser(index)}>
               {/* Overylay */}
               <div className="image__overlay">
-                <img src="/refresh-vector1.svg" alt="" />
-                <img src="/refresh-vector2.svg" alt="" />
+                <img src="/001-refresh.svg" className={`${isRefreshing && 'image__animation'}`} alt="" />
               </div>
               <img src={user.url} width={240} height={240} />
             </div>
