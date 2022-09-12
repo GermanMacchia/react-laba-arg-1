@@ -41,7 +41,7 @@ class Faces extends Component {
         <section className="faces__container">
           {this.state.images.map((url, index) => (
             <div className="face" id={index} key={index} onClick={(e) => this.getImg(e, 1)}>
-              <div className="face__img face__img-layer">
+              <div className="face__img face__img--layer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="87"
