@@ -16,11 +16,9 @@ class ErrorBoundary extends Component {
   render() {
     if (this.state.errorInfo) {
       return (
-        <div className="errorBoundary" >
+        <div className="errorBoundary">
           <div className="errorBoundary__info">
-            <h2>
-              Something went wrong
-            </h2>
+            <h2>Something went wrong</h2>
             <details style={{ whiteSpace: "pre-wrap" }}>
               <br />
               {this.state.error && this.state.error.toString()}

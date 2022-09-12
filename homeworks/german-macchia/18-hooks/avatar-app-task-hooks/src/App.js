@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useCallback } from "react";
 import { GetButton } from "./components/GetButton";
 import PhotoList from "./components/PhotoList";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -8,15 +8,14 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [cantPhotos, setCantPhotos] = useState(0);
   const [refresh, setRefresh] = useState(false);
-  const counter = useRef(0);
 
+  //set nº of photos into PhotoList
   const handleNewPhoto = useCallback(() => {
     setCantPhotos((cant) => cant + 1);
   }, []);
 
   return (
     <div className="App">
-      {console.log("render App: " + counter.current++)}
       <div className="grid-container">
         <ErrorBoundary>
           <PhotoList

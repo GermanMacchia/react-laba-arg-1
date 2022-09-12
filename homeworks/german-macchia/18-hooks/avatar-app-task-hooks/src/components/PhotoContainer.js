@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import fetchPhotos from "../fetchPhotos";
 
 export const PhotoContainer = React.memo(({ url, name, id }) => {
   const [photo, setPhoto] = useState({ url: url, name: name, id: id });
   const [error, setError] = useState({ error: false, errorMessage: "" });
-  const counter = useRef(0);
 
   // reload new data for this single container
   const reload = async () => {
@@ -25,7 +24,7 @@ export const PhotoContainer = React.memo(({ url, name, id }) => {
     }
   };
 
-
+  //throw new Error if occurs
   useEffect(() => {
     if (error.error) {
       throw new Error(error.errorMessage);
@@ -33,12 +32,7 @@ export const PhotoContainer = React.memo(({ url, name, id }) => {
   }, [error]);
 
   return (
-    <div
-      className="container"
-      onClick={() => reload()}
-      key={photo.id}
-    >
-      {console.log("render App: " + counter.current++)}
+    <div className="container" onClick={() => reload()} key={photo.id}>
       <img
         className="container__profile_image"
         src={photo.url}
@@ -47,4 +41,4 @@ export const PhotoContainer = React.memo(({ url, name, id }) => {
       <div className="container__image_box" />
     </div>
   );
-})
+});

@@ -107,8 +107,7 @@
   box-shadow: 1px 1px 1px #5e217a;
 }
 
-.errorBoundary{
-
+.errorBoundary {
   width: 240px;
   height: 240px;
   border-radius: 16px;
@@ -117,6 +116,6 @@
   color: antiquewhite;
 }
 
-.errorBoundary__info{
+.errorBoundary__info {
   margin: 25px;
 }

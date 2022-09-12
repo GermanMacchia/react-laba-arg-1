@@ -1,16 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { PhotoContainer } from "./PhotoContainer";
 import ErrorBoundary from "./ErrorBoundary";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import fetchPhotos from "../fetchPhotos";
 
-export default function PhotoList({ cantPhotos, onLoading, refresh, handleRefresh }) {
+export default function PhotoList({
+  cantPhotos,
+  handleLoading,
+  refresh,
+  handleRefresh,
+}) {
   const [data, setData] = useState([]);
   const [error, setError] = useState({ error: false, errorMessage: "" });
   const [photos, setPhotos] = useState([]);
-  const counter = useRef(0);
 
-  //call data from api into data array, set 10 values as default 
+  //call data from api into data array, set 10 values as default
   const init = async () => {
     const initialValue = 10;
     const response = await fetchPhotos(initialValue);
@@ -29,11 +33,11 @@ export default function PhotoList({ cantPhotos, onLoading, refresh, handleRefres
         };
       });
       setData(avatars);
-      onLoading();
+      handleLoading();
     }
   };
 
-  //Push single photo into array from data array. 
+  //Push single photo into array from data array.
   //When data array is empty calls API again
   const pushPhoto = () => {
     if (data.length > 0) {
@@ -41,7 +45,7 @@ export default function PhotoList({ cantPhotos, onLoading, refresh, handleRefres
       const newPhoto = auxData.pop();
       setPhotos((photos) => [...photos, newPhoto]);
       if (auxData.length === 0) {
-        onLoading();
+        handleLoading();
         init();
       } else {
         setData(auxData);
@@ -67,10 +71,10 @@ export default function PhotoList({ cantPhotos, onLoading, refresh, handleRefres
         };
       });
       setPhotos(avatars);
-      handleRefresh()
+      handleRefresh();
     }
-  }
-  
+  };
+
   //will throw error if error state changes
   useEffect(() => {
     if (error.error) {
@@ -84,24 +88,17 @@ export default function PhotoList({ cantPhotos, onLoading, refresh, handleRefres
   }, []);
   //call when refresh is set into TRUE
   useEffect(() => {
-    if(refresh){
-      refreshAll()
+    if (refresh) {
+      refreshAll();
     }
   }, [refresh]);
 
   //call every time when cantPhotos changes
   useEffect(() => {
-    if(data){
+    if (data) {
       pushPhoto();
     }
   }, [cantPhotos]);
-
-  //call when error state change
-  useEffect(() => {
-    if (error.error) {
-      throw new Error(error.errorMessage);
-    }
-  }, [error]);
 
   return (
     <>
@@ -109,7 +106,6 @@ export default function PhotoList({ cantPhotos, onLoading, refresh, handleRefres
         photos.map((photo) => {
           return (
             <ErrorBoundary key={photo.name + photo.id}>
-              {console.log("render App: " + counter.current++)}
               <PhotoContainer url={photo.url} name={photo.name} id={photo.id} />
             </ErrorBoundary>
           );
