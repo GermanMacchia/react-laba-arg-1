@@ -1,9 +1,7 @@
+import React from 'react';
+
 function App() {
-  return (
-    <div>
-      <h1>Setup</h1>
-    </div>
-  );
+  return <h1 className="text-3xl font-bold">Hello Solvd!</h1>;
 }
 
 export default App;
