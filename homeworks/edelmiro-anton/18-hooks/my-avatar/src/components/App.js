@@ -7,9 +7,9 @@ import { RefreshAllBtn } from './RefreshAllBtn';
 export const App = () => {
   const [avatar, setAvatar] = useState([]);
 
-  useEffect(() => {
-    fetchAvatar();
-  }, []);
+  // useEffect(() => {
+  //   fetchAvatar();
+  // }, []);
 
   const fetchAvatar = async () => {
     const resp = await fetch('https://tinyfac.es/api/data?limit=1&quality=0');
@@ -21,8 +21,8 @@ export const App = () => {
   const addAvatar = () => {
     fetchAvatar().then((person) => {
       setAvatar([...avatar, { ...person }]);
-      console.log(person);
-      console.log({ ...avatar });
+      // console.log(person);
+      // console.log({ ...avatar });
     });
   };
 
@@ -37,13 +37,8 @@ export const App = () => {
 
   const refreshAll = async () => {
     const refreshAll = [...avatar];
-    const refreshAvatar = await Promise.all(
-      refreshAll.map(() => {
-        fetchAvatar();
-      }),
-    );
+    const refreshAvatar = await Promise.all(refreshAll.map(() => fetchAvatar()));
     setAvatar(refreshAvatar);
-    console.log(1);
   };
 
   return (
