@@ -10,6 +10,7 @@ class App extends React.Component {
     this.state = {
       avatarCounter: 0,
       avatarImages: [],
+      avatarLoading: [],
     };
     this.addAvatar = this.addAvatar.bind(this);
     this.getNewAvatarImage = this.getNewAvatarImage.bind(this);
@@ -21,6 +22,7 @@ class App extends React.Component {
       return {
         avatarCounter: this.state.avatarCounter + 1,
         avatarImages: [...this.state.avatarImages, newAvatarImage],
+        avatarLoading: [...this.state.avatarLoading, false],
       };
     });
   }
@@ -32,7 +34,12 @@ class App extends React.Component {
   }
 
   async refreshAvatarImage(avatarId) {
+    let onLoadAvatar = this.state.avatarLoading;
+    onLoadAvatar[avatarId] = true;
+    this.setState({ avatarLoading: onLoadAvatar });
+    
     let newAvatarURL = await this.getNewAvatarImage();
+
     let newAvatarImages = this.state.avatarImages.map((avatarImage, index) => {
       if (index === avatarId) {
         return newAvatarURL;
@@ -52,6 +59,7 @@ class App extends React.Component {
               <AvatarTile
                 key={'Avatar #' + index}
                 avatarURL={avatarImage}
+                isLoading={this.state.avatarLoading[index]}
                 onClick={() => this.refreshAvatarImage(index)}
               />
             );
