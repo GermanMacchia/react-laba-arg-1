@@ -49,15 +49,13 @@ export const App = () => {
   return (
     <>
       <div className="container">
-        <div>
+        <div style={{ display: '-webkit-box' }}>
           {avatar.map((people, index) => (
             <Img src={people.url} onClick={() => refreshAvatar(index)} />
           ))}
           <AddButton onClick={addAvatar} />
         </div>
-        <div className="refreshContainer">
-          <RefreshAllBtn onClick={refreshAll} />
-        </div>
+        <div className="refreshContainer">{avatar.length ? <RefreshAllBtn onClick={refreshAll} /> : null}</div>
       </div>
     </>
   );
