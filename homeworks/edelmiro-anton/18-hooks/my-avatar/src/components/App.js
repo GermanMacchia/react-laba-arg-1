@@ -43,6 +43,7 @@ export const App = () => {
       }),
     );
     setAvatar(refreshAvatar);
+    console.log(1);
   };
 
   return (

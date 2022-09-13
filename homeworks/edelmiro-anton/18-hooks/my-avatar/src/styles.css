@@ -15,6 +15,7 @@
   cursor: pointer;
   margin: 20px;
   border-radius: 16px;
+  z-index: 0;
 }
 
 .container {
@@ -38,4 +39,20 @@
   margin-right: auto;
   margin-left: auto;
   max-width: 50%;
+}
+
+.refreshButton {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  margin: 20px;
+  z-index: 1;
+  transition: all 0.5s ease-in;
+  opacity: 0;
+}
+
+.refreshButton:hover {
+  opacity: 0.6;
+  background-color: antiquewhite;
+  cursor: pointer;
 }
