@@ -29,11 +29,11 @@ export default class App extends React.Component {
     // console.log(...this.state.avatar);
   };
 
-  refreshAvatar = async (index) => {
-    this.fetchAvatar().then((avatar) => {
+  refreshAvatar = (index) => {
+    this.fetchAvatar().then((person) => {
       const refresh = [...this.state.avatar];
 
-      refresh.splice(index, 1, avatar);
+      refresh.splice(index, 1, person);
       this.setState({
         avatar: refresh,
       });
@@ -55,7 +55,7 @@ export default class App extends React.Component {
         <div className="container">
           <div>
             {this.state.avatar.map((people, index) => (
-              <Img key={index} src={people.url} onClick={this.refreshAvatar()} />
+              <Img src={people.url} onClick={() => this.refreshAvatar(index)} />
             ))}
             <AddButton onClick={this.addAvatar} />
           </div>
