@@ -3,8 +3,7 @@ import plusIcon from "../assets/plus_icon.svg";
 import React from "react";
 
 export const GetButton = React.memo(({ handleNewPhoto, loading }) => {
-
-  return ( 
+  return (
     <button className="square_button" onClick={handleNewPhoto}>
       {loading ? (
         <img
