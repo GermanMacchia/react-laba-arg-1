@@ -53,14 +53,14 @@ export default class App extends React.Component {
     return (
       <>
         <div className="container">
-          <div>
+          <div style={{ display: '-webkit-box' }}>
             {this.state.avatar.map((people, index) => (
               <Img src={people.url} onClick={() => this.refreshAvatar(index)} />
             ))}
             <AddButton onClick={this.addAvatar} />
           </div>
           <div className="refreshContainer">
-            <RefreshAllBtn onClick={this.refreshAll} />
+            {this.state.avatar.length ? <RefreshAllBtn onClick={this.refreshAll} /> : null}
           </div>
         </div>
       </>
