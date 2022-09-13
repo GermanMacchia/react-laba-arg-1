@@ -50,7 +50,7 @@ export const App = () => {
       <div className="container">
         <div>
           {avatar.map((people, index) => (
-            <Img src={people.data[0].url} onClick={() => refreshAvatar(index)} />
+            <Img src={people.url} onClick={() => refreshAvatar(index)} />
           ))}
           <AddButton onClick={addAvatar} />
         </div>
