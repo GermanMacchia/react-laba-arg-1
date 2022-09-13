@@ -10,8 +10,20 @@ class AvatarTile extends React.Component {
     return (
       <div className="avatar-tile tile" onClick={this.props.onClick}>
         <img className="avatar-tile__img" src={this.props.avatarURL} alt="avatar img" />
-        <div className="avatar-tile__overlay">
-          <img className={this.props.isLoading ? 'avatar-tile__refresh-icon avatar-tile__refresh-icon_loading' : 'avatar-tile__refresh-icon'} src={refreshIcon} alt="refresh img" />
+        <div
+          className={
+            this.props.isLoading ? 'avatar-tile__overlay avatar-tile__overlay_loading' : 'avatar-tile__overlay'
+          }
+        >
+          <img
+            className={
+              this.props.isLoading
+                ? 'avatar-tile__refresh-icon avatar-tile__refresh-icon_loading'
+                : 'avatar-tile__refresh-icon'
+            }
+            src={refreshIcon}
+            alt="refresh img"
+          />
         </div>
       </div>
     );

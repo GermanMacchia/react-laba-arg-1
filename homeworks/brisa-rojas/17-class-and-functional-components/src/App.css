@@ -61,12 +61,15 @@
   filter: invert(100%);
 }
 
-.avatar-tile__overlay:hover, .avatar-tile__refresh-icon_refreshing {
+.avatar-tile__overlay:hover,
+.avatar-tile__refresh-icon_loading,
+.avatar-tile__overlay_loading {
   cursor: pointer;
   opacity: 1;
 }
 
-.avatar-tile__refresh-icon_loading{
+.avatar-tile__refresh-icon_loading {
+  opacity: 1;
   animation: spin 2s linear infinite;
 }
 /* add avatar tile  */
