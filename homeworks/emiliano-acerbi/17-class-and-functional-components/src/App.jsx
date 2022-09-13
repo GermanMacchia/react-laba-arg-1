@@ -6,6 +6,7 @@ class App extends Component {
     super(props);
     this.state = {
       users: [],
+      isRefreshing: false,
     };
 
     this.fetchSingleUser = this.fetchSingleUser.bind(this);
@@ -19,6 +20,7 @@ class App extends Component {
       if (response.status === 200) {
         let fetchedUsers = await response.json();
         this.setState({
+          ...this.state,
           users: [...this.state.users, fetchedUsers[0]],
         });
       } else {
@@ -30,20 +32,51 @@ class App extends Component {
   }
 
   async refreshUser(index) {
-    let response = await fetch(URL);
-    let fetchedUsers = await response.json();
-    let newUsers = { users: [...this.state.users] };
-    newUsers.users[index] = fetchedUsers[0];
-    this.setState(newUsers);
+    try {
+      this.setState({
+        ...this.state,
+        isRefreshing: true,
+      });
+
+      let response = await fetch(URL);
+
+      if (response.status === 200) {
+        let fetchedUsers = await response.json();
+        let newState = {
+          ...this.state,
+        };
+        newState.users[index] = fetchedUsers[0];
+        this.setState(newState);
+      } else {
+        throw 'Error refreshing user. Please try again';
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.setState({
+        ...this.state,
+        isRefreshing: false,
+      });
+    }
   }
 
   async refreshAllUsers() {
-    let usersLength = this.state.users.length;
-    let response = await fetch(`https://tinyfac.es/api/data?limit=${usersLength}&quality=0`);
-    let fetchedUsers = await response.json();
-    this.setState({
-      users: fetchedUsers,
-    });
+    try {
+      let usersLength = this.state.users.length;
+      let response = await fetch(`https://tinyfac.es/api/data?limit=${usersLength}&quality=0`);
+
+      if (response.status === 200) {
+        let fetchedUsers = await response.json();
+        this.setState({
+          ...this.state,
+          users: fetchedUsers,
+        });
+      } else {
+        throw 'Error refreshing all users. Please try again';
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   render() {
@@ -59,8 +92,7 @@ class App extends Component {
               <div className="image" key={user.id} onClick={() => this.refreshUser(index)}>
                 {/* Overylay */}
                 <div className="image__overlay">
-                  <img src="/refresh-vector1.svg" alt="" />
-                  <img src="/refresh-vector2.svg" alt="" />
+                  <img src="/001-refresh.svg" className={`${this.state.isRefreshing && 'image__animation'}`} alt="" />
                 </div>
                 <img src={user.url} width={240} height={240} />
               </div>

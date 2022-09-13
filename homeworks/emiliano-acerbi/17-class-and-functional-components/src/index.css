@@ -89,6 +89,12 @@ img {
   opacity: 1;
 }
 
+.image__animation {
+  animation-name: refresh;
+  animation-duration: 0.75s;
+  animation-iteration-count: infinite;
+}
+
 .footer {
   padding-block: 3rem;
   margin: 0 auto;
@@ -117,4 +123,13 @@ img {
 
 .refresh-btn:hover {
   opacity: 0.8;
+}
+
+@keyframes refresh {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
 }
