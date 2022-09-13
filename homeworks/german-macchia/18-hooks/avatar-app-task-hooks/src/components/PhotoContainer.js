@@ -7,20 +7,19 @@ export const PhotoContainer = React.memo(({ url, name, id }) => {
 
   // reload new data for this single container
   const reload = async () => {
-    const cant = 1;
-    const response = await fetchPhotos(cant);
-    if (response.status !== 200) {
-      setError(() => ({
-        error: true,
-        errorMessage: `STATUS ${response.status}, ${response.statusText}`,
-      }));
-    } else {
-      const [photo] = await response.json();
+    try { 
+      const quantity = 1;
+      const [photo] = await fetchPhotos(quantity);
       setPhoto(() => ({
         id: photo.first_name + photo.id,
         url: photo.url,
         name: `${photo.first_name} ${photo.last_name}`,
       }));
+    } catch (error) {
+      setError({
+        error: true,
+        errorMessage: error.message,
+      });
     }
   };
 

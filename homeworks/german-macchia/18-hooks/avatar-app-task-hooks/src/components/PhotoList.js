@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { PhotoContainer } from "./PhotoContainer";
 import ErrorBoundary from "./ErrorBoundary";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import fetchPhotos from "../fetchPhotos";
 
 export default function PhotoList({
@@ -14,27 +14,23 @@ export default function PhotoList({
   const [error, setError] = useState({ error: false, errorMessage: "" });
   const [photos, setPhotos] = useState([]);
 
+  const callAPI = async (quantity) => {
+    try {
+      return await fetchPhotos(quantity);
+    } catch (error) {
+      setError({
+        error: true,
+        errorMessage: error.message,
+      });
+    }
+  };
+
   //call data from api into data array, set 10 values as default
   const init = async () => {
     const initialValue = 10;
-    const response = await fetchPhotos(initialValue);
-    if (response.status !== 200) {
-      setError({
-        error: true,
-        errorMessage: `STATUS ${response.status}, ${response.statusText}`,
-      });
-    } else {
-      const json = await response.json();
-      const avatars = json.map((photo) => {
-        return {
-          id: photo.first_name + photo.id,
-          url: photo.url,
-          name: `${photo.first_name} ${photo.last_name}`,
-        };
-      });
-      setData(avatars);
-      handleLoading();
-    }
+    const avatars = await callAPI(initialValue);
+    setData(avatars);
+    handleLoading();
   };
 
   //Push single photo into array from data array.
@@ -55,24 +51,9 @@ export default function PhotoList({
 
   //refresh as many values there are in photos
   const refreshAll = async () => {
-    const response = await fetchPhotos(cantPhotos);
-    if (response.status !== 200) {
-      setError({
-        error: true,
-        errorMessage: `STATUS ${response.status}, ${response.statusText}`,
-      });
-    } else {
-      const json = await response.json();
-      const avatars = json.map((photo) => {
-        return {
-          id: photo.first_name + photo.id,
-          url: photo.url,
-          name: `${photo.first_name} ${photo.last_name}`,
-        };
-      });
-      setPhotos(avatars);
-      handleRefresh();
-    }
+    const avatars = await callAPI(cantPhotos);
+    setPhotos(avatars);
+    handleRefresh();
   };
 
   //will throw error if error state changes
