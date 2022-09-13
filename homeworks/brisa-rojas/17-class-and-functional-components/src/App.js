@@ -1,6 +1,8 @@
 import './App.css';
 import React from 'react';
-import refreshIcon from './refresh-icon.svg';
+import AddButton from './components/add-button';
+import AvatarTile from './components/avatar-tile';
+import RefreshAllButton from './components/refresh-button';
 
 class App extends React.Component {
   constructor(props) {
@@ -63,39 +65,6 @@ class App extends React.Component {
             });
           }}
         />
-      </div>
-    );
-  }
-}
-
-class AvatarTile extends React.Component {
-  render() {
-    return (
-      <div className="avatar-tile tile" onClick={this.props.onClick}>
-        <img className="avatar-tile__img" src={this.props.avatarURL} alt="avatar img" />
-        <div className="avatar-tile__overlay">
-          <img className="avatar-tile__refresh-icon" src={refreshIcon} alt="refresh img" />
-        </div>
-      </div>
-    );
-  }
-}
-
-class AddButton extends React.Component {
-  render() {
-    return (
-      <div className="add-avatar-tile tile" onClick={this.props.onClick}>
-        +
-      </div>
-    );
-  }
-}
-
-class RefreshAllButton extends React.Component {
-  render() {
-    return (
-      <div className="refresh-all-button" onClick={this.props.onClick}>
-        REFRESH ALL
       </div>
     );
   }
