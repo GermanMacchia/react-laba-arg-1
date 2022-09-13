@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { PhotoContainer } from "./PhotoContainer";
 import ErrorBoundary from "./ErrorBoundary";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import fetchPhotos from "../fetchPhotos";
 
 export default function PhotoList({
@@ -86,6 +86,7 @@ export default function PhotoList({
   useEffect(() => {
     init();
   }, []);
+
   //call when refresh is set into TRUE
   useEffect(() => {
     if (refresh) {
