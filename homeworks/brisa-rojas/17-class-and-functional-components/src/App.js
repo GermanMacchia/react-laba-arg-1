@@ -48,6 +48,7 @@ class App extends React.Component {
       }
     });
     this.setState({ avatarImages: newAvatarImages });
+    onLoadAvatar[avatarId] = false;
   }
 
   render() {
