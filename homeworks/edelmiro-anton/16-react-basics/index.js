@@ -9,25 +9,23 @@ class TrafficLight extends React.Component {
     };
   }
 
-  componenDidMount() {
-    this.setState((prevState) => {
-      return {
-        color: prevState.color + 1,
-      };
-    });
-
-    if (this.state.color === 3) {
-      this.setState({
-        color: 0,
+  componentDidMount() {
+    setInterval(() => {
+      this.setState((prevState) => {
+        return {
+          color: prevState.color + 1,
+        };
       });
-    }
+
+      if (this.state.color === 3) {
+        this.setState({
+          color: 0,
+        });
+      }
+    }, 1000);
   }
 
   render() {
-    setTimeout(() => {
-      this.componenDidMount();
-    }, 1000);
-
     return (
       <>
         <div>
