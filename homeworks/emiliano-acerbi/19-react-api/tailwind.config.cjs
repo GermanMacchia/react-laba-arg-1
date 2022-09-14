@@ -2,7 +2,22 @@
 module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        primary: "'Poppins', sans-serif",
+      },
+      colors: {
+        primary: '#FFBB00',
+        neutral: '#FFFFFF',
+      },
+      backgroundColor: {
+        primary: '#FFBB00',
+        neutral: '#E5E5E5',
+        'neutral-calculator': '#242530',
+        'neutral-operator': '#363746',
+        'neutral-number': '#2E2F3E',
+      },
+    },
   },
   plugins: [],
 };
