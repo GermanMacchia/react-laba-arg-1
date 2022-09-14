@@ -10,16 +10,17 @@ class ErrorBoundary extends React.Component {
     };
   }
 
+  componentDidCatch(error, errorInfo) {
+    console.warn('Error was catched: ', error, errorInfo);
+  }
+
   static getDerivedStateFromError(error) {
     return { hasError: true };
   }
 
-
   render() {
     if (this.state.hasError) {
-      return (
-        <AvatarTile avatarURL={errorImg} isLoading={false} onClick={this.props.onClick} />
-      )
+      return <AvatarTile avatarURL={errorImg} isLoading={false} onClick={this.props.onClick} />;
     }
 
     return this.props.children;
