@@ -1,4 +1,4 @@
-import './faces.css';
+import './Faces.css';
 import { useState } from 'react';
 const Faces = () => {
   const [images, setImages] = useState([]);

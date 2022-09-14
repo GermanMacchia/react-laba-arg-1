@@ -1,4 +1,4 @@
-import Faces from '../src/Faces/faces'
+import Faces from '../src/Faces/Faces'
 function App() {
   return (
     <Faces />
