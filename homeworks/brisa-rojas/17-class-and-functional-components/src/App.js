@@ -3,6 +3,7 @@ import React from 'react';
 import AddButton from './components/add-button';
 import AvatarTile from './components/avatar-tile';
 import RefreshAllButton from './components/refresh-button';
+import ErrorBoundary from './components/error-boundary';
 
 class App extends React.Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class App extends React.Component {
     let onLoadAvatar = this.state.avatarLoading;
     onLoadAvatar[avatarId] = true;
     this.setState({ avatarLoading: onLoadAvatar });
-    
+
     let newAvatarURL = await this.getNewAvatarImage();
 
     let newAvatarImages = this.state.avatarImages.map((avatarImage, index) => {
@@ -57,12 +58,14 @@ class App extends React.Component {
         <div className="avatar-container">
           {this.state.avatarImages.map((avatarImage, index) => {
             return (
-              <AvatarTile
-                key={'Avatar #' + index}
-                avatarURL={avatarImage}
-                isLoading={this.state.avatarLoading[index]}
-                onClick={() => this.refreshAvatarImage(index)}
-              />
+              <ErrorBoundary key={'Error bound #' + index} onClick={() => this.refreshAvatarImage(index)}>
+                <AvatarTile
+                  key={'Avatar #' + index}
+                  avatarURL={avatarImage}
+                  isLoading={this.state.avatarLoading[index]}
+                  onClick={() => this.refreshAvatarImage(index)}
+                />
+              </ErrorBoundary>
             );
           })}
           <AddButton onClick={this.addAvatar} />
