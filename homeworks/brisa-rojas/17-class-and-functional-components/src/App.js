@@ -15,6 +15,8 @@ class App extends React.Component {
     };
     this.addAvatar = this.addAvatar.bind(this);
     this.getNewAvatarImage = this.getNewAvatarImage.bind(this);
+    this.refreshAvatarImage = this.refreshAvatarImage.bind(this);
+    this.RefreshAllHandler = this.RefreshAllHandler.bind(this);
   }
 
   async addAvatar() {
@@ -48,7 +50,7 @@ class App extends React.Component {
   async refreshAvatarImage(avatarId) {
     let onLoadAvatar = [...this.state.avatarLoading];
     onLoadAvatar[avatarId] = true;
-    this.setState({ avatarLoading: onLoadAvatar });
+    this.setState(() => ({ avatarLoading: onLoadAvatar }));
 
     let newAvatarURL = await this.getNewAvatarImage();
 
@@ -63,6 +65,19 @@ class App extends React.Component {
     this.setState({ avatarImages: newAvatarImages, avatarLoading: onLoadAvatar });
   }
 
+  async RefreshAllHandler() {
+    let onLoadAvatar = [...this.state.avatarLoading];
+    onLoadAvatar.fill(true);
+    this.setState(() => ({ avatarLoading: onLoadAvatar }));
+
+    let newAvatarImages = await Promise.all(
+      this.state.avatarImages.map((avatarImage) => {
+        return this.getNewAvatarImage();
+      })
+    );
+    onLoadAvatar.fill(false);
+    this.setState({ avatarImages: newAvatarImages, avatarLoading: onLoadAvatar });
+  }
   render() {
     return (
       <div className="App">
@@ -80,11 +95,7 @@ class App extends React.Component {
           <AddButton onClick={this.addAvatar} />
         </div>
         <RefreshAllButton
-          onClick={() => {
-            this.state.avatarImages.forEach((avatarImage, index) => {
-              this.refreshAvatarImage(index);
-            });
-          }}
+          onClick={() => this.RefreshAllHandler()}
         />
       </div>
     );
