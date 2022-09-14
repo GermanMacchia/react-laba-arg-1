@@ -37,7 +37,6 @@ class App extends React.Component {
   async refreshAvatarImage(avatarId) {
     let onLoadAvatar = [...this.state.avatarLoading];
     onLoadAvatar[avatarId] = true;
-    console.log( onLoadAvatar == this.state.avatarLoading);
     this.setState({ avatarLoading: onLoadAvatar });
 
     let newAvatarURL = await this.getNewAvatarImage();
