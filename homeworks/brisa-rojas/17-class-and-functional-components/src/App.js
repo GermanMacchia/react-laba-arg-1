@@ -4,6 +4,7 @@ import AddButton from './components/AddButton';
 import AvatarTile from './components/AvatarTile';
 import RefreshAllButton from './components/RefreshButton';
 import ErrorBoundary from './components/ErrorBoundary';
+import errorImg from './error.jpg';
 
 class App extends React.Component {
   constructor(props) {
@@ -29,9 +30,25 @@ class App extends React.Component {
   }
 
   async getNewAvatarImage() {
-    return fetch('https://tinyfac.es/api/data?limit=1')
-      .then((response) => response.json())
-      .then((data) => data[0].url);
+    try {
+      fetch('https://tinyfac.es/api/data?limit=1')
+      .then(response =>{
+        if (response.ok) {
+          console.log("response ok");
+          return response = response.json();
+        } else {
+          console.log("response not ok");
+          throw new Error('image could not be fecthed');
+        }
+      })
+      .then((data) => {
+          return data[0].url;
+      });
+    } catch (error) {
+      console.log("error was catched"); 
+      // this does not show so it's not catched
+      return errorImg;
+    }
   }
 
   async refreshAvatarImage(avatarId) {
@@ -58,14 +75,12 @@ class App extends React.Component {
         <div className="avatar-container">
           {this.state.avatarImages.map((avatarImage, index) => {
             return (
-              <ErrorBoundary key={'Error bound #' + index} onClick={() => this.refreshAvatarImage(index)}>
-                <AvatarTile
-                  key={'Avatar #' + index}
-                  avatarURL={avatarImage}
-                  isLoading={this.state.avatarLoading[index]}
-                  onClick={() => this.refreshAvatarImage(index)}
-                />
-              </ErrorBoundary>
+              <AvatarTile
+                key={'Avatar #' + index}
+                avatarURL={avatarImage}
+                isLoading={this.state.avatarLoading[index]}
+                onClick={() => this.refreshAvatarImage(index)}
+              />
             );
           })}
           <AddButton onClick={this.addAvatar} />
