@@ -1,9 +1,9 @@
 import './App.css';
 import React from 'react';
-import AddButton from './components/add-button';
-import AvatarTile from './components/avatar-tile';
-import RefreshAllButton from './components/refresh-button';
-import ErrorBoundary from './components/error-boundary';
+import AddButton from './components/AddButton';
+import AvatarTile from './components/AvatarTile';
+import RefreshAllButton from './components/RefreshButton';
+import ErrorBoundary from './components/ErrorBoundary';
 
 class App extends React.Component {
   constructor(props) {
@@ -19,11 +19,11 @@ class App extends React.Component {
 
   async addAvatar() {
     const newAvatarImage = await this.getNewAvatarImage();
-    this.setState(() => {
+    this.setState((state, props) => {
       return {
-        avatarCounter: this.state.avatarCounter + 1,
-        avatarImages: [...this.state.avatarImages, newAvatarImage],
-        avatarLoading: [...this.state.avatarLoading, false],
+        avatarCounter: state.avatarCounter + 1,
+        avatarImages: [...state.avatarImages, newAvatarImage],
+        avatarLoading: [...state.avatarLoading, false],
       };
     });
   }

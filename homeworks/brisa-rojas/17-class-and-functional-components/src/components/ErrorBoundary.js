@@ -1,6 +1,6 @@
 import React from 'react';
 import errorImg from '../error.jpg';
-import AvatarTile from './avatar-tile';
+import AvatarTile from './AvatarTile';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
