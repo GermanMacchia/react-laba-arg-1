@@ -2,10 +2,6 @@ import React from 'react';
 import refreshIcon from '../refresh-icon.svg';
 
 class AvatarTile extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="avatar-tile tile" onClick={this.props.onClick}>
