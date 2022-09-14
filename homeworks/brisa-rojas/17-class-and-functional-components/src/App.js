@@ -3,7 +3,6 @@ import React from 'react';
 import AddButton from './components/AddButton';
 import AvatarTile from './components/AvatarTile';
 import RefreshAllButton from './components/RefreshButton';
-import ErrorBoundary from './components/ErrorBoundary';
 import errorImg from './error.jpg';
 
 class App extends React.Component {
@@ -30,25 +29,20 @@ class App extends React.Component {
   }
 
   async getNewAvatarImage() {
-    try {
-      fetch('https://tinyfac.es/api/data?limit=1')
-      .then(response =>{
+    return fetch('https://tinyfac.es/api/data?limit=1')
+      .then((response) => {
         if (response.ok) {
-          console.log("response ok");
-          return response = response.json();
+          return response.json();
         } else {
-          console.log("response not ok");
           throw new Error('image could not be fecthed');
         }
       })
       .then((data) => {
-          return data[0].url;
+        return data[0].url;
+      })
+      .catch((e) => {
+        return errorImg;
       });
-    } catch (error) {
-      console.log("error was catched"); 
-      // this does not show so it's not catched
-      return errorImg;
-    }
   }
 
   async refreshAvatarImage(avatarId) {
