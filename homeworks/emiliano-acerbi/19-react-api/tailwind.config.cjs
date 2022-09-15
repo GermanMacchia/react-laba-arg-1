@@ -6,6 +6,10 @@ module.exports = {
       fontFamily: {
         primary: "'Poppins', sans-serif",
       },
+      fontSize: {
+        'size-primary': '56px',
+        'size-secondary': '26px',
+      },
       colors: {
         primary: '#FFBB00',
         neutral: '#FFFFFF',

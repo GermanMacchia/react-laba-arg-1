@@ -1,17 +1,16 @@
 import React from 'react';
-import { numberClick } from '../utils/numberClick';
 
-function Button({ value, setCalculator, calculator }) {
+function Button({ value, setCalculator, calculator, lastOperation, setLastOperation }) {
   // Get class for each button
   const getClassForButton = () => {
     const btnClass = {
-      '+': 'text-primary bg-neutral-operator',
+      '+': 'text-primary bg-neutral-operator text-4xl',
       '-': 'text-primary bg-neutral-operator',
       X: 'text-primary bg-neutral-operator',
       '/': 'text-primary bg-neutral-operator',
-      DEL: 'text-primary bg-neutral-operator',
+      DEL: 'text-primary bg-neutral-operator rounded-tr-[30px]',
       '=': 'bg-primary row-span-2',
-      C: 'bg-neutral-operator',
+      C: 'bg-neutral-operator rounded-tl-[30px]',
     };
 
     if (typeof value === 'number' || value === '.' || value === '%') return 'bg-neutral-number';
@@ -21,15 +20,34 @@ function Button({ value, setCalculator, calculator }) {
 
   const classForButton = getClassForButton();
 
+  const handleDotClick = () => {
+    setCalculator({
+      ...calculator,
+      firstInput: calculator.firstInput + '.',
+    });
+  };
+
   // User click number
   const handleNumberClick = () => {
     console.log('number called');
-    const numberValue = numberClick(value, calculator.firstInput);
+
+    const inputToString = value.toString();
+    const inputValue = Number(calculator.firstInput + inputToString);
 
     setCalculator({
       ...calculator,
-      firstInput: numberValue,
+      firstInput: inputValue,
     });
+
+    // If result exists, the calculator resets when clicking numbers
+    if (calculator.result) {
+      setCalculator({
+        firstInput: inputValue,
+        sign: '',
+        secondInput: '',
+        result: '',
+      });
+    }
   };
 
   const handleSignClick = () => {
@@ -39,6 +57,7 @@ function Button({ value, setCalculator, calculator }) {
       sign: value,
       secondInput: !calculator.secondInput && calculator.firstInput ? calculator.firstInput : calculator.secondInput,
       firstInput: '',
+      result: '',
     });
   };
 
@@ -58,8 +77,16 @@ function Button({ value, setCalculator, calculator }) {
         secondInput: calculate(calculator.secondInput, calculator.firstInput, calculator.sign),
         sign: '',
         firstInput: '',
+        result: calculate(calculator.secondInput, calculator.firstInput, calculator.sign),
       });
     }
+
+    setLastOperation({
+      firstInput: calculator.firstInput,
+      secondInput: calculator.secondInput,
+      sign: calculator.sign,
+      result: calculator.result,
+    });
   };
 
   const handleResetClick = () => {
@@ -68,11 +95,19 @@ function Button({ value, setCalculator, calculator }) {
       firstInput: '0',
       sign: '',
       secondInput: '',
+      result: '',
+    });
+
+    setLastOperation({
+      firstInput: '',
+      sign: '',
+      secondInput: '',
+      result: '',
     });
   };
 
   const handleDeleteClick = () => {
-    // Cant delete results
+    // Cant delete result
     if (calculator.secondInput && !calculator.firstInput) {
       return;
     }
@@ -89,10 +124,11 @@ function Button({ value, setCalculator, calculator }) {
       '+': handleSignClick,
       '-': handleSignClick,
       '/': handleSignClick,
-      '*': handleSignClick,
+      X: handleSignClick,
       '=': handleEqualsClick,
       C: handleResetClick,
       DEL: handleDeleteClick,
+      '.': handleDotClick,
     };
 
     if (typeof value === 'number') return handleNumberClick();
@@ -101,7 +137,23 @@ function Button({ value, setCalculator, calculator }) {
 
   return (
     <button className={`p-4 py-8 text-2xl ${classForButton}`} onClick={handleClick}>
-      {value}
+      {value === 'DEL' ? (
+        <div className="grid place-content-center relative">
+          <img src="/public/delete.svg" />
+          <p className="absolute text-sm top-1/2 left-8 -translate-x-1/2 -translate-y-1/2">X</p>
+        </div>
+      ) : value === '+' ? (
+        <div className="relative">
+          <div className="w-7 h-[3px] bg-primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+          <div className="w-[3px] h-7 bg-primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+        </div>
+      ) : value === '-' ? (
+        <div className="relative">
+          <div className="w-7 h-[3px] bg-primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+        </div>
+      ) : (
+        value
+      )}
     </button>
   );
 }
