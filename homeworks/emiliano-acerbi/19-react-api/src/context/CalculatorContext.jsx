@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+import { calculate } from '../utils/calculate';
 
 export const CalculatorContext = createContext();
 
@@ -54,15 +55,6 @@ function CalculatorProvider({ children }) {
   const handleEqualsClick = () => {
     console.log('equals called');
     if (calculator.secondInput && calculator.firstInput) {
-      const calculate = (a, b, sign) => {
-        const result = {
-          '+': (a, b) => a + b,
-          '-': (a, b) => a - b,
-          X: (a, b) => a * b,
-          '/': (a, b) => a / b,
-        };
-        return result[sign](a, b);
-      };
       setCalculator({
         secondInput: calculate(calculator.secondInput, calculator.firstInput, calculator.sign),
         sign: '',
