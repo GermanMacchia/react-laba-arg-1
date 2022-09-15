@@ -37,8 +37,10 @@ class PhotoList extends Component {
   //Set length from array, call getPhoto with same quantity
   refreshList = async () => {
     const statePhotosLength = this.state.photos.length;
-    const newPhotos = await this.getPhotos(statePhotosLength);
-    this.setState({ photos: newPhotos });
+    if(statePhotosLength){
+      const newPhotos = await this.getPhotos(statePhotosLength);
+      this.setState({ photos: newPhotos });
+    }
   };
 
   //Push single photo to array

@@ -10,6 +10,7 @@ class GetButton extends Component {
       pushPhoto: props.pushPhoto,
     };
   }
+
   //when pushed, will trigger to father's component App pushPhoto Function
   triggerPushPhoto = async () => {
     this.setLoading(true);
