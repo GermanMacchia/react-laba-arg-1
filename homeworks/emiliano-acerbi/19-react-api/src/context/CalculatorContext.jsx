@@ -20,8 +20,6 @@ function CalculatorProvider({ children }) {
 
   // When user clicks number
   const handleNumberClick = (value) => {
-    console.log('number called');
-
     const inputToString = value.toString();
     const inputValue = Number(calculator.firstInput + inputToString);
 
@@ -42,8 +40,6 @@ function CalculatorProvider({ children }) {
   };
 
   const handleSignClick = (value) => {
-    console.log('sign called');
-
     setCalculator({
       sign: value,
       secondInput: !calculator.secondInput && calculator.firstInput ? calculator.firstInput : calculator.secondInput,
@@ -53,7 +49,6 @@ function CalculatorProvider({ children }) {
   };
 
   const handleEqualsClick = () => {
-    console.log('equals called');
     if (calculator.secondInput && calculator.firstInput) {
       setCalculator({
         secondInput: calculate(calculator.secondInput, calculator.firstInput, calculator.sign),
@@ -72,7 +67,6 @@ function CalculatorProvider({ children }) {
   };
 
   const handleResetClick = () => {
-    console.log('reset called');
     setCalculator({
       firstInput: '0',
       sign: '',
