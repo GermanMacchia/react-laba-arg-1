@@ -21,13 +21,12 @@ class App extends React.Component {
 
   async addAvatar() {
     const newAvatarImage = await this.getNewAvatarImage();
-    this.setState((state, props) => {
-      return {
+    this.setState((state) => ({
         avatarCounter: state.avatarCounter + 1,
         avatarImages: [...state.avatarImages, newAvatarImage],
         avatarLoading: [...state.avatarLoading, false],
-      };
-    });
+      })
+    );
   }
 
   async getNewAvatarImage() {
