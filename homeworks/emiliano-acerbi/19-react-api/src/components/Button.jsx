@@ -136,11 +136,11 @@ function Button({ value, setCalculator, calculator, lastOperation, setLastOperat
   };
 
   return (
-    <button className={`p-4 py-8 text-2xl ${classForButton}`} onClick={handleClick}>
+    <button className={`px-4 py-8 text-2xl ${classForButton}`} onClick={handleClick}>
       {value === 'DEL' ? (
         <div className="grid place-content-center relative">
           <img src="/public/delete.svg" />
-          <p className="absolute text-sm top-1/2 left-8 -translate-x-1/2 -translate-y-1/2">X</p>
+          <p className="absolute text-sm top-1/2 left-8 -translate-y-1/2">X</p>
         </div>
       ) : value === '+' ? (
         <div className="relative">
@@ -150,6 +150,22 @@ function Button({ value, setCalculator, calculator, lastOperation, setLastOperat
       ) : value === '-' ? (
         <div className="relative">
           <div className="w-7 h-[3px] bg-primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+        </div>
+      ) : value === 'X' ? (
+        <div className="relative">
+          <img src="/public/multiply1.svg" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+          <img src="/public/multiply2.svg" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+        </div>
+      ) : value === '=' ? (
+        <div className="grid place-content-center gap-2">
+          <div className="w-7 h-[3px] bg-white"></div>
+          <div className="w-7 h-[3px] bg-white"></div>
+        </div>
+      ) : value === '/' ? (
+        <div className="grid place-content-center gap-2">
+          <div className="w-[5px] h-[5px] rounded-full mx-auto bg-primary"></div>
+          <div className="w-7 h-[3px] bg-primary"></div>
+          <div className="w-[5px] h-[5px] rounded-full mx-auto bg-primary"></div>
         </div>
       ) : (
         value
