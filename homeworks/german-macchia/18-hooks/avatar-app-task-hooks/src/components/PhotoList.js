@@ -70,7 +70,7 @@ export default function PhotoList({
 
   //call when refresh is set into TRUE
   useEffect(() => {
-    if (refresh) {
+    if (refresh && photos.length) {
       refreshAll();
     }
   }, [refresh]);

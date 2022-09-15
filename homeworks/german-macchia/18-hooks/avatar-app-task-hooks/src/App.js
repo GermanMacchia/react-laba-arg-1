@@ -14,15 +14,18 @@ function App() {
     setCantPhotos((cant) => cant + 1);
   }, []);
 
+  const handleLoading = () => setLoading((loading) => !loading)
+  const handleRefresh = () => setRefresh((refresh) => !refresh)
+
   return (
     <div className="App">
       <div className="grid-container">
         <ErrorBoundary>
           <PhotoList
             cantPhotos={cantPhotos}
-            handleLoading={() => setLoading((loading) => !loading)}
+            handleLoading={handleLoading}
             refresh={refresh}
-            handleRefresh={() => setRefresh((refresh) => !refresh)}
+            handleRefresh={handleRefresh}
           />
           <GetButton handleNewPhoto={handleNewPhoto} loading={loading} />
         </ErrorBoundary>
