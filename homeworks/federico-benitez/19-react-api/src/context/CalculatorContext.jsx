@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { createContext } from 'react';
+import React, { useContext, useMemo, createContext } from 'react';
 
 const CalculatorContext = createContext(null);
 
@@ -14,7 +13,14 @@ export function useCalculatorContext() {
 }
 
 export function CalculatorProvider({ children }) {
-  const value = useMemo(() => ({}), []);
+  const result = 10000;
+
+  const value = useMemo(
+    () => ({
+      result,
+    }),
+    [],
+  );
 
   return <CalculatorContext.Provider value={value}>{children}</CalculatorContext.Provider>;
 }

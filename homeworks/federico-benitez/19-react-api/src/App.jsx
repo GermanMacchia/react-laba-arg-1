@@ -1,13 +1,17 @@
-import { Box, Flex } from '@chakra-ui/react';
-import Buttons from './components/Buttons';
+import { Flex } from '@chakra-ui/react';
+import { Buttons, Screen } from './components';
+import { CalculatorProvider } from './context';
 
 function App() {
   return (
-    <Flex align="center" justify="center">
-      <Flex width="375px" direction="column">
-        <Buttons />
+    <CalculatorProvider>
+      <Flex align="center" justify="center">
+        <Flex width="375px" direction="column">
+          <Screen />
+          <Buttons />
+        </Flex>
       </Flex>
-    </Flex>
+    </CalculatorProvider>
   );
 }
 

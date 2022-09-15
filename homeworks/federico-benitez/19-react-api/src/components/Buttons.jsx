@@ -12,8 +12,8 @@ export default function CalculatorButtons() {
   return (
     <Grid templateColumns={'repeat(4,1fr)'}>
       {KEYS.map((key) => (
-        <GridItem>
-          <Button key={key.value} char={key.text} onClick={() => onClick(key)} />
+        <GridItem key={key.value}>
+          <Button char={key.text} onClick={() => onClick(key)} />
         </GridItem>
       ))}
     </Grid>
