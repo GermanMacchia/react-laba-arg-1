@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { CalculatorContext } from '../context/CalculatorContext';
 import Delete from './Delete';
 import Divider from './Divider';
 import Equal from './Equal';
@@ -6,7 +7,10 @@ import Minus from './Minus';
 import Multiplier from './Multiplier';
 import Plus from './Plus';
 
-function Button({ value, setCalculator, calculator, lastOperation, setLastOperation }) {
+function Button({ value }) {
+  const { handleNumberClick, handleSignClick, handleEqualsClick, handleResetClick, handleDotClick, handleDeleteClick } =
+    useContext(CalculatorContext);
+
   // Get class for each button
   const getClassForButton = () => {
     const btnClass = {
@@ -26,105 +30,7 @@ function Button({ value, setCalculator, calculator, lastOperation, setLastOperat
 
   const classForButton = getClassForButton();
 
-  const handleDotClick = () => {
-    setCalculator({
-      ...calculator,
-      firstInput: calculator.firstInput + '.',
-    });
-  };
-
-  // User click number
-  const handleNumberClick = () => {
-    console.log('number called');
-
-    const inputToString = value.toString();
-    const inputValue = Number(calculator.firstInput + inputToString);
-
-    setCalculator({
-      ...calculator,
-      firstInput: inputValue,
-    });
-
-    // If result exists, the calculator resets when clicking numbers
-    if (calculator.result) {
-      setCalculator({
-        firstInput: inputValue,
-        sign: '',
-        secondInput: '',
-        result: '',
-      });
-    }
-  };
-
-  const handleSignClick = () => {
-    console.log('sign called');
-
-    setCalculator({
-      sign: value,
-      secondInput: !calculator.secondInput && calculator.firstInput ? calculator.firstInput : calculator.secondInput,
-      firstInput: '',
-      result: '',
-    });
-  };
-
-  const handleEqualsClick = () => {
-    console.log('equals called');
-    if (calculator.secondInput && calculator.firstInput) {
-      const calculate = (a, b, sign) => {
-        const result = {
-          '+': (a, b) => a + b,
-          '-': (a, b) => a - b,
-          X: (a, b) => a * b,
-          '/': (a, b) => a / b,
-        };
-        return result[sign](a, b);
-      };
-      setCalculator({
-        secondInput: calculate(calculator.secondInput, calculator.firstInput, calculator.sign),
-        sign: '',
-        firstInput: '',
-        result: calculate(calculator.secondInput, calculator.firstInput, calculator.sign),
-      });
-    }
-
-    setLastOperation({
-      firstInput: calculator.firstInput,
-      secondInput: calculator.secondInput,
-      sign: calculator.sign,
-      result: calculator.result,
-    });
-  };
-
-  const handleResetClick = () => {
-    console.log('reset called');
-    setCalculator({
-      firstInput: '0',
-      sign: '',
-      secondInput: '',
-      result: '',
-    });
-
-    setLastOperation({
-      firstInput: '',
-      sign: '',
-      secondInput: '',
-      result: '',
-    });
-  };
-
-  const handleDeleteClick = () => {
-    // Cant delete result
-    if (calculator.secondInput && !calculator.firstInput) {
-      return;
-    }
-
-    const firstInputToString = calculator.firstInput.toString();
-    setCalculator({
-      ...calculator,
-      firstInput: Number(firstInputToString.slice(0, -1)),
-    });
-  };
-
+  // Gets the correct function for the button
   const handleClick = () => {
     const btns = {
       '+': handleSignClick,
@@ -137,8 +43,8 @@ function Button({ value, setCalculator, calculator, lastOperation, setLastOperat
       '.': handleDotClick,
     };
 
-    if (typeof value === 'number') return handleNumberClick();
-    return btns[value]();
+    if (typeof value === 'number') return handleNumberClick(value);
+    return btns[value](value);
   };
 
   return (

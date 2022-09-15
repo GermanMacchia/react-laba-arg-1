@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import Button from './components/Button';
+import { CalculatorContext } from './context/CalculatorContext';
 
 const buttons = [
   ['C', '/', 'X', 'DEL'],
@@ -10,26 +11,14 @@ const buttons = [
 ];
 
 function App() {
-  const [calculator, setCalculator] = useState({
-    sign: '',
-    firstInput: '0',
-    secondInput: '',
-    result: '',
-  });
-
-  const [lastOperation, setLastOperation] = useState({
-    sign: '',
-    firstInput: '',
-    secondInput: '',
-    result: '',
-  });
+  const { calculator, lastOperation } = useContext(CalculatorContext);
 
   console.log('calculator', calculator);
   console.log('last operation', lastOperation);
   //
   return (
-    <div className="min-h-screen bg-neutral  grid place-content-center font-primary">
-      <main className="w-[375px] h-[812px] text-neutral bg-neutral-calculator flex flex-col">
+    <div className="min-h-screen bg-neutral  grid place-content-center font-primary ">
+      <main className="w-[375px] h-[812px] text-neutral bg-neutral-calculator flex flex-col border border-slate-400">
         <div className="flex-1 flex flex-col justify-end items-end p-5">
           <div className="flex text-size-secondary font-light">
             <p className="">{lastOperation.firstInput && lastOperation.firstInput}</p>
@@ -44,16 +33,7 @@ function App() {
         </div>
         <div className="grid grid-cols-4 mt-auto gap-[1px] ">
           {buttons.flat().map((btn, index) => {
-            return (
-              <Button
-                key={index}
-                value={btn}
-                calculator={calculator}
-                setCalculator={setCalculator}
-                lastOperation={lastOperation}
-                setLastOperation={setLastOperation}
-              />
-            );
+            return <Button key={index} value={btn} />;
           })}
         </div>
       </main>
