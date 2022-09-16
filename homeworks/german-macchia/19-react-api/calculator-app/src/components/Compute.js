@@ -43,7 +43,7 @@ export const Compute = ({ command, press }) => {
     //If we put an lonely operator will put this values to compute
     if (isEmpty(nums[1])) {
       nums[0] = resolution || 0;
-      nums[1] = 1;
+      nums[1] = 0;
     }
     //Each value of the calculation field will be processed in order of input
     //(but not in mathematical order of operation )
@@ -54,9 +54,10 @@ export const Compute = ({ command, press }) => {
       //if there was already a compute operation in this calculation string and there is a value to process this operator
       if (result && nums[i]) {
         result = compute(result, signs[j], nums[i]);
-        //if there was a previous compute but calculation string finish with an operator sets resolution to last result
+        //if there was a previous compute but calculation string finish with an operator
+        //compute result with resolution
       } else if (result && !nums[i]) {
-        continue;
+        result = resolution + result;
         //It there was no previous result compute for the first time
       } else {
         result = compute(nums[i], signs[j], nums[i + 1]);
@@ -161,6 +162,7 @@ export const Compute = ({ command, press }) => {
 
   return (
     <div className="display">
+      <h1>{calculation}</h1>
       <div
         className={
           resolution.toString().length > 9
@@ -169,9 +171,6 @@ export const Compute = ({ command, press }) => {
         }
       >
         <h1>{resolution.toString().slice(0, 12)}</h1>
-      </div>
-      <div className="display__calculation">
-        <h1>{calculation}</h1>
       </div>
     </div>
   );
