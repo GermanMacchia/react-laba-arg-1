@@ -15,11 +15,11 @@ export const KEYS = [
   { value: 7, text: '7' },
   { value: 8, text: '8' },
   { value: 9, text: '9' },
-  { value: 'resta', text: '-' },
+  { value: 'substract', text: '-' },
   { value: 4, text: '4' },
   { value: 5, text: '5' },
   { value: 6, text: '6' },
-  { value: 'suma', text: 'suma' },
+  { value: 'addition', text: '+' },
 
   {
     value: 1,

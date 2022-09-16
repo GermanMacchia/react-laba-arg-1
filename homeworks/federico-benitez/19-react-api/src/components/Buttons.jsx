@@ -2,28 +2,25 @@ import React from 'react';
 import { Button as ButtonComponent } from '@chakra-ui/react';
 import { KEYS } from '../helpers/keys';
 import { Grid, GridItem } from '@chakra-ui/react';
+import { useCalculatorContext } from '../context/CalculatorContext';
 
 export default function CalculatorButtons() {
-  function onClick(key) {
-    alert(key.text);
-  }
-  console.log(KEYS);
-
+  const { doAction } = useCalculatorContext();
   return (
     <Grid templateColumns={'repeat(4,1fr)'}>
       {KEYS.map((key) => (
         <GridItem key={key.value}>
-          <Button char={key.text} onClick={() => onClick(key)} />
+          <Button button={key} onClick={() => doAction(key)} />
         </GridItem>
       ))}
     </Grid>
   );
 }
 
-function Button({ rounded = false, size = 'default', char, ...rest }) {
+function Button({ rounded = false, size = 'default', button, ...rest }) {
   return (
     <ButtonComponent {...rest} borderRadius="none" bg="background.100" color="white" width="94px" height="94px">
-      {char}
+      {button.text}
     </ButtonComponent>
   );
 }
