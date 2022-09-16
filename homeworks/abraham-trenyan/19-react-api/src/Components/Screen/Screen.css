@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap');
+.screen {
+  height: 42%;
+  position: relative;
+}
+.screen__calc {
+  position: absolute;
+  right: 5%;
+  top: 45%; 
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 26px;
+  line-height: 39px;
+  color: #ffffff;
+}
+.screen__result {
+  position: absolute;
+  right: 5%;
+  top: 40%;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 55px;
+  line-height: 82.5px;
+  color: #ffffff;
+}

@@ -1,0 +1,8 @@
+.keyboard{
+    display: flex;
+    height: 58%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    position: relative;
+}
