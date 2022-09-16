@@ -9,25 +9,32 @@ class PhotoContainer extends PureComponent {
       name: props.name,
       id: props.id,
       error: false,
+      errorMessage: "",
+      isReloading: false,
     };
   }
 
   // reload new data for this single container
   reload = async () => {
-    const cant = 1;
-    const response = await fetchPhotos(cant);
-    if (response.status !== 200) {
-      this.setState(() => ({
-        error: true,
-        errorMessage: `STATUS ${response.status}, ${response.statusText}`,
-      }));
-    } else {
+    this.setState(() => ({
+      isReloading: true,
+    }));
+    try {
+      const quantity = 1;
+      const response = await fetchPhotos(quantity);
       const [photo] = await response.json();
       this.setState(() => ({
-        id: photo.id,
+        id: photo.first_name + photo.id,
         url: photo.url,
         name: `${photo.first_name} ${photo.last_name}`,
       }));
+    } catch (error) {
+      this.setState({
+        error: true,
+        errorMessage: error.message,
+      });
+    } finally {
+      this.setState({ isReloading: false });
     }
   };
 
@@ -42,7 +49,13 @@ class PhotoContainer extends PureComponent {
           src={this.state.url}
           alt={this.state.name}
         />
-        <div className="container__image_box" />
+        <div
+          className={
+            this.state.isReloading
+              ? "container__image_box container__image_box--animate"
+              : "container__image_box"
+          }
+        />
       </div>
     );
   }

@@ -83,6 +83,15 @@
   background-position: center;
 }
 
+.container__image_box--animate {
+  border-radius: 50%;
+  background-color: transparent;
+  background-image: url("./assets/refresh-reload.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: rotation 2s infinite linear;
+}
+
 .footer__button {
   width: 320px;
   height: 40px;
@@ -107,7 +116,7 @@
   box-shadow: 1px 1px 1px #5e217a;
 }
 
-.errorBoundary{
+.errorBoundary {
   width: 240px;
   height: 240px;
   border-radius: 16px;
@@ -116,6 +125,6 @@
   color: antiquewhite;
 }
 
-.errorBoundary__info{
+.errorBoundary__info {
   margin: 25px;
 }
