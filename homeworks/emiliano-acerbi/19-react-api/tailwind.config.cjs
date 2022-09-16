@@ -20,6 +20,8 @@ module.exports = {
         'neutral-calculator': '#242530',
         'neutral-operator': '#363746',
         'neutral-number': '#2E2F3E',
+        hover: '#3f4054',
+        'hover-primary': '#FFCB3B',
       },
     },
   },

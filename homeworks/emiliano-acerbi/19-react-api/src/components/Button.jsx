@@ -14,16 +14,16 @@ function Button({ value }) {
   // Get class for each button
   const getClassForButton = () => {
     const btnClass = {
-      '+': 'text-primary bg-neutral-operator text-4xl',
-      '-': 'text-primary bg-neutral-operator',
-      X: 'text-primary bg-neutral-operator',
-      '/': 'text-primary bg-neutral-operator',
-      DEL: 'text-primary bg-neutral-operator rounded-tr-[30px]',
-      '=': 'bg-primary row-span-2',
-      C: 'bg-neutral-operator rounded-tl-[30px]',
+      '+': 'text-primary bg-neutral-operator text-4xl hover:bg-hover ',
+      '-': 'text-primary bg-neutral-operator hover:bg-hover',
+      X: 'text-primary bg-neutral-operator hover:bg-hover',
+      '/': 'text-primary bg-neutral-operator hover:bg-hover',
+      DEL: 'text-primary bg-neutral-operator rounded-tr-[30px] hover:bg-hover',
+      '=': 'bg-primary row-span-2 hover:bg-hover-primary',
+      C: 'bg-neutral-operator rounded-tl-[30px] hover:bg-hover',
     };
 
-    if (typeof value === 'number' || value === '.' || value === '%') return 'bg-neutral-number';
+    if (typeof value === 'number' || value === '.' || value === '%') return 'bg-neutral-number hover:bg-hover';
 
     return btnClass[value];
   };
@@ -48,7 +48,7 @@ function Button({ value }) {
   };
 
   return (
-    <button className={`px-4 py-8 text-2xl ${classForButton}`} onClick={handleClick}>
+    <button className={`px-4 py-7 text-2xl border border-[#242530] ${classForButton}`} onClick={handleClick}>
       {value === 'DEL' ? (
         <Delete />
       ) : value === '+' ? (

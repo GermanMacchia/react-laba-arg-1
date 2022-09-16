@@ -8,8 +8,6 @@ function CalculatorProvider({ children }) {
   const [calculator, setCalculator] = useState(calcInitialState);
   const [lastOperation, setLastOperation] = useState(lastOperationInitialState);
 
-  console.log(calculator);
-
   // When user clicks number
   const handleNumberClick = (value) => {
     if (calculator.firstInput.toString().length + calculator.secondInput.toString().length > 8) {

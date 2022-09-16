@@ -13,7 +13,7 @@ function App() {
     <Container>
       <Calculator>
         <Display lastOperation={lastOperation} calculator={calculator} />
-        <div className="grid grid-cols-4 mt-auto gap-[1px]">
+        <div className="grid grid-cols-4 mt-auto">
           {buttons.flat().map((btn, index) => {
             return <Button key={index} value={btn} />;
           })}
