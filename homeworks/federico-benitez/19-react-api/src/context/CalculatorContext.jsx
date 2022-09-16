@@ -1,5 +1,13 @@
 import React, { useContext, useMemo, createContext, useCallback, useState } from 'react';
-import { isMathOperation, getMathSymbol, getResult } from '../helpers';
+import {
+  isMathOperation,
+  getMathSymbol,
+  getResult,
+  isAfterGetResult,
+  isANewOperation,
+  removeLastNumber,
+  operations,
+} from '../helpers';
 
 const CalculatorContext = createContext(null);
 
@@ -26,6 +34,13 @@ export function CalculatorProvider({ children }) {
     //debugger;
     const mathOperation = isMathOperation(operation);
     if (mathOperation) {
+      if (operation === 'percent') {
+        return setValues((prev) => ({
+          ...prev,
+          current: operations.percent(prev.current),
+        }));
+      }
+      //debugger;
       if (!values.previous) {
         return setValues({
           previous: values.current,
@@ -33,13 +48,23 @@ export function CalculatorProvider({ children }) {
           operation,
         });
       } else {
-        return setValues((prev) => ({
-          previous: isNaN(prev.previous) ? prev.current : getResult(prev.previous, prev.current, prev.operation),
-          current: 0,
-          operation,
-        }));
+        //TODO: check resta sin previo
+        return setValues((prev) => {
+          //debugger;
+          //TODO: refactor this
+          return {
+            previous: isNaN(prev.previous)
+              ? prev.current
+              : prev.operation !== operation
+              ? getResult(prev.current, prev.previous, prev.operation)
+              : getResult(prev.previous, prev.current, prev.operation),
+            current: 0,
+            operation,
+          };
+        });
       }
     }
+
     switch (operation) {
       case 'clean':
         setValues(INITIAL_STATE);
@@ -48,6 +73,12 @@ export function CalculatorProvider({ children }) {
         setValues(({ previous, current, operation }) => ({
           previous: `${previous} ${getMathSymbol(operation)} ${current}`,
           current: getResult(current, previous, operation),
+        }));
+        break;
+      case 'delete':
+        setValues((prev) => ({
+          ...prev,
+          current: removeLastNumber(prev.current),
         }));
         break;
       default:
@@ -63,9 +94,13 @@ export function CalculatorProvider({ children }) {
         handleOperation(key.value);
         return;
       }
-      setValues((v) => {
-        if (v.current === 0) return { ...v, current: key.value };
 
+      setValues((v) => {
+        //Is after get a  result
+        if (isAfterGetResult(v)) return { ...INITIAL_STATE, current: key.value };
+        //Is first value
+        if (isANewOperation(v)) return { ...v, current: key.value };
+        //Contains previous values inserted
         return { ...v, current: key.value + v.current * 10 };
       });
 
@@ -73,8 +108,6 @@ export function CalculatorProvider({ children }) {
     },
     [values],
   );
-
-  console.log(values);
 
   const value = useMemo(
     () => ({
