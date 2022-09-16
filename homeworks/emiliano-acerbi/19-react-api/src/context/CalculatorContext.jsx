@@ -1,25 +1,21 @@
 import React, { createContext, useState } from 'react';
 import { calculate } from '../utils/calculate';
+import { calcInitialState, lastOperationInitialState } from '../utils/initialStates';
 
 export const CalculatorContext = createContext();
 
 function CalculatorProvider({ children }) {
-  const [calculator, setCalculator] = useState({
-    sign: '',
-    firstInput: '0',
-    secondInput: '',
-    result: '',
-  });
+  const [calculator, setCalculator] = useState(calcInitialState);
+  const [lastOperation, setLastOperation] = useState(lastOperationInitialState);
 
-  const [lastOperation, setLastOperation] = useState({
-    sign: '',
-    firstInput: '',
-    secondInput: '',
-    result: '',
-  });
+  console.log(calculator);
 
   // When user clicks number
   const handleNumberClick = (value) => {
+    if (calculator.firstInput.toString().length + calculator.secondInput.toString().length > 8) {
+      return alert('Use a smaller number please!');
+    }
+    // setCalculator({});
     const inputToString = value.toString();
     const inputValue = Number(calculator.firstInput + inputToString);
 
@@ -31,15 +27,15 @@ function CalculatorProvider({ children }) {
     // If result exists, the calculator resets when clicking numbers
     if (calculator.result) {
       setCalculator({
-        firstInput: inputValue,
-        sign: '',
+        ...calculator,
         secondInput: '',
-        result: '',
+        firstInput: inputValue,
       });
     }
   };
 
   const handleSignClick = (value) => {
+    if (calculator.firstInput === '0' || calculator.firstInput === 0) return;
     setCalculator({
       sign: value,
       secondInput: !calculator.secondInput && calculator.firstInput ? calculator.firstInput : calculator.secondInput,
@@ -67,19 +63,8 @@ function CalculatorProvider({ children }) {
   };
 
   const handleResetClick = () => {
-    setCalculator({
-      firstInput: '0',
-      sign: '',
-      secondInput: '',
-      result: '',
-    });
-
-    setLastOperation({
-      firstInput: '',
-      sign: '',
-      secondInput: '',
-      result: '',
-    });
+    setCalculator(calcInitialState);
+    setLastOperation(lastOperationInitialState);
   };
 
   const handleDotClick = () => {
@@ -94,6 +79,8 @@ function CalculatorProvider({ children }) {
     if (calculator.secondInput && !calculator.firstInput) {
       return;
     }
+
+    if (calculator.sign && !calculator.firstInput) return;
 
     const firstInputToString = calculator.firstInput.toString();
     setCalculator({
