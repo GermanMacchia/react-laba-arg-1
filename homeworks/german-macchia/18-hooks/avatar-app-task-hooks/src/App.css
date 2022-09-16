@@ -83,6 +83,15 @@
   background-position: center;
 }
 
+.container__image_box--animate {
+  border-radius: 50%;
+  background-color: transparent;
+  background-image: url("./assets/refresh-reload.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: rotation 2s infinite linear;
+}
+
 .footer__button {
   width: 320px;
   height: 40px;

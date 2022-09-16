@@ -4,10 +4,12 @@ import fetchPhotos from "../fetchPhotos";
 export const PhotoContainer = React.memo(({ url, name, id }) => {
   const [photo, setPhoto] = useState({ url: url, name: name, id: id });
   const [error, setError] = useState({ error: false, errorMessage: "" });
-
+  const [isReloading, setIsReloading] = useState(false);
+  
   // reload new data for this single container
   const reload = async () => {
-    try { 
+    setIsReloading(true);
+    try {
       const quantity = 1;
       const [photo] = await fetchPhotos(quantity);
       setPhoto(() => ({
@@ -20,6 +22,8 @@ export const PhotoContainer = React.memo(({ url, name, id }) => {
         error: true,
         errorMessage: error.message,
       });
+    } finally {
+      setIsReloading(false);
     }
   };
 
@@ -37,7 +41,13 @@ export const PhotoContainer = React.memo(({ url, name, id }) => {
         src={photo.url}
         alt={photo.name}
       />
-      <div className="container__image_box" />
+      <div
+        className={
+          isReloading
+            ? "container__image_box container__image_box--animate"
+            : "container__image_box"
+        }
+      />
     </div>
   );
 });
