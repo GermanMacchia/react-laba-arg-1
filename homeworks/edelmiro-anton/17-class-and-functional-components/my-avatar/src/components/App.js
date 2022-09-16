@@ -9,43 +9,41 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      avatar: [],
+      people: [],
     };
   }
 
   fetchAvatar = async () => {
     const resp = await fetch('https://tinyfac.es/api/data?limit=1&quality=0');
     const data = await resp.json();
-    // console.log(data);
     return data[0];
   };
 
-  addAvatar = async () => {
+  addAvatar = () => {
     this.fetchAvatar().then((avatar) => {
-      this.setState({
-        avatar: [...this.state.avatar, { ...avatar }],
+      this.setState((prevState) => {
+        return {
+          people: [...prevState.people, { ...avatar }],
+        };
       });
     });
-    // console.log(...this.state.avatar);
   };
 
   refreshAvatar = (index) => {
     this.fetchAvatar().then((person) => {
-      const refresh = [...this.state.avatar];
-
+      const refresh = [...this.state.people];
       refresh.splice(index, 1, person);
       this.setState({
-        avatar: refresh,
+        people: refresh,
       });
     });
-    // console.log(...this.state.avatar);
   };
 
   refreshAll = async () => {
-    const refreshAll = [...this.state.avatar];
+    const refreshAll = [...this.state.people];
     const refreshAvatar = await Promise.all(refreshAll.map(() => this.fetchAvatar()));
     this.setState({
-      avatar: refreshAvatar,
+      people: refreshAvatar,
     });
   };
 
@@ -54,13 +52,13 @@ export default class App extends React.Component {
       <>
         <div className="container">
           <div style={{ display: '-webkit-box' }}>
-            {this.state.avatar.map((people, index) => (
-              <Img src={people.url} onClick={() => this.refreshAvatar(index)} />
+            {this.state.people.map((person, index) => (
+              <Img src={person.url} onClick={() => this.refreshAvatar(index)} />
             ))}
             <AddButton onClick={this.addAvatar} />
           </div>
           <div className="refreshContainer">
-            {this.state.avatar.length ? <RefreshAllBtn onClick={this.refreshAll} /> : null}
+            {this.state.people.length ? <RefreshAllBtn onClick={this.refreshAll} /> : null}
           </div>
         </div>
       </>

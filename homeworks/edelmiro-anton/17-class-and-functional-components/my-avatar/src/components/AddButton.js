@@ -1,5 +1,4 @@
 import React from 'react';
-// import addButton from '../assets/add-button.png';
 import '../styles.css';
 
 export default class AddButton extends React.Component {
@@ -10,7 +9,6 @@ export default class AddButton extends React.Component {
           <div className="verticalLine"></div>
           <div className="horizontalLine"></div>
         </div>
-        ;
       </>
     );
   }
