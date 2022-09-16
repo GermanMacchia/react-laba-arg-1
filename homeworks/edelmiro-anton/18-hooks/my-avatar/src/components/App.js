@@ -1,56 +1,48 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../styles.css';
 import { AddButton } from './AddButton';
 import { Img } from './Img';
 import { RefreshAllBtn } from './RefreshAllBtn';
 
 export const App = () => {
-  const [avatar, setAvatar] = useState([]);
+  const [people, setPeople] = useState([]);
 
-  // useEffect(() => {
-  //   fetchAvatar();
-  // }, []);
 
   const fetchAvatar = async () => {
     const resp = await fetch('https://tinyfac.es/api/data?limit=1&quality=0');
     const data = await resp.json();
-    // console.log(data);
     return data[0];
   };
 
   const addAvatar = () => {
     fetchAvatar().then((person) => {
-      setAvatar([...avatar, { ...person }]);
-      // console.log(person);
-      // console.log({ ...avatar });
+      setPeople([...people, { ...person }]);
     });
   };
 
   const refreshAvatar = (index) => {
     fetchAvatar().then((person) => {
-      const refresh = [...avatar];
+      const refresh = [...people];
       refresh.splice(index, 1, person);
-      setAvatar([...refresh]);
+      setPeople([...refresh]);
     });
-    // console.log(...this.state.avatar);
   };
 
   const refreshAll = async () => {
-    const refreshAll = [...avatar];
-    const refreshAvatar = await Promise.all(refreshAll.map(() => fetchAvatar()));
-    setAvatar(refreshAvatar);
+    const refreshAvatar = await Promise.all([...people].map(() => fetchAvatar()));
+    setPeople(refreshAvatar);
   };
 
   return (
     <>
       <div className="container">
         <div style={{ display: '-webkit-box' }}>
-          {avatar.map((people, index) => (
-            <Img src={people.url} onClick={() => refreshAvatar(index)} />
+          {people.map((person, index) => (
+            <Img src={person.url} onClick={() => refreshAvatar(index)} />
           ))}
           <AddButton onClick={addAvatar} />
         </div>
-        <div className="refreshContainer">{avatar.length ? <RefreshAllBtn onClick={refreshAll} /> : null}</div>
+        <div className="refreshContainer">{people.length ? <RefreshAllBtn onClick={refreshAll} /> : null}</div>
       </div>
     </>
   );

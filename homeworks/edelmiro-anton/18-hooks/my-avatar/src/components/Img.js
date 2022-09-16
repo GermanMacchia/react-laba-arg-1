@@ -6,7 +6,7 @@ export const Img = ({ src, onClick }) => {
   return (
     <>
       <img src={refresh} onClick={onClick} alt="refresh-button" className="refreshButton" />
-      <img src={src} alt="" className="avatar" />;
+      <img src={src} alt="" className="avatar" />
     </>
   );
 };
