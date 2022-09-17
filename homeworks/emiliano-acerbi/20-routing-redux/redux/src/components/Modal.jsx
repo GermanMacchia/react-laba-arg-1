@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Modal({ setNewInputValue, newInputValue, editModal, todo, handleEditTodo, handleCancelEdit }) {
+function Modal({ todo, setNewInputValue, newInputValue, handleEditTodo, handleCancelEdit, editModal }) {
   return (
     <form
       className={`absolute flex flex-col gap-5 bg-[#8c72b7] shadow-md p-8 scale-0 ${
@@ -22,10 +22,17 @@ function Modal({ setNewInputValue, newInputValue, editModal, todo, handleEditTod
       </label>
 
       <div className="flex gap-3">
-        <button className=" bg-white p-2 w-28 shadow-sm" type="submit" onClick={(e) => handleEditTodo(e, todo.id)}>
+        <button
+          className=" bg-neutral-100 hover:bg-neutral-400 duration-100 p-2 w-28 shadow-sm"
+          type="submit"
+          onClick={(e) => handleEditTodo(e, todo.id)}
+        >
           Edit
         </button>
-        <button className=" bg-red-300 p-2 w-28 shadow-sm" onClick={(e) => handleCancelEdit(e)}>
+        <button
+          className=" bg-red-300 hover:bg-red-400 duration-100 p-2 w-28 shadow-sm"
+          onClick={(e) => handleCancelEdit(e)}
+        >
           Cancel
         </button>
       </div>

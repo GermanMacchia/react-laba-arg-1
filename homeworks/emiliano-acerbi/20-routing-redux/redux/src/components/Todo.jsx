@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { removeTodo, editTodo } from '../features/todo/todoSlice';
+import { editTodo, removeTodo } from '../features/todo/todoSlice';
 import Modal from './Modal';
 
 function Todo({ todo }) {
