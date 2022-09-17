@@ -25,17 +25,21 @@ function App() {
     <main className="min-h-screen bg-gradient font-primary text-3xl flex flex-col items-center gap-5">
       <form className="flex mt-28">
         <input
-          className="w-[554px] h-[65px] px-5 "
+          className="w-[554px] h-[65px] px-5 outline-none"
           placeholder="Create Todo-Task"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />
-        <button className="bg-add-bg text-white w-[122px] h-[65px]" type="submit" onClick={handleAddTodo}>
+        <button
+          className="bg-add-bg hover:opacity-80 text-white w-[122px] h-[65px]"
+          type="submit"
+          onClick={handleAddTodo}
+        >
           Add
         </button>
       </form>
 
-      <div className="flex flex-col gap-5 mt-28">
+      <div className="flex flex-col gap-10 mt-20">
         {todos.map((todo) => (
           <Todo key={todo.id} todo={todo} inputValue={inputValue} />
         ))}
