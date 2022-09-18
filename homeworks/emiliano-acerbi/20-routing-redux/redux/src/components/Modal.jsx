@@ -23,16 +23,13 @@ function Modal({ todo, setNewInputValue, newInputValue, handleEditTodo, handleCa
 
       <div className="flex gap-3">
         <button
-          className=" bg-neutral-100 hover:bg-neutral-400 duration-100 p-2 w-28 shadow-sm"
+          className=" bg-neutral-100 hover:bg-neutral-300 p-2 w-28 shadow-sm"
           type="submit"
           onClick={(e) => handleEditTodo(e, todo.id)}
         >
           Edit
         </button>
-        <button
-          className=" bg-red-300 hover:bg-red-400 duration-100 p-2 w-28 shadow-sm"
-          onClick={(e) => handleCancelEdit(e)}
-        >
+        <button className=" bg-red-300 hover:bg-red-400 p-2 w-28 shadow-sm" onClick={(e) => handleCancelEdit(e)}>
           Cancel
         </button>
       </div>
