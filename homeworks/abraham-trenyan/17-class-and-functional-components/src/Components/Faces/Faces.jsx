@@ -39,27 +39,27 @@ class Faces extends Component {
   render() {
     return (
       <main>
-          <section className="faces__container">
-            {this.state.images.map((url, index) => (
-              <div className="face" id={index} key={index} onClick={(e) => this.getImg(e, 1)}>
-                <div className="face__img face__img--layer">
-                  <RefreshIcon />
-                </div>
-                <img className="face__img" src={url} loading="lazy" alt="random person"></img>
+        <section className="faces__container">
+          {this.state.images.map((url, index) => (
+            <div className="face" id={index} key={index} onClick={(e) => this.getImg(e, 1)}>
+              <div className="face__img face__img--layer">
+                <RefreshIcon />
               </div>
-            ))}
-            <div className="add" onClick={(e) => this.getImg(e, 1)}>
-              <div className="add__horizontal-line"></div>
-              <div className="add__vertical-line"></div>
+              <img className="face__img" src={url} loading="lazy" alt="random person"></img>
             </div>
-          </section>
-          <footer className="refresh-all">
-            {this.state.images.length > 1 && (
-              <button className="refresh-all__button" onClick={(e) => this.getImg(e, this.state.images.length)}>
-                Refresh All
-              </button>
-            )}
-          </footer>
+          ))}
+          <div className="add" onClick={(e) => this.getImg(e, 1)}>
+            <div className="add__horizontal-line"></div>
+            <div className="add__vertical-line"></div>
+          </div>
+        </section>
+        <footer className="refresh-all">
+          {this.state.images.length > 1 && (
+            <button className="refresh-all__button" onClick={(e) => this.getImg(e, this.state.images.length)}>
+              Refresh All
+            </button>
+          )}
+        </footer>
       </main>
     );
   }
