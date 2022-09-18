@@ -1,7 +1,7 @@
-import Faces from '../src/Faces/Faces'
+import Faces from './components/Faces/Faces.jsx';
 function App() {
   return (
-    <Faces />
+      <Faces />
   );
 }
 
