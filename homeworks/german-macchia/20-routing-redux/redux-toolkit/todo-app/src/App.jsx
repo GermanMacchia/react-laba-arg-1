@@ -1,26 +1,23 @@
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import "./App.css";
 import { EntryForm } from "./components/Form";
+import { useSelector } from "react-redux";
+import "./App.css";
+import EditModal from "./components/EditModal";
+import { Task } from "./components/Task";
 
 function App() {
   const { entries } = useSelector((store) => store.todos);
+  const { open, id, content } = useSelector((store) => store.todos.edit);
 
   const listEntries = () =>
     entries.map((todo) => {
-      return (
-        <div>
-          <p>{todo.content}</p>
-          <img alt="edit" />
-          <img alt="delete" />
-        </div>
-      );
+      return <Task key={todo.id} todo={todo} />;
     });
 
   return (
-    <div className="App">
+    <div className="app">
       <EntryForm />
-      <div>{listEntries()}</div>
+      <EditModal isOpen={open} id={id} content={content} />
+      <div className="todoList">{listEntries()}</div>
     </div>
   );
 }
