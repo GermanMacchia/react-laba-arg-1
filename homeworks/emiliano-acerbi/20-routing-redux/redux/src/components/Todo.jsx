@@ -18,6 +18,9 @@ function Todo({ todo }) {
 
   const handleEditTodo = (e, id) => {
     e.preventDefault();
+    if (!newInputValue) return alert('No empty strings please!');
+    if (newInputValue.length > 30) return alert('Please write a shorter task!');
+
     dispatch(editTodo({ id, newText: newInputValue }));
     setNewInputValue('');
     setEditModal(false);
