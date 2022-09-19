@@ -6,7 +6,7 @@ import {
   redirect,
   NavLink,
   useNavigation,
-  useSubmit
+  useSubmit,
 } from "react-router-dom";
 import { getContacts, createContact } from "../contacts";
 import { useEffect } from "react";
@@ -30,9 +30,7 @@ export default function Root() {
 
   const searching =
     navigation.location &&
-    new URLSearchParams(navigation.location.search).has(
-      "q"
-    );
+    new URLSearchParams(navigation.location.search).has("q");
 
   useEffect(() => {
     document.getElementById("q").value = q;
