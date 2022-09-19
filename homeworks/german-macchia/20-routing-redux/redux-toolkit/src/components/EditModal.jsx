@@ -39,7 +39,12 @@ export default function EditModal({ isOpen, id, content }) {
             name="content"
             defaultValue={content}
           />
-          <img onClick={handleEdit} src={save} className="modal__button" />
+          <img
+            onClick={handleEdit}
+            src={save}
+            className="modal__button"
+            alt="save button"
+          />
         </div>
       </div>
     </div>,
