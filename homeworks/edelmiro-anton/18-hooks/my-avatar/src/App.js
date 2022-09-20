@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import '../styles.css';
-import { AddButton } from './AddButton';
-import { Img } from './Img';
-import { RefreshAllBtn } from './RefreshAllBtn';
+import './styles.css';
+import { AddButton } from './components/AddButton';
+import { Img } from './components/Img';
+import { RefreshAllBtn } from './components/RefreshAllBtn';
 
 export const App = () => {
   const [people, setPeople] = useState([]);
