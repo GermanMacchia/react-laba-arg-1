@@ -33,6 +33,7 @@ function App() {
     let newAvatar = await getImage();
     newAvatars.push(newAvatar);
     setAvatars(newAvatars);
+    setIsRefreshing([...isRefreshing, false]);
   }
 
   async function refreshAvatar(index) {
@@ -45,18 +46,40 @@ function App() {
     refreshingState[index] = false;
     setIsRefreshing(refreshingState);
     setAvatars(modifiedAvatars);
+  }
 
+  async function refreshAll() {
+    let onLoadAvatar = [...isRefreshing];
+    onLoadAvatar.fill(true);
+    setIsRefreshing(onLoadAvatar);
+
+    let newAvatarImages = await Promise.all(
+      avatars.map((avatarImage, index) => {
+        return getImage();
+      }),
+    );
+
+    onLoadAvatar.fill(false);
+    setIsRefreshing(onLoadAvatar);
+    setAvatars(newAvatarImages);
   }
 
   return (
     <div className="App">
       <div className="avatar-container">
         {avatars.map((avatar, index) => (
-          <AvatarTile key={index} avatarURL={avatar} isRefreshing={isRefreshing[index]} onClick={() => {refreshAvatar(index)}} />
+          <AvatarTile
+            key={index}
+            avatarURL={avatar}
+            isRefreshing={isRefreshing[index]}
+            onClick={() => {
+              refreshAvatar(index);
+            }}
+          />
         ))}
       </div>
       <AddButton onClick={addAvatar} />
-      <RefreshButton />
+      <RefreshButton onClick={refreshAll} />
     </div>
   );
 }
