@@ -1,8 +1,7 @@
 import React from 'react';
 import refreshIcon from '../refresh-icon.svg';
 
-function AvatarTile({ avatarURL, onClick}) {
-  let isRefreshing = false;
+function AvatarTile({ avatarURL, onClick, isRefreshing}) {
   
   return (
     <div className="avatar-tile tile" onClick={onClick}>

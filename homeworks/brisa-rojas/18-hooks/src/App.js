@@ -9,6 +9,7 @@ const URL = 'https://tinyfac.es/api/data?limit=1&quality=0';
 
 function App() {
   const [avatars, setAvatars] = useState([]);
+  const [isRefreshing, setIsRefreshing] = useState([]);
 
   async function getImage() {
     return fetch(URL)
@@ -34,11 +35,24 @@ function App() {
     setAvatars(newAvatars);
   }
 
+  async function refreshAvatar(index) {
+    let refreshingState = [...isRefreshing];
+    refreshingState[index] = true;
+    setIsRefreshing(refreshingState);
+    let modifiedAvatars = [...avatars];
+    let modifiedAvatar = await getImage();
+    modifiedAvatars[index] = modifiedAvatar;
+    refreshingState[index] = false;
+    setIsRefreshing(refreshingState);
+    setAvatars(modifiedAvatars);
+
+  }
+
   return (
     <div className="App">
       <div className="avatar-container">
         {avatars.map((avatar, index) => (
-          <AvatarTile key={index} avatarURL={avatar} />
+          <AvatarTile key={index} avatarURL={avatar} isRefreshing={isRefreshing[index]} onClick={() => {refreshAvatar(index)}} />
         ))}
       </div>
       <AddButton onClick={addAvatar} />
