@@ -14,13 +14,18 @@ const getMathSymbol = (operation) => {
   return symbols[operation];
 };
 
+const formatter = new Intl.NumberFormat('en-US', {
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 3,
+});
+
 const addition = (a, b) => a + b;
 
 const substract = (a, b) => a - b;
 
 const multiply = (a, b) => a * b;
 
-const divide = (a, b) => a / b;
+const divide = (a, b) => formatter.format(a / b);
 
 const percent = (n) => n / 100;
 
