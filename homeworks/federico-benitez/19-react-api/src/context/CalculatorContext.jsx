@@ -31,7 +31,6 @@ export function CalculatorProvider({ children }) {
   const [values, setValues] = useState(INITIAL_STATE);
 
   const handleOperation = (operation) => {
-    //debugger;
     const mathOperation = isMathOperation(operation);
     if (mathOperation) {
       if (operation === 'percent') {
@@ -40,7 +39,6 @@ export function CalculatorProvider({ children }) {
           current: operations.percent(prev.current),
         }));
       }
-      //debugger;
       if (!values.previous) {
         return setValues({
           previous: values.current,
@@ -50,7 +48,6 @@ export function CalculatorProvider({ children }) {
       } else {
         //TODO: check resta sin previo
         return setValues((prev) => {
-          //debugger;
           //TODO: refactor this
           return {
             previous: isNaN(prev.previous)
@@ -70,10 +67,15 @@ export function CalculatorProvider({ children }) {
         setValues(INITIAL_STATE);
         break;
       case 'equal':
-        setValues(({ previous, current, operation }) => ({
-          previous: `${previous} ${getMathSymbol(operation)} ${current}`,
-          current: getResult(current, previous, operation),
-        }));
+        setValues((prev) => {
+          const { previous, current, operation } = prev;
+          if (!operation) return { ...prev };
+
+          return {
+            previous: `${previous} ${getMathSymbol(operation)} ${current}`,
+            current: getResult(current, previous, operation),
+          };
+        });
         break;
       case 'delete':
         setValues((prev) => ({
