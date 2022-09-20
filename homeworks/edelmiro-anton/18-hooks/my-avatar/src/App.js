@@ -34,6 +34,8 @@ export const App = () => {
     setLoading(false);
   };
 
+  // When the user clicks on the "refresh all button", 
+  //loading text appears for a few moment
   const refreshAll = async () => {
     setLoading(true);
     const refreshAvatar = await Promise.all([...people].map(() => fetchAvatar()));
