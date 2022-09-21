@@ -5,7 +5,7 @@ import './AvatarTile.css';
 function AvatarTile({ avatarURL, onClick, isRefreshing}) {
   
   return (
-    <div className="avatar-tile tile" onClick={onClick}>
+    <div className="avatar-tile" onClick={onClick}>
       <img className="avatar-tile__img" src={avatarURL} alt="avatar img" />
       <div
         className={isRefreshing ? 'avatar-tile__overlay avatar-tile__overlay_loading' : 'avatar-tile__overlay'}
