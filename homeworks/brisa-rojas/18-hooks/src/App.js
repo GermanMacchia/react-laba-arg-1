@@ -3,7 +3,7 @@ import { React, useState } from 'react';
 import AddButton from './components/AddButton';
 import AvatarTile from './components/AvatarTile';
 import RefreshButton from './RefreshButton/RefreshButton';
-import errorImg from './error.jpg';
+import errorImg from './assets/error.jpg';
 
 const URL = 'https://tinyfac.es/api/data?limit=1&quality=0';
 
