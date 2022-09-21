@@ -44,7 +44,9 @@ export default class PictureGrid extends Component {
           ))}
           <AddNewPhoto onClick={this.props.handleAdd} />
         </ul>
-        {this.state.images.length > 0 && <RefreshButton onClick={this.refreshAll} />}
+        <footer className={styles.footer}>
+          {this.state.images.length > 0 && <RefreshButton onClick={this.refreshAll} />}
+        </footer>
       </>
     );
   }
