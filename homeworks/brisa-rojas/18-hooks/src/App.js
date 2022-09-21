@@ -79,7 +79,7 @@ function App() {
         ))}
         <AddButton onClick={addAvatar} />
       </div>
-      
+
       <RefreshButton onClick={refreshAll} />
     </div>
   );

@@ -2,19 +2,14 @@ import React from 'react';
 import refreshIcon from '../assets/refresh-icon.svg';
 import './AvatarTile.css';
 
-function AvatarTile({ avatarURL, onClick, isRefreshing}) {
-  
+function AvatarTile({ avatarURL, onClick, isRefreshing }) {
   return (
     <div className="avatar-tile" onClick={onClick}>
       <img className="avatar-tile__img" src={avatarURL} alt="avatar img" />
-      <div
-        className={isRefreshing ? 'avatar-tile__overlay avatar-tile__overlay_loading' : 'avatar-tile__overlay'}
-      >
+      <div className={isRefreshing ? 'avatar-tile__overlay avatar-tile__overlay_loading' : 'avatar-tile__overlay'}>
         <img
           className={
-            isRefreshing
-              ? 'avatar-tile__refresh-icon avatar-tile__refresh-icon_loading'
-              : 'avatar-tile__refresh-icon'
+            isRefreshing ? 'avatar-tile__refresh-icon avatar-tile__refresh-icon_loading' : 'avatar-tile__refresh-icon'
           }
           src={refreshIcon}
           alt="refresh img"
