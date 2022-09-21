@@ -16,7 +16,7 @@ export default function PictureGrid() {
         ))}
         <AddNewPhoto onClick={onAddNew} />
       </ul>
-      {images.length > 0 && <RefreshButton onClick={onRefreshAll} />}
+      <footer className={styles.footer}>{images.length > 0 && <RefreshButton onClick={onRefreshAll} />}</footer>
     </>
   );
 }
