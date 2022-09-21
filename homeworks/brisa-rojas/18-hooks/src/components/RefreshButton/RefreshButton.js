@@ -1,5 +1,5 @@
 import React from 'react';
-import './RefreshButton.css';
+import './styles.css';
 
 function RefreshAllButton({ onClick }) {
   return (

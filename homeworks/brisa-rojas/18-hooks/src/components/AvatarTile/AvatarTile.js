@@ -1,6 +1,6 @@
 import React from 'react';
 import refreshIcon from '../../assets/refresh-icon.svg';
-import './AvatarTile.css';
+import './styles.css';
 
 function AvatarTile({ avatarURL, onClick, isRefreshing }) {
   return (
