@@ -1,5 +1,6 @@
 .card {
   position: relative;
+  cursor: pointer;
 }
 
 .photo {
@@ -23,6 +24,9 @@
   width: 100px;
   height: auto;
   filter: invert(1);
+}
+
+.spin {
   animation: refresh 1000ms infinite linear;
 }
 
