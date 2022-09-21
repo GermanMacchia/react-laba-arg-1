@@ -1,8 +1,9 @@
 import React from 'react';
+import './AddButton.css';
 
 const AddButton = ({ onClick }) => {
   return (
-    <div className="add-avatar-tile tile" onClick={onClick}>
+    <div className="add-avatar-tile" onClick={onClick}>
       +
     </div>
   );
