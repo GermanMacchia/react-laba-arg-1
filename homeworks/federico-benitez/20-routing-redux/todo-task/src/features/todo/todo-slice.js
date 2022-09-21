@@ -2,15 +2,15 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   todos: [],
-  isEditInputVisible: false,
+  todoSelected: '',
 };
 
 const todoSlice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
-    showEditInput: (state) => ({ ...state, isEditInputVisible: true }),
-    hideEditInput: (state) => ({ ...state, isEditInputVisible: false }),
+    showEditInput: (state, action) => ({ ...state, todoSelected: action.payload }),
+    hideEditInput: (state) => ({ ...state, todoSelected: '' }),
     todoAdded: (state, action) => {
       if (!action.payload) return;
 
@@ -29,7 +29,7 @@ const todoSlice = createSlice({
       return {
         ...state,
         todos: [...state.todos.map((todo) => (todo.id === id ? { id, value: newValue } : todo))],
-        isEditInputVisible: false,
+        todoSelected: '',
       };
     },
     todoDeleted: (state, action) => {
