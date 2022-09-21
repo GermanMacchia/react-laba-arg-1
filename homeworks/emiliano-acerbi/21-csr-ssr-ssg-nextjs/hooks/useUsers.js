@@ -57,6 +57,7 @@ function useUsers() {
   return {
     users,
     isRefreshing,
+    setUsers,
     fetchSingleUser,
     refreshUser,
     refreshAllUsers,
