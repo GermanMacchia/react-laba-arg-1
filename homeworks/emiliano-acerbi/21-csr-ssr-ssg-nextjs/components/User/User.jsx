@@ -1,4 +1,4 @@
-function User({ user, index, isRefreshing }) {
+function User({ user, index, isRefreshing, refreshUser }) {
   return (
     <div className="image" key={user.id} onClick={() => refreshUser(index)}>
       {/* Overylay */}
