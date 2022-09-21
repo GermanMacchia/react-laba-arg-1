@@ -7,7 +7,7 @@ import MinusIcon from '../MinusIcon/MinusIcon';
 const Button = (props) => {
   return (
     <button
-      className={`button${props.value.toString().match(/[-dCX+=÷]/g) ? ' button--grey' : ''}
+      className={`button${props.value.toString().match(/[-dC*+=/]/g) ? ' button--grey' : ''}
       ${props.value === 'C' ? ' button--C' : ''}
       ${props.value === 'delete' ? ' button--delete' : ''}
       ${props.value === '=' ? ' button--equal' : ''}
@@ -18,9 +18,9 @@ const Button = (props) => {
     >
       {props.value === 'delete' ? (
         <DeleteIcon />
-      ) : props.value === 'X' ? (
+      ) : props.value === '*' ? (
         <XIcon />
-      ) : props.value === '÷' ? (
+      ) : props.value === '/' ? (
         <DivisionIcon />
       ) : props.value === '+' ? (
         <PlusIcon />

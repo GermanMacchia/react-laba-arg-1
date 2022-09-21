@@ -1,9 +1,9 @@
 import './Screen.css';
-const Screen = ({ value }) => {
+const Screen = ({ input, output }) => {
   return (
     <div className="screen">
-      <h2 className="screen__calc">{value}</h2>
-      <h1 className="screen__result">{value.length > 0 ? value : 0}</h1>
+      <h2 className="screen__calc"> {input}</h2>
+      <h1 className="screen__result">{input.length > 0 ? output : 0}</h1>
     </div>
   );
 };
