@@ -1,8 +1,8 @@
-import './App.css';
+import './styles/App.css';
 import { React, useState } from 'react';
-import AddButton from './AddButton/AddButton.js';
-import AvatarTile from './AvatarTile/AvatarTile.js';
-import RefreshButton from './RefreshButton/RefreshButton.js';
+import AddButton from './components/AddButton/AddButton.js';
+import AvatarTile from './components/AvatarTile/AvatarTile.js';
+import RefreshButton from './components/RefreshButton/RefreshButton.js';
 import errorImg from './assets/error.jpg';
 
 const URL = 'https://tinyfac.es/api/data?limit=1&quality=0';
