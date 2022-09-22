@@ -3,7 +3,7 @@ const root = ReactDOM.createRoot(domContainer);
 
 class TraficLight extends React.Component {
   static counter = 0;
-  static colors = ['green', 'red', 'yellow'];
+  static colors = ['#04CA00', '#DF4040', '#E9EC6A'];
 
   constructor(props) {
     super(props);
@@ -32,9 +32,9 @@ class TraficLight extends React.Component {
         <div className="post"></div>
         <div className="trafficLight">
           <div className="trafficLight-Container"></div>
-          <Light color="red" lightActive={this.state.lightOn} />
-          <Light color="yellow" lightActive={this.state.lightOn} />
-          <Light color="green" lightActive={this.state.lightOn} />
+          <Light color="#DF4040" lightActive={this.state.lightOn} />
+          <Light color="#E9EC6A" lightActive={this.state.lightOn} />
+          <Light color="#04CA00" lightActive={this.state.lightOn} />
         </div>
       </div>
     );
