@@ -29,7 +29,7 @@
   filter: drop-shadow(6px 6px 10px rgba(0, 0, 0, 0.25));
 }
 
-.trafficLight-Container__light {
+.trafficLight__light {
   width: 150px;
   height: 150px;
   margin-bottom: 30px;

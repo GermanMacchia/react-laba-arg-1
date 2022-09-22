@@ -31,7 +31,6 @@ class TraficLight extends React.Component {
       <div className="container">
         <div className="post"></div>
         <div className="trafficLight">
-          <div className="trafficLight-Container"></div>
           <Light color="#DF4040" lightActive={this.state.lightOn} />
           <Light color="#E9EC6A" lightActive={this.state.lightOn} />
           <Light color="#04CA00" lightActive={this.state.lightOn} />
@@ -49,11 +48,9 @@ class Light extends React.Component {
   render() {
     {
       if (this.props.color === this.props.lightActive) {
-        return (
-          <div className="trafficLight-Container__light" style={{ backgroundColor: this.props.lightActive }}></div>
-        );
+        return <div className="trafficLight__light" style={{ backgroundColor: this.props.lightActive }}></div>;
       } else {
-        return <div className="trafficLight-Container__light" style={{ backgroundColor: 'grey' }}></div>;
+        return <div className="trafficLight__light" style={{ backgroundColor: 'grey' }}></div>;
       }
     }
   }
