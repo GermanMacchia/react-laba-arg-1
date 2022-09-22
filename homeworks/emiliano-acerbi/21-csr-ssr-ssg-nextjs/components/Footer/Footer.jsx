@@ -1,7 +1,7 @@
-function Footer({ isButtonDisabled, refreshAllUsers }) {
+function Footer({ refreshAllUsers }) {
   return (
     <footer className="footer">
-      <button disabled={isButtonDisabled} className="refresh-btn" onClick={refreshAllUsers}>
+      <button className="refresh-btn" onClick={refreshAllUsers}>
         Refresh All
       </button>
     </footer>

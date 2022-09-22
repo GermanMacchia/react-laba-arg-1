@@ -1,19 +1,30 @@
+import useUsers from '../hooks/useUsers';
 import Container from '../components/Container';
 import Main from '../components/Main';
 import User from '../components/User';
 import FechButton from '../components/FechButton';
 import Footer from '../components/Footer';
-import useUsers from '../hooks/useUsers';
 import { useEffect } from 'react';
 
 export default function Home({ data }) {
   const { users, isRefreshing, setUsers, fetchSingleUser, refreshUser, refreshAllUsers } = useUsers();
-  const isButtonDisabled = users.length === 0;
 
   useEffect(() => {
-    setUsers(data);
+    if (!data.error) {
+      setUsers(data);
+    }
   }, []);
 
+  // If we have a problem with the first request then this will render
+  if (data.error) {
+    return (
+      <Container>
+        <h1 className="error-title">There was a problem fetching the users, try again later.</h1>
+      </Container>
+    );
+  }
+
+  // If everything is correct this will render
   return (
     <Container>
       <Main>
@@ -22,7 +33,7 @@ export default function Home({ data }) {
         })}
         <FechButton fetchSingleUser={fetchSingleUser} />
       </Main>
-      <Footer isButtonDisabled={isButtonDisabled} refreshAllUsers={refreshAllUsers} />
+      <Footer refreshAllUsers={refreshAllUsers} />
     </Container>
   );
 }

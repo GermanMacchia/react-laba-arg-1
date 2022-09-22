@@ -1,14 +1,12 @@
 import { useState } from 'react';
 
-const URL = 'https://tinyfac.es/api/data?limit=1&quality=0';
-
 function useUsers() {
   const [users, setUsers] = useState([]);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   async function fetchSingleUser() {
     try {
-      let response = await fetch(URL);
+      let response = await fetch('/api/users?limit=1&quality=0');
       if (response.status === 200) {
         let fetchedUsers = await response.json();
         setUsers([...users, fetchedUsers[0]]);
@@ -23,7 +21,7 @@ function useUsers() {
   async function refreshUser(index) {
     try {
       setIsRefreshing(true);
-      let response = await fetch(URL);
+      let response = await fetch('/api/users?limit=1&quality=0');
       if (response.status === 200) {
         let fetchedUsers = await response.json();
         let newUsers = [...users];

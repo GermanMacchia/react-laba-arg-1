@@ -1,7 +1,9 @@
 :root {
   background-color: #e5e5e5;
   --primary-clr: #5e217a;
+  --primary-ff: 'Roboto', sans-serif;
   height: 100%;
+  font-family: var(--primary-ff);
 }
 
 * {
@@ -21,6 +23,8 @@ img {
   min-height: 100vh;
   display: flex;
   flex-flow: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .main {
@@ -106,7 +110,7 @@ img {
 }
 
 .refresh-btn {
-  font-family: Roboto;
+  font-family: var(--primary-ff);
   background-color: var(--primary-clr);
   width: 320px;
   height: 40px;
@@ -129,10 +133,17 @@ img {
   opacity: 0.8;
 }
 
+.error-title {
+  color: var(--primary-clr);
+  max-width: 30ch;
+  text-align: center;
+}
+
 @keyframes refresh {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(180deg);
   }
