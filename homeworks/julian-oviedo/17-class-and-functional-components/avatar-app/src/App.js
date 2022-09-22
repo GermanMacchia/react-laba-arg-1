@@ -16,7 +16,7 @@ class App extends React.Component {
   }
 
   addAvatar() {
-    fetch(URL, { method: 'GET' }).then((res) => {
+    fetch(URL).then((res) => {
       res.json().then((data) => {
         this.setState((state) => {
           const newList = [...state.avatars, data[0].url];
@@ -33,7 +33,7 @@ class App extends React.Component {
   }
 
   refreshClickedAvatar(avatarId) {
-    fetch(URL, { method: 'GET' }).then((res) => {
+    fetch(URL).then((res) => {
       res.json().then((data) => {
         const newAvatar = data[0].url;
         let newList = this.state.avatars.map((avatar, index) => {
