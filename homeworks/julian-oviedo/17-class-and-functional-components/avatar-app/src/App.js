@@ -13,38 +13,43 @@ class App extends React.Component {
     this.addAvatar = this.addAvatar.bind(this);
     this.refreshAllAvatars = this.refreshAllAvatars.bind(this);
     this.refreshClickedAvatar = this.refreshClickedAvatar.bind(this);
+    this.getAvatar = this.getAvatar.bind(this);
   }
 
-  addAvatar() {
-    fetch(URL).then((res) => {
-      res.json().then((data) => {
-        this.setState((state) => {
-          const newList = [...state.avatars, data[0].url];
-          return { avatars: newList };
-        });
-      });
+  async getAvatar() {
+    const res = await fetch(URL);
+    return res.json().then((data) => {
+      return data[0].url;
     });
   }
 
-  refreshAllAvatars() {
-    this.setState({
-      avatars: [],
+  async addAvatar() {
+    const newAvatar = await this.getAvatar();
+    this.setState((state) => {
+      const newList = [...state.avatars, newAvatar];
+      return { avatars: newList };
     });
   }
 
-  refreshClickedAvatar(avatarId) {
-    fetch(URL).then((res) => {
-      res.json().then((data) => {
-        const newAvatar = data[0].url;
-        let newList = this.state.avatars.map((avatar, index) => {
-          if (index === avatarId) {
-            return newAvatar;
-          }
-          return avatar;
-        });
-        this.setState({ avatars: newList });
-      });
+  async refreshAllAvatars() {
+    let newList = await Promise.all(
+      this.state.avatars.map(() => {
+        return this.getAvatar();
+      }),
+    );
+
+    this.setState({ avatars: newList });
+  }
+
+  async refreshClickedAvatar(avatarId) {
+    const newAvatar = await this.getAvatar();
+    let newList = this.state.avatars.map((avatar, index) => {
+      if (index === avatarId) {
+        return newAvatar;
+      }
+      return avatar;
     });
+    this.setState({ avatars: newList });
   }
 
   render() {
