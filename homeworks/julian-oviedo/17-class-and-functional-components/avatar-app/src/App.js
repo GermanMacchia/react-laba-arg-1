@@ -53,11 +53,10 @@ class App extends React.Component {
         <div className="cards-container">
           {this.state.avatars.map((avatar, index) => {
             return (
-              <div className="card">
-                <img className="card__avatar" key={avatar} src={avatar} alt=""></img>
+              <div className="card" key={index}>
+                <img className="card__avatar" src={avatar} alt=""></img>
                 <img
                   className="card__refreshIcon"
-                  key="refreshIcon"
                   src={refreshImg}
                   onClick={() => this.refreshClickedAvatar(index)}
                   alt=""
