@@ -4,7 +4,6 @@ import Main from '../components/Main';
 import User from '../components/User';
 import FetchButton from '../components/FetchButton';
 import Footer from '../components/Footer';
-import { useEffect } from 'react';
 import ErrorMessage from '../components/ErrorMessage';
 
 export async function getServerSideProps() {
@@ -18,13 +17,7 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ data }) {
-  const { users, isRefreshing, setUsers, fetchSingleUser, refreshUser, refreshAllUsers } = useUsers();
-
-  useEffect(() => {
-    if (!data.error) {
-      setUsers(data);
-    }
-  }, [data, setUsers]);
+  const { users, isRefreshing, fetchSingleUser, refreshUser, refreshAllUsers } = useUsers(data);
 
   // If we have a problem with the first request then this will render
   if (data.error) {

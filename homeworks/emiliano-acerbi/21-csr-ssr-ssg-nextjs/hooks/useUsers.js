@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-function useUsers() {
-  const [users, setUsers] = useState([]);
+function useUsers(data) {
+  const [users, setUsers] = useState(data);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   async function fetchSingleUser() {
