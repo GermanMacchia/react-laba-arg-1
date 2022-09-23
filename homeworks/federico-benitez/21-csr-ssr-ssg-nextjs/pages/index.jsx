@@ -13,6 +13,7 @@ export async function getStaticProps() {
     props: {
       data,
     },
+    revalidate: 60, // To do an incremental regeneration to reload data each minute
   };
 }
 
