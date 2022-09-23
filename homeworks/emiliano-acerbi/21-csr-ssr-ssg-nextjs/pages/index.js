@@ -24,7 +24,7 @@ export default function Home({ data }) {
     if (!data.error) {
       setUsers(data);
     }
-  }, []);
+  }, [data, setUsers]);
 
   // If we have a problem with the first request then this will render
   if (data.error) {
