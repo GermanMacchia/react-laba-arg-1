@@ -1,0 +1,36 @@
+.square_button {
+  width: 240px;
+  height: 240px;
+  border: 4px solid #5e217a;
+  border-radius: 16px;
+  background-color: #ffffff;
+}
+
+.square_button__icon {
+  height: 8rem;
+}
+
+.square_button:hover {
+  filter: brightness(2);
+  box-shadow: 3px 3px 3px #5e217a;
+  cursor: pointer;
+}
+
+.square_button:active {
+  box-shadow: 1px 1px 1px #5e217a;
+}
+
+.square_button__loading {
+  height: 150px;
+  animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
