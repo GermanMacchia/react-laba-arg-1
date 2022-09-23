@@ -61,7 +61,7 @@ class App extends React.Component {
               <div className="card" key={index}>
                 <img className="card__avatar" src={avatar} alt=""></img>
                 <img
-                  className="card__refreshIcon"
+                  className="card__refresh-icon"
                   src={refreshImg}
                   onClick={() => this.refreshClickedAvatar(index)}
                   alt=""
@@ -69,12 +69,12 @@ class App extends React.Component {
               </div>
             );
           })}
-          <button className="addButton" onClick={this.addAvatar}>
+          <button className="bttn-add" onClick={this.addAvatar}>
             +
           </button>
         </div>
-        <div className="refreshButton-container">
-          <button className="refreshButton" onClick={this.refreshAllAvatars}>
+        <div className="bttn-container">
+          <button className="bttn-container__refresh-all" onClick={this.refreshAllAvatars}>
             REFRESH ALL
           </button>
         </div>
