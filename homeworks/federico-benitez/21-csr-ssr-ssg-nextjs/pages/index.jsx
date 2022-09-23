@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { getPhotos } from './api/photos';
+import { getPhotos } from '../utils/photos';
 import { PictureGrid } from '../components';
 
 import styles from '../styles/Main.module.css';

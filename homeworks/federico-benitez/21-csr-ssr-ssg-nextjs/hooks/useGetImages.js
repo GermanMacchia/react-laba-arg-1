@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { getPhotos } from '../pages/api/photos';
+import { getPhotos } from '../utils/photos';
 
 export default function useGetImages(initialData = []) {
   const [images, setImages] = useState(initialData);
