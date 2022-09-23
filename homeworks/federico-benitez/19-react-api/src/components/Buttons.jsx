@@ -1,15 +1,15 @@
 import React from 'react';
-import { Button as ButtonComponent } from '@chakra-ui/react';
+import { Button as ButtonComponent, Grid, GridItem } from '@chakra-ui/react';
 import { KEYS } from '../helpers/keys';
-import { Grid, GridItem } from '@chakra-ui/react';
 import { useCalculatorContext } from '../context/CalculatorContext';
 
 export default function CalculatorButtons() {
   const { doAction } = useCalculatorContext();
+
   return (
-    <Grid templateColumns={'repeat(4,1fr)'}>
+    <Grid>
       {KEYS.map((key) => (
-        <GridItem key={key.value}>
+        <GridItem key={key.value} area={key.value === 'equal' ? '4 / 4 / 6 / 5' : ''}>
           <Button button={key} onClick={() => doAction(key)} />
         </GridItem>
       ))}
@@ -17,9 +17,17 @@ export default function CalculatorButtons() {
   );
 }
 
-function Button({ rounded = false, size = 'default', button, ...rest }) {
+function Button({ button, ...rest }) {
+  const isBtnEqual = button.value === 'equal';
   return (
-    <ButtonComponent {...rest} borderRadius="none" bg="background.100" color="white" width="94px" height="94px">
+    <ButtonComponent
+      {...rest}
+      borderRadius="none"
+      bg={isBtnEqual ? 'orange' : 'background.100'}
+      color="white"
+      width="94px"
+      height={isBtnEqual ? '188px' : '94px'}
+    >
       {button.text}
     </ButtonComponent>
   );
