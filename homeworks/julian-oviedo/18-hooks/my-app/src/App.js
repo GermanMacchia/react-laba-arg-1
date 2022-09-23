@@ -1,86 +1,72 @@
-import React from 'react';
+import { React, useState } from 'react';
 import refreshImg from './assets/images/refresh.svg';
 import './App.css';
 
 const URL = 'https://tinyfac.es/api/data?limit=1&quality=0';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      avatars: [],
-    };
-    this.addAvatar = this.addAvatar.bind(this);
-    this.refreshAllAvatars = this.refreshAllAvatars.bind(this);
-    this.refreshClickedAvatar = this.refreshClickedAvatar.bind(this);
-    this.getAvatar = this.getAvatar.bind(this);
-  }
+function App() {
+  const [avatars, setAvatars] = useState([]);
 
-  async getAvatar() {
+  async function getAvatar() {
     const res = await fetch(URL);
     return res.json().then((data) => {
       return data[0].url;
     });
   }
 
-  async addAvatar() {
-    const newAvatar = await this.getAvatar();
-    this.setState((state) => {
-      const newList = [...state.avatars, newAvatar];
-      return { avatars: newList };
-    });
+  async function addAvatar() {
+    const newAvatar = await getAvatar();
+    const newList = [...avatars, newAvatar];
+    setAvatars(newList);
   }
 
-  async refreshAllAvatars() {
-    let newList = await Promise.all(
-      this.state.avatars.map(() => {
-        return this.getAvatar();
-      }),
-    );
-
-    this.setState({ avatars: newList });
-  }
-
-  async refreshClickedAvatar(avatarId) {
-    const newAvatar = await this.getAvatar();
-    let newList = this.state.avatars.map((avatar, index) => {
+  async function refreshClickedAvatar(avatarId) {
+    const newAvatar = await getAvatar();
+    let newList = avatars.map((avatar, index) => {
       if (index === avatarId) {
         return newAvatar;
       }
       return avatar;
     });
-    this.setState({ avatars: newList });
+    setAvatars(newList);
   }
 
-  render() {
-    return (
-      <div className="App">
-        <div className="cards-container">
-          {this.state.avatars.map((avatar, index) => {
-            return (
-              <div className="card" key={index}>
-                <img className="card__avatar" src={avatar} alt=""></img>
-                <img
-                  className="card__refresh-icon"
-                  src={refreshImg}
-                  onClick={() => this.refreshClickedAvatar(index)}
-                  alt=""
-                ></img>
-              </div>
-            );
-          })}
-          <button className="bttn-add" onClick={this.addAvatar}>
-            +
-          </button>
-        </div>
-        <div className="bttn-container">
-          <button className="bttn-container__refresh-all" onClick={this.refreshAllAvatars}>
-            REFRESH ALL
-          </button>
-        </div>
-      </div>
+  async function refreshAllAvatars() {
+    let newList = await Promise.all(
+      avatars.map(() => {
+        return getAvatar();
+      }),
     );
+    setAvatars(newList);
   }
+
+  return (
+    <div className="App">
+      <div className="cards-container">
+        {avatars.map((avatar, index) => {
+          return (
+            <div className="card" key={index}>
+              <img className="card__avatar" src={avatar} alt=""></img>
+              <img
+                className="card__refresh-icon"
+                src={refreshImg}
+                onClick={() => refreshClickedAvatar(index)}
+                alt=""
+              ></img>
+            </div>
+          );
+        })}
+        <button className="bttn-add" onClick={addAvatar}>
+          +
+        </button>
+      </div>
+      <div className="bttn-container">
+        <button className="bttn-container__refresh-all" onClick={refreshAllAvatars}>
+          REFRESH ALL
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default App;
