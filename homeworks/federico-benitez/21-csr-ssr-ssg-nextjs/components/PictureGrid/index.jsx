@@ -1,4 +1,3 @@
-import React from 'react';
 import { AddNewPhoto, Picture, RefreshButton } from '..';
 import useHandleImage from '../../hooks/useHandleImages';
 import styles from './style.module.css';
