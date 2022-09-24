@@ -7,6 +7,7 @@ export default function TodoForm({ handleSubmit, todo, editId, setTodo }) {
       <input
         className="todo-form_input"
         type="text"
+        maxLength={37}
         placeholder="Create Todo-Task"
         value={todo}
         onChange={(e) => setTodo(e.target.value)}

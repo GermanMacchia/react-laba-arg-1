@@ -8,6 +8,8 @@ ul {
 
 li {
   list-style: none;
+  display: flex;
+  align-items: center;
 }
 
 .todo-list {
