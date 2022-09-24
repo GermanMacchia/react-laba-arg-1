@@ -25,10 +25,12 @@
   width: 59.38px;
   height: 58px;
   margin-top: -7px;
+  cursor: pointer;
 }
 
 .edit_icon {
   width: 63.23px;
   height: 65px;
   margin-top: -10px;
+  cursor: pointer;
 }

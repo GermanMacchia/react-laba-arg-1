@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { addTodo, removeTodo } from '../helper/todoSlice';
+import { addTodo } from '../helper/todoSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { TodoInput } from './TodoInput';
 import './AddTodo.css';
