@@ -2,7 +2,7 @@ import plusIcon from "../../assets/plus_icon.svg";
 import React, { useContext } from "react";
 import styles from "./GetButton.module.css";
 import Image from "next/image";
-import { AppContext } from "../../pages/context/AppContext";
+import { AppContext } from "../../context/AppContext";
 
 export const GetButton = () => {
   const { avatarQuantity } = useContext(AppContext);

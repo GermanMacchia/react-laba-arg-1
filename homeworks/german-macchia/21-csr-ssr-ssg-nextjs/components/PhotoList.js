@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { PhotoContainer } from "./PhotoContainer/PhotoContainer";
 import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
-import { AppContext } from "../pages/context/AppContext";
+import { AppContext } from "../context/AppContext";
 
 export const PhotoList = () => {
   const { avatarQuantity } = useContext(AppContext);

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AppContext } from "../../pages/context/AppContext";
+import { AppContext } from "../../context/AppContext";
 import styles from "./Footer.module.css";
 
 export const Footer = () => {

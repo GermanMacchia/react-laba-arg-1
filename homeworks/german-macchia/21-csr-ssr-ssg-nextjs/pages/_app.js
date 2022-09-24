@@ -2,7 +2,7 @@ import Head from "next/head";
 import "../styles/globals.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { AppProvider } from "./context/AppProvider";
+import { AppProvider } from "../context/AppProvider";
 
 const queryClient = new QueryClient();
 

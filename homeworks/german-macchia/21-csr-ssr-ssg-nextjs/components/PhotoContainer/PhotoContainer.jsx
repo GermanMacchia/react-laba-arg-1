@@ -1,12 +1,12 @@
-import React, { memo, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import fetchPhoto from "../../pages/api/fetchPhoto";
 import styles from "./PhotoContainer.module.css";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
-import { AppContext } from "../../pages/context/AppContext";
+import { AppContext } from "../../context/AppContext";
 
-export const PhotoContainer = memo(({ id }) => {
+export const PhotoContainer = ({ id }) => {
   const { reloadAll } = useContext(AppContext);
   const { isLoading, data, isFetching, error, refetch } = useQuery(
     [`tile ${id}`],
@@ -21,6 +21,12 @@ export const PhotoContainer = memo(({ id }) => {
   );
 
   useEffect(() => {
+    if (error) {
+      throw new Error(error.message);
+    }
+  }, [error]);
+
+  useEffect(() => {
     if (reloadAll.reload) {
       refetch();
       reloadAll.setReload(false);
@@ -29,7 +35,6 @@ export const PhotoContainer = memo(({ id }) => {
 
   return (
     <div className={styles.container} onClick={refetch}>
-      {console.count("tile" + id)}
       {!isLoading && data ? (
         <Image
           className={styles.container__profile_image}
@@ -55,4 +60,4 @@ export const PhotoContainer = memo(({ id }) => {
       )}
     </div>
   );
-});
+};
