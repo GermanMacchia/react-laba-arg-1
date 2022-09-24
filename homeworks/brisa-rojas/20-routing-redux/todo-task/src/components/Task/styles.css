@@ -25,4 +25,10 @@
   width: 65px;
   height: 65px;
   cursor: pointer;
+  
+}
+
+.task__icon:hover {
+  animation: all 0.3s linear ease-in;
+  transform: translateX(2px) translateY(3px);
 }
