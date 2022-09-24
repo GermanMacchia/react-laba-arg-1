@@ -1,56 +1,58 @@
-import React, { useState, useEffect } from "react";
-import fetchPhotos from "../../pages/api/getPhotos"
-import styles from "./PhotoContainer.module.css"
-import Image from 'next/image'
+import React, { memo, useEffect, useContext } from "react";
+import fetchPhoto from "../../pages/api/fetchPhoto";
+import styles from "./PhotoContainer.module.css";
+import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
+import { motion } from "framer-motion";
+import { AppContext } from "../../pages/context/AppContext";
 
-export const PhotoContainer = React.memo(({ url, name, id }) => {
-  
-  const [photo, setPhoto] = useState({ url: url, name: name, id: id });
-  const [error, setError] = useState({ error: false, errorMessage: "" });
-  const [isReloading, setIsReloading] = useState(true);
-  
-  // reload new data for this single container
-  const reload = async () => {
-    setIsReloading(true);
-    try {
-      const quantity = 1;
-      const [photo] = await fetchPhotos(quantity);
-      setPhoto(() => ({
-        id: photo.first_name + photo.id,
-        url: photo.url,
-        name: `${photo.first_name} ${photo.last_name}`,
-      }));
-    } catch (error) {
-      setError({
-        error: true,
-        errorMessage: error.message,
-      });
-    } finally {
-      setIsReloading(false);
+export const PhotoContainer = memo(({ id }) => {
+  const { reloadAll } = useContext(AppContext);
+  const { isLoading, data, isFetching, error, refetch } = useQuery(
+    [`tile ${id}`],
+    () => fetchPhoto(),
+    {
+      refetchOnWindowFocus: false,
+      select: (data) => {
+        const photo = data[0];
+        return photo;
+      },
     }
-  };
+  );
 
-  //throw new Error if occurs
   useEffect(() => {
-    if (error.error) {
-      throw new Error(error.errorMessage);
+    if (reloadAll.reload) {
+      refetch();
+      reloadAll.setReload(false);
     }
-  }, [error]);
+  }, [reloadAll.reload]);
 
   return (
-    <div className={styles.container} onClick={() => reload()} key={photo.id}>
-      <img
-        className={styles.container__profile_image}
-        src={photo.url}
-        alt={photo.name}
-      />
-      <div
-        className={
-          isReloading
-            ? [styles.container__image_box, styles['container__image_box--animate']].join()
-            : styles.container__image_box
-        }
-      />
+    <div className={styles.container} onClick={refetch}>
+      {console.count("tile" + id)}
+      {!isLoading && data ? (
+        <Image
+          className={styles.container__profile_image}
+          src={data?.url}
+          alt={data?.name}
+          layout="fill"
+        />
+      ) : (
+        <motion.div
+          className={styles.container__loading}
+          animate={{ rotate: 380 }}
+          transition={{ repeat: Infinity, duration: 2 }}
+        />
+      )}
+      {isFetching ? (
+        <motion.div
+          className={styles["container__image_box--animate"]}
+          animate={{ rotate: 380 }}
+          transition={{ repeat: Infinity, duration: 2 }}
+        />
+      ) : (
+        <div className={styles.container__image_box} />
+      )}
     </div>
   );
 });

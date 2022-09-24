@@ -1,22 +1,24 @@
-import loadingCircle from "../../assets/loading_circle.svg";
 import plusIcon from "../../assets/plus_icon.svg";
-import React from "react";
-import styles from './GetButton.module.css'
-import Image from 'next/image'
+import React, { useContext } from "react";
+import styles from "./GetButton.module.css";
+import Image from "next/image";
+import { AppContext } from "../../pages/context/AppContext";
 
-export const GetButton = React.memo(({ handleNewPhoto, loading }) => {
+export const GetButton = () => {
+  const { avatarQuantity } = useContext(AppContext);
+
+  const handleNewPhoto = () => {
+    const quantity = avatarQuantity.quantity;
+    avatarQuantity.setQuantity(quantity + 1);
+  };
 
   return (
     <button className={styles.square_button} onClick={handleNewPhoto}>
-      {loading ? (
-        <Image
-          className={styles['square_button__loading']}
-          src={loadingCircle}
-          alt="loading Circle"
-        />
-      ) : (
-        <Image className={styles.square_button__icon} src={plusIcon} alt="plus_icon" />
-      )}
+      <Image
+        className={styles.square_button__icon}
+        src={plusIcon}
+        alt="plus_icon"
+      />
     </button>
   );
-});
+};

@@ -1,12 +1,11 @@
-
-
-export default async function fetchPhotos(quantity) {
-  const api = `https://tinyfac.es/api/data?limit=${quantity}&quality=0`;
+export default async function fetchPhoto(quantity) {
+  const auxQuant = quantity || 1;
+  const api = `https://tinyfac.es/api/data?limit=${auxQuant}&quality=0`;
   const response = await fetch(api);
   const json = await response.json();
 
   if (response.status !== 200) {
-    throw new Error(`STATUS ${response.status} ${response.statusText}`)
+    throw new Error(`STATUS ${response.status} ${response.statusText}`);
   }
 
   return json.map((photo) => {
