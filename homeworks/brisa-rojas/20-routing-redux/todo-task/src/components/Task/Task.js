@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import './styles.css';
 import editIcon from '../../assets/edit.svg';
 import deleteIcon from '../../assets/delete.svg';
