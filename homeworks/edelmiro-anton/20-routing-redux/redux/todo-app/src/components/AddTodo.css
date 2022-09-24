@@ -1,9 +1,12 @@
 .mainInput {
-  display: flex;
-  justify-content: center;
+  /* display: flex;
+  justify-content: center; */
   margin-top: 99px;
 }
 
+.form{
+  display: flex;
+}
 .input_todoTask {
   width: 554px;
   height: 64px;
@@ -17,6 +20,7 @@
   font-size: 32px;
   line-height: 52px;
   color: rgba(0, 0, 0, 0.6);
+  margin-left: auto;
 }
 
 ::placeholder {
@@ -46,4 +50,5 @@
   color: #ffffff;
   border: none;
   cursor: pointer;
+    margin-right: auto;
 }
