@@ -1,20 +1,25 @@
 import React from 'react';
 import './App.css';
-import { addToDo, deleteToDo, editToDo } from './features/MainInput/mainInputSlice';
+import { deleteToDo, editToDo } from './features/MainInput/mainInputSlice';
 import MainInput from './features/MainInput/MainInput';
 import Task from './features/Task/Task';
 import { useSelector } from 'react-redux';
 
-function App() {
+function App(props) {
   let tasks = useSelector((state) => state.mainInput.tasks);
   let ids = useSelector((state) => state.mainInput.id);
-
+  let counter = useSelector((state) => state.mainInput.counter);
+  
+  let tasksToRender =[];
+  for (let i = 0; i < counter; i++) {
+    let task = tasks[i];
+    let id = ids[i];  
+    tasksToRender.push(<Task key={id} task={task} id={id} deleteTask={deleteToDo} editTask={editToDo} />);
+  }
   return (
     <div className="App">
       <MainInput />
-      {tasks.map((task, index) => {
-        return <Task key={ids[index]} task={task} id={ids[index]} deleteTask={deleteToDo} editTask={editToDo} />;
-      })}
+      {tasksToRender}
     </div>
   );
 }

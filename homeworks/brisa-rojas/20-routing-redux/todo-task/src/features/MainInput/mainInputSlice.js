@@ -1,6 +1,7 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
 
 const initialState = {
+  counter: 0,
   tasks: [],
   id: [],
 };
@@ -11,8 +12,13 @@ export const mainInputSlice = createSlice({
   reducers: {
     addToDo: {
       reducer(state, action) {
+        if (!action.payload.todoText) {
+          console.log('input is empty');
+          return null;
+        }
         state.tasks.push(action.payload.todoText);
         state.id.push(action.payload.id);
+        state.counter += 1;
       },
       prepare(todoText) {
         return {
@@ -25,10 +31,9 @@ export const mainInputSlice = createSlice({
     },
     deleteToDo: {
       reducer(state, action) {
-        console.log('in reducer'+action.payload);
         let idIndex = state.id.indexOf(action.payload);
-        console.log('idIndex'+idIndex);
         state.id.splice(idIndex, 1);
+        state.counter -= 1;
       },
     },
     editToDo: {
