@@ -11,7 +11,7 @@
 
 .task {
   display: flex;
-  width: 680px;
+  width: 80vw;
   height: 100%;
   margin-bottom: 47px;
 }
