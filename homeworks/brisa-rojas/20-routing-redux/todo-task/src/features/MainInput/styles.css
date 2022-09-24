@@ -4,24 +4,25 @@
   margin: 0;
 }
 
-.task {
+.main-input {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 10px;
   width: 680px;
   height: 100%;
 }
 
-.task__text {
+.main-input__input {
   font-size: 20px;
   padding: 5px 10px;
   width: auto;
   margin: 0 5px;
 }
 
-.task__icon {
-  width: 65px;
+.main-input__button {
+  width: 122px;
   height: 65px;
   cursor: pointer;
+  text-align: center;
 }
