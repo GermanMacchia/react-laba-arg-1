@@ -1,8 +1,8 @@
 import React from 'react';
 import deleteItem from '../assets/deleteItem.png';
-import editItem from '../assets/editItem.png';
 import { removeTodo } from '../helper/todoSlice';
 import { useDispatch } from 'react-redux';
+import editItem from '../assets/editItem.png';
 import './TodoInput.css';
 
 export const TodoInput = (props) => {
@@ -17,7 +17,8 @@ export const TodoInput = (props) => {
       <p className="text_todo" onChange={inputValue}>
         {props.text}
       </p>
-      <img src={editItem} alt="edit_item_icon" className="edit_icon" />
+      <img src={editItem} alt="edit_item_icon" className="edit_icon" onClick={props.onClick} />
+      ;
       <img
         key={props.id}
         src={deleteItem}

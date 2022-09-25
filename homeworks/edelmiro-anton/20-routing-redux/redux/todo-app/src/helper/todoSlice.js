@@ -27,5 +27,5 @@ export const todoSlice = createSlice({
 //exports the created actions to be used in the app
 export const { addTodo, removeTodo } = todoSlice.actions;
 
-//exports the created above reducer property 
+//exports the created above reducer property
 export default todoSlice.reducer;

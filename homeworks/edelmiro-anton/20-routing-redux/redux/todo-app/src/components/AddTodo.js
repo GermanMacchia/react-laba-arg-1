@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { addTodo } from '../helper/todoSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { TodoInput } from './TodoInput';
+import { Modal } from './Modal';
 import './AddTodo.css';
 
 export const AddTodo = () => {
   const [text, setText] = useState('');
+  const [editing, setEditing] = useState(false); // To edit the todo task
 
   const count = useSelector((state) => state.todo.count);
   const todos = useSelector((state) => state.todo.todos);
@@ -23,21 +25,51 @@ export const AddTodo = () => {
     }
   };
 
+  const toggleEdit = () => {
+    setEditing(true);
+  };
+
   return (
-    <div className="mainInput">
-      <form className="form" onSubmit={handleAddTodo}>
-        <input
-          type="text"
-          value={text}
-          onInput={(e) => setText(e.target.value)}
-          className="input_todoTask"
-          placeholder="Create Todo-Task"
-        />
-        <button type="submit" className="button_add">
-          Add
-        </button>
-      </form>
-      <div>{count > 0 && todos.map((todo) => <TodoInput key={todo.id} text={todo.text} id={todo.id} />)}</div>
-    </div>
+    <>
+      {editing ? (
+        count > 0 ? (
+          todos.map((todo) => <Modal id={todo.id} />)
+        ) : (
+          <div className="mainInput">
+            <form className="form" onSubmit={handleAddTodo}>
+              <input
+                type="text"
+                value={text}
+                onInput={(e) => setText(e.target.value)}
+                className="input_todoTask"
+                placeholder="Create Todo-Task"
+              />
+              <button type="submit" className="button_add">
+                Add
+              </button>
+            </form>
+          </div>
+        )
+      ) : (
+        <div className="mainInput">
+          <form className="form" onSubmit={handleAddTodo}>
+            <input
+              type="text"
+              value={text}
+              onInput={(e) => setText(e.target.value)}
+              className="input_todoTask"
+              placeholder="Create Todo-Task"
+            />
+            <button type="submit" className="button_add">
+              Add
+            </button>
+          </form>
+          <div>
+            {count > 0 &&
+              todos.map((todo) => <TodoInput key={todo.id} text={todo.text} id={todo.id} onClick={toggleEdit} />)}
+          </div>
+        </div>
+      )}
+    </>
   );
 };

@@ -1,13 +1,4 @@
-.mainInput {
-  /* display: flex;
-  justify-content: center; */
-  margin-top: 99px;
-}
-
-.form {
-  display: flex;
-}
-.input_todoTask {
+.input_edit {
   width: 554px;
   height: 62px;
   margin-top: 100px;
@@ -23,25 +14,25 @@
   margin-left: auto;
 }
 
-.input_todoTask:focus {
+.input_edit:focus {
   box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgb(43, 41, 40);
   outline: 0 none;
 }
-
-::placeholder {
-  width: 239px;
-  height: 52px;
-  padding-left: 100px;
-  text-align: center;
-  font-family: 'Hind Siliguri';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 52px;
-  color: rgba(0, 0, 0, 0.6);
+dialog {
+  display: flex;
+  margin-top: 100px;
+  background: none;
+  border: none;
 }
 
-.button_add {
+dialog::backdrop {
+  position: fixed;
+  inset: 0;
+  background: #0006;
+  backdrop-filter: blur(2px);
+}
+
+.button_closeModal {
   width: 122px;
   height: 65px;
   left: 958px;
@@ -58,8 +49,14 @@
   margin-right: auto;
 }
 
-.button_add:focus {
+.button_closeModal:focus {
   box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgb(43, 41, 40);
   outline: 0 none;
 }
 
+.delete_icon_modal {
+  width: 59.38px;
+  height: 58px;
+  margin-top: 100px;
+  cursor: pointer;
+}
