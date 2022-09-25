@@ -5,7 +5,7 @@ import Screen from './Components/Screen/Screen';
 import Keyboard from './Components/Keyboard/Keyboard';
 import Button from './Components/Button/Button';
 function App() {
-  const [buttons, setButtons] = useState([
+  const [buttons] = useState([
     'C',
     '÷',
     'X',
@@ -52,44 +52,36 @@ function App() {
     setResult([...operation]);
   };
   const handlePercent = (calc) => {
+    let percentOperation = [...calc];
     const signExp = /([-dC*+=÷])/g;
     let percentIndex = calc.indexOf('%');
-    let signIndex = calc.findIndex((element) => signExp.test(element));
-    if (signIndex === -1 || percentIndex < signIndex) {
-      // If the percentage sign is found before other signs, it divides the number before it by 100.
+    let lastSignIndex;
+    for (let i = 0; i < percentOperation.length; i++) {
+      if ((signExp).test(percentOperation[i])) {
+        lastSignIndex = i;
+      }
+    }
+    if (!lastSignIndex || percentIndex <= lastSignIndex) {
+      // If the percentage sign is the only sign in the operation, or if it was found before other signs, it divides the number before it by 100, as it behaves in most calculators.
       let numberToDivideByHundred = calc.slice(0, percentIndex).join(''); // Takes the part of the operation since the begginig to the percentage sign, that is the number affected by the sign that we should divide by 100.      
-      let percentOperation = Number((numberToDivideByHundred) / 100);
-      setResult(percentOperation.toString().split(''));  // Generates an array with the result number stringified, so we can do other operations upon this result/operation.
+      percentOperation = Number((numberToDivideByHundred) / 100);  // Will store the result of the percentage.
+      setResult(percentOperation.toString().split(''));  // Generates an array with the result number stringified, so we can do further operations upon this result/operation.
       setOperation(percentOperation.toString().split(''));
     } else {
       // If the percentage sign is found after another sign, it would behave like this: takes the number before the percentage sign and divides it by 100, then multiplies it by the number before the other sign, because it will be a percentage of this other number.
-      let percentOperation = [...calc];
-      let lastSign;
-      for (let i = 0; i < percentOperation.length; i++) {
-        if ((signExp).test(percentOperation[i])) {
-          lastSign = {
-            index: i,
-            sign: percentOperation[i]
-          };      
-        }
-      }
-      console.log(lastSign.index);
-      let numberToDivideByHundred = percentOperation.slice(lastSign.index+1, percentIndex).join(''); // Takes the part of the operation since the last sign to the percentage sign, that is the number affected by the sign that we should divide by 100.
-      console.log('number to divide ,', numberToDivideByHundred);
-      console.log('percentOperation', percentOperation);
-      let multiplier = Function('return ' + percentOperation.slice(0, lastSign.index).join(''))();
-      console.log('multiplier', multiplier);
-      percentOperation = ([multiplier, percentOperation[lastSign.index], (Number(numberToDivideByHundred) / 100) * multiplier].join(''));
+      let numberToDivideByHundred = percentOperation.slice(lastSignIndex + 1, percentIndex).join(''); // Takes the part of the operation since the last sign to the percentage sign, that is the number affected by the sign that we should divide by 100.
+      let multiplier = Function('return ' + percentOperation.slice(0, lastSignIndex).join(''))();
+      percentOperation = ([multiplier, percentOperation[lastSignIndex], (Number(numberToDivideByHundred) / 100) * multiplier].join(''));
       setResult(percentOperation.toString().split(''));  // Generates an array with the result number stringified, so we can do other operations upon this result/operation.
       setOperation(percentOperation.toString().split(''));
     }
   };
   const handleEqual = () => {
-    let signExp = /([-dC*+=÷/X])/g;
+    let signsExp = /([-dC*+=÷/X])/g;
     let operationArray = operation.join('');
     operationArray = operationArray.replace('X', '*').replace('÷', '/');
-    let operationString = operationArray.split(signExp).join('');
-    if (signExp.test(operationString[operation.length - 1])) {
+    let operationString = operationArray.split(signsExp).join('');
+    if (signsExp.test(operationString[operation.length - 1])) {
       // If we click equal button after a sign, it removes the sign and leaves the number before it.
       operationString = operationString.substring(0, operationString.length - 1);
     }
