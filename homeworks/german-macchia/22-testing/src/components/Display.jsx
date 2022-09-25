@@ -58,16 +58,17 @@ export const Display = ({ command, press }) => {
   }, [command, press]);
 
   return (
-    <div className="display">
-      <h1>{calculation}</h1>
+    <div data-testid="calculation-container" className="display">
+      <h1 data-testid="calculation-display">{calculation}</h1>
       <div
+        data-testid="resolution-container"
         className={
           resolution.toString().length > 9
             ? "display__resolution display__resolution--small"
             : "display__resolution"
         }
       >
-        <h1>{resolution.toString().slice(0, 12)}</h1>
+        <h1 data-testid="resolution-display">{resolution.toString().slice(0, 12)}</h1>
       </div>
     </div>
   );
