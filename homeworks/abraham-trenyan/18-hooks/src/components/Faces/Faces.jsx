@@ -9,15 +9,14 @@ const Faces = () => {
       setImages([...images, result[0].url]);
     });
   };
-  const refreshAll = async (e) => {
+  const refreshAll = async () => {
     let response = await fetch(`https://tinyfac.es/api/data?limit=${images.length}&quality=0`);
-    response.json().then((result) => {
+    let result = await response.json()
       let newImgs = [];
       for (let i = 0; i < result.length; i++) {
         newImgs.push(result[i].url);
       }
-      setImages(newImgs);
-    });
+      setImages([...newImgs]);
   };
   const refreshImg = async (e) => {
     let response = await fetch(`https://tinyfac.es/api/data?limit=1&quality=0`);
