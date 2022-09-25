@@ -21,11 +21,15 @@ export const todoSlice = createSlice({
       state.todos = state.todos.filter((todo) => todo.id !== action.payload);
       state.count -= 1;
     },
+    editTodo: (state, action) => {
+      state.todos = state.todos.map((todo) => (todo.id === action.payload ? action.payload : todo));
+      
+    },
   },
 });
 
 //exports the created actions to be used in the app
-export const { addTodo, removeTodo } = todoSlice.actions;
+export const { addTodo, removeTodo, editTodo } = todoSlice.actions;
 
 //exports the created above reducer property
 export default todoSlice.reducer;

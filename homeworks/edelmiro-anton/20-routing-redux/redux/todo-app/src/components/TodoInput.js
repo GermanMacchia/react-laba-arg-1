@@ -18,7 +18,6 @@ export const TodoInput = (props) => {
         {props.text}
       </p>
       <img src={editItem} alt="edit_item_icon" className="edit_icon" onClick={props.onClick} />
-      ;
       <img
         key={props.id}
         src={deleteItem}
