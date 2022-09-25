@@ -19,6 +19,7 @@ export const TodoInput = (props) => {
       </p>
       <img src={editItem} alt="edit_item_icon" className="edit_icon" />
       <img
+        key={props.id}
         src={deleteItem}
         alt="delete_item_icon"
         onClick={() => dispatch(removeTodo(props.id))}

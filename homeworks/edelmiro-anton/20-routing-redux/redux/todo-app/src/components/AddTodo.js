@@ -6,6 +6,7 @@ import './AddTodo.css';
 
 export const AddTodo = () => {
   const [text, setText] = useState('');
+
   const count = useSelector((state) => state.todo.count);
   const todos = useSelector((state) => state.todo.todos);
   const dispatch = useDispatch();
@@ -14,9 +15,11 @@ export const AddTodo = () => {
   const handleAddTodo = (e) => {
     if (text === '') {
       alert('Please, add a task :)');
+      e.preventDefault();
     } else {
       e.preventDefault();
       dispatch(addTodo(text));
+      setText((e.target.value = ''));
     }
   };
 
@@ -34,7 +37,7 @@ export const AddTodo = () => {
           Add
         </button>
       </form>
-      <div>{count > 0 && todos.map((todo) => <TodoInput text={todo.text} id={todo.id} />)}</div>
+      <div>{count > 0 && todos.map((todo) => <TodoInput key={todo.id} text={todo.text} id={todo.id} />)}</div>
     </div>
   );
 };
