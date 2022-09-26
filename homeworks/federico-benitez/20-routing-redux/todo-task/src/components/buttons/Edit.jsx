@@ -1,4 +1,3 @@
-import React from 'react';
 import editIcon from '@assets/edit.svg';
 
 export default function Edit(props) {

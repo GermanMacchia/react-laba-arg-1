@@ -1,4 +1,3 @@
-import React from 'react';
 import deleteIcon from '@assets/delete.svg';
 
 export default function Delete(props) {
