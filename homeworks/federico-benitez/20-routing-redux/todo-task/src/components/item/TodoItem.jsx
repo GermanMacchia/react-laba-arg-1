@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { showEditInput, todoDeleted } from '@features/todo/todo-slice';
 import { Edit, Delete } from '../buttons';
@@ -21,8 +20,10 @@ export default function TodoItem({ data }) {
       ) : (
         <>
           <div className="input">{data.value}</div>
-          <Edit onClick={showEditTodo} className="todo__button" />
-          <Delete onClick={handleDelete} className="todo__button" />
+          <div className="todo__options">
+            <Edit onClick={showEditTodo} className="todo__options__button" />
+            <Delete onClick={handleDelete} className="todo__options__button" />
+          </div>
         </>
       )}
     </div>

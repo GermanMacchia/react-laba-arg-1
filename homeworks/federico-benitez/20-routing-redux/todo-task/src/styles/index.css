@@ -29,18 +29,18 @@
   display: flex;
 }
 
-.todo__button {
+.todo__options__button {
   border: none;
   background: none;
   cursor: pointer;
 }
 
-.todo__button img {
+.todo__options__button img {
   width: 59.38px;
   height: 65px;
 }
 
-.todo__button:hover {
+.todo__options__button:hover {
   background: #ffffff40;
 }
 
