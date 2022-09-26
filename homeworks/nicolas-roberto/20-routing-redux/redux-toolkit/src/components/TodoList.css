@@ -1,15 +1,9 @@
-ul {
+.container-list {
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
   row-gap: 47px;
-}
-
-li {
-  list-style: none;
-  display: flex;
-  align-items: center;
 }
 
 .todo-list {
@@ -18,6 +12,8 @@ li {
 }
 
 .todo-list_item {
+  display: flex;
+  align-items: center;
   text-indent: 44px;
   width: 554px;
   height: 65px;
