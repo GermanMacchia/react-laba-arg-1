@@ -1,28 +1,36 @@
-import { useEffect, useContext } from "react";
-import { useQuery, useQueryClient  } from "@tanstack/react-query";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useContext, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { AppContext } from "../../context/AppContext";
 import fetchPhoto from "../../pages/api/fetchPhoto";
 import styles from "./PhotoContainer.module.css";
 import Image from "next/image";
 
-export const PhotoContainer = ({ id, upstreamData = null  }) => {
-  const queryClient = useQueryClient()
+export const PhotoContainer = ({ id, upstreamData = null }) => {
   const { reloadAll } = useContext(AppContext);
-  const { isLoading, data, isFetching, error, refetch } = useQuery(
+  const [photo, setPhoto] = useState(upstreamData);
+  const { data, isFetching, error, refetch } = useQuery(
     [`tile ${id}`],
     () => fetchPhoto(),
     {
       refetchOnWindowFocus: false,
+      enabled: false,
       select: (data) => data[0],
     }
   );
 
   useEffect(() => {
-    if(upstreamData){
-      queryClient.invalidateQueries([`tile ${id}`])
+    if (!photo) {
+      refetch();
     }
-  }, [upstreamData]);
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      setPhoto(data);
+    }
+  }, [data]);
 
   useEffect(() => {
     if (error) {
@@ -39,11 +47,11 @@ export const PhotoContainer = ({ id, upstreamData = null  }) => {
 
   return (
     <div className={styles.container} onClick={refetch}>
-      {((!isLoading && data) || upstreamData)? (
+      {!isFetching && photo ? (
         <Image
           className={styles.container__profile_image}
-          src={data?.url || upstreamData?.url}
-          alt={data?.name || upstreamData?.name}
+          src={photo?.url}
+          alt={photo?.name}
           layout="fill"
         />
       ) : (

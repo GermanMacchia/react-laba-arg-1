@@ -6,14 +6,13 @@ import ErrorBoundary from "../components/ErrorBoundary/ErrorBoundary";
 import styles from "../styles/Home.module.css";
 import fetchPhoto from "./api/fetchPhoto";
 
-
 export async function getServerSideProps() {
   const initialValue = 5;
-  let data = null
-  try{
+  let data = null;
+  try {
     data = await fetchPhoto(initialValue);
-  }catch(error){
-    console.error(error.message)
+  } catch (error) {
+    console.error(error.message);
   }
   return { props: { data } };
 }
@@ -22,9 +21,9 @@ export default function Home({ data }) {
   return (
     <>
       <div className={styles["grid-container"]}>
-        {data?.map((photo) => (
+        {data?.map((photo, idx) => (
           <ErrorBoundary key={photo.id}>
-            <PhotoContainer id={photo.id} upstreamData={data} />
+            <PhotoContainer id={photo.id} upstreamData={data[idx]} />
           </ErrorBoundary>
         ))}
         <PhotoList />
@@ -34,4 +33,3 @@ export default function Home({ data }) {
     </>
   );
 }
-
