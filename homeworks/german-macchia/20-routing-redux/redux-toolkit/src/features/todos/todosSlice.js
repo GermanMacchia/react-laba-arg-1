@@ -16,36 +16,52 @@ export const todosSlice = createSlice({
   initialState,
   reducers: {
     addTodo: (state, { payload }) => {
-      state.entries.push({ id: id++, content: payload.content });
+      return {
+        ...state,
+        entries: [...state.entries, { id: id++, content: payload.content }],
+      };
     },
     deleteTodo: (state, { payload }) => {
-      const idx = state.entries.findIndex(
-        (entry) => entry.id === parseInt(payload.id)
-      );
-      state.entries.splice(idx, 1);
+      return {
+        ...state,
+        entries: [...state.entries.filter((todo) => todo.id !== payload.id)],
+      };
     },
     openEdit: (state, { payload }) => {
-      state.edit = {
-        open: true,
-        id: parseInt(payload.id),
-        content: payload.content,
+      return {
+        ...state,
+        edit: {
+          open: true,
+          id: parseInt(payload.id),
+          content: payload.content,
+        },
       };
     },
     closeEdit: (state) => {
-      state.edit = {
-        open: false,
-        id: null,
-        content: null,
+      return {
+        ...state,
+        edit: {
+          open: false,
+          id: null,
+          content: null,
+        },
       };
     },
     editTodo: (state, { payload }) => {
-      const idx = state.entries.findIndex(
-        (entry) => entry.id === parseInt(payload.id)
-      );
-      state.entries.splice(idx, 1, {
-        id: payload.id,
-        content: payload.content,
-      });
+      return {
+        ...state,
+        entries: [
+          ...state.entries.map((todo) => {
+            if (todo.id === parseInt(payload.id)) {
+              return {
+                id: payload.id,
+                content: payload.content,
+              };
+            }
+            return todo;
+          }),
+        ],
+      };
     },
   },
 });

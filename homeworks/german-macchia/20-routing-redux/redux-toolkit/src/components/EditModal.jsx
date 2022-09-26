@@ -22,7 +22,6 @@ export default function EditModal({ isOpen, id, content }) {
   return ReactDOM.createPortal(
     <div className="overlay">
       <div className="modal">
-        {console.count("modal " + id)}
         <img
           onClick={handleCloseModal}
           src={back}

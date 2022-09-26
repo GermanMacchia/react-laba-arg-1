@@ -9,9 +9,7 @@ function App() {
   const { open, id, content } = useSelector((store) => store.todos.edit);
 
   const listEntries = () =>
-    entries.map((todo) => {
-      return <Task key={todo.id} todo={todo} />;
-    });
+    entries.map((todo) => <Task key={todo.id} todo={todo} />);
 
   return (
     <div className="app">
