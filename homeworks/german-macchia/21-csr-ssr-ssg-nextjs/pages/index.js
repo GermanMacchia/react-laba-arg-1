@@ -9,7 +9,12 @@ import fetchPhoto from "./api/fetchPhoto";
 
 export async function getServerSideProps() {
   const initialValue = 5;
-  const data = await fetchPhoto(initialValue);
+  let data = null
+  try{
+    data = await fetchPhoto(initialValue);
+  }catch(error){
+    console.error(error.message)
+  }
   return { props: { data } };
 }
 
