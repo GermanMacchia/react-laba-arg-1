@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import isEmpty from '../helpers/isEmpty'
-import backspace from '../helpers/backspace'
+import isEmpty from "../helpers/isEmpty";
+import backspace from "../helpers/backspace";
 import resolve from "../helpers/resolve";
 
 export const Display = ({ command, press }) => {
-  
   const [resolution, setResolution] = useState("");
   const [calculation, setCalculation] = useState("");
 
@@ -17,10 +16,10 @@ export const Display = ({ command, press }) => {
   };
 
   const handleSolution = () => {
-    const result = resolve(calculation, resolution)
+    const result = resolve(calculation, resolution);
     setResolution(result);
     clear();
-  }
+  };
 
   useEffect(() => {
     //If last char in calculation string & command are a non digit value
@@ -68,7 +67,9 @@ export const Display = ({ command, press }) => {
             : "display__resolution"
         }
       >
-        <h1 data-testid="resolution-display">{resolution.toString().slice(0, 12)}</h1>
+        <h1 data-testid="resolution-display">
+          {resolution.toString().slice(0, 12)}
+        </h1>
       </div>
     </div>
   );

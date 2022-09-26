@@ -1,7 +1,7 @@
 import { Display } from "./components/Display";
 import { Keypad } from "./components/Keypad";
 import React, { useCallback, useState } from "react";
-import "./styles/App.css"
+import "./styles/App.css";
 
 function App() {
   const [command, setCommand] = useState("");
@@ -14,7 +14,7 @@ function App() {
 
   return (
     <div className="App">
-      <Display command={command} press={press}/>
+      <Display command={command} press={press} />
       <Keypad handleOnPushKey={handleOnPushKey} />
     </div>
   );
