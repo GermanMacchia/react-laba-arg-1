@@ -47,10 +47,8 @@ const deleteTheme = {
   width: 1,
 };
 
-const Keyboard = () => {
-  const handleClickOnNumber = (i) => {
-    console.log('click on number:', i);
-  };
+const Keyboard = ({handleClickOnNumber,handleClickOnClear}) => {
+
 
   return (
     <div className="keyboard">
@@ -88,7 +86,7 @@ const Keyboard = () => {
       <CalcButton value="=" key="equals" theme={equalsTheme} className="button-equals">
         <img src={equalsIcon} alt="equals icon" />
       </CalcButton>
-      <CalcButton value="C" key="clear" theme={clearTheme} className="button-clear">
+      <CalcButton value="C" key="clear" theme={clearTheme} className="button-clear" onClick={handleClickOnClear}>
         c
       </CalcButton>
       <CalcButton value="DEL" key="delete" theme={deleteTheme} className="button-delete">
