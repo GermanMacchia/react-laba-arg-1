@@ -33,6 +33,7 @@ export const mainInputSlice = createSlice({
       reducer(state, action) {
         let idIndex = state.id.indexOf(action.payload);
         state.id.splice(idIndex, 1);
+        state.tasks.splice(idIndex, 1);
         state.counter -= 1;
       },
     },
