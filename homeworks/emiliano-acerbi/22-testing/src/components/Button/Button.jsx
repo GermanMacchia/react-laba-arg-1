@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
-import { CalculatorContext } from '../context/CalculatorContext';
-import Delete from './Delete';
-import Divider from './Divider';
-import Equal from './Equal';
-import Minus from './Minus';
-import Multiplier from './Multiplier';
-import Plus from './Plus';
+
+import { CalculatorContext } from '../../context/CalculatorContext';
+import Delete from '../Delete';
+
+import Divider from '../Divider/Divider';
+import Equal from '../Equal/Equal';
+import Minus from '../Minus/Minus';
+import Multiplier from '../Multiplier/Multiplier';
+import Plus from '../Plus/Plus';
 
 function Button({ value }) {
   const { handleNumberClick, handleSignClick, handleEqualsClick, handleResetClick, handleDotClick, handleDeleteClick } =

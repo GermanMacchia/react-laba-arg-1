@@ -2,9 +2,8 @@
  * @jest-environment jsdom
  */
 
-import Calculator from './Calculator';
-
 import { render, screen } from '@testing-library/react';
+import Calculator from './Calculator';
 
 describe('Calculator', () => {
   test('renders children correctly', () => {
@@ -13,6 +12,7 @@ describe('Calculator', () => {
         <span>Children Test</span>
       </Calculator>,
     );
+
     const main = screen.getByRole('main');
     expect(main).toContainHTML('<span>Children Test</span>');
   });

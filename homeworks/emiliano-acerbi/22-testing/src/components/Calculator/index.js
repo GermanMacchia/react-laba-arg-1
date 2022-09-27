@@ -1,1 +1,1 @@
-export { default } from './Calculator.jsx';
+export { default } from './Calculator';
