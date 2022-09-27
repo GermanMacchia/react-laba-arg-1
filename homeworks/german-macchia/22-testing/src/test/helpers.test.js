@@ -51,6 +51,7 @@ describe("Calculator COMPUTE fn test", () => {
     expect(compute("75", "/", "3")).toEqual(25);
     expect(compute("39", "/", "0")).toEqual("error");
   });
+
 });
 
 describe("Calculator RESOLVE fn test", () => {
@@ -82,8 +83,8 @@ describe("Calculator RESOLVE fn test", () => {
   test("should resolve with sign as last character", () => {
     expect(resolve("10-")).toEqual(10);
     expect(resolve("20+")).toEqual(20);
-    expect(resolve("10*")).toEqual(0); //<<glitch
-    expect(resolve("10/")).toEqual("error"); //<<glitch
+    expect(resolve("10*")).toEqual(0);       //<<
+    expect(resolve("10/")).toEqual("error"); //<<
     expect(resolve("10+20-")).toEqual(30);
     expect(resolve("10+20+")).toEqual(30);
     expect(resolve("10+20*")).toEqual(30); //<<glitch
@@ -91,8 +92,8 @@ describe("Calculator RESOLVE fn test", () => {
   });
 
   test("should resolve with sign as first and last character", () => {
-    expect(resolve("+10+10*")).toEqual(20); //<<
-    expect(resolve("+20+10/")).toEqual(30); //<<
+    expect(resolve("+10+10*")).toEqual(20); //<<glitch
+    expect(resolve("+20+10/")).toEqual(30); //<<glitch
     expect(resolve("-20+10+")).toEqual(-10);
     expect(resolve("*10+10-")).toEqual(10); //prev resolution = 0
     expect(resolve("/10+10-")).toEqual(10); //prev resolution = 0
@@ -108,5 +109,17 @@ describe("Calculator RESOLVE fn test", () => {
     expect(resolve("*20+10", 2)).toEqual(50);
     expect(resolve("*2+10+", 100)).toEqual(110); //<<glitch
     expect(resolve("/20+10+", 100)).toEqual(110); //<<glitch
+  });
+
+  test("should resolve with percent", () => {
+    expect(resolve("+10%", 100)).toEqual(110); 
+    expect(resolve("40%", 100)).toEqual(40); 
+    expect(resolve("*10%", 100)).toEqual(1000); 
+    expect(resolve("-10%", 100)).toEqual(90); 
+    expect(resolve("/20%", 100)).toEqual(5); 
+    expect(resolve("+50+10%", 100)).toEqual(165); 
+    expect(resolve("-50+10%", 100)).toEqual(55); 
+    expect(resolve("/10+10%", 100)).toEqual(11); 
+    expect(resolve("*2+10%", 100)).toEqual(220); 
   });
 });
