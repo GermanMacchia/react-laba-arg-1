@@ -1,6 +1,7 @@
 import React from 'react';
 import refreshImg from './assets/images/refresh.svg';
 import './App.css';
+import fetchErrorImg from './assets/images/fetchErrorImg.svg';
 
 const URL = 'https://tinyfac.es/api/data?limit=1&quality=0';
 
@@ -16,11 +17,21 @@ class App extends React.Component {
     this.getAvatar = this.getAvatar.bind(this);
   }
 
-  async getAvatar() {
-    const res = await fetch(URL);
-    return res.json().then((data) => {
-      return data[0].url;
-    });
+  getAvatar() {
+    return fetch(URL)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw new Error('Something went wrong please try again later');
+      })
+      .then((dataJson) => {
+        return dataJson[0].url;
+      })
+      .catch((err) => {
+        console.log(err);
+        return fetchErrorImg;
+      });
   }
 
   async addAvatar() {
