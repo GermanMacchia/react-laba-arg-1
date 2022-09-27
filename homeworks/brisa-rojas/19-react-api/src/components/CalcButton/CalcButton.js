@@ -9,7 +9,7 @@ const CalcButton = styled(Button)(({ theme }) => ({
   },
   fontFamily: 'Poppins',
   fontSize: '24px',
-  border : '0.5px solid #242530',
+  border: '0.5px solid #242530',
   borderRadius: theme.borderRadius,
   height: '100%',
   width: '100%',
