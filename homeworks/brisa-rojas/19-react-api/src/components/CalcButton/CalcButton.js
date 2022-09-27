@@ -7,6 +7,8 @@ const CalcButton = styled(Button)(({ theme }) => ({
   '&:hover': {
     backgroundColor: alpha(theme.bgColor, 0.75),
   },
+  fontFamily: 'Poppins',
+  fontSize: '24px',
   border : '0.5px solid #242530',
   borderRadius: theme.borderRadius,
   height: '100%',
