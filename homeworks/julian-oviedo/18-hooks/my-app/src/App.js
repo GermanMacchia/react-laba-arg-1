@@ -1,17 +1,30 @@
 import { React, useState } from 'react';
-import refreshImg from './assets/images/refresh.svg';
 import './App.css';
+import RefreshAllButton from './components/RefreshAllButton';
+import AddButton from './components/AddButton';
+import AvatarCard from './components/AvatarCard';
+import fetchErrorImg from './assets/images/fetchErrorImg.svg';
 
 const URL = 'https://tinyfac.es/api/data?limit=1&quality=0';
 
 function App() {
   const [avatars, setAvatars] = useState([]);
 
-  async function getAvatar() {
-    const res = await fetch(URL);
-    return res.json().then((data) => {
-      return data[0].url;
-    });
+  function getAvatar() {
+    return fetch(URL)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw new Error('Something went wrong please try again later');
+      })
+      .then((dataJson) => {
+        return dataJson[0].url;
+      })
+      .catch((err) => {
+        console.log(err);
+        return fetchErrorImg;
+      });
   }
 
   async function addAvatar() {
@@ -44,27 +57,11 @@ function App() {
     <div className="App">
       <div className="cards-container">
         {avatars.map((avatar, index) => {
-          return (
-            <div className="card" key={index}>
-              <img className="card__avatar" src={avatar} alt=""></img>
-              <img
-                className="card__refresh-icon"
-                src={refreshImg}
-                onClick={() => refreshClickedAvatar(index)}
-                alt=""
-              ></img>
-            </div>
-          );
+          return <AvatarCard key={index} avatarImg={avatar} onClick={() => refreshClickedAvatar(index)} />;
         })}
-        <button className="bttn-add" onClick={addAvatar}>
-          +
-        </button>
+        <AddButton onClick={addAvatar} />
       </div>
-      <div className="bttn-container">
-        <button className="bttn-container__refresh-all" onClick={refreshAllAvatars}>
-          REFRESH ALL
-        </button>
-      </div>
+      <RefreshAllButton onClick={refreshAllAvatars} />
     </div>
   );
 }
