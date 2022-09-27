@@ -1,33 +1,87 @@
 //import refreshImg from './refresh.svg';
 import './App.css';
+import React from 'react'
 
+class App extends React.Component {
 
-function App() {
+  constructor(props) {
+    super(props);
 
-  const fetchApi = async () => {
-    let limit = 1;
-    const api = await fetch(`https://tinyfac.es/api/data?limit=1&quality=0`);
-    const response = await api.json();
-    console.log(response);
+    this.state = {
+      imgs: [],
+    }
+
   }
-  fetchApi();
-  return (
-    <div className="app">
-      <div className="container">
 
-        <div className="card">
-          <div className="verticalLine"></div>
-          <div className="horizontalLine"></div>
+
+
+  refreshCards = async () => {
+    const api = await fetch('https://tinyfac.es/api/data?limit=1&quality=0');
+    const response = await api.json();
+
+  }
+
+
+
+
+
+
+
+  render() {
+    return (
+      <div className="container" >
+
+        <div className="container--card">
+
+          <div className="card" onClick={this.refreshCards} style={{
+            backgroundImage: `url(${this.state.imgs})`, backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center'
+          }}>
+
+            <div className="verticalLine"></div>
+            <div className="horizontalLine"></div>
+          </div>
+
+
+
+          <div className="card" onClick={this.refreshCards} style={{
+            backgroundImage: `url(${this.state.imgs})`, backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center'
+          }}>
+
+            <div className="verticalLine"></div>
+            <div className="horizontalLine"></div>
+          </div>
+
+
+
+
+
+          <div className="card" onClick={this.refreshCards} style={{
+            backgroundImage: `url(${this.state.imgs})`, backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center'
+          }}>
+
+            <div className="verticalLine"></div>
+            <div className="horizontalLine"></div>
+          </div>
+
+
+
+
+
+
         </div>
-      </div>
+        <button className="btnRefreshAll">REFRESH ALL</button>
 
+      </div >
+    );
+  }
 
-
-      <div className="btnRefreshAll">
-        <button>Refresh All</button>
-      </div>
-    </div>
-  );
 }
+
 
 export default App;

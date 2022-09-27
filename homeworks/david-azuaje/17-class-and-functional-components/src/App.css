@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap");
+
 * {
   padding: 0;
   margin: 0;
@@ -9,8 +11,15 @@
 }
 
 .container {
-  border: 2px solid red;
+  min-height: 95vh;
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.container--card {
+  display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   padding: 40px 40px;
   gap: 15px;
@@ -45,9 +54,26 @@
   height: 240px;
   width: 240px;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 }
 
 /*-----Refresh Btn--------*/
+.btnRefreshAll {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  margin: 0 auto;
+  height: 40px;
+  width: 320px;
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  font-weight: 900;
+  font-family: "Roboto", sans-serif;
+  background-color: var(--purple);
+  cursor: pointer;
+}
