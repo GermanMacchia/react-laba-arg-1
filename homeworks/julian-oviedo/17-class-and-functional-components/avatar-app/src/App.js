@@ -1,7 +1,9 @@
 import React from 'react';
-import refreshImg from './assets/images/refresh.svg';
 import './App.css';
 import fetchErrorImg from './assets/images/fetchErrorImg.svg';
+import AvatarCard from './components/avatarCard';
+import AddButton from './components/AddButton';
+import RefreshAllButton from './components/RefreshAllButton';
 
 const URL = 'https://tinyfac.es/api/data?limit=1&quality=0';
 
@@ -68,27 +70,11 @@ class App extends React.Component {
       <div className="App">
         <div className="cards-container">
           {this.state.avatars.map((avatar, index) => {
-            return (
-              <div className="card" key={index}>
-                <img className="card__avatar" src={avatar} alt=""></img>
-                <img
-                  className="card__refresh-icon"
-                  src={refreshImg}
-                  onClick={() => this.refreshClickedAvatar(index)}
-                  alt=""
-                ></img>
-              </div>
-            );
+            return <AvatarCard key={index} avatarImg={avatar} onClick={() => this.refreshClickedAvatar(index)} />;
           })}
-          <button className="bttn-add" onClick={this.addAvatar}>
-            +
-          </button>
+          <AddButton onClick={this.addAvatar} />
         </div>
-        <div className="bttn-container">
-          <button className="bttn-container__refresh-all" onClick={this.refreshAllAvatars}>
-            REFRESH ALL
-          </button>
-        </div>
+        <RefreshAllButton onClick={this.refreshAllAvatars} />
       </div>
     );
   }
