@@ -1,6 +1,12 @@
 import React from 'react';
 import './styles.css';
 import CalcButton from '../CalcButton/CalcButton.js';
+import divideIcon from '../../assets/divide.svg';
+import multiplyIcon from '../../assets/multiply.svg';
+import minusIcon from '../../assets/minus.svg';
+import plusIcon from '../../assets/plus.svg';
+import equalsIcon from '../../assets/equals.svg';
+import deleteIcon from '../../assets/delete.svg';
 
 const numberButtons = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -64,30 +70,29 @@ const Keyboard = () => {
 
       {/* OPERATORS BUTTONS */}
       <CalcButton value="." key="dot" theme={numberTheme} className="button-dot">
-        {' '}
-        .{' '}
+        .
       </CalcButton>
       <CalcButton value="÷" key="divide" theme={operatorsTheme} className="button-operator-divide">
-        ÷
+        <img src={divideIcon} alt="divide icon" />
       </CalcButton>
       <CalcButton value="x" key="multiply" theme={operatorsTheme} className="button-operator-multiply">
-        x
+        <img src={multiplyIcon} alt="multiply icon" />
       </CalcButton>
       <CalcButton value="-" key="minus" theme={operatorsTheme} className="button-operator-minus">
-        -
+        <img src={minusIcon} alt="minus icon" />
       </CalcButton>
       <CalcButton value="+" key="plus" theme={operatorsTheme} className="button-operator-plus">
-        +
+        <img src={plusIcon} alt="plus icon" />
       </CalcButton>
 
       <CalcButton value="=" key="equals" theme={equalsTheme} className="button-equals">
-        =
+        <img src={equalsIcon} alt="equals icon" />
       </CalcButton>
       <CalcButton value="C" key="clear" theme={clearTheme} className="button-clear">
         c
       </CalcButton>
       <CalcButton value="DEL" key="delete" theme={deleteTheme} className="button-delete">
-        del
+        <img src={deleteIcon} alt="delete icon" />
       </CalcButton>
       <CalcButton value="%" key="percent" theme={numberTheme} className="button-percent">
         %
