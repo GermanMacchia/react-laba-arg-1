@@ -2,15 +2,16 @@ const root = document.querySelector("#rooot");
 
 function TrafficLight() {
     const [color, setColor] = React.useState(0);
+
     React.useEffect(() => {
         setInterval(() => {
-            setColor((colors) => colors + 1);
+            setColor((prevColor) => {
+                if (prevColor === 3) { return 0 };
+                return prevColor + 1;
+            });
         }, 1500);
     }, []);
 
-    if (color === 4) {
-        setColor(0);
-    }
 
     return (
         <div className="container">
