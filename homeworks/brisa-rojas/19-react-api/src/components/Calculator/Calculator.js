@@ -53,7 +53,14 @@ const Calculator = () => {
 
   return (
     <div className="calculator">
-      <Display result={result} calculation={reseted ? null : history} />
+      <Display
+        result={result}
+        calculation={reseted ? null : history}
+        handleClickOnHistory={() => {
+          setResult(history);
+          setHistory('');
+        }}
+      />
       <Keyboard
         handleClickOnNumber={handleClickOnNumber}
         handleClickOnClear={handleClickOnClear}
