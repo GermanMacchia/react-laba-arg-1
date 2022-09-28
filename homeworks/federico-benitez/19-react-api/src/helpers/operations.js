@@ -44,6 +44,12 @@ const isAfterGetResult = (value) => isNaN(value.previous);
 
 const isANewOperation = (state) => state.value === 0;
 
+const isDecimal = (value) => typeof value === 'string' && value.includes('.')
+
+const handleDecimal = (current, newValue) => {
+  return `${current}${newValue}`;
+};
+
 const operations = {
   addition,
   substract,
@@ -52,4 +58,14 @@ const operations = {
   percent,
 };
 
-export { operations, isMathOperation, isAfterGetResult, isANewOperation, getResult, getMathSymbol, removeLastNumber };
+export {
+  operations,
+  isMathOperation,
+  isAfterGetResult,
+  isANewOperation,
+  getResult,
+  getMathSymbol,
+  removeLastNumber,
+  handleDecimal,
+  isDecimal 
+};

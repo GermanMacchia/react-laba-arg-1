@@ -7,6 +7,8 @@ import {
   isANewOperation,
   removeLastNumber,
   operations,
+  isDecimal,
+  handleDecimal
 } from '../helpers';
 
 const CalculatorContext = createContext(null);
@@ -38,7 +40,7 @@ export function CalculatorProvider({ children }) {
           ...prev,
           current: operations.percent(prev.current),
         }));
-      }
+      }      
       if (!values.previous) {
         return setValues({
           previous: values.current,
@@ -93,6 +95,12 @@ export function CalculatorProvider({ children }) {
     (key) => {
       if (isNaN(key.value)) {
         //Except on '.' '%'
+        if(key.value === 'dot'){
+          return setValues((v) => ({
+            ...v,
+            current: `${v.current}.`
+          }))
+        }
         handleOperation(key.value);
         return;
       }
@@ -102,6 +110,8 @@ export function CalculatorProvider({ children }) {
         if (isAfterGetResult(v)) return { ...INITIAL_STATE, current: key.value };
         //Is first value
         if (isANewOperation(v)) return { ...v, current: key.value };
+        //if is a decimal number
+        if(isDecimal(v.current)) return {...v, current: handleDecimal(v.current, key.value)}
         //Contains previous values inserted
         return { ...v, current: key.value + v.current * 10 };
       });
