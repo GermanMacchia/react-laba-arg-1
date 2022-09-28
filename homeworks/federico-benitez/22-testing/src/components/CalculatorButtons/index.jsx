@@ -1,7 +1,7 @@
 import { Grid, GridItem } from '@chakra-ui/react';
-import { KEYS } from '../helpers/keys';
-import { useCalculatorContext } from '../context/CalculatorContext';
-import Button from './Button';
+import { KEYS } from '../../helpers/keys';
+import { useCalculatorContext } from '../../context/CalculatorContext';
+import Button from '../Button';
 
 export default function CalculatorButtons() {
   const { doAction } = useCalculatorContext();
