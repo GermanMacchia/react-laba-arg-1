@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 
 import { CalculatorContext } from '../../context/CalculatorContext';
-import Delete from '../Delete';
 
+import Delete from '../Delete';
 import Divider from '../Divider/Divider';
 import Equal from '../Equal/Equal';
 import Minus from '../Minus/Minus';
@@ -16,7 +16,7 @@ function Button({ value }) {
   // Get class for each button
   const getClassForButton = () => {
     const btnClass = {
-      '+': 'text-primary bg-neutral-operator text-4xl hover:bg-hover ',
+      '+': 'text-primary bg-neutral-operator text-4xl hover:bg-hover',
       '-': 'text-primary bg-neutral-operator hover:bg-hover',
       X: 'text-primary bg-neutral-operator hover:bg-hover',
       '/': 'text-primary bg-neutral-operator hover:bg-hover',
