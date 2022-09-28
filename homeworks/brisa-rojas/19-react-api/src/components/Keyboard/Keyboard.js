@@ -8,6 +8,8 @@ import plusIcon from '../../assets/plus.svg';
 import equalsIcon from '../../assets/equals.svg';
 import deleteIcon from '../../assets/delete.svg';
 
+
+/* NUMBERS ARRAY */
 const numberButtons = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 /* THEMES */

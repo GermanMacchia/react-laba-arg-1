@@ -67,8 +67,29 @@ const Calculator = () => {
     setLastKeyWasEquals(false);
   };
 
+  const handleKeyDown = (event) => {
+    event.preventDefault();
+
+    let keyIsNumber =  event.key >= 0 && event.key <= 9;
+    if (keyIsNumber || event.key === '.') {
+      handleClickOnNumber(event.key);
+    }
+    if (event.key === 'Enter' || event.key === '=') {
+      handleClickOnEquals();
+    }
+    if (event.key === 'Backspace') {
+      handleClickOnDelete();
+    }
+    if (event.key === 'Escape' || event.key === 'c') {
+      handleClickOnClear();
+    }
+    if (event.key === '+' || event.key === '-' || event.key === '*' || event.key === '/') {
+      handleClickOnOperator(event.key);
+    }
+  }
+
   return (
-    <div className="calculator">
+    <div className="calculator" onKeyDown={handleKeyDown}>
       <Display
         result={result}
         calculation={reseted ? null : history}
