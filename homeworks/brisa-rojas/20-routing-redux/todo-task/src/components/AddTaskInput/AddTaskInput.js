@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addToDo } from './mainInputSlice';
+import { addToDo } from '../../slices/tasksSlice';
 import './styles.css';
 
-function MainInput() {
+function AddTaskInput() {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState('');
 
@@ -39,4 +39,4 @@ function MainInput() {
     </div>
   );
 }
-export default MainInput;
+export default AddTaskInput;
