@@ -1,6 +1,14 @@
 import { calculate } from './calculate';
 
 describe('Operations', () => {
+  test('Calculate should be a function', () => {
+    expect(typeof calculate).toBe('function');
+  });
+
+  test('Both arguments should be numbers', () => {
+    expect(() => calculate(1, '2', '+')).toThrowError();
+  });
+
   test('Should add correctly', () => {
     expect(calculate(2, 5, '+')).toBe(7);
   });
