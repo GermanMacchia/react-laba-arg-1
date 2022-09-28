@@ -4,7 +4,8 @@ import Display from '../Display/Display.js';
 import Keyboard from '../Keyboard/Keyboard.js';
 
 const Calculator = () => {
-  // operations should  be first shown on 'result' paragraph and then when equals is clicked, the result should be shown on 'calculation' paragraph
+  // operations should be first shown on 'result' paragraph and then when equals is clicked,
+  // the calc should be shown on 'calculation' paragraph and the result on 'result' paragraph
   const [result, setResult] = useState('');
   const [history, setHistory] = useState('');
   const [reseted, setReseted] = useState(true);
@@ -43,9 +44,24 @@ const Calculator = () => {
     setResult(result + operator);
     setLastKeyWasEquals(false);
   };
+  const handleClickOnPercent = () => {
+    // % cant be the first character or after an operator
+    let lastChar = result.toString().split('');
+    lastChar = lastChar[lastChar.length - 1];
+    if (
+      result === '' ||
+      lastChar === '/' ||
+      lastChar === '*' ||
+      lastChar === '+' ||
+      lastChar === '-' ||
+      lastChar === '%'
+    )
+      return;
+    setResult(result + '%');
+  };
 
   const handleClickOnDelete = () => {
-    let newResult = result.split('');
+    let newResult = result.toString().split('');
     newResult = newResult.slice(0, -1);
     setResult(newResult.join(''));
     setLastKeyWasEquals(false);
@@ -67,6 +83,7 @@ const Calculator = () => {
         handleClickOnEquals={handleClickOnEquals}
         handleClickOnOperator={handleClickOnOperator}
         handleClickOnDelete={handleClickOnDelete}
+        handleClickOnPercent={handleClickOnPercent}
       />
     </div>
   );

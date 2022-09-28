@@ -1,7 +1,10 @@
 .keyboard {
   display: grid;
-  grid-template-columns: repeat(4, 93.75px);
-  grid-template-rows: repeat(5, 93.75px);
+  width: 100%;
+  height  : calc(93.75px * 5);
+  min-width: calc(93.75px * 4);
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
   gap: 0px 0px;
   grid-template-areas:
     'button-clear button-operator-divide button-operator-multiply button-delete'

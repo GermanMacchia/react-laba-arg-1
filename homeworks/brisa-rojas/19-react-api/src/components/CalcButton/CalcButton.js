@@ -1,12 +1,10 @@
 import { alpha, styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
+import { red } from '@mui/material/colors';
 
 const CalcButton = styled(Button)(({ theme }) => ({
   backgroundColor: theme.bgColor,
   color: theme.color,
-  '&:hover': {
-    backgroundColor: alpha(theme.bgColor, 0.75),
-  },
   fontFamily: 'Poppins',
   fontSize: '24px',
   border: '0.5px solid #242530',

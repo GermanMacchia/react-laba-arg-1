@@ -53,6 +53,7 @@ const Keyboard = ({
   handleClickOnEquals,
   handleClickOnOperator,
   handleClickOnDelete,
+  handleClickOnPercent
 }) => {
   return (
     <div className="keyboard">
@@ -133,7 +134,7 @@ const Keyboard = ({
         <img src={deleteIcon} alt="delete icon" />
       </CalcButton>
 
-      <CalcButton value="%" key="percent" theme={numberTheme} className="button-percent">
+      <CalcButton value="%" key="percent" theme={numberTheme} className="button-percent" onClick={() =>  handleClickOnPercent()}>
         %
       </CalcButton>
     </div>
