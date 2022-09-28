@@ -6,12 +6,13 @@ function TrafficLight() {
     React.useEffect(() => {
         setInterval(() => {
             setColor((prevColor) => {
-                if (prevColor === 3) { return 0 };
+                if (prevColor === 3) {
+                    return 0;
+                }
                 return prevColor + 1;
             });
         }, 1500);
     }, []);
-
 
     return (
         <div className="container">
