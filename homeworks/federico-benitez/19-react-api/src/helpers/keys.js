@@ -1,3 +1,18 @@
+import addIcon from '/add.svg'
+import restIcon from '/rest.svg';
+import multiplyIcon from '/multiply.svg'
+import divideIcon from '/divide.svg';
+import deleteIcon from '/delete.svg';
+
+
+export const iconSources = {
+    '+': addIcon,
+    '-': restIcon,
+    'D': divideIcon,
+    'X': multiplyIcon,
+    'delete': deleteIcon,
+}
+
 export const KEYS = [
   {
     value: 'clean',

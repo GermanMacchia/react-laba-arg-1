@@ -6,7 +6,7 @@ function App() {
   return (
     <CalculatorProvider>
       <Flex align="center" justify="center">
-        <Flex width="375px" direction="column">
+        <Flex width="375px" direction="column" bg="background.200">
           <Screen />
           <Buttons />
         </Flex>

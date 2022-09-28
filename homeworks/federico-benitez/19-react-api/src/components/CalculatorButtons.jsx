@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button as ButtonComponent, Grid, GridItem } from '@chakra-ui/react';
+import { Grid, GridItem } from '@chakra-ui/react';
 import { KEYS } from '../helpers/keys';
 import { useCalculatorContext } from '../context/CalculatorContext';
+import Button from './Button';
 
 export default function CalculatorButtons() {
   const { doAction } = useCalculatorContext();
@@ -14,21 +15,5 @@ export default function CalculatorButtons() {
         </GridItem>
       ))}
     </Grid>
-  );
-}
-
-function Button({ button, ...rest }) {
-  const isBtnEqual = button.value === 'equal';
-  return (
-    <ButtonComponent
-      {...rest}
-      borderRadius="none"
-      bg={isBtnEqual ? 'orange' : 'background.100'}
-      color="white"
-      width="94px"
-      height={isBtnEqual ? '188px' : '94px'}
-    >
-      {button.text}
-    </ButtonComponent>
   );
 }
