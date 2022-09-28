@@ -29,7 +29,7 @@ function App() {
   const [operation, setOperation] = useState([]);
   const [result, setResult] = useState([0]);
   const handleClick = (btnValue) => {
-    let newOperation = [...operation, btnValue]
+    let newOperation = [...operation, btnValue];
     if (
       typeof btnValue === 'number' ||
       (typeof btnValue !== 'number' && /^\d+$/.test(operation[operation.length - 1]))
@@ -39,7 +39,7 @@ function App() {
       setResult([...newOperation]);
     }
     if (btnValue === '%') {
-      handlePercent(newOperation)
+      handlePercent(newOperation);
     }
   };
   const resetCalc = () => {
