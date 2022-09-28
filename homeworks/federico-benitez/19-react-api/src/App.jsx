@@ -5,7 +5,7 @@ import { CalculatorProvider } from './context';
 function App() {
   return (
     <CalculatorProvider>
-      <Flex align="center" justify="center">
+      <Flex bg="gray.300" height="100vh" align="center" justify="center">
         <Flex width="375px" direction="column" bg="background.200">
           <Screen />
           <Buttons />

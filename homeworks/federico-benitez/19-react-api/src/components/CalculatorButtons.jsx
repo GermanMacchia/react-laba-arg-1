@@ -1,4 +1,3 @@
-import React from 'react';
 import { Grid, GridItem } from '@chakra-ui/react';
 import { KEYS } from '../helpers/keys';
 import { useCalculatorContext } from '../context/CalculatorContext';

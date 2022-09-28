@@ -35,12 +35,6 @@ export function CalculatorProvider({ children }) {
   const handleOperation = (operation) => {
     const mathOperation = isMathOperation(operation);
     if (mathOperation) {
-      if (operation === 'percent') {
-        return setValues((prev) => ({
-          ...prev,
-          current: operations.percent(prev.current),
-        }));
-      }
       if (!values.previous) {
         return setValues({
           previous: values.current,
@@ -48,10 +42,7 @@ export function CalculatorProvider({ children }) {
           operation,
         });
       } else {
-        //TODO: check resta sin previo
         return setValues((prev) => {
-          //TODO: refactor this
-
           return {
             previous: isNaN(prev.previous)
               ? prev.current
@@ -86,7 +77,6 @@ export function CalculatorProvider({ children }) {
         }));
         break;
       default:
-        console.log(operation);
         break;
     }
   };
@@ -94,13 +84,20 @@ export function CalculatorProvider({ children }) {
   const doAction = useCallback(
     (key) => {
       if (isNaN(key.value)) {
-        //Except on '.' '%'
         if (key.value === 'dot') {
           return setValues((v) => ({
             ...v,
             current: `${v.current}.`,
           }));
         }
+
+        if (key.value === 'percent') {
+          return setValues((prev) => ({
+            ...prev,
+            current: operations.percent(prev.current),
+          }));
+        }
+
         handleOperation(key.value);
         return;
       }
