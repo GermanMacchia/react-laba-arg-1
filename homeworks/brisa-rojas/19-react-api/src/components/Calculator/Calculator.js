@@ -86,6 +86,9 @@ const Calculator = () => {
     if (event.key === '+' || event.key === '-' || event.key === '*' || event.key === '/') {
       handleClickOnOperator(event.key);
     }
+    if (event.key === '%') {
+      handleClickOnPercent();
+    }
   }
 
   return (
