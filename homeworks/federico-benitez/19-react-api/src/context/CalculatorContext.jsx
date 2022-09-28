@@ -8,7 +8,7 @@ import {
   removeLastNumber,
   operations,
   isDecimal,
-  handleDecimal
+  handleDecimal,
 } from '../helpers';
 
 const CalculatorContext = createContext(null);
@@ -40,7 +40,7 @@ export function CalculatorProvider({ children }) {
           ...prev,
           current: operations.percent(prev.current),
         }));
-      }      
+      }
       if (!values.previous) {
         return setValues({
           previous: values.current,
@@ -51,6 +51,7 @@ export function CalculatorProvider({ children }) {
         //TODO: check resta sin previo
         return setValues((prev) => {
           //TODO: refactor this
+
           return {
             previous: isNaN(prev.previous)
               ? prev.current
@@ -72,10 +73,9 @@ export function CalculatorProvider({ children }) {
         setValues((prev) => {
           const { previous, current, operation } = prev;
           if (!operation) return { ...prev };
-
           return {
             previous: `${previous} ${getMathSymbol(operation)} ${current}`,
-            current: getResult(current, previous, operation),
+            current: getResult(Number(current), Number(previous), operation),
           };
         });
         break;
@@ -95,11 +95,11 @@ export function CalculatorProvider({ children }) {
     (key) => {
       if (isNaN(key.value)) {
         //Except on '.' '%'
-        if(key.value === 'dot'){
+        if (key.value === 'dot') {
           return setValues((v) => ({
             ...v,
-            current: `${v.current}.`
-          }))
+            current: `${v.current}.`,
+          }));
         }
         handleOperation(key.value);
         return;
@@ -111,12 +111,10 @@ export function CalculatorProvider({ children }) {
         //Is first value
         if (isANewOperation(v)) return { ...v, current: key.value };
         //if is a decimal number
-        if(isDecimal(v.current)) return {...v, current: handleDecimal(v.current, key.value)}
+        if (isDecimal(v.current)) return { ...v, current: handleDecimal(v.current, key.value) };
         //Contains previous values inserted
         return { ...v, current: key.value + v.current * 10 };
       });
-
-      console.log('key', key);
     },
     [values],
   );

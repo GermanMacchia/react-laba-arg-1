@@ -1,7 +1,7 @@
 const getResult = (a, b, operation) => {
-  if (operation === 'substract' || operation === 'divide') return operations[operation](b, a);
+  if (operation === 'substract' || operation === 'divide') return formatter.format(operations[operation](b, a));
 
-  return operations[operation](a, b);
+  return formatter.format(operations[operation](a, b));
 };
 
 const getMathSymbol = (operation) => {
@@ -16,7 +16,7 @@ const getMathSymbol = (operation) => {
 
 const formatter = new Intl.NumberFormat('en-US', {
   minimumFractionDigits: 0,
-  maximumFractionDigits: 3,
+  maximumFractionDigits: 4,
 });
 
 const addition = (a, b) => a + b;
@@ -44,7 +44,7 @@ const isAfterGetResult = (value) => isNaN(value.previous);
 
 const isANewOperation = (state) => state.value === 0;
 
-const isDecimal = (value) => typeof value === 'string' && value.includes('.')
+const isDecimal = (value) => typeof value === 'string' && value.includes('.');
 
 const handleDecimal = (current, newValue) => {
   return `${current}${newValue}`;
@@ -67,5 +67,5 @@ export {
   getMathSymbol,
   removeLastNumber,
   handleDecimal,
-  isDecimal 
+  isDecimal,
 };
