@@ -1,13 +1,11 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
 
 const initialState = {
-  counter: 0,
-  tasks: [],
-  id: [],
+  tasks: {},
 };
 
-export const mainInputSlice = createSlice({
-  name: 'mainInput',
+export const tasksSlice = createSlice({
+  name: 'tasks',
   initialState,
   reducers: {
     addToDo: {
@@ -16,9 +14,8 @@ export const mainInputSlice = createSlice({
           console.log('input is empty');
           return null;
         }
-        state.tasks.push(action.payload.todoText);
-        state.id.push(action.payload.id);
-        state.counter += 1;
+        state.tasks.payload.id = action.payload.todoText;
+        console.log(state.tasks); //delete after!!!!!!!!!!
       },
       prepare(todoText) {
         return {
@@ -31,16 +28,12 @@ export const mainInputSlice = createSlice({
     },
     deleteToDo: {
       reducer(state, action) {
-        let idIndex = state.id.indexOf(action.payload);
-        state.id.splice(idIndex, 1);
-        state.tasks.splice(idIndex, 1);
-        state.counter -= 1;
+        delete state.tasks[action.payload.id];
       },
     },
     editToDo: {
       reducer(state, action) {
-        let idIndex = state.id.indexOf(action.payload.id);
-        state.tasks[idIndex] = action.payload.text;
+        state.tasks[action.payload.id] = action.payload.todoText;
       },
       prepare(id, todoText) {
         return {
@@ -54,6 +47,6 @@ export const mainInputSlice = createSlice({
   },
 });
 
-export const { addToDo, deleteToDo, editToDo } = mainInputSlice.actions;
+export const { addToDo, deleteToDo, editToDo } = tasksSlice.actions;
 
-export default mainInputSlice.reducer;
+export default tasksSlice.reducer;

@@ -36,7 +36,10 @@ function Task(props) {
         src={deleteIcon}
         alt="delete task"
         className="task__icon task__delete"
-        onClick={() => dispatch(props.deleteTask(props.id))}
+        onClick={() => {
+          const taskData = { id: props.id, todoText: props.task };
+          dispatch(props.deleteTask(taskData));
+        }}
       />
     </div>
   );
