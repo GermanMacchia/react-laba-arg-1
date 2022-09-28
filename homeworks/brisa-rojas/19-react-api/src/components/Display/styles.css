@@ -18,7 +18,9 @@
 
 .display__result {
   font-size: 55px;
+  min-height: 83px;
 }
 .display__calculation {
   font-size: 26px;
+  min-height: 39px;
 }

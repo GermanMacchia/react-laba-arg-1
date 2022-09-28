@@ -47,9 +47,13 @@ const deleteTheme = {
   width: 1,
 };
 
-const Keyboard = ({handleClickOnNumber,handleClickOnClear}) => {
-
-
+const Keyboard = ({
+  handleClickOnNumber,
+  handleClickOnClear,
+  handleClickOnEquals,
+  handleClickOnOperator,
+  handleClickOnDelete,
+}) => {
   return (
     <div className="keyboard">
       {numberButtons.map((value) => {
@@ -67,31 +71,68 @@ const Keyboard = ({handleClickOnNumber,handleClickOnClear}) => {
       })}
 
       {/* OPERATORS BUTTONS */}
-      <CalcButton value="." key="dot" theme={numberTheme} className="button-dot">
+      <CalcButton
+        value="."
+        key="dot"
+        theme={numberTheme}
+        className="button-dot"
+        onClick={() => handleClickOnNumber('.')}
+      >
         .
       </CalcButton>
-      <CalcButton value="÷" key="divide" theme={operatorsTheme} className="button-operator-divide">
+
+      <CalcButton
+        value="÷"
+        key="divide"
+        theme={operatorsTheme}
+        className="button-operator-divide"
+        onClick={() => handleClickOnOperator('/')}
+      >
         <img src={divideIcon} alt="divide icon" />
       </CalcButton>
-      <CalcButton value="x" key="multiply" theme={operatorsTheme} className="button-operator-multiply">
+
+      <CalcButton
+        value="x"
+        key="multiply"
+        theme={operatorsTheme}
+        className="button-operator-multiply"
+        onClick={() => handleClickOnOperator('*')}
+      >
         <img src={multiplyIcon} alt="multiply icon" />
       </CalcButton>
-      <CalcButton value="-" key="minus" theme={operatorsTheme} className="button-operator-minus">
+
+      <CalcButton
+        value="-"
+        key="minus"
+        theme={operatorsTheme}
+        className="button-operator-minus"
+        onClick={() => handleClickOnOperator('-')}
+      >
         <img src={minusIcon} alt="minus icon" />
       </CalcButton>
-      <CalcButton value="+" key="plus" theme={operatorsTheme} className="button-operator-plus">
+
+      <CalcButton
+        value="+"
+        key="plus"
+        theme={operatorsTheme}
+        className="button-operator-plus"
+        onClick={() => handleClickOnOperator('+')}
+      >
         <img src={plusIcon} alt="plus icon" />
       </CalcButton>
 
-      <CalcButton value="=" key="equals" theme={equalsTheme} className="button-equals">
+      <CalcButton value="=" key="equals" theme={equalsTheme} className="button-equals" onClick={handleClickOnEquals}>
         <img src={equalsIcon} alt="equals icon" />
       </CalcButton>
+
       <CalcButton value="C" key="clear" theme={clearTheme} className="button-clear" onClick={handleClickOnClear}>
         c
       </CalcButton>
-      <CalcButton value="DEL" key="delete" theme={deleteTheme} className="button-delete">
+
+      <CalcButton value="DEL" key="delete" theme={deleteTheme} className="button-delete" onClick={() =>  handleClickOnDelete()}>
         <img src={deleteIcon} alt="delete icon" />
       </CalcButton>
+
       <CalcButton value="%" key="percent" theme={numberTheme} className="button-percent">
         %
       </CalcButton>
