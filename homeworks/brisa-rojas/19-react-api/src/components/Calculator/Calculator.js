@@ -8,22 +8,26 @@ const Calculator = () => {
   const [result, setResult] = useState('');
   const [history, setHistory] = useState('');
   const [reseted, setReseted] = useState(true);
+  const [lastKeyWasEquals, setLastKeyWasEquals] = useState(false);
 
   const handleClickOnNumber = (number) => {
     let stringifyedNum = number.toString();
-    setResult(result + stringifyedNum);
+    setResult(lastKeyWasEquals ? stringifyedNum : result + stringifyedNum);
+    setLastKeyWasEquals(false);
   };
 
   const handleClickOnClear = () => {
     setResult('');
     setHistory('');
     setReseted(true);
+    setLastKeyWasEquals(false);
   };
 
   const handleClickOnEquals = () => {
     setHistory(result);
     setResult(eval(result));
     setReseted(false);
+    setLastKeyWasEquals(true);
   };
 
   const handleClickOnOperator = (operator) => {
@@ -37,11 +41,14 @@ const Calculator = () => {
     if ((lastChar === '/' || lastChar === '*') && (operator === '/' || operator === '*')) return;
 
     setResult(result + operator);
+    setLastKeyWasEquals(false);
   };
 
   const handleClickOnDelete = () => {
-    let newResult = result.slice(0, -1);
-    setResult(newResult);
+    let newResult = result.split('');
+    newResult = newResult.slice(0, -1);
+    setResult(newResult.join(''));
+    setLastKeyWasEquals(false);
   };
 
   return (
