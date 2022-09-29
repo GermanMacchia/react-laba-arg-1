@@ -8,15 +8,16 @@ function Task(props) {
   const dispatch = useDispatch();
 
   const [isBeingEdited, setIsBeingEdited] = useState(false);
-
-  let todoText = useSelector((state) => state.tasks[props.id]);
+  const [todoText, setTodoText] = useState(useSelector((state) => state.tasks[props.id]));
 
   const handleEnterKeyDown = (event) => {
     if (event.key === 'Enter') {
       setIsBeingEdited(false);
+      dispatch(props.editTask(props.id, todoText));
     }
     return;
   };
+  
   const shouldElementBeFocused = (event) => {
     event.preventDefault();
     if (isBeingEdited) {
@@ -36,13 +37,18 @@ function Task(props) {
         readOnly={!isBeingEdited}
         onKeyDown={handleEnterKeyDown}
         onFocus={shouldElementBeFocused}
-        onChange={(event) => dispatch(props.editTask(props.id, event.target.value))}
+        onChange={(event) => setTodoText(event.target.value)}
       />
       <img
         src={editIcon}
         alt="edit task"
         className="task__icon task__edit"
-        onClick={() => setIsBeingEdited(!isBeingEdited)} // toggle edit mode
+        onClick={()=> {
+          setIsBeingEdited(!isBeingEdited);
+          if (isBeingEdited) {
+            dispatch(props.editTask(props.id, todoText));
+          }
+        }} // toggle edit mode and save changes to store if it was being edited before
       />
       <img
         src={deleteIcon}
