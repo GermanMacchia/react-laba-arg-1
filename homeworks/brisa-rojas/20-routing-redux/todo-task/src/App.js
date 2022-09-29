@@ -1,4 +1,3 @@
-import React from 'react';
 import './App.css';
 import { deleteToDo, editToDo } from './app/tasksSlice';
 import AddTaskInput from './components/AddTaskInput/AddTaskInput';
