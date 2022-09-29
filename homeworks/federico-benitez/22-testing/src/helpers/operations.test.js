@@ -28,3 +28,19 @@ describe('test substract operation', () => {
     expect(operations.substract(-3, -6)).toBe(3);
   });
 });
+
+describe('test multiply operation', () => {
+  it('multiply operation should work on positive integer numbers', () => {
+    expect(operations.multiply(4, 4)).toBe(16);
+  });
+
+  it('multiply operation should work on negative integer numbers', () => {
+    expect(operations.multiply(-4, 4)).toBe(-16);
+  });
+});
+
+describe('test division operation', () => {
+  it('division operation should work on positive integer numbers', () => {
+    expect(operations.divide(4, 4)).toBe('1');
+  });
+});
