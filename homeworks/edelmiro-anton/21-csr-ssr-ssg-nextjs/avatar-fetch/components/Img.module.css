@@ -19,7 +19,7 @@
 }
 
 .refreshButton:hover {
-    opacity: 0.6;
-    background-color: antiquewhite;
-    cursor: pointer;
-  }
+  opacity: 0.6;
+  background-color: antiquewhite;
+  cursor: pointer;
+}

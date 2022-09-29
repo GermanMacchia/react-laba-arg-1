@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import styles from "./Layout.module.css"
+import styles from './Layout.module.css';
 
 export const Layout = ({ children }) => {
   return (
@@ -16,7 +16,7 @@ export const Layout = ({ children }) => {
         <title>Tiny Faces App</title>
       </Head>
 
-      <main>{children}</main>
+      <main className={styles.container}>{children}</main>
     </>
   );
 };
