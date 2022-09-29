@@ -21,7 +21,7 @@ export const tasksSlice = createSlice({
     },
     deleteToDo: {
       reducer(state, action) {
-        delete state[action.payload.id];
+        state.filter((task) => task.id !== action.payload);
       },
     },
     editToDo: {
