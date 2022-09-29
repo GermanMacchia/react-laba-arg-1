@@ -37,7 +37,6 @@ function Task(props) {
         onKeyDown={handleEnterKeyDown}
         onFocus={shouldElementBeFocused}
         onChange={(event) => dispatch(props.editTask(props.id, event.target.value))}
-
       />
       <img
         src={editIcon}
