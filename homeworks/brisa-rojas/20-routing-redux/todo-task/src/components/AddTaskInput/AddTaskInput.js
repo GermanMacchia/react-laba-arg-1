@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addToDo } from '../../slices/tasksSlice';
+import { addToDo } from '../../app/tasksSlice';
 import './styles.css';
 
 function AddTaskInput() {

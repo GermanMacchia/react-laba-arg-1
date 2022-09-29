@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './styles.css';
 import editIcon from '../../assets/edit.svg';
 import deleteIcon from '../../assets/delete.svg';
@@ -9,6 +9,8 @@ function Task(props) {
 
   const [isBeingEdited, setIsBeingEdited] = useState(false);
 
+  let todoText = useSelector((state) => state.tasks[props.id]);
+
   const handleEnterKeyDown = (event) => {
     if (event.key === 'Enter') {
       setIsBeingEdited(false);
@@ -17,10 +19,10 @@ function Task(props) {
   };
 
   return (
-    <div className="task">
+    <div className={"task " + isBeingEdited ? 'task_editing-enabled' : 'task_editing-disabled' }>
       <input
         type="text"
-        value={props.task}
+        value={todoText}
         className="task__text"
         readOnly={!isBeingEdited}
         onKeyDown={handleEnterKeyDown}
@@ -37,7 +39,7 @@ function Task(props) {
         alt="delete task"
         className="task__icon task__delete"
         onClick={() => {
-          const taskData = { id: props.id, todoText: props.task };
+          const taskData = { 'id': props.id };
           dispatch(props.deleteTask(taskData));
         }}
       />
