@@ -11,13 +11,13 @@ function AddTaskInput() {
     if (!inputValue.trim()) {
       return null;
     } // if input is empty, do nothing
-    dispatch(addToDo(inputValue.trim()));
+    dispatch(addToDo(inputValue));
     setInputValue('');
   };
 
   const handleEnter = (event) => {
     if (event.key === 'Enter' && inputValue.trim()) {
-      dispatch(addToDo(inputValue.trim()));
+      dispatch(addToDo(inputValue));
       setInputValue('');
     }
     return;

@@ -17,16 +17,27 @@ function Task(props) {
     }
     return;
   };
+  const shouldElementBeFocused = (event) => {
+    event.preventDefault();
+    if (isBeingEdited) {
+      event.target.focus();
+    }
+    else {
+      event.target.blur();
+    }
+  };
 
   return (
-    <div className={"task " + isBeingEdited ? 'task_editing-enabled' : 'task_editing-disabled' }>
+    <div className={"task " + (isBeingEdited ? 'task_editing-enabled' : 'task_editing-disabled' )}>
       <input
         type="text"
         value={todoText}
         className="task__text"
         readOnly={!isBeingEdited}
         onKeyDown={handleEnterKeyDown}
+        onFocus={shouldElementBeFocused}
         onChange={(event) => dispatch(props.editTask(props.id, event.target.value))}
+
       />
       <img
         src={editIcon}
