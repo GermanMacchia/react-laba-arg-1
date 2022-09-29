@@ -1,5 +1,5 @@
 import { Button as ButtonComponent } from '@chakra-ui/react';
-import { iconSources } from '../helpers/keys';
+import { iconSources } from '../../helpers/keys';
 
 export default function Button({ button, ...rest }) {
   const isBtnEqual = button.value === 'equal';
