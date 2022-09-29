@@ -7,20 +7,12 @@ function AddTaskInput() {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState('');
 
-  const handleOnClick = (event) => {
+  const sendTodoToStore = () => {
     if (!inputValue.trim()) {
       return null;
     } // if input is empty, do nothing
     dispatch(addToDo(inputValue));
     setInputValue('');
-  };
-
-  const handleEnter = (event) => {
-    if (event.key === 'Enter' && inputValue.trim()) {
-      dispatch(addToDo(inputValue));
-      setInputValue('');
-    }
-    return;
   };
 
   return (
@@ -31,9 +23,11 @@ function AddTaskInput() {
         className="main-input__input"
         value={inputValue}
         onChange={(event) => setInputValue(event.target.value)}
-        onKeyDown={handleEnter}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') sendTodoToStore();
+        }}
       />
-      <button className="main-input__button" type="submit" onClick={handleOnClick}>
+      <button className="main-input__button" type="submit" onClick={sendTodoToStore}>
         Add
       </button>
     </div>

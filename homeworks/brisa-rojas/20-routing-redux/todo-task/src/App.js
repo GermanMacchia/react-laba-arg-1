@@ -9,8 +9,8 @@ function App(props) {
   let tasks = useSelector((state) => state.tasks);
   let idList = Object.keys(tasks);
 
-  let tasksToRender = idList.map(id => <Task key={id} id={id} deleteTask={deleteToDo} editTask={editToDo} />);
-  
+  let tasksToRender = idList.map((id) => <Task key={id} id={id} deleteTask={deleteToDo} editTask={editToDo} />);
+
   return (
     <div className="App">
       <AddTaskInput />

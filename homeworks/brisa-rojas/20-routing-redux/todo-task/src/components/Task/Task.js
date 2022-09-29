@@ -14,22 +14,22 @@ function Task(props) {
     if (event.key === 'Enter') {
       setIsBeingEdited(false);
       dispatch(props.editTask(props.id, todoText));
+      event.target.blur(); //takes focus out of input
     }
     return;
   };
-  
+
   const shouldElementBeFocused = (event) => {
     event.preventDefault();
     if (isBeingEdited) {
       event.target.focus();
-    }
-    else {
+    } else {
       event.target.blur();
     }
   };
 
   return (
-    <div className={"task " + (isBeingEdited ? 'task_editing-enabled' : 'task_editing-disabled' )}>
+    <div className={'task ' + (isBeingEdited ? 'task_editing-enabled' : 'task_editing-disabled')}>
       <input
         type="text"
         value={todoText}
@@ -43,7 +43,7 @@ function Task(props) {
         src={editIcon}
         alt="edit task"
         className="task__icon task__edit"
-        onClick={()=> {
+        onClick={() => {
           setIsBeingEdited(!isBeingEdited);
           if (isBeingEdited) {
             dispatch(props.editTask(props.id, todoText));
@@ -55,7 +55,7 @@ function Task(props) {
         alt="delete task"
         className="task__icon task__delete"
         onClick={() => {
-          const taskData = { 'id': props.id };
+          const taskData = { id: props.id };
           dispatch(props.deleteTask(taskData));
         }}
       />
