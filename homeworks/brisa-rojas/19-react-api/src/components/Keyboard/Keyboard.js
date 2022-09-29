@@ -1,4 +1,3 @@
-import React from 'react';
 import './styles.css';
 import CalcButton from '../CalcButton/CalcButton.js';
 import divideIcon from '../../assets/divide.svg';
