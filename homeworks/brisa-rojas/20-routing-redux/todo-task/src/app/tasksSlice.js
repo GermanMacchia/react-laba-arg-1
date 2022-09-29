@@ -1,6 +1,6 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
 
-let initialState = Array();
+let initialState = [];
 
 export const tasksSlice = createSlice({
   name: 'tasks',

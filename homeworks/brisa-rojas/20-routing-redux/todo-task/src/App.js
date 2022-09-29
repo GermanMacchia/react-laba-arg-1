@@ -10,18 +10,19 @@ function App(props) {
   let tasks = useSelector((state) => state.tasks);
 
   function deleteTask(payload) {
-   dispatch(deleteToDo(payload));
+    dispatch(deleteToDo(payload));
   }
 
-  function editTask (id, todoText) {
+  function editTask(id, todoText) {
     dispatch(editToDo(id, todoText));
   }
-
 
   return (
     <div className="App">
       <AddTaskInput />
-      {tasks.map( task => <Task key={task.id} id={task.id} todo={task.todoText} deleteTask={deleteTask} editTask={editTask} />)}
+      {tasks.map((task) => (
+        <Task key={task.id} id={task.id} todo={task.todoText} deleteTask={deleteTask} editTask={editTask} />
+      ))}
     </div>
   );
 }
