@@ -3,18 +3,25 @@ import './App.css';
 import { deleteToDo, editToDo } from './app/tasksSlice';
 import AddTaskInput from './components/AddTaskInput/AddTaskInput';
 import Task from './components/Task/Task';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 function App(props) {
+  const dispatch = useDispatch();
   let tasks = useSelector((state) => state.tasks);
-  let idList = Object.keys(tasks);
 
-  let tasksToRender = idList.map((id) => <Task key={id} id={id} deleteTask={deleteToDo} editTask={editToDo} />);
+  function deleteTask(payload) {
+   dispatch(deleteToDo(payload));
+  }
+
+  function editTask (id, todoText) {
+    dispatch(editToDo(id, todoText));
+  }
+
 
   return (
     <div className="App">
       <AddTaskInput />
-      {tasksToRender}
+      {tasks.map( task => <Task key={task.id} id={task.id} todo={task.todoText} deleteTask={deleteTask} editTask={editTask} />)}
     </div>
   );
 }
