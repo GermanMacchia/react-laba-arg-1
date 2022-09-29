@@ -9,8 +9,8 @@ function App(props) {
   const dispatch = useDispatch();
   let tasks = useSelector((state) => state.tasks);
 
-  function deleteTask(payload) {
-    dispatch(deleteToDo(payload));
+  function deleteTask(id) {
+    dispatch(deleteToDo(id));
   }
 
   function editTask(id, todoText) {
