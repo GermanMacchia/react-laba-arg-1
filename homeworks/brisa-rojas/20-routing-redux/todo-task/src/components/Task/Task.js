@@ -3,14 +3,14 @@ import './styles.css';
 import editIcon from '../../assets/edit.svg';
 import deleteIcon from '../../assets/delete.svg';
 
-function Task(props) {
+function Task({ id, todo, deleteTask, editTask }) {
   const [isBeingEdited, setIsBeingEdited] = useState(false);
-  const [todoText, setTodoText] = useState(props.todo);
+  const [todoText, setTodoText] = useState(todo);
 
   const handleEnterKeyDown = (event) => {
     if (event.key === 'Enter') {
       setIsBeingEdited(false);
-      props.editTask({ id: props.id, todoText: todoText });
+      editTask({ id, todoText: todoText });
       event.target.blur(); //takes focus out of input
     }
     return;
@@ -28,7 +28,7 @@ function Task(props) {
   return (
     <div className={'task ' + (isBeingEdited ? 'task_editing-enabled' : 'task_editing-disabled')}>
       <input
-        key={'task text ' + props.id}
+        key={'task text ' + id}
         type="text"
         value={todoText}
         className="task__text"
@@ -38,24 +38,24 @@ function Task(props) {
         onChange={(event) => setTodoText(event.target.value)}
       />
       <img
-        key={'edit icon ' + props.id}
+        key={'edit icon ' + id}
         src={editIcon}
         alt="edit task"
         className="task__icon task__edit"
         onClick={() => {
           setIsBeingEdited(!isBeingEdited);
           if (isBeingEdited) {
-            props.editTask({ id: props.id, todoText: todoText });
+            editTask({ id: id, todoText: todoText });
           }
         }} // toggle edit mode and save changes to store if it was being edited before
       />
       <img
-        key={'delete icon ' + props.id}
+        key={'delete icon ' + id}
         src={deleteIcon}
         alt="delete task"
         className="task__icon task__delete"
         onClick={() => {
-          props.deleteTask(props.id);
+          deleteTask(id);
         }}
       />
     </div>
