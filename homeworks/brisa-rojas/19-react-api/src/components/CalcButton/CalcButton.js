@@ -1,6 +1,5 @@
-import { alpha, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import { red } from '@mui/material/colors';
 
 const CalcButton = styled(Button)(({ theme }) => ({
   backgroundColor: theme.bgColor,
