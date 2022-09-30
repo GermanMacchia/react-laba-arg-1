@@ -27,7 +27,7 @@ function AddTaskInput() {
           if (e.key === 'Enter') sendTodoToStore();
         }}
       />
-      <button className="main-input__button" type="submit" onClick={sendTodoToStore}>
+      <button className="main-input__button" onClick={sendTodoToStore}>
         Add
       </button>
     </div>
