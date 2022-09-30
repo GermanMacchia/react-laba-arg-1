@@ -1,9 +1,12 @@
 import React from 'react'
 import './AddCard.css'
-const AddCard = ({ onClick }) => {
-    return (
-        <button className='button__add' onClick={onClick}></button>
-    )
+class AddCard extends React.Component {
+    render() {
+
+        return (
+            <button className='button__add' onClick={this.props.onClick}></button>
+        )
+    }
 }
 
 export default AddCard

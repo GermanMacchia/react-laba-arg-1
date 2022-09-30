@@ -11,19 +11,53 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      imgs: [],
+      images: [],
+      isLoading: false,
     }
 
   }
 
 
 
-  refreshCards = async () => {
-    //  const api = await fetch('https://tinyfac.es/api/data?limit=1&quality=0');
-    // const response = await api.json();
+  getImage = async () => {
+    const response = await fetch('https://tinyfac.es/api/data?limit=1&quality=0');
+    const result = await response.json();
+    return result[0];
 
   }
 
+  addImage = async () => {
+    this.getImage().then((image) => {
+      this.setState((prevImage) => ({
+        images: [...prevImage.images, { ...image, isLoading: false }],
+      }));
+    });
+  };
+
+
+  refreshImages = async (index) => {
+    this.getImage().then((image) => {
+      const refresh = [...this.state.images];
+      refresh.splice(index, 1, image);
+      this.setState({
+        images: refresh,
+      });
+    });
+  };
+
+  refreshAllImages = async () => {
+    this.setState({
+      isLoading: true,
+    });
+    const refreshAll = [...this.state.images];
+    const refreshAvatars = await Promise.all(
+      refreshAll.map((image) => this.getImage())
+    );
+    this.setState({
+      images: refreshAvatars,
+      isLoading: false,
+    });
+  };
 
 
 
@@ -36,15 +70,25 @@ class App extends React.Component {
 
         <div className="container--card">
 
+          {/*
+        */}
+          {this.state.images.map((person, index) => (
+            <Card
+              key={index}
+              onClick={() => this.refreshImages(index)}
+              src={person.images[0].url}
+              loader={this.state.isLoading ? this.state.isLoading.toString() : null}
+            />
+          ))}
 
 
-          <AddCard />
-
-          <Card />
-
+          <AddCard onClick={this.state.addImage} />
 
         </div>
-        <RefreshButton onclick={this.state.refreshCards}>REFRESH ALL</RefreshButton>
+
+        {this.state.images.length ? (
+          <RefreshButton onclick={this.state.refreshAllImages}>REFRESH ALL</RefreshButton>
+        ) : null}
 
       </div >
     );
