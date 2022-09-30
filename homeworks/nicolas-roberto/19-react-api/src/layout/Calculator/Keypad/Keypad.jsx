@@ -3,13 +3,15 @@ import './Keypad.css';
 import DarkButton from '../../../components/DarkButton.jsx';
 import GreyButton from '../../../components/GreyButton.jsx';
 import EqualsButton from '../../../components/EqualsButton.jsx';
+import CleanButton from '../../../components/CleanButton';
+import DeleteButton from '../../../components/DeleteButton';
 export default function Keypad() {
   return (
     <div className="keypad">
-      <GreyButton>C</GreyButton>
+      <CleanButton>C</CleanButton>
       <GreyButton>/</GreyButton>
       <GreyButton>X</GreyButton>
-      <GreyButton>D</GreyButton>
+      <DeleteButton>D</DeleteButton>
       <DarkButton>7</DarkButton>
       <DarkButton>8</DarkButton>
       <DarkButton>9</DarkButton>
@@ -24,7 +26,6 @@ export default function Keypad() {
       <EqualsButton>=</EqualsButton>
       <DarkButton>%</DarkButton>
       <DarkButton>0</DarkButton>
-
       <DarkButton>.</DarkButton>
     </div>
   );

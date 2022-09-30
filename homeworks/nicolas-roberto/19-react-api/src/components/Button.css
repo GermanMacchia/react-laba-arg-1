@@ -1,12 +1,11 @@
-.equals-button {
-  width: 93.5px;
-  height: 187.5px;
-  border-radius: 0px !important;
-  grid-row: span 3;
+.btn {
+  border-radius: 0 !important;
+  width: 93px;
+  height: 93px;
 }
 
-.btn {
-  border-radius: 0px !important;
-  width: 93.5px;
-  height: 93.5px;
+.equals-button {
+  width: 93px;
+  height: 187px;
+  grid-row: span 3;
 }

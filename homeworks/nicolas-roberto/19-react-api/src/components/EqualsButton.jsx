@@ -4,7 +4,15 @@ import Button from '@material-ui/core/Button';
 
 export default function EqualsButton(props) {
   return (
-    <Button sx={{ borderRadius: 0 }} className="equals-button" variant="contained" disableElevation>
+    <Button
+      className="equals-button"
+      variant="contained"
+      disableElevation
+      style={{
+        backgroundColor: '#FFBB00',
+        borderRadius: '0px',
+      }}
+    >
       {props.children}
     </Button>
   );
