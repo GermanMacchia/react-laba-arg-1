@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { Button } from "../components/Button";
 import { Display } from "../components/Display";
 
@@ -48,6 +48,6 @@ describe("Test in <Display />", () => {
   test("should contain a resolution container and display", () => {
     render(display);
     expect(screen.getByTestId("resolution-container")).toBeTruthy();
-    expect(screen.getByTestId("calculation-display")).toBeTruthy();
+    expect(screen.getByTestId("resolution-display")).toBeTruthy();
   });
 });
