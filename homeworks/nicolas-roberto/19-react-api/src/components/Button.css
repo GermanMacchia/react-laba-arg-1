@@ -1,4 +1,12 @@
+.equals-button {
+  width: 93.5px;
+  height: 187.5px;
+  border-radius: 0px !important;
+  grid-row: span 3;
+}
+
 .btn {
-  border: none;
-  cursor: pointer;
+  border-radius: 0px !important;
+  width: 93.5px;
+  height: 93.5px;
 }
