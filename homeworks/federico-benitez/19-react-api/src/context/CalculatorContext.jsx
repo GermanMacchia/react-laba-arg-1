@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, createContext, useCallback, useState } from 'react';
+import { useContext, useMemo, createContext, useCallback, useState } from 'react';
 import {
   isMathOperation,
   getMathSymbol,
@@ -9,6 +9,8 @@ import {
   operations,
   isDecimal,
   handleDecimal,
+  hasAPreviuosOperation,
+  isOtherOperation,
 } from '../helpers';
 
 const CalculatorContext = createContext(null);
@@ -43,15 +45,8 @@ export function CalculatorProvider({ children }) {
         });
       } else {
         return setValues((prev) => {
-          return {
-            previous: isNaN(prev.previous)
-              ? prev.current
-              : prev.operation !== operation
-              ? getResult(prev.current, prev.previous, prev.operation)
-              : getResult(prev.previous, prev.current, prev.operation),
-            current: 0,
-            operation,
-          };
+          if (prev.current === 0) return { ...prev, operation };
+          return { previous: checkNewOperation(prev, operation), current: 0, operation };
         });
       }
     }
@@ -126,4 +121,12 @@ export function CalculatorProvider({ children }) {
   );
 
   return <CalculatorContext.Provider value={value}>{children}</CalculatorContext.Provider>;
+}
+
+function checkNewOperation(prev, operation) {
+  if (hasAPreviuosOperation(prev)) return prev.current;
+
+  if (isOtherOperation(prev, operation)) return getResult(prev.current, prev.previous, prev.operation);
+
+  return getResult(prev.previous, prev.current, prev.operation);
 }

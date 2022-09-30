@@ -46,6 +46,10 @@ const isANewOperation = (state) => state.value === 0;
 
 const isDecimal = (value) => typeof value === 'string' && value.includes('.');
 
+const hasAPreviuosOperation = (prev) => isNaN(prev.previous);
+
+const isOtherOperation = (prev, operation) => prev.operation !== operation;
+
 const handleDecimal = (current, newValue) => {
   return `${current}${newValue}`;
 };
@@ -68,4 +72,6 @@ export {
   removeLastNumber,
   handleDecimal,
   isDecimal,
+  hasAPreviuosOperation,
+  isOtherOperation,
 };
