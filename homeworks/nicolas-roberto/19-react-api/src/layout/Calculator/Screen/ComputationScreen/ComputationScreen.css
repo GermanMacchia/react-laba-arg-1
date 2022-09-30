@@ -1,0 +1,10 @@
+.computation-screen {
+  height: 39px;
+  width: 90%;
+  font-weight: 300;
+  font-size: 26px;
+  line-height: 39px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}

@@ -1,0 +1,10 @@
+.result-screen {
+  height: 80px;
+  width: 90%;
+  font-size: 55px;
+  line-height: 82px;
+  font-weight: 400;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
