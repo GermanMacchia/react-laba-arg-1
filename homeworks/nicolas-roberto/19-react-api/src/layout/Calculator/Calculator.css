@@ -1,8 +1,0 @@
-.calculator {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  width: 375px;
-  height: 812px;
-  background-color: #242530;
-}
