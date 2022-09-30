@@ -7,7 +7,7 @@ class RefreshButton extends React.Component {
 
         return (
 
-            <button className='refresh--button' onclick={this.props.onclick}>
+            <button className='refresh--button' onClick={this.props.onclick}>
                 {this.props.children}
             </button>
         )

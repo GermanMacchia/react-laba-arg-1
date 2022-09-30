@@ -20,7 +20,7 @@ class App extends React.Component {
 
 
   getImage = async () => {
-    const response = await fetch('https://tinyfac.es/api/data?limit=1&quality=0');
+    const response = await fetch('https://tinyfac.es/api/users');
     const result = await response.json();
     return result[0];
 
@@ -69,25 +69,22 @@ class App extends React.Component {
       <div className="container" >
 
         <div className="container--card">
-
-          {/*
-        */}
           {this.state.images.map((person, index) => (
             <Card
               key={index}
               onClick={() => this.refreshImages(index)}
-              src={person.images[0].url}
+              src={person.url}
               loader={this.state.isLoading ? this.state.isLoading.toString() : null}
             />
           ))}
 
 
-          <AddCard onClick={this.state.addImage} />
+          <AddCard onClick={this.addImage} />
 
         </div>
 
         {this.state.images.length ? (
-          <RefreshButton onclick={this.state.refreshAllImages}>REFRESH ALL</RefreshButton>
+          <RefreshButton onClick={this.refreshAllImages}>REFRESH ALL</RefreshButton>
         ) : null}
 
       </div >
