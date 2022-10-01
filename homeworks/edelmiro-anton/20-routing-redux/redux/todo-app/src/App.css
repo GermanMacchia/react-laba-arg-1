@@ -1,8 +1,6 @@
 .app {
   width: 1440px;
-  height: 1024px;
+  height: auto;
   margin: 50px auto;
   background: linear-gradient(116.67deg, #8c72b7 0.58%, rgba(192, 46, 195, 0) 101.02%);
 }
-
-
