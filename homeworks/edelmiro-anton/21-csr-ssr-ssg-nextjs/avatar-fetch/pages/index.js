@@ -30,7 +30,7 @@ export default function Home({ data }) {
             <div className={styles.container}>
               <div style={{ display: '-webkit-box' }}>
                 {people.map((person, index) => {
-                  return <Img person={person} refreshAvatar={() => refreshAvatar(index)} />;
+                  return <Img key={person.id} person={person} refreshAvatar={() => refreshAvatar(index)} />;
                 })}
                 <AddButton addAvatar={addAvatar} />
               </div>
