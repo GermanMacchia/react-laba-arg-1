@@ -1,4 +1,5 @@
 import styles from './Loader.module.css';
-export const Loader = () => {
+
+export default function Loader() {
   return <p className={styles.loader}>Loading avatars...</p>;
-};
+}

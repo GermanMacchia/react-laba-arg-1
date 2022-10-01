@@ -1,7 +1,7 @@
 import styles from './Img.module.css';
 // import Image from 'next/image';
 
-export const Img = ({ person, refreshAvatar }) => {
+export default function Img ({ person, refreshAvatar })  {
   return (
     <>
       <img

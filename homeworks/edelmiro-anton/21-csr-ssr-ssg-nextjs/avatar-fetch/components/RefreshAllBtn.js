@@ -1,9 +1,9 @@
 import styles from './RefreshAllBtn.module.css';
 
-export const RefreshAllBtn = ({ refreshAll }) => {
+export default function RefreshAllBtn({ refreshAll }) {
   return (
     <button onClick={refreshAll} className={styles.btnRefreshAll}>
       Refresh All
     </button>
   );
-};
+}

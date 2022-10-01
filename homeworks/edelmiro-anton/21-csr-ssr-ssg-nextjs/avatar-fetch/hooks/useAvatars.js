@@ -17,6 +17,7 @@ export const useAvatars = (data) => {
     fetchAvatar().then((person) => {
       setPeople([...people, { ...person }]);
     });
+    console.log('addAvatar');
     setLoading(false);
   };
 
@@ -27,6 +28,7 @@ export const useAvatars = (data) => {
       setPeople([...refresh]);
     });
     setLoading(false);
+    console.log('refreshing avatar');
   };
 
   // When the user clicks on the "refresh all button",
@@ -39,7 +41,6 @@ export const useAvatars = (data) => {
   };
 
   return {
-    fetchAvatar,
     people,
     setPeople,
     loading,
