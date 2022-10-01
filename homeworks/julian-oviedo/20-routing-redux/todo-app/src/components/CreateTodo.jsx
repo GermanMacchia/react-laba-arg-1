@@ -21,16 +21,15 @@ function CreateTodo() {
   }
 
   return (
-    <div className="main-input">
+    <div className="container-add-input">
       <input
         type="text"
         placeholder="Create Todo-Task"
-        className="main-input__input"
+        className="container-add-input__input"
         value={value}
         onChange={(event) => setValue(event.target.value)}
-        required
       />
-      <button type="submit" className="main-input__button" onClick={submitTodo}>
+      <button type="submit" className="container-add-input__button" onClick={submitTodo}>
         Add
       </button>
     </div>
