@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { addTodo } from '../helper/todoSlice';
+import { addTodo } from '../../helper/todoSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import { editTodo } from '../helper/todoSlice';
-import { TodoInput } from './TodoInput';
-import { Modal } from './Modal';
+import { editTodo } from '../../helper/todoSlice';
+import { TodoInput } from '../TodoInput/TodoInput';
+import { Modal } from '../Modal/Modal';
 import './AddTodo.css';
 
 export const AddTodo = () => {

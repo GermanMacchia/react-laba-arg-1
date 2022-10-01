@@ -1,8 +1,8 @@
 import React from 'react';
-import deleteItem from '../assets/deleteItem.png';
-import { removeTodo } from '../helper/todoSlice';
+import deleteItem from '../../assets/deleteItem.png';
+import { removeTodo } from '../../helper/todoSlice';
 import { useDispatch } from 'react-redux';
-import editItem from '../assets/editItem.png';
+import editItem from '../../assets/editItem.png';
 import './TodoInput.css';
 
 export const TodoInput = (props) => {

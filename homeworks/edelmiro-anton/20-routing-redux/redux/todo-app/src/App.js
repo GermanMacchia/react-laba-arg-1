@@ -1,4 +1,4 @@
-import { AddTodo } from './components/AddTodo';
+import { AddTodo } from './components/AddTodo/AddTodo';
 import './App.css';
 
 function App() {
