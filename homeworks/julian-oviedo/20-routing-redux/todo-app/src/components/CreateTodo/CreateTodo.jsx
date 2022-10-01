@@ -1,7 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addTodo } from '../app/todoSlice';
+import { addTodo } from '../../app/todoSlice';
+import './index.css';
 
 function CreateTodo() {
   const dispatch = useDispatch();

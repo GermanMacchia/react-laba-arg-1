@@ -1,9 +1,10 @@
 import React from 'react';
-import deleteImg from '../assets/icons/delete 1.svg';
-import editImg from '../assets/icons/write 1.svg';
-import { deleteTodo, editTodo } from '../app/todoSlice';
+import deleteImg from '../../assets/icons/delete 1.svg';
+import editImg from '../../assets/icons/write 1.svg';
+import { deleteTodo, editTodo } from '../../app/todoSlice';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import './index.css';
 
 const Todo = ({ id, task }) => {
   const [editing, setEditing] = useState(false);
@@ -54,10 +55,10 @@ const Todo = ({ id, task }) => {
                 id={id}
                 onChange={(e) => setValue(e.target.value)}
               ></input>
-              <button className="list-group__button-save" onClick={handleEdit}>
+              <button className="list-group__button" onClick={handleEdit}>
                 Save
               </button>
-              <button className="list-group__button-cancel" onClick={toggleEdit}>
+              <button className="list-group__button" onClick={toggleEdit}>
                 Cancel
               </button>
             </>
