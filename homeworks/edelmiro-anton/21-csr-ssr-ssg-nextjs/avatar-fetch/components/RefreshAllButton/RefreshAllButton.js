@@ -1,6 +1,6 @@
-import styles from './RefreshAllBtn.module.css';
+import styles from './RefreshAllButton.module.css';
 
-export default function RefreshAllBtn({ refreshAll }) {
+export default function RefreshAllButton({ refreshAll }) {
   return (
     <button onClick={refreshAll} className={styles.btnRefreshAll}>
       Refresh All

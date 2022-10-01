@@ -13,14 +13,15 @@ export const useAvatars = (data) => {
     return data[0];
   };
 
+  //function to add a new avatar
   const addAvatar = () => {
     fetchAvatar().then((person) => {
       setPeople([...people, { ...person }]);
     });
-    console.log('addAvatar');
     setLoading(false);
   };
 
+  //function to refresh the avatar when user clicks in each image
   const refreshAvatar = (index) => {
     fetchAvatar().then((person) => {
       const refresh = [...people];
@@ -28,7 +29,6 @@ export const useAvatars = (data) => {
       setPeople([...refresh]);
     });
     setLoading(false);
-    console.log('refreshing avatar');
   };
 
   // When the user clicks on the "refresh all button",
@@ -42,7 +42,6 @@ export const useAvatars = (data) => {
 
   return {
     people,
-    setPeople,
     loading,
     addAvatar,
     refreshAvatar,
