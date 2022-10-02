@@ -1,0 +1,9 @@
+.task__edit{
+  width: 10%;
+  height: 60%;
+}
+.edit__icon{
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}

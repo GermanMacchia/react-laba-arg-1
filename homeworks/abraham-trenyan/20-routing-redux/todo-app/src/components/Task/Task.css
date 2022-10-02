@@ -1,0 +1,12 @@
+.task {
+  width: 40%;
+  height: 65px;
+  display: flex;  
+  align-items: flex-end;
+  margin: auto;
+}
+.task__input {
+  width: 80%;
+  height: 56.8%;
+  border: none;
+}
