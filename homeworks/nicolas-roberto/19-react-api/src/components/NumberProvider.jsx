@@ -32,6 +32,8 @@ export default function NumberProvider(props) {
   };
   /* Equal button's function, passes the type of operator*/
   const handleSetCalcFunction = (type) => {
+    /* If number has a value when an operator is pressed, */
+    /* sets that type of operator to functionType and sets number to storedNumber */
     if (number) {
       setFunctionType(type);
       handleSetStoredValue();
