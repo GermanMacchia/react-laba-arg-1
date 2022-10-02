@@ -1,9 +1,9 @@
 export const Operators = {
   SUBSTRACTION: '-',
   ADDITION: '+',
-  ROUNDED_DIVISION: '/',
+  ROUNDED_DIVISION: '%',
   MULTIPLICATION: 'X',
-  DIVISION: '%',
+  DIVISION: '/',
   EQUAL: '=',
   CLEAN: 'C',
   REMOVE: '<-',
