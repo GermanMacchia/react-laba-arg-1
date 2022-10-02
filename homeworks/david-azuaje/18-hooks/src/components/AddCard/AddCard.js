@@ -5,5 +5,4 @@ const AddCard = ({ onClick }) => {
         <button className='button__add' onClick={onClick}></button>
     )
 }
-
 export default AddCard

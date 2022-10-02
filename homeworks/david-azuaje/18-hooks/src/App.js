@@ -1,14 +1,12 @@
-import './App.css';
-import React, { useState } from 'react';
-import AddCard from './components/AddCard/AddCard';
-import Card from './components/Card/Card';
-import RefreshButton from './components/RefreshButton/RefreshButton';
+import "./App.css";
+import React, { useState } from "react";
+import AddCard from "./components/AddCard/AddCard";
+import Card from "./components/Card/Card";
+import RefreshButton from "./components/RefreshButton/RefreshButton";
 
 function App() {
-
   const [images, setImages] = useState([]);
   const [loader, setLoader] = useState(false);
-
 
   const getImage = async () => {
     const response = await fetch("https://tinyfac.es/api/users");
@@ -23,11 +21,6 @@ function App() {
     });
   };
 
-
-
-
-
-
   const refreshImages = async (index) => {
     getImage().then((image) => {
       const refresh = [...images];
@@ -40,9 +33,7 @@ function App() {
   const refreshAllImages = async () => {
     setLoader(true);
     const refreshAll = [...images];
-    const refreshAvatars = await Promise.all(
-      refreshAll.map(() => getImage())
-    );
+    const refreshAvatars = await Promise.all(refreshAll.map(() => getImage()));
     setImages(refreshAvatars);
     setLoader(false);
   };
@@ -52,26 +43,21 @@ function App() {
       <div className="container--card">
         {images.map((person, index) => {
           return (
-
             <Card
               key={index.toString()}
               onClick={() => refreshImages(index)}
               src={person.url}
               loader={loader ? loader.toString() : null}
             />
-          )
+          );
         })}
 
         <AddCard onClick={addImage}></AddCard>
       </div>
 
       {images.length ? (
-
-
         <RefreshButton onClick={refreshAllImages}> REFRESH ALL </RefreshButton>
-      )
-        : null}
-
+      ) : null}
     </div>
   );
 }

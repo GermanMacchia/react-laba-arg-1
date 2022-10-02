@@ -5,5 +5,4 @@ const RefreshButton = ({ onClick, children }) => {
         <button className='refresh--button' onClick={onClick}>{children}</button>
     )
 }
-
 export default RefreshButton
