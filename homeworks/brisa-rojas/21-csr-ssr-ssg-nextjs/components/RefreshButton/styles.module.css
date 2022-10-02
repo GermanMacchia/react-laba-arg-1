@@ -1,0 +1,12 @@
+.refreshAllButton {
+  background-color: #5e217a;
+  border-radius: 6px;
+  width: 320px;
+  height: 40px;
+  color: white;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
