@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './styles.module.css';
 
 function AvatarTile({ avatarURL, onClick, isRefreshing }) {
+  
   return (
     <div className={styles['avatar-tile']} onClick={onClick}>
       <img className={styles['avatar-tile__img']} src={avatarURL} alt="avatar img" />
