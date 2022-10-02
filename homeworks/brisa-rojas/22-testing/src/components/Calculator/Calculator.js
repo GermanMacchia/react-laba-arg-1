@@ -114,3 +114,5 @@ const Calculator = () => {
 };
 
 export default Calculator;
+
+export const handlers = { handleClickOnNumber, handleClickOnClear, handleClickOnEquals, handleClickOnOperator, handleClickOnDelete, handleClickOnPercent};
