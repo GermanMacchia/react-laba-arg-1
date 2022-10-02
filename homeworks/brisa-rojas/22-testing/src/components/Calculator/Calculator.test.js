@@ -1,8 +1,8 @@
 import Calculator from './Calculator';
 import { handlers } from './Calculator';
-import { render, fireEvent, cleanup, screen } from '@testing-library/react';
+import { render, cleanup } from '@testing-library/react';
 
-describe('Calculator renders correctly itself and its components', () => {
+describe('Calculator renders correctly itself and its children components', () => {
   afterEach(() => {
     cleanup();
   });
