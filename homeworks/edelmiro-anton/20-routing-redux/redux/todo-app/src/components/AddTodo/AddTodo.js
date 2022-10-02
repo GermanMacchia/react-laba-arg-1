@@ -3,7 +3,7 @@ import { addTodo } from '../../helper/todoSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { editTodo } from '../../helper/todoSlice';
 import { TodoInput } from '../TodoInput/TodoInput';
-import { Modal } from '../Modal/Modal';
+import { EditInput } from '../EditInput/EditInput';
 import './AddTodo.css';
 
 export const AddTodo = () => {
@@ -38,11 +38,11 @@ export const AddTodo = () => {
     console.log('edited');
   };
 
-
   return (
-    <>
-      {editing ? (
-        todos.map((todo) => <Modal id={todo.id} onClick={edit} />)
+    <main className='container'>
+      {
+      editing ? (
+        <EditInput onClick={edit} />
       ) : (
         <div className="mainInput">
           <form className="form" onSubmit={handleAddTodo}>
@@ -58,11 +58,11 @@ export const AddTodo = () => {
             </button>
           </form>
           <div>
-            {count > 0 &&
+            {todos.length > 0 &&
               todos.map((todo) => <TodoInput key={todo.id} text={todo.text} id={todo.id} onClick={toggleEdit} />)}
           </div>
         </div>
       )}
-    </>
+    </main>
   );
 };

@@ -1,3 +1,8 @@
+.container {
+  display: flex;
+  justify-content: center;
+  /* margin-top: 23px; */
+}
 .mainInput {
   /* display: flex;
   justify-content: center; */
@@ -10,7 +15,7 @@
 .input_todoTask {
   width: 554px;
   height: 62px;
-  margin-top: 100px;
+  /* margin-top: 100px; */
   margin-bottom: 100px;
   background: #ecf3ff;
   border: none;
@@ -45,7 +50,7 @@
   width: 122px;
   height: 65px;
   left: 958px;
-  margin-top: 99px;
+  /* margin-top: 99px;   */
   background: #5275a0;
   font-family: 'Hind Siliguri';
   font-style: normal;
@@ -62,4 +67,3 @@
   box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgb(43, 41, 40);
   outline: 0 none;
 }
-

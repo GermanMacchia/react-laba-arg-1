@@ -1,7 +1,7 @@
 .todo_container {
   display: flex;
   justify-content: center;
-  margin-top: 23px;
+  /* margin-top: 23px; */
 }
 
 .text_todo {
