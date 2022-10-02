@@ -5,13 +5,30 @@ import RefreshAllButton from '../components/RefreshAllButton/RefreshAllButton.js
 import AddButton from '../components/AddButton/AddButton.jsx';
 import AvatarCard from '../components/AvatarCard/AvatarCard.jsx';
 
-const URL = 'https://tinyfac.es/api/data?limit=1&quality=0';
+const URL1IMG = 'https://tinyfac.es/api/data?limit=1&quality=0';
+const URL5IMG = 'https://tinyfac.es/api/data?limit=5&quality=0';
 
-export default function Home() {
-  const [avatars, setAvatars] = useState([]);
+export const getStaticProps = async () => {
+  return fetch(URL5IMG)
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      throw new Error('Something went wrong trying pre-fetch');
+    })
+    .then((dataJson) => {
+      const preFetch = dataJson.map((avatarImgs) => avatarImgs.url);
+      return {
+        props: { preFetchedAvatars: preFetch },
+      };
+    });
+};
 
+export default function Home({ preFetchedAvatars }) {
+  const [avatars, setAvatars] = useState(preFetchedAvatars);
+  console.log(avatars);
   function getAvatar() {
-    return fetch(URL)
+    return fetch(URL1IMG)
       .then((res) => {
         if (res.ok) {
           return res.json();
