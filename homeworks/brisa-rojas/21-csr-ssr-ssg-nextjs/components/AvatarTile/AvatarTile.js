@@ -1,26 +1,16 @@
 import React from 'react';
-import refreshIcon from '../../assets/refresh-icon.svg';
 import styles from './styles.module.css';
-import classNames from 'classnames/bind';
-
-let cx = classNames.bind(styles);
 
 function AvatarTile({ avatarURL, onClick, isRefreshing }) {
   return (
-    <div className={cx({'avatar-tile': true})} onClick={onClick}>
-      <img className={cx({'avatar-tile__img' : true})} src={avatarURL} alt="avatar img" />
+    <div className={styles['avatar-tile']} onClick={onClick}>
+      <img className={styles['avatar-tile__img']} src={avatarURL} alt="avatar img" />
       <div
-        className={cx({
-          'avatar-tile__overlay avatar-tile__overlay_loading': isRefreshing,
-          'avatar-tile__overlay': !isRefreshing,
-        })}
+        className={`${styles['avatar-tile__overlay']} ${isRefreshing ? styles['avatar-tile__overlay_loading'] : ''}`}
       >
         <img
-          className={cx({
-            'avatar-tile__refresh-icon avatar-tile__refresh-icon_loading': isRefreshing,
-            'avatar-tile__refresh-icon': !isRefreshing,
-          })}
-          src={refreshIcon}
+          className={`${styles['avatar-tile__refresh-icon']} ${isRefreshing ? styles['avatar-tile__refresh-icon_loading'] : ''}`}
+          src={'/refresh.svg'}
           alt="refresh img"
         />
       </div>
