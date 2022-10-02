@@ -108,8 +108,8 @@ const Calculator = () => {
       </div>
 
       <Grid container className="grid-container">
-        {calculatorValues.map((v) => (
-          <CustomButton value={v} onClick={() => handleClick(v)} />
+        {calculatorValues.map((v, idx) => (
+          <CustomButton key={idx} value={v} onClick={() => handleClick(v)} />
         ))}
       </Grid>
     </div>
