@@ -1,38 +1,41 @@
 import React from 'react';
-import NumberButton from './NumberButton';
-import FunctionButton from './FunctionButton';
-import ClearButton from './ClearButton';
+import NumberButton from './buttons/NumberButton';
+import PercentButton from './buttons/PercentButton';
+import ClearButton from './buttons/ClearButton';
 import Display from './Display';
-import EqualButton from './EqualButton';
-import BackButton from './BackButton';
+import EqualButton from './buttons/EqualButton';
+import BackButton from './buttons/BackButton';
+import './styles.css';
+import DivideButton from './buttons/DivideButton';
+import TimesButton from './buttons/TimesButton';
+import MinusButton from './buttons/MinusButton';
+import PlusButton from './buttons/PlusButton';
 
 export default function Calculator() {
   return (
-    <>
-      <div>
-        <Display />
-      </div>
-      <div>
+    <div className="calculator">
+      <Display />
+      <div className="keypad">
         <ClearButton />
+        <DivideButton buttonValue="/" />
+        <TimesButton buttonValue="*" />
         <BackButton />
-        <FunctionButton buttonValue="%" />
-        <FunctionButton buttonValue="/" />
         <NumberButton buttonValue={7} />
         <NumberButton buttonValue={8} />
         <NumberButton buttonValue={9} />
-        <FunctionButton buttonValue="*" />
+        <MinusButton buttonValue="-" />
         <NumberButton buttonValue={4} />
         <NumberButton buttonValue={5} />
         <NumberButton buttonValue={6} />
-        <FunctionButton buttonValue="-" />
+        <PlusButton buttonValue="+" />
         <NumberButton buttonValue={1} />
         <NumberButton buttonValue={2} />
         <NumberButton buttonValue={3} />
-        <FunctionButton buttonValue="+" />
+        <EqualButton />
+        <PercentButton buttonValue="%" />
         <NumberButton buttonValue={0} />
         <NumberButton buttonValue="." />
-        <EqualButton />
       </div>
-    </>
+    </div>
   );
 }
