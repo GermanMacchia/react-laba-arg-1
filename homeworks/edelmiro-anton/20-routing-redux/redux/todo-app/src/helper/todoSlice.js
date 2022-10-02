@@ -22,8 +22,9 @@ export const todoSlice = createSlice({
       state.count -= 1;
     },
     editTodo: (state, action) => {
-      state.todos = state.todos.map((todo) => (todo.id === action.payload ? action.payload : todo));
-      
+      action.payload = state.todos.map((todo) => ({ ...todo })); // con el {...todo} obtengo un obj con el id y text
+      console.log(action.payload);
+      state.todos.map((todo) => (todo.id === action.payload[0].id ? {...state, todos: {text: action.payload[0].text}} : todo));
     },
   },
 });

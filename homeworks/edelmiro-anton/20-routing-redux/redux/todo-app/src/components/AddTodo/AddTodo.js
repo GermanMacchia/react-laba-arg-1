@@ -10,7 +10,7 @@ export const AddTodo = () => {
   const [text, setText] = useState('');
   const [editing, setEditing] = useState(false); // To edit the todo task
 
-  const count = useSelector((state) => state.todo.count);
+  // const count = useSelector((state) => state.todo.count);
   const todos = useSelector((state) => state.todo.todos);
 
   const dispatch = useDispatch();
@@ -33,15 +33,14 @@ export const AddTodo = () => {
   };
 
   const edit = () => {
-    dispatch(editTodo(text));
+    dispatch(editTodo());
     setEditing(false);
     console.log('edited');
   };
 
   return (
-    <main className='container'>
-      {
-      editing ? (
+    <main className="container">
+      {editing ? (
         <EditInput onClick={edit} />
       ) : (
         <div className="mainInput">
@@ -59,7 +58,7 @@ export const AddTodo = () => {
           </form>
           <div>
             {todos.length > 0 &&
-              todos.map((todo) => <TodoInput key={todo.id} text={todo.text} id={todo.id} onClick={toggleEdit} />)}
+              todos.map((todo) => <TodoInput key={todo.id} text={todo.text} id={todo.id} toggleEdit={toggleEdit} />)}
           </div>
         </div>
       )}

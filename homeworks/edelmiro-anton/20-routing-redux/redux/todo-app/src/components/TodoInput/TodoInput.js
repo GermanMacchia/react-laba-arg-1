@@ -5,24 +5,24 @@ import { useDispatch } from 'react-redux';
 import editItem from '../../assets/editItem.png';
 import './TodoInput.css';
 
-export const TodoInput = (props) => {
+export const TodoInput = ({ text, toggleEdit, id }) => {
   const dispatch = useDispatch();
 
   const inputValue = (e) => {
-    e.target.value = props.text;
+    e.target.value = text;
   };
 
   return (
     <div className="todo_container">
       <p className="text_todo" onChange={inputValue}>
-        {props.text}
+        {text}
       </p>
-      <img src={editItem} alt="edit_item_icon" className="edit_icon" onClick={props.onClick} />
+      <img src={editItem} alt="edit_item_icon" className="edit_icon" onClick={toggleEdit} />
       <img
-        key={props.id}
+        key={id}
         src={deleteItem}
         alt="delete_item_icon"
-        onClick={() => dispatch(removeTodo(props.id))}
+        onClick={() => dispatch(removeTodo(id))}
         className="delete_icon"
       />
     </div>
