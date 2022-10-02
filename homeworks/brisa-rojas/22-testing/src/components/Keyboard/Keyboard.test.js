@@ -1,5 +1,5 @@
 import Keyboard from './Keyboard';
-import { render, cleanup, screen } from '@testing-library/react';
+import { render, cleanup } from '@testing-library/react';
 
 describe('Keyboard renders correctly itself and its children components', () => {
   afterEach(() => {

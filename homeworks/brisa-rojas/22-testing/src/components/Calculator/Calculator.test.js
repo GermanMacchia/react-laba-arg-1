@@ -1,5 +1,4 @@
 import Calculator from './Calculator';
-import { handlers } from './Calculator';
 import { render, cleanup } from '@testing-library/react';
 
 describe('Calculator renders correctly itself and its children components', () => {
