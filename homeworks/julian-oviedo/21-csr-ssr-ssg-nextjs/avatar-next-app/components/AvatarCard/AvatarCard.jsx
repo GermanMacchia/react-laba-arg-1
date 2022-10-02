@@ -1,23 +1,14 @@
 import React from 'react';
 import Image from 'next/image';
-/* class AvatarCard extends React.Component {
-  render() {
-    return (
-      <div className="card">
-        <img className="card__avatar" src={this.props.avatarImg} alt=""></img>
-        <img className="card__refresh-icon" src={refreshImg} onClick={this.props.onClick} alt=""></img>
-      </div>
-    );
-  }
-} */
+import style from './style.module.css';
 
 function AvatarCard({ onClick, avatarImg }) {
   return (
-    <div className="card">
-      <img className="card__avatar" src={avatarImg} alt="AvatarImg"></img>
+    <div className={style.card}>
+      <img src={avatarImg} alt="AvatarImg"></img>
       <Image
         layout="fill"
-        className="card__refresh-icon"
+        className={style['card__refresh-icon']}
         src="/images/refresh.svg"
         alt="refreshImG"
         onClick={onClick}

@@ -1,18 +1,9 @@
 import React from 'react';
-
-/* class AddButton extends React.Component {
-  render() {
-    return (
-      <button className="bttn-add" onClick={this.props.onClick}>
-        +
-      </button>
-    );
-  }
-} */
+import style from './style.module.css';
 
 function AddButton({ onClick }) {
   return (
-    <button className="bttn-add" onClick={onClick}>
+    <button className={style['bttn-add']} onClick={onClick}>
       +
     </button>
   );
