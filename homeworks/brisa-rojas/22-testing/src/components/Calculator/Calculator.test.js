@@ -77,4 +77,33 @@ describe('Calculator renders correctly the result', () => {
   });
 });
 
-
+describe('Calculator renders correctly the previous calculation', () => {
+  test('History shown after 2 + 3 = 5 is correct', () => {
+    render(<Calculator />);
+    fireEvent.click(document.querySelector('.button-number-2'));
+    fireEvent.click(document.querySelector('.button-operator-plus'));
+    fireEvent.click(document.querySelector('.button-number-3'));
+    fireEvent.click(document.querySelector('.button-equals'));
+    const calculation = document.querySelector('.display__calculation').textContent;
+    expect(calculation).toBe('2+3');
+  });
+  test('History shown after  - 5 * 2 is correct', () => {
+    render(<Calculator />);
+    fireEvent.click(document.querySelector('.button-operator-minus'));
+    fireEvent.click(document.querySelector('.button-number-5'));
+    fireEvent.click(document.querySelector('.button-operator-multiply'));
+    fireEvent.click(document.querySelector('.button-number-2'));
+    fireEvent.click(document.querySelector('.button-equals'));
+    const calculation = document.querySelector('.display__calculation').textContent;
+    expect(calculation).toBe('-5*2');
+  });
+  test('History shown after 5 / 2 = 2.5 is correct', () => {
+    render(<Calculator />);
+    fireEvent.click(document.querySelector('.button-number-5'));
+    fireEvent.click(document.querySelector('.button-operator-divide'));
+    fireEvent.click(document.querySelector('.button-number-2'));
+    fireEvent.click(document.querySelector('.button-equals'));
+    const calculation = document.querySelector('.display__calculation').textContent;
+    expect(calculation).toBe('5/2');
+  });
+});
