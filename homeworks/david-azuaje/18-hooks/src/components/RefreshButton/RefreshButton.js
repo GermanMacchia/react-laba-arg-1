@@ -2,7 +2,7 @@ import React from 'react'
 import './RefreshButton.css'
 const RefreshButton = ({ onClick, children }) => {
     return (
-        <button className='button' onClick={onClick}>{children}</button>
+        <button className='refresh--button' onClick={onClick}>{children}</button>
     )
 }
 
