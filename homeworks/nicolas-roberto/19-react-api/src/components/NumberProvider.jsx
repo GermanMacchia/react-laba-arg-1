@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+/* Context to pass all the functions between the different components who needs them */
 export const NumberContext = React.createContext();
 
 export default function NumberProvider(props) {
@@ -12,7 +12,7 @@ export default function NumberProvider(props) {
       setNumber(`${(number + num).replace(/^0+/, '')}`);
     }
   };
-
+  /* The value on the top of the screen is replaced by "number" which is the one we're typing */
   const handleSetStoredValue = () => {
     setStoredNumber(number);
     setNumber('');
@@ -23,14 +23,14 @@ export default function NumberProvider(props) {
     setStoredNumber('');
     setFunctionType('');
   };
-
+  /* The back button slices the last character in "number" */
   const handleBackButton = () => {
     if (number !== '') {
       const deletedNumber = number.slice(0, number.length - 1);
       setNumber(deletedNumber);
     }
   };
-
+  /* Equal button's function, passes the type of operator*/
   const handleSetCalcFunction = (type) => {
     if (number) {
       setFunctionType(type);
@@ -40,7 +40,7 @@ export default function NumberProvider(props) {
       setFunctionType(type);
     }
   };
-
+  /* The function which makes the math operation between the number and stored number */
   const doMath = () => {
     if (number && storedNumber) {
       switch (functionType) {
@@ -65,7 +65,7 @@ export default function NumberProvider(props) {
       setNumber('');
     }
   };
-
+  /* Returns all the functions with context to be used on display and all the buttons*/
   return (
     <NumberContext.Provider
       value={{

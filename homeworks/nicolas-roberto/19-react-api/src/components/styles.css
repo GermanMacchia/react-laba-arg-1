@@ -20,7 +20,8 @@
 }
 
 .display-screen {
-  height: auto;
+  overflow: hidden;
+  height: 100%;
   width: 95%;
   margin: 0 auto;
   display: flex;
@@ -42,3 +43,5 @@
   font-size: 26px;
   line-height: 0px;
 }
+
+/* All the button styles are inlyne styles, because they're MIU icons */

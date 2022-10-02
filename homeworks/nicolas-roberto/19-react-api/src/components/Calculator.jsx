@@ -14,6 +14,7 @@ import PlusButton from './buttons/PlusButton';
 export default function Calculator() {
   return (
     <div className="calculator">
+      {/* Display screen */}
       <Display />
       <div className="keypad">
         <ClearButton />
