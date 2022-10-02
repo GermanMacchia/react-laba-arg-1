@@ -1,10 +1,12 @@
-import './App.css';
+import React from 'react';
 import Calculator from './components/Calculator';
+import NumberProvider from './components/NumberProvider';
+import './App.css';
 
 export default function App() {
   return (
-    <div className="App">
+    <NumberProvider>
       <Calculator />
-    </div>
+    </NumberProvider>
   );
 }

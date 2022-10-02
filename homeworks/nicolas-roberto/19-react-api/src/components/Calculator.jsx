@@ -1,29 +1,37 @@
 import React from 'react';
+import NumberButton from './NumberButton';
+import FunctionButton from './FunctionButton';
+import ClearButton from './ClearButton';
+import Display from './Display';
+import EqualButton from './EqualButton';
+import BackButton from './BackButton';
 
 export default function Calculator() {
   return (
     <>
-      <div className="display"></div>
-      <div className="number-pad">
-        <button>C</button>
-        <button buttonValue="/">/</button>
-        <button buttonValue="*">X</button>
-        <button>D</button>
-        <button buttonValue={7}>7</button>
-        <button buttonValue={8}>8</button>
-        <button buttonValue={9}>9</button>
-        <button buttonValue="-">-</button>
-        <button buttonValue={4}>4</button>
-        <button buttonValue={5}>5</button>
-        <button buttonValue={6}>6</button>
-        <button buttonValue="+">+</button>
-        <button buttonValue={1}>1</button>
-        <button buttonValue={2}>2</button>
-        <button buttonValue={3}>3</button>
-        <button>=</button>
-        <button buttonValue="%">%</button>
-        <button buttonValue={0}>0</button>
-        <button buttonValue="."></button>
+      <div>
+        <Display />
+      </div>
+      <div>
+        <ClearButton />
+        <BackButton />
+        <FunctionButton buttonValue="%" />
+        <FunctionButton buttonValue="/" />
+        <NumberButton buttonValue={7} />
+        <NumberButton buttonValue={8} />
+        <NumberButton buttonValue={9} />
+        <FunctionButton buttonValue="*" />
+        <NumberButton buttonValue={4} />
+        <NumberButton buttonValue={5} />
+        <NumberButton buttonValue={6} />
+        <FunctionButton buttonValue="-" />
+        <NumberButton buttonValue={1} />
+        <NumberButton buttonValue={2} />
+        <NumberButton buttonValue={3} />
+        <FunctionButton buttonValue="+" />
+        <NumberButton buttonValue={0} />
+        <NumberButton buttonValue="." />
+        <EqualButton />
       </div>
     </>
   );
