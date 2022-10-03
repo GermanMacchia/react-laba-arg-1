@@ -70,7 +70,7 @@ const Calculator = () => {
   const handleKeyDown = (event) => {
     event.preventDefault();
 
-    let keyIsNumber =  event.key >= 0 && event.key <= 9;
+    let keyIsNumber = event.key >= 0 && event.key <= 9;
     if (keyIsNumber || event.key === '.') {
       handleClickOnNumber(event.key);
     }
@@ -89,11 +89,12 @@ const Calculator = () => {
     if (event.key === '%') {
       handleClickOnPercent();
     }
-  }
+  };
 
   return (
-    <div className="calculator" onKeyDown={handleKeyDown}>
+    <div className="calculator" data-testid='calculator' onKeyDown={handleKeyDown}>
       <Display
+        data-testid="display"
         result={result}
         calculation={reseted ? null : history}
         handleClickOnHistory={() => {
@@ -102,6 +103,7 @@ const Calculator = () => {
         }}
       />
       <Keyboard
+        data-testid="keyboard"
         handleClickOnNumber={handleClickOnNumber}
         handleClickOnClear={handleClickOnClear}
         handleClickOnEquals={handleClickOnEquals}

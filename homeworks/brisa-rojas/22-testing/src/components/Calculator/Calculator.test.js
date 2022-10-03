@@ -1,5 +1,5 @@
 import Calculator from './Calculator';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { screen, render, cleanup, fireEvent } from '@testing-library/react';
 
 describe('Calculator renders correctly itself and its children components', () => {
   afterEach(() => {
@@ -7,17 +7,17 @@ describe('Calculator renders correctly itself and its children components', () =
   });
   test(`Calculator renders ok`, () => {
     render(<Calculator />);
-    const calcElement = document.querySelector('.calculator');
+    const calcElement = screen.getByTestId('calculator');
     expect(calcElement).toBeInTheDocument();
   });
   test(`Keyboard renders ok`, () => {
     render(<Calculator />);
-    const keyboardElement = document.querySelector('.keyboard');
+    const keyboardElement = screen.getByTestId('keyboard');
     expect(keyboardElement).toBeInTheDocument();
   });
   test(`Display renders ok`, () => {
     render(<Calculator />);
-    const displayElement = document.querySelector('.display');
+    const displayElement = screen.getByTestId('display');
     expect(displayElement).toBeInTheDocument();
   });
 });
