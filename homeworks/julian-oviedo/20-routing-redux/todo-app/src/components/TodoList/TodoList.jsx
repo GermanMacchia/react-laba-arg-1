@@ -43,7 +43,7 @@ const Todo = ({ id, task }) => {
     <div className="list-group">
       {editing ? (
         <>
-          <input className="list-group__input" value={value} id={id} onChange={(e) => setValue(e.target.value) } ref={ref}></input>
+          <input className="list-group__input" value={value} id={id} onChange={(e) => setValue(e.target.value) }  ref={ref}></input>
           <button className="list-group__button" onClick={handleEdit}>
             Save
           </button>
@@ -53,7 +53,7 @@ const Todo = ({ id, task }) => {
         </>
       ) : (
         <>
-          <input className="list-group__input" value={task} id={id} ref={ref} />
+          <input className="list-group__input" value={task} id={id} ref={ref}  readOnly/>
           <img src={editImg} alt="edit" onClick={toggleEditOn}></img>
           <img src={deleteImg} alt="delete" onClick={handleDelete}></img>
         </>

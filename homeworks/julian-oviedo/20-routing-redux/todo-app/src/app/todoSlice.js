@@ -9,7 +9,7 @@ const todoSlice = createSlice({
         id: nanoid(),
         task: action.payload.title,
       };
-      return [...state, newTodo];
+       state.push(newTodo)
     },
     deleteTodo: (state, action) => {
       return state.filter((todo) => todo.id !== action.payload.id);
