@@ -1,9 +1,9 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import styles from '../src/styles/Home.module.css';
 import { React, useState } from 'react';
-import RefreshAllButton from '../components/RefreshAllButton/RefreshAllButton.jsx';
-import AddButton from '../components/AddButton/AddButton.jsx';
-import AvatarCard from '../components/AvatarCard/AvatarCard.jsx';
+import RefreshAllButton from '../src/components/RefreshAllButton/RefreshAllButton.jsx';
+import AddButton from '../src/components/AddButton/AddButton.jsx';
+import AvatarCard from '../src/components/AvatarCard/AvatarCard.jsx';
 
 const URL1IMG = 'https://tinyfac.es/api/data?limit=1&quality=0';
 const URL5IMG = 'https://tinyfac.es/api/data?limit=5&quality=0';
@@ -26,7 +26,6 @@ export const getStaticProps = async () => {
 
 export default function Home({ preFetchedAvatars }) {
   const [avatars, setAvatars] = useState(preFetchedAvatars);
-  console.log(avatars);
   function getAvatar() {
     return fetch(URL1IMG)
       .then((res) => {
