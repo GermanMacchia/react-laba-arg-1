@@ -35,34 +35,26 @@ const Todo = ({ id, task }) => {
     setEditing(false);
   }
 
-  let result;
 
   return (
     <div className="list-group">
-      {!editing
-        ? (result = (
-            <>
-              <input className="list-group__input" value={task} id={id} />
-              <img src={editImg} alt="edit" onClick={toggleEdit}></img>
-              <img src={deleteImg} alt="delete" onClick={handleDelete}></img>
-            </>
-          ))
-        : (result = (
-            <>
-              <input
-                className="list-group__input"
-                value={value}
-                id={id}
-                onChange={(e) => setValue(e.target.value)}
-              ></input>
-              <button className="list-group__button" onClick={handleEdit}>
-                Save
-              </button>
-              <button className="list-group__button" onClick={toggleEdit}>
-                Cancel
-              </button>
-            </>
-          ))}
+      {editing ? (
+        <>
+          <input className="list-group__input" value={value} id={id} onChange={(e) => setValue(e.target.value)}></input>
+          <button className="list-group__button" onClick={handleEdit}>
+            Save
+          </button>
+          <button className="list-group__button" onClick={toggleEdit}>
+            Cancel
+          </button>
+        </>
+      ) : (
+        <>
+          <input className="list-group__input" value={task} id={id} />
+          <img src={editImg} alt="edit" onClick={toggleEdit}></img>
+          <img src={deleteImg} alt="delete" onClick={handleDelete}></img>
+        </>
+      )}
     </div>
   );
 };
