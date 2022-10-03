@@ -1,8 +1,8 @@
 import Head from 'next/head';
-import styles from '../styles/styles.module.css';
-import RefreshButton from '../components/RefreshButton/RefreshButton';
-import AvatarTile from '../components/AvatarTile/AvatarTile';
-import AddButton from '../components/AddButton/AddButton';
+import styles from '../src/styles/styles.module.css';
+import RefreshButton from '../src/components/RefreshButton/RefreshButton';
+import AvatarTile from '../src/components/AvatarTile/AvatarTile';
+import AddButton from '../src/components/AddButton/AddButton';
 import { useState } from 'react';
 
 const URL = `https://tinyfac.es/api/data?limit=1&quality=0`;
@@ -85,7 +85,6 @@ export default function Home({ initialAvatars }) {
       <main className={styles.App}>
         <div className={styles.avatarContainer}>
           {avatars.map((avatar, index) => {
-            console.log(index, 'is refreshing:',isRefreshing[index]);
             return (
               <AvatarTile
                 key={index}
