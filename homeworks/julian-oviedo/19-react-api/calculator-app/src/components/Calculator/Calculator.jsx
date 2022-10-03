@@ -76,11 +76,11 @@ const Calculator = () => {
       case Operators.MULTIPLICATION: {
         return Number(calculatorValue) * Number(secondValue);
       }
-      case Operators.DIVISION: {
+      case Operators.ROUNDED_DIVISION: {
         const percentage = Number(calculatorValue) / 100;
         return Number(secondValue) * percentage;
       }
-      case Operators.ROUNDED_DIVISION: {
+      case Operators.DIVISION: {
         const result = Number(calculatorValue) / Number(secondValue);
         if (Number(calculatorValue) % Number(secondValue) > 0) {
           return result.toFixed(9);
