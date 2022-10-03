@@ -56,7 +56,7 @@ const Keyboard = ({
   handleClickOnPercent,
 }) => {
   return (
-    <div className="keyboard">
+    <div className="keyboard" data-testid="keyboard">
       {numberButtons.map((value) => {
         return (
           <CalcButton

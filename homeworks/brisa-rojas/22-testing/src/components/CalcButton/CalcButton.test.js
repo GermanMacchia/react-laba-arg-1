@@ -1,5 +1,6 @@
-import { cleanup, render, screen } from '@testing-library/react';
 import CalcButton from './CalcButton';
+import { render, cleanup } from '@testing-library/react';
+import { screen } from '@testing-library/dom';
 
 const theme = {
   backgroundColor: 'orange',
