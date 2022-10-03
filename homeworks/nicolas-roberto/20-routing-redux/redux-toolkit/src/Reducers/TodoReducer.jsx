@@ -17,8 +17,12 @@ export const TodoReducer = createSlice({
       let { todoList } = state;
       state.todoList = todoList.filter((item) => item.id !== action.payload.id);
     },
-    editTodo: () => {},
+    editTodo: (state, action) => {
+      let { todoList } = state;
+      state.todoList = todoList.map((item) => (item.id === action.payload.id ? action.payload : item));
+    },
   },
 });
+/* Action creators for each reducer function */
 export const { addToDo, deleteToDo, editTodo } = TodoReducer.actions;
 export default TodoReducer.reducer;

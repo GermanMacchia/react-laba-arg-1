@@ -8,17 +8,20 @@ export default function AddTodo() {
     content: '',
   });
   const handleChange = (e) => {
-    setState({ ...state, [e.target.name]: e.target.value, [`${e.target.name}Error`]: null });
+    setState({ ...state, [e.target.name]: e.target.value });
   };
   const add = () => {
+    if (content === '') {
+      return;
+    }
     dispatch(addToDo({ newContent: content }));
     setState({ ...state, content: '' });
   };
   const { content } = state;
   return (
-    <div className="form">
-      <input type="text" value={content} name="content" onChange={handleChange}></input>
-      <button type="button" className="button" onClick={add}>
+    <div>
+      <input placeholder="Create Todo-Task" type="text" value={content} name="content" onChange={handleChange}></input>
+      <button type="button" onClick={add}>
         Add
       </button>
     </div>
