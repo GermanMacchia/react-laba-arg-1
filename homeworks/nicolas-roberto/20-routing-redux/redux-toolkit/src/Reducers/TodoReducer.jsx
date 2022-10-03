@@ -3,14 +3,20 @@ import { createSlice } from '@reduxjs/toolkit';
 export const TodoReducer = createSlice({
   name: 'toDo',
   initialState: {
-    todoList: [
-      { id: 1, content: 'Task 1' },
-      { id: 2, content: 'Task 2' },
-    ],
+    todoList: [],
   },
   reducers: {
-    addToDo: () => {},
-    deleteToDo: () => {},
+    addToDo: (state, action) => {
+      let newTodoList = {
+        id: Date.now(),
+        content: action.payload.newContent,
+      };
+      state.todoList.push(newTodoList);
+    },
+    deleteToDo: (state, action) => {
+      let { todoList } = state;
+      state.todoList = todoList.filter((item) => item.id !== action.payload.id);
+    },
     editTodo: () => {},
   },
 });
