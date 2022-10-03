@@ -30,7 +30,7 @@ export default function NumberProvider(props) {
       setNumber(deletedNumber);
     }
   };
-  /* Equal button's function, passes the type of operator*/
+  /* Every operator button's function, passes the type of operator*/
   const handleSetCalcFunction = (type) => {
     /* If number has a value when an operator is pressed, */
     /* sets that type of operator to functionType and sets number to storedNumber */
@@ -42,7 +42,7 @@ export default function NumberProvider(props) {
       setFunctionType(type);
     }
   };
-  /* The function which makes the math operation between the number and stored number */
+  /* Equal's button function, which makes the math operation between the number and stored number */
   const doMath = () => {
     if (number && storedNumber) {
       switch (functionType) {
