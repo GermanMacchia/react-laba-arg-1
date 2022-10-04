@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import RefreshIcon from '../RefreshIcon/RefreshIcon';
 import getImages from '../../helpers/getImages';
-const Faces = ({initialImgs}) => {  
+const Faces = ({ initialImgs }) => {
   const [images, setImages] = useState([...initialImgs]);
   const addImg = async () => {
     const result = await getImages(1);
