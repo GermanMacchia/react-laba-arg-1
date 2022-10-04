@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addToDo } from '../Reducers/TodoReducer';
+import './Todos.css';
 
+/* Redux hook useDispatch is use to dispatch addToDo action to update state. */
 export default function AddTodo() {
   const dispatch = useDispatch();
   const [state, setState] = useState({
@@ -11,6 +13,7 @@ export default function AddTodo() {
     setState({ ...state, [e.target.name]: e.target.value });
   };
   const add = () => {
+    /* Prevents to add empty input values */
     if (content === '') {
       return;
     }
@@ -19,9 +22,17 @@ export default function AddTodo() {
   };
   const { content } = state;
   return (
-    <div>
-      <input placeholder="Create Todo-Task" type="text" value={content} name="content" onChange={handleChange}></input>
-      <button type="button" onClick={add}>
+    <div className="container">
+      <input
+        className="add-input"
+        placeholder="Create Todo-Task"
+        type="text"
+        value={content}
+        name="content"
+        onChange={handleChange}
+        maxLength={22}
+      ></input>
+      <button className="submit-button" type="button" onClick={add}>
         Add
       </button>
     </div>

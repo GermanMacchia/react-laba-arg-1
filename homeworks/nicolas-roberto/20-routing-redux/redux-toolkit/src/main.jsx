@@ -5,6 +5,8 @@ import './index.css';
 import store from './store';
 import { Provider } from 'react-redux';
 
+/* We can make the store parameter available to our components by putting a React-Redux <Provider> around our application */
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>

@@ -1,0 +1,66 @@
+.container {
+  display: flex;
+  margin-bottom: 64px;
+}
+
+.add-input {
+  text-indent: 88px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.submit-button {
+  width: 122px;
+  height: 65px;
+  color: #ffffff;
+  background: #5275a0;
+  border: none;
+}
+
+.todo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.edit-input {
+  display: flex;
+  align-items: center;
+  text-indent: 44px;
+  width: 554px;
+  height: 65px;
+  background: #ecf3ff;
+}
+
+.task-container {
+  display: flex;
+  width: auto;
+}
+
+.task-item_container {
+  display: flex;
+  flex-direction: row;
+}
+
+.task-item {
+  overflow-x: hidden;
+  width: 554px;
+  height: 65px;
+  background: #ecf3ff;
+  row-gap: 81px;
+  border: none;
+  text-indent: 22px;
+  display: flex;
+  align-items: center;
+}
+
+.edit-button {
+  background: none;
+  border: none;
+  background-image: url(../assets/write.svg);
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  background-image: url(../assets/delete.svg);
+}
