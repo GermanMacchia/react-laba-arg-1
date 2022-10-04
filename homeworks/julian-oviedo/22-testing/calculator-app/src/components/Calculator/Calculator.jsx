@@ -102,7 +102,7 @@ const Calculator = () => {
         <span className="result-container__operation">{`${calculatorValue} ${
           operation !== undefined && operation !== Operators.EQUAL ? operation : ''
         } ${result ? secondValue : ''}`}</span>
-        <span className="result-container__result">
+        <span className="result-container__result" data-testid="outputValue">
           {result !== undefined ? result : secondValue.length > 0 ? secondValue : calculatorValue}
         </span>
       </div>
