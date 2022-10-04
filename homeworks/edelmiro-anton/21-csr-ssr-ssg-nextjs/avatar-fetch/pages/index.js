@@ -1,10 +1,10 @@
-import styles from '../styles/Home.module.css';
-import Loader from '../components/Loader/Loader';
-import AddButton from '../components/AddButton/AddButton';
-import RefreshAllButton from '../components/RefreshAllButton/RefreshAllButton';
-import { useAvatars } from '../hooks/useAvatars';
-import Layout from '../components/Layout/Layout';
-import Img from '../components/Img/Img';
+import styles from '../src/styles/Home.module.css';
+import Loader from '../src/components/Loader/Loader';
+import AddButton from '../src/components/AddButton/AddButton';
+import RefreshAllButton from '../src/components/RefreshAllButton/RefreshAllButton';
+import { useAvatars } from '../src/hooks/useAvatars';
+import Layout from '../src/components/Layout/Layout';
+import Img from '../src/components/Img/Img';
 
 export async function getServerSideProps() {
   const limit = 5;
