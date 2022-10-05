@@ -1,0 +1,20 @@
+.btnRefreshAll {
+  border: none;
+  max-width: 50%;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #5e217a;
+  color: white;
+  font-size: 15px;
+  font-family: 'Poppins';
+  margin-top: 50%;
+  box-shadow: 0px 0px 10px 0px grey;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+.btnRefreshAll:hover {
+  opacity: 0.8;
+}

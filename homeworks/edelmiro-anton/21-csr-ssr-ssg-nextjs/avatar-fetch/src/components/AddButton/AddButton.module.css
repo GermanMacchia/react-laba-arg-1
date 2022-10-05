@@ -1,0 +1,26 @@
+.addButton {
+  width: 100px;
+  height: 100px;
+  margin: 7px;
+  cursor: pointer;
+  border-radius: 16px;
+  border: 3px solid #5e217a;
+  box-shadow: 0px 0px 10px 0px grey;
+}
+
+.verticalLine {
+  position: relative;
+  top: 50%;
+  left: 25%;
+  width: 50%;
+  border: 2px solid #5e217a;
+  transform: rotate(90deg);
+}
+
+.horizontalLine {
+  position: relative;
+  top: 47%;
+  left: 25%;
+  width: 50%;
+  border: 2px solid #5e217a;
+}
