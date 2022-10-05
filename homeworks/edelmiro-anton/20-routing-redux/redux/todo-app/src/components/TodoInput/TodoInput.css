@@ -1,0 +1,36 @@
+.todo_container {
+  display: flex;
+  justify-content: center;
+  /* margin-top: 23px; */
+}
+
+.text_todo {
+  display: flex;
+  width: 554px;
+  height: 47px;
+  margin-top: auto;
+  background: #ecf3ff;
+  border: none;
+  font-family: 'Hind Siliguri';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 52px;
+  color: rgba(0, 0, 0, 0.6);
+  align-items: center;
+  justify-content: center;
+}
+
+.delete_icon {
+  width: 59.38px;
+  height: 58px;
+  margin-top: -7px;
+  cursor: pointer;
+}
+
+.edit_icon {
+  width: 63.23px;
+  height: 65px;
+  margin-top: -10px;
+  cursor: pointer;
+}

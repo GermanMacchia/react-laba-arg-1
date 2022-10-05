@@ -1,0 +1,63 @@
+.input_edit {
+  width: 554px;
+  height: 62px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  background: #ecf3ff;
+  border: none;
+  font-family: 'Hind Siliguri';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 52px;
+  color: rgba(0, 0, 0, 0.6);
+  margin-left: auto;
+}
+
+.input_edit:focus {
+  box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgb(43, 41, 40);
+  outline: 0 none;
+}
+
+/* dialog {
+  display: flex;
+  margin-top: 100px;
+  background: none;
+  border: none;
+}
+
+dialog::backdrop {
+  position: fixed;
+  inset: 0;
+  background: #0006;
+  backdrop-filter: blur(2px);
+} */
+
+.button_edit {
+  width: 122px;
+  height: 65px;
+  left: 958px;
+  margin-top: 99px;
+  background: #5275a0;
+  font-family: 'Hind Siliguri';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 52px;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  margin-right: auto;
+}
+
+.button_edit:focus {
+  box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgb(43, 41, 40);
+  outline: 0 none;
+}
+
+/* .delete_icon_modal {
+  width: 59.38px;
+  height: 58px;
+  margin-top: 100px;
+  cursor: pointer;
+} */
