@@ -9,6 +9,7 @@ import './AddTodo.css';
 export const AddTodo = () => {
   const [text, setText] = useState('');
   const [editing, setEditing] = useState(false); // To edit the todo task
+  const [editId, setEditId] = useState(0); // 
 
   // const count = useSelector((state) => state.todo.count);
   const todos = useSelector((state) => state.todo.todos);
@@ -28,14 +29,14 @@ export const AddTodo = () => {
   };
 
   //function change the value at "editing", so the user can edit their tasks
-  const toggleEdit = () => {
+  const toggleEdit = (id) => {
+    setEditId(id);
     setEditing(true);
   };
 
-  const edit = () => {
-    dispatch(editTodo());
+  const edit = (value) => {
+    dispatch(editTodo({ id: editId, text: value }));
     setEditing(false);
-    console.log('edited');
   };
 
   return (

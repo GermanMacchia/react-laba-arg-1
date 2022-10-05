@@ -12,12 +12,16 @@ export const TodoInput = ({ text, toggleEdit, id }) => {
     e.target.value = text;
   };
 
+  const callToggleEdit = () => {
+    toggleEdit(id)
+  }
+
   return (
     <div className="todo_container">
       <p className="text_todo" onChange={inputValue}>
         {text}
       </p>
-      <img src={editItem} alt="edit_item_icon" className="edit_icon" onClick={toggleEdit} />
+      <img src={editItem} alt="edit_item_icon" className="edit_icon" onClick={callToggleEdit} />
       <img
         key={id}
         src={deleteItem}
