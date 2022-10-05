@@ -1,0 +1,69 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --body-trafficLight: #585F68;
+    --redColor: #DF4040;
+    --yellowColor: #E9EB6A;
+    --greenColor: #55CB0D;
+    --boxShadowColor: #4F555E;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.trafficLight--top {
+    border-top-right-radius: 40px;
+    border-top-left-radius: 40px;
+    background-color: var(--boxShadowColor);
+    height: 40px;
+    width: 120px;
+}
+
+.trafficLight--body {
+    height: 560px;
+    width: 240px;
+    background-color: var(--body-trafficLight);
+    border-radius: 60px;
+    box-shadow: inset 24px 0px 0px rgba(0, 0, 0, 0.1);
+    filter: drop-shadow(6px 6px 10px rgba(0, 0, 0, 0.25));
+}
+
+.trafficLight--lights {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+li {
+    width: 120px;
+    list-style: none;
+    height: 120px;
+    box-shadow: inset 10px 0px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    background-color: var(--boxShadowColor);
+}
+
+.light--red {
+    background-color: var(--redColor);
+}
+
+.light--yellow {
+    background-color: var(--yellowColor);
+}
+
+.light--green {
+    background-color: var(--greenColor);
+}
