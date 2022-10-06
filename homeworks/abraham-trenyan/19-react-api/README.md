@@ -1,1 +1,1 @@
-https://abrahamtrenyan.github.io/calculator/
+https://abrahamtrenyan.github.io/calculator-react/
