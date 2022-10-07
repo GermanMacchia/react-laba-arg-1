@@ -1,11 +1,11 @@
 import './App.css';
 import Add from './components/Add/Add';
-import Task from './components/Task/Task'
+import TodoList from './components/TodoList/TodoList';
 function App() {
   return (
     <main className='main'>
       <Add/>
-      <Task/>
+      <TodoList/>
     </main>
   );
 }
