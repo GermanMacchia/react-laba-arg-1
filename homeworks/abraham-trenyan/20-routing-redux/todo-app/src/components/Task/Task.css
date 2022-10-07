@@ -1,0 +1,30 @@
+.task {
+  width: 40%;
+  height: 65px;
+  display: flex;
+  align-items: flex-end;
+  margin: auto;
+}
+.task__input {
+  width: 80%;
+  height: 56.8%;
+  border: none;
+}
+.task__delete {
+  width: 10%;
+  height: 60%;
+}
+.delete__icon {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.task__edit {
+  width: 10%;
+  height: 60%;
+}
+.edit__icon {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
