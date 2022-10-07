@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTask } from '../../redux/slice';
-import './Add.css'
+import './Add.css';
 const Add = () => {
   const [value, setValue] = useState('');
   const dispatch = useDispatch();
@@ -9,8 +9,6 @@ const Add = () => {
   const onSubmit = (event) => {
     event.preventDefault();
     if (value.trim().length === 0) {
-      alert('Enter a task before adding !!');
-      setValue('');
       return;
     }
     dispatch(
