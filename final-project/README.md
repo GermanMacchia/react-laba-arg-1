@@ -8,6 +8,7 @@
 - [NEXT.JS](https://nextjs.org/)
 - [MUI](https://mui.com/)
 - [React Query](https://tanstack.com/query/v4/docs/adapters/react-query)
+- All other technologies you can decide with the team
 
 # Teams
 
