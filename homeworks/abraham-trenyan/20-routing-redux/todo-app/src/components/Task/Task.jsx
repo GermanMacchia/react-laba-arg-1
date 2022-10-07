@@ -8,9 +8,7 @@ import { editTodo } from '../../redux/slice';
 import './Task.css';
 const Task = ({ title, id }) => {
   const ref = useRef(null);
-  const handleClick = () => {
-    ref.current.focus();
-  };
+  const handleClick = () => ref.current.focus();
 
   const dispatch = useDispatch();
   const removeTask = () => {
