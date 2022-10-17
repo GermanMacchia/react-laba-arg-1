@@ -15,12 +15,13 @@
 **Team 1**
 - Emiliano Acerbi - team lead
 - Brisa Rojas
+- David Azuaje
 - Julian Oviedo
 - Edelmiro Anton
 
 **Team 2**
 - Federico Benitez - team lead
 - German Osses Macchia
+- Pedro Moyano
 - Abraham Trenyan
-- David Azuaje
 - Nikolas Roberto
